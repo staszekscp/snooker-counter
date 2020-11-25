@@ -54,6 +54,7 @@ const Ball = props => {
                         props.pPoints(prev => prev+7)
                         props.setCurrentBreak(prev => prev+7)
                         props.setRemaining(0)
+                        
                     }
                     props.setFreeBall(false)
                     if (props.remaining === 34) {
