@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Dimensions, ImageBackground, View} from 'react-native';
+import { StyleSheet, Dimensions, ImageBackground, View, TouchableNativeFeedback, Text} from 'react-native';
 
 import Ball from '../components/Ball'
 import BallContainer from '../components/BallContainer'
@@ -9,6 +9,8 @@ import SafetyContainer from '../components/SafetyContainer'
 import FoulContainer from '../components/FoulContainer'
 import AdditionalRedContainer from '../components/AdditionalRedContainer'
 import ConceideContainer from '../components/ConceideContainer'
+import SwitchButton from '../components/SwitchButton'
+
 import FrameOverScreen from '../screens/FrameOverScreen'
 
 
@@ -69,6 +71,7 @@ const ScoreScreen = props => {
         longMiss: 0,
         safe: 0,
         unsafe: 0,
+        foulPointsGivenAway: 0
     })
     
     const successP1 = {
@@ -84,6 +87,7 @@ const ScoreScreen = props => {
         longMiss: 0,
         safe: 0,
         unsafe: 0,
+        foulPointsGivenAway: 0
     })
 
     const successP2 = {
@@ -281,8 +285,35 @@ const ScoreScreen = props => {
 
         const score = <ImageBackground style={styles.img} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
         <View style={styles.bar}/>
-        {overlayP1 && <View style={styles.overlay}/>}
-        {overlayP2 && <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}/>}
+        {overlayP1 && proMode ? <View style={styles.overlay}>
+                <SwitchButton 
+                    setCurrentBreak={setCurrentBreakP2}
+                    setFreeBP1={setFreeBallP1}
+                    setFreeBP2={setFreeBallP2}
+                    setFreeBall={setFreeBallModeP2}
+                    setOverlayP1={setOverlayP1}
+                    setOverlayP2={setOverlayP2}
+                    setRemaining={setRemaining}
+                    remaining={remaining}
+                    activateP1={setActiveBallsP1}
+                    activateP2={setActiveBallsP2}
+                    stats={setStatsP1}
+                    />
+            </View> : overlayP1 && <View style={styles.overlay}/>}
+        {overlayP2 && proMode ? <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}>
+                <SwitchButton 
+                    setCurrentBreak={setCurrentBreakP1}
+                    setFreeBP1={setFreeBallP1}
+                    setFreeBP2={setFreeBallP2}
+                    setFreeBall={setFreeBallModeP1}
+                    setOverlayP1={setOverlayP1}
+                    setOverlayP2={setOverlayP2}
+                    setRemaining={setRemaining}
+                    remaining={remaining}
+                    activateP1={setActiveBallsP1}
+                    activateP2={setActiveBallsP2}
+                    stats={setStatsP1}/> 
+            </View> : overlayP2 && <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}/>}
             <ScoreContainer 
                 p1Name={p1Name}
                 p2Name={p2Name}
@@ -399,7 +430,9 @@ const ScoreScreen = props => {
                             currentBreakP1={currentBreakP1}
                             currentBreakP2={currentBreakP2}
                             setCurrentBreakP1={setCurrentBreakP1}
-                            setCurrentBreakP2={setCurrentBreakP2}/>
+                            setCurrentBreakP2={setCurrentBreakP2}
+                            statsP1={setStatsP1}
+                            statsP2={setStatsP2}/>
                         <AdditionalRedContainer 
                             remaining={remaining}
                             setRemaining={setRemaining}
@@ -492,9 +525,11 @@ const styles = StyleSheet.create({
    overlay: {
     height: '100%',
     width: '50%',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.65)',
     position: 'absolute',
-    zIndex: 2
+    zIndex: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
    },
    bar: {
     left:Dimensions.get('window').width/2,
@@ -523,8 +558,10 @@ const styles = StyleSheet.create({
    cover: {
     paddingTop: 3,
     backgroundColor: 'rgba(60,5,0, 0.8)',
-    paddingBottom: 100
-   }
+    paddingBottom: 100,
+
+   },
+
 })
  
 // backgroundColor: 'rgba(60,5,0, 0.9)',
