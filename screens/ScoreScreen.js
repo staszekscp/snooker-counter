@@ -16,14 +16,14 @@ import FrameOverScreen from '../screens/FrameOverScreen'
 
  
 const ScoreScreen = props => {
-    const p1Name = "mario"
-    const p2Name = "ronnie o'sullivan"
+    const p1Name = props.navigation.getParam('p1')
+    const p2Name = props.navigation.getParam('p2')
 
     const [p1Points, setP1Points] = useState(0)
     const [p2Points, setP2Points] = useState(0)
     const [p1Frames, setP1Frames] = useState(0)
     const [p2Frames, setP2Frames] = useState(0)
-    const [remaining, setRemaining] = useState(147)
+    const [remaining, setRemaining] = useState(props.navigation.getParam('reds')*8 + 27)
     
     const [activeBallsP1, setActiveBallsP1] = useState({
         '1': false,
@@ -60,7 +60,7 @@ const ScoreScreen = props => {
     const [currentBreakP1, setCurrentBreakP1] = useState(0)
     const [currentBreakP2, setCurrentBreakP2] = useState(0)
 
-    const [proMode, setProMode] = useState(true)
+    const [proMode, setProMode] = useState(props.navigation.getParam('mode'))
 
 
     const [statsP1, setStatsP1] = useState({

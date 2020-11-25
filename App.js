@@ -9,6 +9,7 @@ import MainNavigator from './navigation/MainNavigator'
 
 {/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com></a></div> */}
 {/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
+{/* <div>Icons made by <a href="https://www.flaticon.com/free-icon/pool_523683?term=snooker&page=1&position=10&related_item_id=523683" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
 
 const fetchFonts = () => {
   return Font.loadAsync({

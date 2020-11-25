@@ -2,11 +2,11 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from 'react-navigation'
  
 import ScoreScreen from '../screens/ScoreScreen'
-import FrameOverScreen from '../screens/FrameOverScreen'
+import StartScreen from '../screens/StartScreen'
  
 const MealsNavigator = createStackNavigator({
+    Start: StartScreen,
     Score: ScoreScreen,
-    FrameOver: FrameOverScreen,
     
 })
  
