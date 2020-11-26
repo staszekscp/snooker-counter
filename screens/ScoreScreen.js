@@ -12,6 +12,8 @@ import ConceideContainer from '../components/ConceideContainer'
 import SwitchButton from '../components/SwitchButton'
 
 import FrameOverScreen from '../screens/FrameOverScreen'
+import GameOverScreen from '../screens/GameOverScreen'
+
 
 
  
@@ -25,6 +27,9 @@ const ScoreScreen = props => {
     const [p2Points, setP2Points] = useState(0)
     const [p1Frames, setP1Frames] = useState(0)
     const [p2Frames, setP2Frames] = useState(0)
+
+    const [frameRecord, setFrameRecord] = useState([])
+
     const [remaining, setRemaining] = useState(props.navigation.getParam('reds')*8 + 27)
     
     const [activeBallsP1, setActiveBallsP1] = useState({
@@ -99,18 +104,9 @@ const ScoreScreen = props => {
     }
 
     const [endOfFrame, setEndOfFrame] = useState(false)
-    const [extraBlack, setExtraBlack] = useState(false)
+    const [endOfMatch, setEndOfMatch] = useState(false)
 
-    // useEffect(()=> {
-    //     setStatsP1(prev => ({
-    //         ...prev,
-    //         points: p1Points
-    //     }))
-    //     setStatsP2(prev => ({
-    //         ...prev,
-    //         points: p2Points
-    //     }))
-    // }, [p1Points, p2Points])
+    const [extraBlack, setExtraBlack] = useState(false)
 
     useEffect(()=> {
         setBreakP1(prev => prev < currentBreakP1 ? currentBreakP1 : prev)
@@ -262,27 +258,28 @@ const ScoreScreen = props => {
         }}, [statsP1, statsP2])
 
         useEffect(()=>{
-            if (p1Points > p2Points) {
-                setP1Frames(prev => prev+1)
-                setStatsP1(prev => ({
-                    ...prev,
-                    points: prev.points+p1Points
-                }))
-                setStatsP2(prev => ({
-                    ...prev,
-                    points: prev.points+p2Points
-                }))
-            } else if (p1Points < p2Points) {
-                setP2Frames(prev => prev+1)
-                setStatsP1(prev => ({
-                    ...prev,
-                    points: prev.points+p1Points
-                }))
-                setStatsP2(prev => ({
-                    ...prev,
-                    points: prev.points+p2Points
-                }))
-        }
+            if (endOfFrame){
+                if (p1Points > p2Points) {
+                    setP1Frames(prev => prev+1)
+                    setStatsP1(prev => ({
+                        ...prev,
+                        points: prev.points+p1Points
+                    }))
+                    setStatsP2(prev => ({
+                        ...prev,
+                        points: prev.points+p2Points
+                    }))
+                } else if (p1Points < p2Points) {
+                    setP2Frames(prev => prev+1)
+                    setStatsP1(prev => ({
+                        ...prev,
+                        points: prev.points+p1Points
+                    }))
+                    setStatsP2(prev => ({
+                        ...prev,
+                        points: prev.points+p2Points
+                    }))
+            }}
         }, [endOfFrame])
 
         const score = <ImageBackground style={styles.img} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
@@ -502,6 +499,35 @@ const ScoreScreen = props => {
             setCurrentBreakP2={setCurrentBreakP2}
             setActiveBallsP1={setActiveBallsP1}
             setActiveBallsP2={setActiveBallsP2}
+            setFrameRecord={setFrameRecord}
+            setGameOver={setEndOfMatch}
+            />  : endOfMatch ? <GameOverScreen 
+            mode={mode}
+            proMode={proMode}
+            p1Frames={p1Frames}
+            p2Frames={p2Frames}
+            p1Name={p1Name}
+            p2Name={p2Name}
+            p1Points={p1Points}
+            p2Points={p2Points}
+            statsP1={statsP1}
+            statsP2={statsP2}
+            successP1={successP1}
+            successP2={successP2}
+            breakP1={breakP1}
+            breakP2={breakP2}
+            setEndOfFrame={setEndOfFrame}
+            setP1Points={setP1Points}
+            setP2Points={setP2Points}
+            setRemaining={setRemaining}
+            setOverlayP1={setOverlayP1}
+            setOverlayP2={setOverlayP2}
+            setCurrentBreakP1={setCurrentBreakP1}
+            setCurrentBreakP2={setCurrentBreakP2}
+            setActiveBallsP1={setActiveBallsP1}
+            setActiveBallsP2={setActiveBallsP2}
+            setGameOver={setEndOfMatch}
+            frameRecord={frameRecord}
             /> : score}
             
         </View>
@@ -559,7 +585,7 @@ const styles = StyleSheet.create({
    },
    cover: {
     paddingTop: 3,
-    backgroundColor: 'rgba(60,5,0, 0.8)',
+    backgroundColor: 'rgba(60,5,0, 0.6)',
     paddingBottom: 100,
 
    },

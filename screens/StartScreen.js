@@ -141,7 +141,7 @@ const StartScreen = props => {
                             <View style={styles.nextFrame}>
                                 <TouchableNativeFeedback
                                 onPress={() => {
-                                    if (p1Name.length >= 2 && p2Name >= 2){
+                                    if (p1Name.length >= 2 && p2Name.length >= 2){
                                         props.navigation.navigate({
                                             routeName: 'Score',
                                             params: {
@@ -237,13 +237,13 @@ const styles = StyleSheet.create({
         borderWidth: 3
     },
     cover: {
-        backgroundColor: 'rgba(60,5,0, 0.8)',
+        backgroundColor: 'rgba(60,5,0, 0.6)',
         height: '100%',
         width: '100%',
         padding: 20
        },
     cover2: {
-        backgroundColor: 'rgba(60,5,0, 0.8)',
+        backgroundColor: 'rgba(60,5,0, 0.6)',
         height: '100%',
         width: '100%',
         justifyContent: 'center',
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
     playersContainer: {
         height: '35%',
         width: '98%',
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
         paddingVertical: 10,
         marginVertical: 10,
         borderRadius: 15,
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     textInput: {
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
         borderRadius: 5,
         width: 200,
         color: '#ddd',

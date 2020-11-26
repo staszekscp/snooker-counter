@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     frameContainer: {
-        backgroundColor: 'rgba(60,5,0,0.7)'
+        backgroundColor: 'rgba(60,5,0,0.6)'
     },
     namesContainer: {
         height: '30%',

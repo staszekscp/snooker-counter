@@ -87,6 +87,12 @@ const FrameOverScreen = props => {
                             <View style={styles.nextFrame}>
                                 <TouchableNativeFeedback
                                 onPress={() => {
+                                    props.setFrameRecord(prev => ([
+                                        ...prev,
+                                        {p1: props.p1Points,
+                                        p2: props.p2Points,
+                                        id: props.p1Frames+props.p2Frames}
+                                    ]))
                                     props.setEndOfFrame(false)
                                     props.setP1Points(0)
                                     props.setP2Points(0)
@@ -122,6 +128,17 @@ const FrameOverScreen = props => {
                             </View>
                             <View style={styles.endMatch}>
                                 <TouchableNativeFeedback
+                                onPress={() => {
+                                    props.setFrameRecord(prev => ([
+                                        ...prev,
+                                        {p1: props.p1Points,
+                                        p2: props.p2Points,
+                                        id: props.p1Frames+props.p2Frames}
+                                    ]))
+                                    props.setRemaining(props.mode * 8 + 27)
+                                    props.setEndOfFrame(false)
+                                    props.setGameOver(true)
+                                }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                     <View style={styles.endMatchButton}>
                                         <Text style={styles.endMatchText}>END GAME</Text>
@@ -166,13 +183,13 @@ const styles = StyleSheet.create({
         borderWidth: 3
     },
     cover: {
-        backgroundColor: 'rgba(60,5,0, 0.8)',
+        backgroundColor: 'rgba(60,5,0, 0.6)',
         height: '100%',
         width: '100%',
         padding: 20
        },
     cover2: {
-        backgroundColor: 'rgba(60,5,0, 0.8)',
+        backgroundColor: 'rgba(60,5,0, 0.6)',
         height: '100%',
         width: '100%',
         justifyContent: 'center',
