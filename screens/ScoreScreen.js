@@ -528,6 +528,7 @@ const ScoreScreen = props => {
             setActiveBallsP2={setActiveBallsP2}
             setGameOver={setEndOfMatch}
             frameRecord={frameRecord}
+            navigation={props.navigation}
             /> : score}
             
         </View>

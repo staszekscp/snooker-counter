@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Dimensions, ImageBackground, View, Text} from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, ImageBackground, View, Text, TouchableNativeFeedback} from 'react-native';
 
 const GameOverScreen = props => {
     const proMode = props.proMode
@@ -76,7 +76,8 @@ const GameOverScreen = props => {
                             <View style={styles.framesTextContainer}>
                                 <Text style={styles.textWinner}><Text style={{color: '#e0de94'}}>FRAMES</Text></Text>
                             </View>
-                            <View style={styles.frameResultContainer}>
+                            <ScrollView >
+                                <View style={styles.frameResultContainer}>
                                 {props.frameRecord.map(x => <View style={{flexDirection: 'row'}}>
                                     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
                                         <View style={{width: '40%'}}>
@@ -90,6 +91,20 @@ const GameOverScreen = props => {
                                         </View>
                                     </View>
                                 </View>)}
+                                </View>
+                            </ScrollView>
+                            <View style={styles.buttonContainer}>
+                                <View style={styles.nextFrame}>
+                                    <TouchableNativeFeedback
+                                    onPress={() => {
+                                        props.navigation.navigate('Start')
+                                    }}
+                                    background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
+                                        <View style={styles.nextFrameButton}>
+                                            <Text style={styles.nextFrameText}>NEW MATCH</Text>
+                                        </View>
+                                    </TouchableNativeFeedback>
+                                </View>
                             </View>
                         </View>
                     </ImageBackground>
@@ -261,6 +276,11 @@ const styles = StyleSheet.create({
         color: '#bbb',
         fontFamily: 'score',
         fontSize: 14
+    },
+    buttonContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20
     }
 })
 
