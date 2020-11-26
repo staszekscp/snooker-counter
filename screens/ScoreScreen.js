@@ -464,7 +464,11 @@ const ScoreScreen = props => {
                             p2Name={p2Name}
                             setP1Frames={setP1Frames}
                             setP2Frames={setP2Frames}
-                            setEndOfFrame={setEndOfFrame}/>
+                            setEndOfFrame={setEndOfFrame}
+                            setFreeBallP1={setFreeBallModeP1}
+                            setFreeBallP2={setFreeBallModeP2}
+                            setFreeBP1={setFreeBallP1}
+                            setFreeBP2={setFreeBallP2}/>
                     </View>
                 </ImageBackground>
             </View>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text} from 'react-native';
+import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, ScrollView} from 'react-native';
 
 const FrameOverScreen = props => {
     const proMode = props.proMode
@@ -33,8 +33,9 @@ const FrameOverScreen = props => {
     return (
         <View style={styles.main}>
             <ImageBackground style={styles.img} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
-                <View style={styles.summaryContainer}>
-                    <ImageBackground style={styles.img} source={require('../assets/png/wood.png')}>
+            <ScrollView contentContainerStyle={styles.summaryContainer}>
+                <View>
+                    <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
                         <View style={styles.cover}>
                             <View style={styles.top}>
                                 <Text style={styles.textWinner}><Text style={{color: '#e0de94'}}>MATCH STATS</Text></Text>
@@ -76,14 +77,7 @@ const FrameOverScreen = props => {
                                     <View><Text style={p1break < p2break? styles.textBetter : styles.text}>{p2break}</Text></View>
                                 </View>
                             </View>
-                            
-                            
-                        </View>
-                    </ImageBackground>
-                </View>
-                <View style={styles.summaryContainer2}>
-                    <ImageBackground style={styles.img} source={require('../assets/png/wood.png')}>
-                        <View style={styles.cover2}>
+                            <View style={styles.buttonContainer}>
                             <View style={styles.nextFrame}>
                                 <TouchableNativeFeedback
                                 onPress={() => {
@@ -145,9 +139,12 @@ const FrameOverScreen = props => {
                                     </View>
                                 </TouchableNativeFeedback>
                             </View>
+                            
+                        </View>
                         </View>
                     </ImageBackground>
                 </View>
+            </ScrollView>
             </ImageBackground>
 
         </View>
@@ -165,13 +162,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
         },
+    img2: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+        },
     summaryContainer: {
-        height: '40%',
         width: '80%',
         borderRadius: 20,
         overflow: 'hidden',
         marginBottom: 30,
-        borderWidth: 3
+        borderWidth: 3,
+        top:100
     },
     summaryContainer2: {
         height: '20%',
@@ -184,7 +186,6 @@ const styles = StyleSheet.create({
     },
     cover: {
         backgroundColor: 'rgba(60,5,0, 0.6)',
-        height: '100%',
         width: '100%',
         padding: 20
        },
@@ -196,10 +197,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
        },
     top: {
-        height: '15%'
+        marginBottom: 10
     },
     topResult: {
-        height: '25%',
+
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -207,12 +208,12 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     statsContainer: {
-        height: '55%',
+
         flexDirection: 'row',
         backgroundColor: 'rgba(255,255,255,0.1)',
         borderRadius: 20,
-        paddingHorizontal: 5,
-        marginVertical: 20
+        padding: 5,
+        marginTop: 20
     },
     p1Stats: {
         justifyContent: 'center',
@@ -303,6 +304,11 @@ const styles = StyleSheet.create({
         color: '#bbb',
         fontFamily: 'score',
         fontSize: 14
+    },
+    buttonContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20
     }
 })
 

@@ -30,7 +30,8 @@ const GameOverScreen = props => {
     return (
         <View style={styles.main}>
             <ImageBackground style={styles.img} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
-                <View style={styles.summaryContainer}>
+                <ScrollView contentContainerStyle={styles.summaryContainer}>
+                <View >
                     <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
                         <View style={styles.cover}>
                             <View style={styles.top}>
@@ -76,8 +77,8 @@ const GameOverScreen = props => {
                             <View style={styles.framesTextContainer}>
                                 <Text style={styles.textWinner}><Text style={{color: '#e0de94'}}>FRAMES</Text></Text>
                             </View>
-                            <ScrollView >
-                                <View style={styles.frameResultContainer}>
+
+                            <View style={styles.frameResultContainer}>
                                 {props.frameRecord.map(x => <View style={{flexDirection: 'row'}}>
                                     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
                                         <View style={{width: '40%'}}>
@@ -91,8 +92,7 @@ const GameOverScreen = props => {
                                         </View>
                                     </View>
                                 </View>)}
-                                </View>
-                            </ScrollView>
+                            </View>
                             <View style={styles.buttonContainer}>
                                 <View style={styles.nextFrame}>
                                     <TouchableNativeFeedback
@@ -108,7 +108,8 @@ const GameOverScreen = props => {
                             </View>
                         </View>
                     </ImageBackground>
-                </View>
+                    </View>
+                </ScrollView>
             </ImageBackground>
         </View>
     )
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     summaryContainer: {
         width: '80%',
         overflow: 'hidden',
-        bottom: 100,
+        top: 100,
         borderWidth: 3,
         borderRadius: 20,
     },
@@ -143,14 +144,15 @@ const styles = StyleSheet.create({
         width: '100%',
         overflow: 'hidden'
        },
-       summaryContainer2: {
+    summaryContainer2: {
         height: '20%',
         width: '40%',
         borderRadius: 20,
         overflow: 'hidden',
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 3
+        borderWidth: 3,
+        bottom: 100
     },
     cover2: {
         backgroundColor: 'rgba(60,5,0, 0.8)',

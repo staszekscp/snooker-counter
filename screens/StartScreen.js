@@ -215,12 +215,12 @@ const styles = StyleSheet.create({
         width: '80%',
         borderRadius: 20,
         overflow: 'hidden',
-        marginBottom: 30,
+        marginBottom: 20,
         borderWidth: 3
     },
     summaryContainer2: {
         height: '20%',
-        width: '40%',
+        width: '80%',
         borderRadius: 20,
         overflow: 'hidden',
         justifyContent: 'center',
