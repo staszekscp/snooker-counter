@@ -90,7 +90,7 @@ const FrameOverScreen = props => {
                                     props.setEndOfFrame(false)
                                     props.setP1Points(0)
                                     props.setP2Points(0)
-                                    props.setRemaining(147)
+                                    props.setRemaining(props.mode * 8 + 27)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
                                     props.setCurrentBreakP1(0)

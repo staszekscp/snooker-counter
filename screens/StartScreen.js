@@ -5,31 +5,66 @@ import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, TextI
 const StartScreen = props => {
     const [proMode, setProMode] = useState(true)
     const [reds, setReds] = useState(15)
+    
+    const [error, setError] = useState(false)
 
-    const [p1Name, setP1Name] = useState()
-    const [p2Name, setP2Name] = useState()
+    const [p1Name, setP1Name] = useState('')
+    const [p2Name, setP2Name] = useState('')
 
     return (
         <View style={styles.main}>
             <ImageBackground style={styles.img} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
+                {error && <View style={styles.overlay}>
+                    <View style={styles.summaryContainerError}>
+                        <ImageBackground style={styles.img} source={require('../assets/png/wood.png')}>
+                            <View style={styles.coverError}>
+                                <View style={styles.errorMessage}>
+                                    <Text style={styles.errorMessageTextHeader}>Invalid name!</Text>
+                                    <Text style={styles.errorMessageText}>Please, enter a correct one before starting the game. Player's name must be at least 2 characters long.</Text>
+                                </View>
+                                <View style={styles.endMatch}>
+                                    <TouchableNativeFeedback
+                                    onPress={() => {
+                                        setError(false)
+                                    }}
+                                    background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
+                                        <View style={styles.endMatchButton}>
+                                            <Text style={styles.endMatchText}>OK</Text>
+                                        </View>
+                                    </TouchableNativeFeedback>
+                                </View>
+                            </View>
+                        </ImageBackground>
+                    </View>
+                </View>}
                 <View style={styles.summaryContainer}>
                     <ImageBackground style={styles.img} source={require('../assets/png/wood.png')}>
                         <View style={styles.cover}>
                             <View style={styles.name}>
-                                <Text style={styles.topHeader}>Snooker Counter</Text>
+                                <Text style={styles.topHeader}>SNOOKER COUNTER</Text>
                             </View>
                             <View style={styles.playersContainer}>
                                 <View>
                                     <Text style={styles.headerText}>PLAYER 1</Text>
                                     <TextInput 
                                         placeholder="Type player's name"
-                                        onChangeText={setP1Name}/>
+                                        placeholderTextColor='#bbb'
+                                        onChangeText={setP1Name}
+                                        textAlign='center'
+                                        selectionColor='#ddd'
+                                        maxLength={20}
+                                        style={styles.textInput}/>
                                 </View>
                                 <View style={{marginTop: 10}}>
                                     <Text style={styles.headerText}>PLAYER 2</Text>
                                     <TextInput 
                                         placeholder="Type player's name"
-                                        onChangeText={setP2Name}/>
+                                        placeholderTextColor='#aaa'
+                                        onChangeText={setP2Name}
+                                        textAlign='center'
+                                        selectionColor='#ddd'
+                                        maxLength={20}
+                                        style={styles.textInput}/>
                                 </View>
                             </View>
                             <View>
@@ -106,15 +141,19 @@ const StartScreen = props => {
                             <View style={styles.nextFrame}>
                                 <TouchableNativeFeedback
                                 onPress={() => {
-                                    props.navigation.navigate({
-                                        routeName: 'Score',
-                                        params: {
-                                            p1: p1Name,
-                                            p2: p2Name,
-                                            reds: reds,
-                                            mode: proMode
-                                        }
-                                    })
+                                    if (p1Name.length >= 2 && p2Name >= 2){
+                                        props.navigation.navigate({
+                                            routeName: 'Score',
+                                            params: {
+                                                p1: p1Name,
+                                                p2: p2Name,
+                                                reds: reds,
+                                                mode: proMode
+                                            }
+                                        })
+                                    } else {
+                                        setError(true)
+                                    }
                                 }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                     <View style={styles.nextFrameButton}>
@@ -126,7 +165,7 @@ const StartScreen = props => {
                                 <TouchableNativeFeedback
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                     <View style={styles.endMatchButton}>
-                                        <Text style={styles.endMatchText}>END GAME</Text>
+                                        <Text style={styles.endMatchText}>How to use?</Text>
                                     </View>
                                 </TouchableNativeFeedback>
                             </View>
@@ -137,6 +176,18 @@ const StartScreen = props => {
 
         </View>
     )
+}
+
+StartScreen.navigationOptions = {
+    headerTitle: 'Snooker Counter',
+    headerStyle: {
+        backgroundColor: 'rgb(40,5,0)'
+    },
+    headerTintColor: '#e0de94',
+    headerTitleStyle: {
+        fontFamily: "score",
+        fontSize: 20,
+    }
 }
 
 const styles = StyleSheet.create({
@@ -150,6 +201,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
         },
+    overlay: {
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        position: 'absolute',
+        zIndex: 2,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     summaryContainer: {
         height: '60%',
         width: '80%',
@@ -161,6 +221,15 @@ const styles = StyleSheet.create({
     summaryContainer2: {
         height: '20%',
         width: '40%',
+        borderRadius: 20,
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 3
+    },
+    summaryContainerError: {
+        height: '30%',
+        width: '60%',
         borderRadius: 20,
         overflow: 'hidden',
         justifyContent: 'center',
@@ -180,6 +249,35 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
        },
+    coverError: {
+        backgroundColor: 'rgba(60,5,0, 0.6)',
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    errorMessage: {
+        height: '65%',
+        width: '90%',
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+        paddingVertical: 10,
+        margin: 5,
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    errorMessageTextHeader: {
+        color: '#e0de94',
+        fontFamily: 'scoreBold',
+        fontSize: 20
+    },
+    errorMessageText: {
+        color: '#ddd',
+        fontFamily: 'scoreBold',
+        fontSize: 16,
+        textAlign: 'justify',
+        padding: 10
+    },
     name: {
         height: '15%'
     },
@@ -187,18 +285,27 @@ const styles = StyleSheet.create({
         color: '#e0de94',
         fontFamily: 'scoreBold',
         textAlign: 'center',
-        fontSize: 30
+        fontSize: 26
     },
     playersContainer: {
         height: '35%',
         width: '98%',
-        backgroundColor: 'rgba(255, 255, 255, 0.35)',
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
         paddingVertical: 10,
         marginVertical: 10,
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center'
     },
+    textInput: {
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        borderRadius: 5,
+        width: 200,
+        color: '#ddd',
+        fontFamily: 'score'
+    },
+
+
     redButtonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -247,7 +354,7 @@ const styles = StyleSheet.create({
         color: '#e0de94',
         fontFamily: 'scoreBold',
         textAlign: 'center',
-        fontSize: 20
+        fontSize: 18
     },
 
     proModeButtonOff: {

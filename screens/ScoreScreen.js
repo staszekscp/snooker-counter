@@ -16,6 +16,8 @@ import FrameOverScreen from '../screens/FrameOverScreen'
 
  
 const ScoreScreen = props => {
+    const mode = props.navigation.getParam('reds')
+
     const p1Name = props.navigation.getParam('p1')
     const p2Name = props.navigation.getParam('p2')
 
@@ -476,6 +478,7 @@ const ScoreScreen = props => {
     return (
         <View style={styles.main}>
             {endOfFrame ? <FrameOverScreen 
+            mode={mode}
             proMode={proMode}
             p1Frames={p1Frames}
             p2Frames={p2Frames}
@@ -513,7 +516,6 @@ const ScoreScreen = props => {
         headerTitleStyle: {
             fontFamily: "score",
             fontSize: 20,
-            textAlign: 'center'
         }
     }
     
