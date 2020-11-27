@@ -9,6 +9,7 @@ const MissContainer = props => {
                     <TouchableNativeFeedback
                         onPress={() => {
                             if (props.backMode) {
+                                props.modifyArray()
                                 props.setBackMode(false)
                             }
                             props.setBack(4)
@@ -155,6 +156,7 @@ const MissContainer = props => {
                     <TouchableNativeFeedback
                          onPress={() => {
                             if (props.backMode) {
+                                props.modifyArray()
                                 props.setBackMode(false)
                             }
                             props.setBack(4)

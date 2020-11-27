@@ -31,8 +31,9 @@ const ScoreScreen = props => {
     const [frameRecord, setFrameRecord] = useState([])
 
     const [prevShot, setPrevShot] = useState([])
-    const [backMode, setBackMode] = useState(false)
     const [back, setBack] = useState(4)
+    const [backMode, setBackMode] = useState(false)
+    
 
     const [remaining, setRemaining] = useState(props.navigation.getParam('reds')*8 + 27)
     
@@ -167,16 +168,21 @@ const ScoreScreen = props => {
             }}
     }, [remaining, statsP1, statsP2])
 
-    useEffect(() => {
-        if (!backMode && remaining !== props.navigation.getParam('reds')*8 + 27) {
+    const modifyArray = () => {
+        if (remaining !== props.navigation.getParam('reds')*8 + 27) {
             console.log('DZIAŁA')
             const arr = prevShot
-            setPrevShot(prev => ([
-                ...arr.splice(0,back-1),
-                prev[prev.length-1]]
-            ))
+            if (arr.length === 5) {
+                setPrevShot(arr.splice(1,back)
+                )
+            } else {
+                setPrevShot(arr.splice(0,back+1)
+                )
+            }
+            
         }
-    }, [backMode])
+    }
+
 
     useEffect(()=> {
         setBreakP1(prev => prev < currentBreakP1 ? currentBreakP1 : prev)
@@ -370,6 +376,7 @@ const ScoreScreen = props => {
                     backMode={backMode}
                     setBackMode={setBackMode}
                     setBack={setBack}
+                    modifyArray={modifyArray}
                     />
             </View> : overlayP1 && <View style={styles.overlay}/>}
         {overlayP2 && proMode ? <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}>
@@ -387,7 +394,8 @@ const ScoreScreen = props => {
                     stats={setStatsP1}
                     backMode={backMode}
                     setBackMode={setBackMode}
-                    setBack={setBack}/> 
+                    setBack={setBack}
+                    modifyArray={modifyArray}/> 
             </View> : overlayP2 && <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}/>}
             <View style={{height: 25}}/>
             <ScoreContainer 
@@ -426,6 +434,7 @@ const ScoreScreen = props => {
                 setBack={setBack}
                 backMode={backMode}
                 setBackMode={setBackMode}
+                modifyArray={modifyArray}
                 style={{zIndex: 3}}/>
             
             <BallContainer 
@@ -460,7 +469,8 @@ const ScoreScreen = props => {
                 proMode={proMode}
                 backMode={backMode}
                 setBackMode={setBackMode}
-                setBack={setBack}/>
+                setBack={setBack}
+                modifyArray={modifyArray}/>
             <MissContainer 
                 activateP1={setActiveBallsP1}
                 activateP2={setActiveBallsP2}
@@ -487,6 +497,7 @@ const ScoreScreen = props => {
                 backMode={backMode}
                 setBackMode={setBackMode}
                 setBack={setBack}
+                modifyArray={modifyArray}
                 />
             <View style={styles.bottomContainer}>
                 <ImageBackground style={styles.bottom} source={require('../assets/png/wood.png')}>
@@ -515,6 +526,7 @@ const ScoreScreen = props => {
                             backMode={backMode}
                             setBackMode={setBackMode}
                             setBack={setBack}
+                            modifyArray={modifyArray}
                             style={proMode && {display: 'none'}}
                             />
                         <FoulContainer 
@@ -544,7 +556,8 @@ const ScoreScreen = props => {
                             statsP2={setStatsP2}
                             backMode={backMode}
                             setBackMode={setBackMode}
-                            setBack={setBack}/>
+                            setBack={setBack}
+                            modifyArray={modifyArray}/>
                         <AdditionalRedContainer 
                             remaining={remaining}
                             setRemaining={setRemaining}
@@ -562,7 +575,8 @@ const ScoreScreen = props => {
                             setCurrentBreakP2={setCurrentBreakP2}
                             backMode={backMode}
                             setBackMode={setBackMode}
-                            setBack={setBack}/>
+                            setBack={setBack}
+                            modifyArray={modifyArray}/>
                         <ConceideContainer 
                             navigation={props.navigation}
                             p1Points={p1Points}
@@ -587,7 +601,8 @@ const ScoreScreen = props => {
                             setFreeBP2={setFreeBallP2}
                             backMode={backMode}
                             setBackMode={setBackMode}
-                            setBack={setBack}/>
+                            setBack={setBack}
+                            modifyArray={modifyArray}/>
                     </View>
                 </ImageBackground>
             </View>

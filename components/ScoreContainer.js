@@ -98,8 +98,8 @@ const ScoreContainer = props => {
                                                     if (props.prevShot.length <= back) {
                                                         back = props.prevShot.length-2
                                                     }
-                                                    if (back < 4) {
-                                                        let val = back+1
+                                                    let val = back+1
+                                                    if (back < 4 && props.prevShot[val]) {
                                                         props.p1Points(props.prevShot[val].p1Points)
                                                         props.p2Points(props.prevShot[val].p2Points)
                                                         props.setRemaining(props.prevShot[val].remaining)

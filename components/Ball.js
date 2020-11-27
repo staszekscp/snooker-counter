@@ -19,6 +19,7 @@ const Ball = props => {
                 disabled={active[props.val.toString()]}
                 onPress={() => {
                     if (props.backMode) {
+                        props.modifyArray()
                         props.setBackMode(false)
                     }
                     props.setBack(4)
