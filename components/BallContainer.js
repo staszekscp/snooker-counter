@@ -32,6 +32,9 @@ const BallContainer = props => {
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
                             setCurrentBreak={props.setCurrentBreakP1}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}
                             />
                         <Ball 
                             style={props.activeBallsP1['3'] ? {...styles.ball, ...styles.green, ...styles.grey} : {...styles.ball, ...styles.green}} 
@@ -52,7 +55,10 @@ const BallContainer = props => {
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}/>
+                            setCurrentBreak={props.setCurrentBreakP1}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                         <Ball 
                             style={props.activeBallsP1['4'] ? {...styles.ball, ...styles.brown, ...styles.grey} : {...styles.ball, ...styles.brown}} 
                             activate={props.activateP1} 
@@ -71,7 +77,10 @@ const BallContainer = props => {
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}/>
+                            setCurrentBreak={props.setCurrentBreakP1}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
                         <View style={props.proMode ? {opacity: 0} : props.longPotP1 ? styles.touchableLongPressed : styles.touchableLong}>
@@ -107,7 +116,10 @@ const BallContainer = props => {
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}/>
+                            setCurrentBreak={props.setCurrentBreakP1}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                         <View style={props.freeBallP1 ? {...styles.touchableFB, ...styles.grey} : styles.touchableFB}>
                             <TouchableNativeFeedback
                                 disabled={props.freeBallP1}
@@ -152,7 +164,10 @@ const BallContainer = props => {
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}/>
+                            setCurrentBreak={props.setCurrentBreakP1}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                         <Ball 
                             style={props.activeBallsP1['6'] ? {...styles.ball, ...styles.pink, ...styles.grey} : {...styles.ball, ...styles.pink}} 
                             activate={props.activateP1} 
@@ -172,7 +187,10 @@ const BallContainer = props => {
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}/>
+                            setCurrentBreak={props.setCurrentBreakP1}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                         <Ball 
                             style={props.activeBallsP1['7'] ? {...styles.ball, ...styles.black, ...styles.grey} : {...styles.ball, ...styles.black}} 
                             activate={props.activateP1} 
@@ -192,7 +210,10 @@ const BallContainer = props => {
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}/>
+                            setCurrentBreak={props.setCurrentBreakP1}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                     </View>
                 </View>
                 <View style={styles.mainBallContainer}> 
@@ -216,7 +237,10 @@ const BallContainer = props => {
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}/>
+                            setCurrentBreak={props.setCurrentBreakP2}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                         <Ball 
                             style={props.activeBallsP2['3'] ? {...styles.ball, ...styles.green, ...styles.grey} : {...styles.ball, ...styles.green}} 
                             activate={props.activateP2} 
@@ -236,7 +260,10 @@ const BallContainer = props => {
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}/>
+                            setCurrentBreak={props.setCurrentBreakP2}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                         <Ball 
                             style={props.activeBallsP2['4'] ? {...styles.ball, ...styles.brown, ...styles.grey} : {...styles.ball, ...styles.brown}} 
                             activate={props.activateP2} 
@@ -255,7 +282,10 @@ const BallContainer = props => {
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}/>
+                            setCurrentBreak={props.setCurrentBreakP2}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
                     <View style={props.freeBallP2 ? {...styles.touchableFB, ...styles.grey} : styles.touchableFB}>
@@ -301,7 +331,10 @@ const BallContainer = props => {
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}/>
+                            setCurrentBreak={props.setCurrentBreakP2}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                         <View style={props.proMode ? {opacity: 0} : props.longPotP2 ? styles.touchableLongPressed : styles.touchableLong}>
                             <TouchableNativeFeedback
                             onPress={()=>{
@@ -337,7 +370,11 @@ const BallContainer = props => {
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}/>
+                            setCurrentBreak={props.setCurrentBreakP2}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}
+                            />
                         <Ball 
                             style={props.activeBallsP2['6'] ? {...styles.ball, ...styles.pink, ...styles.grey} : {...styles.ball, ...styles.pink}} 
                             activate={props.activateP2} 
@@ -357,7 +394,10 @@ const BallContainer = props => {
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}/>
+                            setCurrentBreak={props.setCurrentBreakP2}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                         <Ball 
                             style={props.activeBallsP2['7'] ? {...styles.ball, ...styles.black, ...styles.grey} : {...styles.ball, ...styles.black}} 
                             activate={props.activateP2} 
@@ -377,7 +417,10 @@ const BallContainer = props => {
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}/>
+                            setCurrentBreak={props.setCurrentBreakP2}
+                            backMode={props.backMode}
+                            setBackMode={props.setBackMode}
+                            setBack={props.setBack}/>
                     </View>
                 </View>
             </View>

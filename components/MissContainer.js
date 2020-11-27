@@ -8,6 +8,10 @@ const MissContainer = props => {
                 <View style={styles.missButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
+                            if (props.backMode) {
+                                props.setBackMode(false)
+                            }
+                            props.setBack(4)
                             props.setCurrentBreakP1(0)
                             if (props.longPotP1) {
                                 props.statsP1(prev => ({
@@ -150,6 +154,10 @@ const MissContainer = props => {
                 <View style={styles.missButton}>
                     <TouchableNativeFeedback
                          onPress={() => {
+                            if (props.backMode) {
+                                props.setBackMode(false)
+                            }
+                            props.setBack(4)
                             props.setCurrentBreakP2(0)
                             if (props.longPotP2) {
                                 props.statsP2(prev => ({

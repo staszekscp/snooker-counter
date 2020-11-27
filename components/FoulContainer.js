@@ -12,6 +12,10 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 22 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
+                                if (props.backMode) {
+                                    props.setBackMode(false)
+                                }
+                                props.setBack(4)
                                 props.statsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+4
@@ -95,6 +99,10 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 18 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
+                                if (props.backMode) {
+                                    props.setBackMode(false)
+                                }
+                                props.setBack(4)
                                 props.statsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+5
@@ -178,6 +186,10 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 13 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
+                                if (props.backMode) {
+                                    props.setBackMode(false)
+                                }
+                                props.setBack(4)
                                 props.statsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+6
@@ -261,6 +273,10 @@ const FoulContainer = props => {
                     <View style={styles.foulButton}>
                         <TouchableNativeFeedback
                             onPress={() => {
+                                if (props.backMode) {
+                                    props.setBackMode(false)
+                                }
+                                props.setBack(4)
                                 props.statsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+7
@@ -358,6 +374,10 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 22 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
+                                if (props.backMode) {
+                                    props.setBackMode(false)
+                                }
+                                props.setBack(4)
                                 props.statsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+4
@@ -441,6 +461,10 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 18 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
+                                if (props.backMode) {
+                                    props.setBackMode(false)
+                                }
+                                props.setBack(4)
                                 props.statsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+5
@@ -524,6 +548,10 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 13 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
+                                if (props.backMode) {
+                                    props.setBackMode(false)
+                                }
+                                props.setBack(4)
                                 props.statsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+6
@@ -607,6 +635,10 @@ const FoulContainer = props => {
                     <View style={styles.foulButton}>
                         <TouchableNativeFeedback
                             onPress={() => {
+                                if (props.backMode) {
+                                    props.setBackMode(false)
+                                }
+                                props.setBack(4)
                                 props.statsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+7

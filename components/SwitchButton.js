@@ -1,10 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
 
+//ZMIEŃ REMAINING (na kolorach po naciśnięciu SWITCH powinno odejmować 7!!!!
+
 const SwitchButton = props => {
     return (<View style={styles.buttonContainer}>
                     <TouchableNativeFeedback
                         onPress={() => {
+                            if (props.backMode) {
+                                props.setBackMode(false)
+                            }
+                            props.setBack(4)
                             props.stats(prev => ({
                                 ...prev,
                                 long: prev.long + 0

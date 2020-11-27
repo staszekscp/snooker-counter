@@ -8,6 +8,10 @@ const SafetyContainer = props => {
                 <View style={styles.safeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
+                            if (props.backMode) {
+                                props.setBackMode(false)
+                            }
+                            props.setBack(4)
                             props.setCurrentBreakP1(0)
                             props.statsP1(prev => ({
                                 ...prev,
@@ -134,6 +138,10 @@ const SafetyContainer = props => {
                 <View style={styles.unsafeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
+                            if (props.backMode) {
+                                props.setBackMode(false)
+                            }
+                            props.setBack(4)
                             props.setCurrentBreakP1(0)
                             props.statsP1(prev => ({
                                 ...prev,
@@ -262,6 +270,10 @@ const SafetyContainer = props => {
                 <View style={styles.safeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
+                            if (props.backMode) {
+                                props.setBackMode(false)
+                            }
+                            props.setBack(4)
                             props.setCurrentBreakP2(0)
                             props.statsP2(prev => ({
                                 ...prev,
@@ -390,6 +402,10 @@ const SafetyContainer = props => {
                 <View style={styles.unsafeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
+                            if (props.backMode) {
+                                props.setBackMode(false)
+                            }
+                            props.setBack(4)
                             props.setCurrentBreakP2(0)
                             props.statsP2(prev => ({
                                 ...prev,

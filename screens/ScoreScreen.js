@@ -30,6 +30,10 @@ const ScoreScreen = props => {
 
     const [frameRecord, setFrameRecord] = useState([])
 
+    const [prevShot, setPrevShot] = useState([])
+    const [backMode, setBackMode] = useState(false)
+    const [back, setBack] = useState(4)
+
     const [remaining, setRemaining] = useState(props.navigation.getParam('reds')*8 + 27)
     
     const [activeBallsP1, setActiveBallsP1] = useState({
@@ -107,6 +111,72 @@ const ScoreScreen = props => {
     const [endOfMatch, setEndOfMatch] = useState(false)
 
     const [extraBlack, setExtraBlack] = useState(false)
+
+    useEffect(() => {
+        if(!backMode){
+            if (prevShot.length > 4) {
+                setPrevShot(prev => 
+                    ([
+                    ...prev.slice(1),
+                    {
+                    p1Points: p1Points,
+                    p2Points: p2Points,
+                    remaining: remaining,
+                    activeBallsP1: activeBallsP1,
+                    activeBallsP2: activeBallsP2,
+                    overlayP1: overlayP1,
+                    overlayP2: overlayP2,
+                    freeBallModeP1: freeBallModeP1,
+                    freeBallModeP2: freeBallModeP2,
+                    freeBallP1: freeBallP1,
+                    freeBallP2: freeBallP2,
+                    longPotP1: longPotP1,
+                    longPotP2: longPotP2,
+                    breakP1: breakP1,
+                    breakP2: breakP2,
+                    currentBreakP1: currentBreakP1,
+                    currentBreakP2: currentBreakP2,
+                    statsP1: statsP1,
+                    statsP2: statsP2
+                }]))
+            } else {
+                setPrevShot(prev => 
+                    ([
+                    ...prev,
+                    {
+                    p1Points: p1Points,
+                    p2Points: p2Points,
+                    remaining: remaining,
+                    activeBallsP1: activeBallsP1,
+                    activeBallsP2: activeBallsP2,
+                    overlayP1: overlayP1,
+                    overlayP2: overlayP2,
+                    freeBallModeP1: freeBallModeP1,
+                    freeBallModeP2: freeBallModeP2,
+                    freeBallP1: freeBallP1,
+                    freeBallP2: freeBallP2,
+                    longPotP1: longPotP1,
+                    longPotP2: longPotP2,
+                    breakP1: breakP1,
+                    breakP2: breakP2,
+                    currentBreakP1: currentBreakP1,
+                    currentBreakP2: currentBreakP2,
+                    statsP1: statsP1,
+                    statsP2: statsP2
+                }]))
+            }}
+    }, [remaining, statsP1, statsP2])
+
+    useEffect(() => {
+        if (!backMode && remaining !== props.navigation.getParam('reds')*8 + 27) {
+            console.log('DZIAŁA')
+            const arr = prevShot
+            setPrevShot(prev => ([
+                ...arr.splice(0,back-1),
+                prev[prev.length-1]]
+            ))
+        }
+    }, [backMode])
 
     useEffect(()=> {
         setBreakP1(prev => prev < currentBreakP1 ? currentBreakP1 : prev)
@@ -297,6 +367,9 @@ const ScoreScreen = props => {
                     activateP1={setActiveBallsP1}
                     activateP2={setActiveBallsP2}
                     stats={setStatsP1}
+                    backMode={backMode}
+                    setBackMode={setBackMode}
+                    setBack={setBack}
                     />
             </View> : overlayP1 && <View style={styles.overlay}/>}
         {overlayP2 && proMode ? <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}>
@@ -311,8 +384,12 @@ const ScoreScreen = props => {
                     remaining={remaining}
                     activateP1={setActiveBallsP1}
                     activateP2={setActiveBallsP2}
-                    stats={setStatsP1}/> 
+                    stats={setStatsP1}
+                    backMode={backMode}
+                    setBackMode={setBackMode}
+                    setBack={setBack}/> 
             </View> : overlayP2 && <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}/>}
+            <View style={{height: 25}}/>
             <ScoreContainer 
                 p1Name={p1Name}
                 p2Name={p2Name}
@@ -326,7 +403,31 @@ const ScoreScreen = props => {
                 setOverlayP2={setOverlayP2}
                 proMode={proMode}
                 setProMode={setProMode}
+                p1Points={setP1Points} 
+                p2Points={setP2Points}
+                activateP1={setActiveBallsP1}
+                activateP2={setActiveBallsP2}
+                setCurrentBreakP1={setCurrentBreakP1}
+                setCurrentBreakP2={setCurrentBreakP2}
+                mode={mode}
+                setFreeBallModeP1={setFreeBallModeP1}
+                setFreeBallModeP2={setFreeBallModeP2}
+                setFreeBallP1={setFreeBallP1}
+                setFreeBallP2={setFreeBallP2}
+                setLongPotP1={setLongPotP1}
+                setLongPotP2={setLongPotP2}
+                setBreakP1={setBreakP1}
+                setBreakP2={setBreakP2}
+                setStatsP1={setStatsP1}
+                setStatsP2={setStatsP2}
+                prevShot={prevShot}
+                setPrevShot={setPrevShot}
+                back={back}
+                setBack={setBack}
+                backMode={backMode}
+                setBackMode={setBackMode}
                 style={{zIndex: 3}}/>
+            
             <BallContainer 
                 p1Points={setP1Points} 
                 p1={p1Points} 
@@ -356,7 +457,10 @@ const ScoreScreen = props => {
                 longPotP2={longPotP2}
                 setCurrentBreakP1={setCurrentBreakP1}
                 setCurrentBreakP2={setCurrentBreakP2}
-                proMode={proMode}/>
+                proMode={proMode}
+                backMode={backMode}
+                setBackMode={setBackMode}
+                setBack={setBack}/>
             <MissContainer 
                 activateP1={setActiveBallsP1}
                 activateP2={setActiveBallsP2}
@@ -380,6 +484,9 @@ const ScoreScreen = props => {
                 currentBreakP2={currentBreakP2}
                 setCurrentBreakP1={setCurrentBreakP1}
                 setCurrentBreakP2={setCurrentBreakP2}
+                backMode={backMode}
+                setBackMode={setBackMode}
+                setBack={setBack}
                 />
             <View style={styles.bottomContainer}>
                 <ImageBackground style={styles.bottom} source={require('../assets/png/wood.png')}>
@@ -405,6 +512,9 @@ const ScoreScreen = props => {
                             currentBreakP2={currentBreakP2}
                             setCurrentBreakP1={setCurrentBreakP1}
                             setCurrentBreakP2={setCurrentBreakP2}
+                            backMode={backMode}
+                            setBackMode={setBackMode}
+                            setBack={setBack}
                             style={proMode && {display: 'none'}}
                             />
                         <FoulContainer 
@@ -431,7 +541,10 @@ const ScoreScreen = props => {
                             setCurrentBreakP1={setCurrentBreakP1}
                             setCurrentBreakP2={setCurrentBreakP2}
                             statsP1={setStatsP1}
-                            statsP2={setStatsP2}/>
+                            statsP2={setStatsP2}
+                            backMode={backMode}
+                            setBackMode={setBackMode}
+                            setBack={setBack}/>
                         <AdditionalRedContainer 
                             remaining={remaining}
                             setRemaining={setRemaining}
@@ -446,7 +559,10 @@ const ScoreScreen = props => {
                             freeBallP1={freeBallP1}
                             freeBallP2={freeBallP2}
                             setCurrentBreakP1={setCurrentBreakP1}
-                            setCurrentBreakP2={setCurrentBreakP2}/>
+                            setCurrentBreakP2={setCurrentBreakP2}
+                            backMode={backMode}
+                            setBackMode={setBackMode}
+                            setBack={setBack}/>
                         <ConceideContainer 
                             navigation={props.navigation}
                             p1Points={p1Points}
@@ -468,10 +584,14 @@ const ScoreScreen = props => {
                             setFreeBallP1={setFreeBallModeP1}
                             setFreeBallP2={setFreeBallModeP2}
                             setFreeBP1={setFreeBallP1}
-                            setFreeBP2={setFreeBallP2}/>
+                            setFreeBP2={setFreeBallP2}
+                            backMode={backMode}
+                            setBackMode={setBackMode}
+                            setBack={setBack}/>
                     </View>
                 </ImageBackground>
             </View>
+            
 
         </ImageBackground>
         
@@ -505,6 +625,9 @@ const ScoreScreen = props => {
             setActiveBallsP2={setActiveBallsP2}
             setFrameRecord={setFrameRecord}
             setGameOver={setEndOfMatch}
+            setPrevShot={setPrevShot}
+            backMode={backMode}
+            setBack={setBack}
             />  : endOfMatch ? <GameOverScreen 
             mode={mode}
             proMode={proMode}
@@ -539,15 +662,7 @@ const ScoreScreen = props => {
     )}
  
     ScoreScreen.navigationOptions = {
-        headerTitle: 'Snooker Counter',
-        headerStyle: {
-            backgroundColor: 'rgb(40,5,0)'
-        },
-        headerTintColor: '#e0de94',
-        headerTitleStyle: {
-            fontFamily: "score",
-            fontSize: 20,
-        }
+        headerShown: false
     }
     
 
@@ -578,20 +693,20 @@ const styles = StyleSheet.create({
     },
    bottom: {
        borderRadius: 20,
-       paddingBottom: 100
+       paddingBottom: 200
    },
    bottomContainer: {
     borderRadius: 20,
     borderColor: 'black',
     borderWidth: 2,
     marginHorizontal: 5,
-    paddingBottom: 100,
+    paddingBottom: 200,
     overflow: 'hidden'
    },
    cover: {
     paddingTop: 3,
     backgroundColor: 'rgba(60,5,0, 0.6)',
-    paddingBottom: 100,
+    paddingBottom: 200,
 
    },
 
