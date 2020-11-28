@@ -5,7 +5,7 @@ const AdditionalRedContainer = props => {
     return (
         <View style={styles.main}>
             <View style={styles.missButtonContainer}>
-                <View style={props.remaining < 35 || (!props.activeBallsP1['1']) || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) ? {display: 'none'} : styles.redButton}>
+                <View style={props.remaining < 35 || (!props.activeBallsP1['1']) || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) || props.overlayP1 ? {display: 'none'} : styles.redButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
                             if (props.backMode) {
@@ -47,7 +47,7 @@ const AdditionalRedContainer = props => {
                 </View>
             </View>
             <View style={styles.missButtonContainer}>
-                <View style={props.remaining < 35 || (!props.activeBallsP2['1'])  || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) ? {display: 'none'} : styles.redButton}>
+                <View style={props.remaining < 35 || (!props.activeBallsP2['1'])  || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) || props.overlayP2? {display: 'none'} : styles.redButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
                             if (props.backMode) {

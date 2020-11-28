@@ -59,6 +59,9 @@ const SwitchButton = props => {
                                     '7': true})
                                 props.setOverlayP1(prev => !prev)
                                 props.setOverlayP2(prev => !prev)
+                                if ((props.remaining - 27) % 8 !== 0){
+                                    props.setRemaining(props.remaining - 7)
+                                }
                             } else if (props.remaining === 27) {
                                 props.activateP1({
                                     '1': true,

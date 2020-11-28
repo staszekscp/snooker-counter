@@ -15,8 +15,12 @@ const ScoreContainer = props => {
                                             if (props.backMode) {
                                                 props.setBackMode(false)
                                             }
+                                            props.setStatsP1(prev => ({
+                                                ...prev,
+                                                long: prev.long + 0
+                                            }))
                                             props.setPrevShot([])
-                                            props.setBack(4)
+                                            props.setBack(0)
                                             props.p1Points(0)
                                             props.p2Points(0)
                                             props.setRemaining(props.mode * 8 + 27)
@@ -42,6 +46,10 @@ const ScoreContainer = props => {
                                                 '6': true,
                                                 '7': true
                                             })
+                                            props.setFreeBallModeP1(false)
+                                            props.setFreeBallModeP2(false)
+                                            props.setFreeBallP1(true)
+                                            props.setFreeBallP2(true)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={styles.btn}>
@@ -50,11 +58,13 @@ const ScoreContainer = props => {
                                         </TouchableNativeFeedback>
                                     </View>
                                     <View style={{flexDirection: 'row'}}>
-                                        <View style={props.proMode ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                        <View style={props.back > 0 && props.prevShot.length > 1 ? styles.proModeButtonOn : styles.proModeButtonOff}>
                                             <TouchableNativeFeedback
+                                            disabled={props.back < 1}
                                             onPress={() => {
                                                 let back = props.back
                                                 console.log(back)
+                                                console.log(props.prevShot.length)
                                                 if (props.prevShot.length <= back) {
                                                     back = props.prevShot.length-1
                                                 }
@@ -90,8 +100,9 @@ const ScoreContainer = props => {
                                                 </View>
                                             </TouchableNativeFeedback>
                                         </View>
-                                        <View style={!props.proMode ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                        <View style={props.back <= props.prevShot.length-2 ? styles.proModeButtonOn : styles.proModeButtonOff}>
                                             <TouchableNativeFeedback
+                                            disabled={props.back > props.prevShot.length-2}
                                             onPress={() => {
                                                     let back = props.back
                                                     console.log(back)

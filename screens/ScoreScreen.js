@@ -31,7 +31,7 @@ const ScoreScreen = props => {
     const [frameRecord, setFrameRecord] = useState([])
 
     const [prevShot, setPrevShot] = useState([])
-    const [back, setBack] = useState(4)
+    const [back, setBack] = useState(0)
     const [backMode, setBackMode] = useState(false)
     
 
@@ -114,6 +114,7 @@ const ScoreScreen = props => {
     const [extraBlack, setExtraBlack] = useState(false)
 
     useEffect(() => {
+        console.log('tutaj')
         if(!backMode){
             if (prevShot.length > 4) {
                 setPrevShot(prev => 
@@ -169,7 +170,7 @@ const ScoreScreen = props => {
     }, [remaining, statsP1, statsP2])
 
     const modifyArray = () => {
-        if (remaining !== props.navigation.getParam('reds')*8 + 27) {
+        
             console.log('DZIAŁA')
             const arr = prevShot
             if (arr.length === 5) {
@@ -180,7 +181,7 @@ const ScoreScreen = props => {
                 )
             }
             
-        }
+        
     }
 
 
@@ -576,7 +577,8 @@ const ScoreScreen = props => {
                             backMode={backMode}
                             setBackMode={setBackMode}
                             setBack={setBack}
-                            modifyArray={modifyArray}/>
+                            modifyArray={modifyArray}
+                            />
                         <ConceideContainer 
                             navigation={props.navigation}
                             p1Points={p1Points}

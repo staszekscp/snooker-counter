@@ -85,7 +85,7 @@ const FrameOverScreen = props => {
                                         props.setBackMode(false)
                                     }
                                     props.setPrevShot([])
-                                    props.setBack(4)
+                                    props.setBack(0)
                                     props.setFrameRecord(prev => ([
                                         ...prev,
                                         {p1: props.p1Points,
@@ -132,7 +132,7 @@ const FrameOverScreen = props => {
                                         props.setBackMode(false)
                                     }
                                     props.setPrevShot([])
-                                    props.setBack(4)
+                                    props.setBack(0)
                                     props.setFrameRecord(prev => ([
                                         ...prev,
                                         {p1: props.p1Points,

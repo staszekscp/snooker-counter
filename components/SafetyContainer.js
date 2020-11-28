@@ -61,6 +61,9 @@ const SafetyContainer = props => {
                                     '7': true})
                                 props.setOverlayP1(true)
                                 props.setOverlayP2(false)
+                                if ((props.remaining - 27) % 8 !== 0){
+                                    props.setRemaining(props.remaining - 7)
+                                }
                             } else if (props.remaining === 27) {
                                 props.activateP1({
                                     '1': true,
@@ -192,6 +195,9 @@ const SafetyContainer = props => {
                                     '7': true})
                                 props.setOverlayP1(true)
                                 props.setOverlayP2(false)
+                                if ((props.remaining - 27) % 8 !== 0){
+                                    props.setRemaining(props.remaining - 7)
+                                }
                             } else if (props.remaining === 27) {
                                 props.activateP1({
                                     '1': true,
@@ -325,6 +331,9 @@ const SafetyContainer = props => {
                                     '7': true})
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(true)
+                                if ((props.remaining - 27) % 8 !== 0){
+                                    props.setRemaining(props.remaining - 7)
+                                }
                             } else if (props.remaining === 27) {
                                 props.activateP2({
                                     '1': true,
@@ -458,6 +467,9 @@ const SafetyContainer = props => {
                                     '7': true})
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(true)
+                                if ((props.remaining - 27) % 8 !== 0){
+                                    props.setRemaining(props.remaining - 7)
+                                }
                             } else if (props.remaining === 27) {
                                 props.activateP2({
                                     '1': true,
