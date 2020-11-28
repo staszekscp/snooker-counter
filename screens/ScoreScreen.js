@@ -436,6 +436,7 @@ const ScoreScreen = props => {
                 backMode={backMode}
                 setBackMode={setBackMode}
                 modifyArray={modifyArray}
+                navigation={props.navigation}
                 style={{zIndex: 3}}/>
             
             <BallContainer 

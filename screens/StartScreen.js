@@ -163,6 +163,9 @@ const StartScreen = props => {
                             </View>
                             <View style={styles.endMatch}>
                                 <TouchableNativeFeedback
+                                onPress={() => {
+                                    props.navigation.navigate('Help')
+                                }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                     <View style={styles.endMatchButton}>
                                         <Text style={styles.endMatchText}>How to use?</Text>

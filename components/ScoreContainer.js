@@ -145,15 +145,7 @@ const ScoreContainer = props => {
                                     <View style={styles.helpButton}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
-                                            console.log(
-                                                
-                                                'HERE')
-                                            console.log(props.prevShot.length)
-                                            console.log(props.prevShot[0] ? props.prevShot[0].statsP1 : 0)
-                                            console.log(props.prevShot[1] ? props.prevShot[1].statsP1 : 0)
-                                            console.log(props.prevShot[2] ? props.prevShot[2].statsP1 : 0)
-                                            console.log(props.prevShot[3] ? props.prevShot[3].statsP1 : 0)
-                                            console.log(props.prevShot[4] ? props.prevShot[4].statsP1 : 0)
+                                            props.navigation.navigate('Help')
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={styles.btn}>
