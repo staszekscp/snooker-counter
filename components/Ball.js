@@ -35,8 +35,8 @@ const Ball = props => {
                         pots: prev.pots+1
                     }))}
                     props.setLongPot(false)
-                    props.setFreeBP1(true)
-                    props.setFreeBP2(true)
+                    props.setFreeBallButtonP1(true)
+                    props.setFreeBallButtonP2(true)
                     if (props.remaining > 27) {
                         props.pPoints(prev => prev+props.val)
                         props.setCurrentBreak(prev => prev+props.val)

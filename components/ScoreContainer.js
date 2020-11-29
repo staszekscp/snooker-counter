@@ -32,8 +32,8 @@ const ScoreContainer = props => {
                                             props.activateBallsP2(1)
                                             props.setFreeBallModeP1(false)
                                             props.setFreeBallModeP2(false)
-                                            props.setFreeBallP1(true)
-                                            props.setFreeBallP2(true)
+                                            props.setFreeBallButtonP1(true)
+                                            props.setFreeBallButtonP2(true)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={styles.btn}>
@@ -63,8 +63,8 @@ const ScoreContainer = props => {
                                                     props.setOverlayP2(props.prevShot[val].overlayP2),
                                                     props.setFreeBallModeP1(props.prevShot[val].freeBallModeP1),
                                                     props.setFreeBallModeP2(props.prevShot[val].freeBallModeP2),
-                                                    props.setFreeBallP1(props.prevShot[val].freeBallP1),
-                                                    props.setFreeBallP2(props.prevShot[val].freeBallP2),
+                                                    props.setFreeBallButtonP1(props.prevShot[val].freeBallButtonP1),
+                                                    props.setFreeBallButtonP2(props.prevShot[val].freeBallButtonP2),
                                                     props.setLongPotP1(props.prevShot[val].longPotP1),
                                                     props.setLongPotP2(props.prevShot[val].longPotP2),
                                                     props.setBreakP1(props.prevShot[val].breakP1),
@@ -104,8 +104,8 @@ const ScoreContainer = props => {
                                                         props.setOverlayP2(props.prevShot[val].overlayP2),
                                                         props.setFreeBallModeP1(props.prevShot[val].freeBallModeP1),
                                                         props.setFreeBallModeP2(props.prevShot[val].freeBallModeP2),
-                                                        props.setFreeBallP1(props.prevShot[val].freeBallP1),
-                                                        props.setFreeBallP2(props.prevShot[val].freeBallP2),
+                                                        props.setFreeBallButtonP1(props.prevShot[val].freeBallButtonP1),
+                                                        props.setFreeBallButtonP2(props.prevShot[val].freeBallButtonP2),
                                                         props.setLongPotP1(props.prevShot[val].longPotP1),
                                                         props.setLongPotP2(props.prevShot[val].longPotP2),
                                                         props.setBreakP1(props.prevShot[val].breakP1),

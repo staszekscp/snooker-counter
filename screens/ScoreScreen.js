@@ -34,7 +34,6 @@ const ScoreScreen = props => {
     const [back, setBack] = useState(0)
     const [backMode, setBackMode] = useState(false)
     
-
     const [remaining, setRemaining] = useState(props.navigation.getParam('reds')*8 + 27)
     
     const [activeBallsP1, setActiveBallsP1] = useState({
@@ -60,8 +59,8 @@ const ScoreScreen = props => {
     const [freeBallModeP1, setFreeBallModeP1] = useState(false)
     const [freeBallModeP2, setFreeBallModeP2] = useState(false)
 
-    const [freeBallP1, setFreeBallP1] = useState(true)
-    const [freeBallP2, setFreeBallP2] = useState(true)
+    const [freeBallButtonP1, setFreeBallButtonP1] = useState(true)
+    const [freeBallButtonP2, setFreeBallButtonP2] = useState(true)
 
     const [longPotP1, setLongPotP1] = useState(false)
     const [longPotP2, setLongPotP2] = useState(false)
@@ -130,8 +129,8 @@ const ScoreScreen = props => {
                     overlayP2: overlayP2,
                     freeBallModeP1: freeBallModeP1,
                     freeBallModeP2: freeBallModeP2,
-                    freeBallP1: freeBallP1,
-                    freeBallP2: freeBallP2,
+                    freeBallButtonP1: freeBallButtonP1,
+                    freeBallButtonP2: freeBallButtonP2,
                     longPotP1: longPotP1,
                     longPotP2: longPotP2,
                     breakP1: breakP1,
@@ -155,8 +154,8 @@ const ScoreScreen = props => {
                     overlayP2: overlayP2,
                     freeBallModeP1: freeBallModeP1,
                     freeBallModeP2: freeBallModeP2,
-                    freeBallP1: freeBallP1,
-                    freeBallP2: freeBallP2,
+                    freeBallButtonP1: freeBallButtonP1,
+                    freeBallButtonP2: freeBallButtonP2,
                     longPotP1: longPotP1,
                     longPotP2: longPotP2,
                     breakP1: breakP1,
@@ -301,8 +300,8 @@ const ScoreScreen = props => {
         {overlayP1 && proMode ? <View style={styles.overlay}>
                 <SwitchButton 
                     setCurrentBreak={setCurrentBreakP2}
-                    setFreeBP1={setFreeBallP1}
-                    setFreeBP2={setFreeBallP2}
+                    setFreeBallButtonP1={setFreeBallButtonP1}
+                    setFreeBallButtonP2={setFreeBallButtonP2}
                     setFreeBall={setFreeBallModeP2}
                     setOverlayP1={setOverlayP1}
                     setOverlayP2={setOverlayP2}
@@ -322,8 +321,8 @@ const ScoreScreen = props => {
         {overlayP2 && proMode ? <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}>
                 <SwitchButton 
                     setCurrentBreak={setCurrentBreakP1}
-                    setFreeBP1={setFreeBallP1}
-                    setFreeBP2={setFreeBallP2}
+                    setFreeBallButtonP1={setFreeBallButtonP1}
+                    setFreeBallButtonP2={setFreeBallButtonP2}
                     setFreeBall={setFreeBallModeP1}
                     setOverlayP1={setOverlayP1}
                     setOverlayP2={setOverlayP2}
@@ -364,8 +363,8 @@ const ScoreScreen = props => {
                 mode={mode}
                 setFreeBallModeP1={setFreeBallModeP1}
                 setFreeBallModeP2={setFreeBallModeP2}
-                setFreeBallP1={setFreeBallP1}
-                setFreeBallP2={setFreeBallP2}
+                setFreeBallButtonP1={setFreeBallButtonP1}
+                setFreeBallButtonP2={setFreeBallButtonP2}
                 setLongPotP1={setLongPotP1}
                 setLongPotP2={setLongPotP2}
                 setBreakP1={setBreakP1}
@@ -401,10 +400,16 @@ const ScoreScreen = props => {
                 setFreeBallP1={setFreeBallModeP1}
                 fbP2={freeBallModeP2}
                 setFreeBallP2={setFreeBallModeP2}
-                freeBallP1={freeBallP1}
-                setFreeBP1={setFreeBallP1}
-                freeBallP2={freeBallP2}
-                setFreeBP2={setFreeBallP2}
+
+                // freeBallP1={freeBallP1}
+                // setFreeBP1={setFreeBallP1}
+                // freeBallP2={freeBallP2}
+                // setFreeBP2={setFreeBallP2}
+                freeBallButtonP1={freeBallButtonP1}
+                setFreeBallButtonP1={setFreeBallButtonP1}
+                freeBallButtonP2={freeBallButtonP2}
+                setFreeBallButtonP2={setFreeBallButtonP2}
+
                 statsP1={setStatsP1}
                 statsP2={setStatsP2}
                 setLongPotP1={setLongPotP1}
@@ -431,8 +436,8 @@ const ScoreScreen = props => {
                 setFreeBallP1={setFreeBallModeP1}
                 fbP2={freeBallModeP2}
                 setFreeBallP2={setFreeBallModeP2}
-                setFreeBP1={setFreeBallP1}
-                setFreeBP2={setFreeBallP2}
+                setFreeBallButtonP1={setFreeBallButtonP1}
+                setFreeBallButtonP2={setFreeBallButtonP2}
                 statsP1={setStatsP1}
                 statsP2={setStatsP2}
                 setLongPotP1={setLongPotP1}
@@ -464,8 +469,8 @@ const ScoreScreen = props => {
                             setFreeBallP1={setFreeBallModeP1}
                             fbP2={freeBallModeP2}
                             setFreeBallP2={setFreeBallModeP2}
-                            setFreeBP1={setFreeBallP1}
-                            setFreeBP2={setFreeBallP2}
+                            setFreeBallButtonP1={setFreeBallButtonP1}
+                            setFreeBallButtonP2={setFreeBallButtonP2}
                             statsP1={setStatsP1}
                             statsP2={setStatsP2}
                             setLongPotP1={setLongPotP1}
@@ -497,8 +502,8 @@ const ScoreScreen = props => {
                             setFreeBallP1={setFreeBallModeP1}
                             fbP2={freeBallModeP2}
                             setFreeBallP2={setFreeBallModeP2}
-                            setFreeBP1={setFreeBallP1}
-                            setFreeBP2={setFreeBallP2}
+                            setFreeBallButtonP1={setFreeBallButtonP1}
+                            setFreeBallButtonP2={setFreeBallButtonP2}
                             setLongPotP1={setLongPotP1}
                             setLongPotP2={setLongPotP2}
                             currentBreakP1={currentBreakP1}
@@ -522,8 +527,8 @@ const ScoreScreen = props => {
                             p2Points={setP2Points} 
                             statsP1={setStatsP1}
                             statsP2={setStatsP2}
-                            freeBallP1={freeBallP1}
-                            freeBallP2={freeBallP2}
+                            freeBallButtonP1={freeBallButtonP1}
+                            freeBallButtonP2={freeBallButtonP2}
                             setCurrentBreakP1={setCurrentBreakP1}
                             setCurrentBreakP2={setCurrentBreakP2}
                             backMode={backMode}
@@ -551,8 +556,8 @@ const ScoreScreen = props => {
                             setEndOfFrame={setEndOfFrame}
                             setFreeBallP1={setFreeBallModeP1}
                             setFreeBallP2={setFreeBallModeP2}
-                            setFreeBP1={setFreeBallP1}
-                            setFreeBP2={setFreeBallP2}
+                            setFreeBallButtonP1={setFreeBallButtonP1}
+                            setFreeBallButtonP2={setFreeBallButtonP2}
                             backMode={backMode}
                             setBackMode={setBackMode}
                             setBack={setBack}

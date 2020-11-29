@@ -28,7 +28,7 @@ const AdditionalRedContainer = props => {
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-                <View style={props.remaining < 35 || props.freeBallP2 ? {display: 'none'} : styles.missButton}>
+                <View style={props.remaining < 35 || props.freeBallButtonP2 ? {display: 'none'} : styles.missButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
                             if (props.backMode) {
@@ -70,7 +70,7 @@ const AdditionalRedContainer = props => {
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-                <View style={props.remaining < 35 || props.freeBallP1 ? {display: 'none'} : styles.missButton}>
+                <View style={props.remaining < 35 || props.freeBallButtonP1 ? {display: 'none'} : styles.missButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
                             if (props.backMode) {

@@ -26,8 +26,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP1}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
@@ -53,8 +53,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP1}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
@@ -78,8 +78,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP1}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
@@ -120,8 +120,8 @@ const BallContainer = props => {
                             setRemaining={props.setRemaining}
                             fb={props.fbP1}
                             setFreeBall={props.setFreeBallP1}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}  
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}  
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
@@ -132,9 +132,9 @@ const BallContainer = props => {
                             modifyArray={props.modifyArray}
                             activateBalls={props.activateBallsP1}
                             activateOpponentsBalls={props.activateBallsP2}/>
-                        <View style={props.freeBallP1 ? {...styles.touchableFB, ...styles.grey} : styles.touchableFB}>
+                        <View style={props.freeBallButtonP1 ? {...styles.touchableFB, ...styles.grey} : styles.touchableFB}>
                             <TouchableNativeFeedback
-                                disabled={props.freeBallP1}
+                                disabled={props.freeBallButtonP1}
                                 onPress={() => {
                                     props.setFreeBallP1(prev => !prev)
                                     props.setOverlayP2(!props.fbP1)
@@ -171,8 +171,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP1}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
@@ -197,8 +197,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP1}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
@@ -223,8 +223,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP1}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
@@ -253,8 +253,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP2}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
@@ -279,8 +279,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP2}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
@@ -304,8 +304,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP2}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
@@ -318,9 +318,9 @@ const BallContainer = props => {
                             activateOpponentsBalls={props.activateBallsP1}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
-                    <View style={props.freeBallP2 ? {...styles.touchableFB, ...styles.grey} : styles.touchableFB}>
+                    <View style={props.freeBallButtonP2 ? {...styles.touchableFB, ...styles.grey} : styles.touchableFB}>
                             <TouchableNativeFeedback
-                                disabled={props.freeBallP2}
+                                disabled={props.freeBallButtonP2}
                                 onPress={() => {
                                     props.setFreeBallP2(prev => !prev)
                                     props.setOverlayP1(!props.fbP2)
@@ -356,8 +356,8 @@ const BallContainer = props => {
                             setRemaining={props.setRemaining}
                             fb={props.fbP2}
                             setFreeBall={props.setFreeBallP2}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2} 
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2} 
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
@@ -398,8 +398,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP2}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
@@ -425,8 +425,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP2}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
@@ -451,8 +451,8 @@ const BallContainer = props => {
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
                             setFreeBall={props.setFreeBallP2}
-                            setFreeBP1={props.setFreeBP1} 
-                            setFreeBP2={props.setFreeBP2}
+                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
+                            setFreeBallButtonP2={props.setFreeBallButtonP2}
                             stats={props.statsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
