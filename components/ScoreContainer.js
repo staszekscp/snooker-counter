@@ -19,7 +19,7 @@ const ScoreContainer = props => {
                                                 ...prev,
                                                 long: prev.long + 0
                                             }))
-                                            props.setPrevShot([])
+                                            props.setPreviousShots([])
                                             props.setBack(0)
                                             props.setP1Points(0)
                                             props.setP2Points(0)
@@ -42,37 +42,37 @@ const ScoreContainer = props => {
                                         </TouchableNativeFeedback>
                                     </View>
                                     <View style={{flexDirection: 'row'}}>
-                                        <View style={props.back > 0 && props.prevShot.length > 1 ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                        <View style={props.back > 0 && props.previousShots.length > 1 ? styles.proModeButtonOn : styles.proModeButtonOff}>
                                             <TouchableNativeFeedback
                                             disabled={props.back < 1}
                                             onPress={() => {
                                                 let back = props.back
                                                 console.log(back)
-                                                console.log(props.prevShot.length)
-                                                if (props.prevShot.length <= back) {
-                                                    back = props.prevShot.length-1
+                                                console.log(props.previousShots.length)
+                                                if (props.previousShots.length <= back) {
+                                                    back = props.previousShots.length-1
                                                 }
                                                 if (back > 0) {
                                                     let val = back-1
-                                                    props.setP1Points(props.prevShot[val].p1Points)
-                                                    props.setP2Points(props.prevShot[val].p2Points)
-                                                    props.setRemaining(props.prevShot[val].remaining)
-                                                    props.activateP1(props.prevShot[val].activeBallsP1)
-                                                    props.activateP2(props.prevShot[val].activeBallsP2)
-                                                    props.setOverlayP1(props.prevShot[val].overlayP1),
-                                                    props.setOverlayP2(props.prevShot[val].overlayP2),
-                                                    props.setFreeBallP1(props.prevShot[val].freeBallP1),
-                                                    props.setFreeBallP2(props.prevShot[val].freeBallP2),
-                                                    props.setFreeBallButtonP1(props.prevShot[val].freeBallButtonP1),
-                                                    props.setFreeBallButtonP2(props.prevShot[val].freeBallButtonP2),
-                                                    props.setLongPotP1(props.prevShot[val].longPotP1),
-                                                    props.setLongPotP2(props.prevShot[val].longPotP2),
-                                                    props.setBreakP1(props.prevShot[val].breakP1),
-                                                    props.setBreakP2(props.prevShot[val].breakP2),
-                                                    props.setCurrentBreakP1(props.prevShot[val].currentBreakP1),
-                                                    props.setCurrentBreakP2(props.prevShot[val].currentBreakP2),
-                                                    props.setStatsP1(props.prevShot[val].statsP1),
-                                                    props.setStatsP2(props.prevShot[val].statsP2)
+                                                    props.setP1Points(props.previousShots[val].p1Points)
+                                                    props.setP2Points(props.previousShots[val].p2Points)
+                                                    props.setRemaining(props.previousShots[val].remaining)
+                                                    props.activateP1(props.previousShots[val].activeBallsP1)
+                                                    props.activateP2(props.previousShots[val].activeBallsP2)
+                                                    props.setOverlayP1(props.previousShots[val].overlayP1),
+                                                    props.setOverlayP2(props.previousShots[val].overlayP2),
+                                                    props.setFreeBallP1(props.previousShots[val].freeBallP1),
+                                                    props.setFreeBallP2(props.previousShots[val].freeBallP2),
+                                                    props.setFreeBallButtonP1(props.previousShots[val].freeBallButtonP1),
+                                                    props.setFreeBallButtonP2(props.previousShots[val].freeBallButtonP2),
+                                                    props.setLongPotP1(props.previousShots[val].longPotP1),
+                                                    props.setLongPotP2(props.previousShots[val].longPotP2),
+                                                    props.setBreakP1(props.previousShots[val].breakP1),
+                                                    props.setBreakP2(props.previousShots[val].breakP2),
+                                                    props.setCurrentBreakP1(props.previousShots[val].currentBreakP1),
+                                                    props.setCurrentBreakP2(props.previousShots[val].currentBreakP2),
+                                                    props.setStatsP1(props.previousShots[val].statsP1),
+                                                    props.setStatsP2(props.previousShots[val].statsP2)
                                                     
                                                     props.setBack(val)
                                                     props.setBackMode(true)
@@ -84,36 +84,36 @@ const ScoreContainer = props => {
                                                 </View>
                                             </TouchableNativeFeedback>
                                         </View>
-                                        <View style={props.back <= props.prevShot.length-2 ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                        <View style={props.back <= props.previousShots.length-2 ? styles.proModeButtonOn : styles.proModeButtonOff}>
                                             <TouchableNativeFeedback
-                                            disabled={props.back > props.prevShot.length-2}
+                                            disabled={props.back > props.previousShots.length-2}
                                             onPress={() => {
                                                     let back = props.back
                                                     console.log(back)
-                                                    if (props.prevShot.length <= back) {
-                                                        back = props.prevShot.length-2
+                                                    if (props.previousShots.length <= back) {
+                                                        back = props.previousShots.length-2
                                                     }
                                                     let val = back+1
-                                                    if (back < 4 && props.prevShot[val]) {
-                                                        props.setP1Points(props.prevShot[val].p1Points)
-                                                        props.setP2Points(props.prevShot[val].p2Points)
-                                                        props.setRemaining(props.prevShot[val].remaining)
-                                                        props.activateP1(props.prevShot[val].activeBallsP1)
-                                                        props.activateP2(props.prevShot[val].activeBallsP2)
-                                                        props.setOverlayP1(props.prevShot[val].overlayP1),
-                                                        props.setOverlayP2(props.prevShot[val].overlayP2),
-                                                        props.setFreeBallP1(props.prevShot[val].freeBallP1),
-                                                        props.setFreeBallP2(props.prevShot[val].freeBallP2),
-                                                        props.setFreeBallButtonP1(props.prevShot[val].freeBallButtonP1),
-                                                        props.setFreeBallButtonP2(props.prevShot[val].freeBallButtonP2),
-                                                        props.setLongPotP1(props.prevShot[val].longPotP1),
-                                                        props.setLongPotP2(props.prevShot[val].longPotP2),
-                                                        props.setBreakP1(props.prevShot[val].breakP1),
-                                                        props.setBreakP2(props.prevShot[val].breakP2),
-                                                        props.setCurrentBreakP1(props.prevShot[val].currentBreakP1),
-                                                        props.setCurrentBreakP2(props.prevShot[val].currentBreakP2),
-                                                        props.setStatsP1(props.prevShot[val].statsP1),
-                                                        props.setStatsP2(props.prevShot[val].statsP2)
+                                                    if (back < 4 && props.previousShots[val]) {
+                                                        props.setP1Points(props.previousShots[val].p1Points)
+                                                        props.setP2Points(props.previousShots[val].p2Points)
+                                                        props.setRemaining(props.previousShots[val].remaining)
+                                                        props.activateP1(props.previousShots[val].activeBallsP1)
+                                                        props.activateP2(props.previousShots[val].activeBallsP2)
+                                                        props.setOverlayP1(props.previousShots[val].overlayP1),
+                                                        props.setOverlayP2(props.previousShots[val].overlayP2),
+                                                        props.setFreeBallP1(props.previousShots[val].freeBallP1),
+                                                        props.setFreeBallP2(props.previousShots[val].freeBallP2),
+                                                        props.setFreeBallButtonP1(props.previousShots[val].freeBallButtonP1),
+                                                        props.setFreeBallButtonP2(props.previousShots[val].freeBallButtonP2),
+                                                        props.setLongPotP1(props.previousShots[val].longPotP1),
+                                                        props.setLongPotP2(props.previousShots[val].longPotP2),
+                                                        props.setBreakP1(props.previousShots[val].breakP1),
+                                                        props.setBreakP2(props.previousShots[val].breakP2),
+                                                        props.setCurrentBreakP1(props.previousShots[val].currentBreakP1),
+                                                        props.setCurrentBreakP2(props.previousShots[val].currentBreakP2),
+                                                        props.setStatsP1(props.previousShots[val].statsP1),
+                                                        props.setStatsP2(props.previousShots[val].statsP2)
                                                         
                                                         props.setBack(val)
                                                         props.setBackMode(true)
@@ -150,7 +150,7 @@ const ScoreContainer = props => {
                             </View>
                             <View style={styles.resultContainer}>
                                 <View style={styles.framesContainer}>
-                                    <Text style={styles.frames}>({props.f1})</Text>
+                                    <Text style={styles.frames}>({props.p1Frames})</Text>
                                 </View>
                                 <View style={styles.scoreContainer}>
                                     <View style={styles.pointContainer}>
@@ -164,7 +164,7 @@ const ScoreContainer = props => {
                                     </View>
                                 </View>
                                 <View style={styles.framesContainer}>
-                                    <Text style={styles.frames}>({props.f2})</Text>
+                                    <Text style={styles.frames}>({props.p2Frames})</Text>
                                 </View>
                             </View>
                             <View style={styles.remainingPointsContainer}>

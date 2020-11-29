@@ -23,12 +23,12 @@ const ScoreScreen = props => {
 
     const [p1Points, setP1Points] = useState(0) //
     const [p2Points, setP2Points] = useState(0) //
-    const [p1Frames, setP1Frames] = useState(0)
-    const [p2Frames, setP2Frames] = useState(0)
+    const [p1Frames, setP1Frames] = useState(0) //
+    const [p2Frames, setP2Frames] = useState(0) //
 
     const [frameRecord, setFrameRecord] = useState([]) //
 
-    const [prevShot, setPrevShot] = useState([])
+    const [previousShots, setPreviousShots] = useState([]) //
     const [back, setBack] = useState(0)
     const [backMode, setBackMode] = useState(false)
     
@@ -113,8 +113,8 @@ const ScoreScreen = props => {
 
     useEffect(() => {
         if(!backMode){
-            if (prevShot.length > 4) {
-                setPrevShot(prev => 
+            if (previousShots.length > 4) {
+                setPreviousShots(prev => 
                     ([
                     ...prev.slice(1),
                     {
@@ -139,7 +139,7 @@ const ScoreScreen = props => {
                     statsP2: statsP2
                 }]))
             } else {
-                setPrevShot(prev => 
+                setPreviousShots(prev => 
                     ([
                     ...prev,
                     {
@@ -167,12 +167,12 @@ const ScoreScreen = props => {
     }, [remaining, statsP1, statsP2])
 
     const modifyArray = () => {
-            const arr = prevShot
+            const arr = previousShots
             if (arr.length === 5) {
-                setPrevShot(arr.splice(1,back)
+                setPreviousShots(arr.splice(1,back)
                 )
             } else {
-                setPrevShot(arr.splice(0,back+1)
+                setPreviousShots(arr.splice(0,back+1)
                 )
             }
             
@@ -342,8 +342,8 @@ const ScoreScreen = props => {
                 p2Name={p2Name}
                 p1Points={p1Points} 
                 p2Points={p2Points}
-                f1={p1Frames}
-                f2={p2Frames}
+                p1Frames={p1Frames}
+                p2Frames={p2Frames}
                 remaining={remaining}
                 setRemaining={setRemaining}
                 setOverlayP1={setOverlayP1}
@@ -367,8 +367,8 @@ const ScoreScreen = props => {
                 setBreakP2={setBreakP2}
                 setStatsP1={setStatsP1}
                 setStatsP2={setStatsP2}
-                prevShot={prevShot}
-                setPrevShot={setPrevShot}
+                previousShots={previousShots}
+                setPreviousShots={setPreviousShots}
                 back={back}
                 setBack={setBack}
                 backMode={backMode}
@@ -529,8 +529,6 @@ const ScoreScreen = props => {
                             breakP1={breakP1}
                             breakP2={breakP2}
                             remaining={remaining}
-                            setP1Frames={setP1Frames}
-                            setP2Frames={setP2Frames}
                             setEndOfFrame={setEndOfFrame}
                             setFreeBallP1={setFreeBallP1}
                             setFreeBallP2={setFreeBallP2}
@@ -579,7 +577,7 @@ const ScoreScreen = props => {
             activateBallsP2={activateBallsP2}
             setFrameRecord={setFrameRecord}
             setEndOfMatch={setEndOfMatch}
-            setPrevShot={setPrevShot}
+            setPreviousShots={setPreviousShots}
             backMode={backMode}
             setBack={setBack}
             setLongPotP1={setLongPotP1}
