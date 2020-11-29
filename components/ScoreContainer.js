@@ -28,24 +28,8 @@ const ScoreContainer = props => {
                                             props.setOverlayP2(false)
                                             props.setCurrentBreakP1(0)
                                             props.setCurrentBreakP2(0)
-                                            props.activateP1({
-                                                '1': false,
-                                                '2': true,
-                                                '3': true,
-                                                '4': true,
-                                                '5': true,
-                                                '6': true,
-                                                '7': true
-                                            })
-                                            props.activateP2({
-                                                '1': false,
-                                                '2': true,
-                                                '3': true,
-                                                '4': true,
-                                                '5': true,
-                                                '6': true,
-                                                '7': true
-                                            })
+                                            props.activateBallsP1(1)
+                                            props.activateBallsP2(1)
                                             props.setFreeBallModeP1(false)
                                             props.setFreeBallModeP2(false)
                                             props.setFreeBallP1(true)

@@ -100,24 +100,8 @@ const FrameOverScreen = props => {
                                     props.setOverlayP2(false)
                                     props.setCurrentBreakP1(0)
                                     props.setCurrentBreakP2(0)
-                                    props.setActiveBallsP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true
-                                    })
-                                    props.setActiveBallsP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true
-                                    })
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(1)
                                 }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                     <View style={styles.nextFrameButton}>

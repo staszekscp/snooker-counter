@@ -63,14 +63,8 @@ const Ball = props => {
                     }
                     props.setFreeBall(false)
                     if (props.remaining === 34) {
-                        props.activate({
-                            '1': true,
-                            '2': false,
-                            '3': true,
-                            '4': true,
-                            '5': true,
-                            '6': true,
-                            '7': true})
+                        props.activateBalls(2)
+                        props.activateOpponentsBalls(2)
                             if (props.player === 'p1'){
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(true)
@@ -80,22 +74,8 @@ const Ball = props => {
                             }
                         props.setRemaining(props.remaining - 7)
                     } else if (props.remaining > 27 && (props.remaining - 27) % 8 !== 0 && props.val === 1) {
-                        props.activate({
-                            '1': true,
-                            '2': false,
-                            '3': false,
-                            '4': false,
-                            '5': false,
-                            '6': false,
-                            '7': false})
-                        props.activateOpp({
-                            '1': false,
-                            '2': true,
-                            '3': true,
-                            '4': true,
-                            '5': true,
-                            '6': true,
-                            '7': true})
+                        props.activateBalls(8)
+                        props.activateOpponentsBalls(1)
                             if (props.player === 'p1'){
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(true)
@@ -108,22 +88,8 @@ const Ball = props => {
                         }
                     } else if (props.remaining > 27){
                         if (props.val === 1){
-                            props.activate({
-                                '1': true,
-                                '2': false,
-                                '3': false,
-                                '4': false,
-                                '5': false,
-                                '6': false,
-                                '7': false})
-                            props.activateOpp({
-                                '1': false,
-                                '2': true,
-                                '3': true,
-                                '4': true,
-                                '5': true,
-                                '6': true,
-                                '7': true})
+                            props.activateBalls(8)
+                            props.activateOpponentsBalls(1)
                             if (props.player === 'p1'){
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(true)
@@ -135,22 +101,8 @@ const Ball = props => {
                             props.setRemaining(props.remaining - 1)
                         }
                         } else if ((props.remaining - 27) % 8 === 0){
-                            props.activate({
-                                '1': false,
-                                '2': true,
-                                '3': true,
-                                '4': true,
-                                '5': true,
-                                '6': true,
-                                '7': true})
-                            props.activateOpp({
-                                '1': false,
-                                '2': true,
-                                '3': true,
-                                '4': true,
-                                '5': true,
-                                '6': true,
-                                '7': true})
+                            props.activateBalls(1)
+                            props.activateOpponentsBalls(1)
                                 if (props.player === 'p1'){
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(true)
@@ -159,22 +111,8 @@ const Ball = props => {
                                     props.setOverlayP2(false)
                                 }
                         } else {
-                            props.activate({
-                                '1': false,
-                                '2': true,
-                                '3': true,
-                                '4': true,
-                                '5': true,
-                                '6': true,
-                                '7': true})
-                            props.activateOpp({
-                                '1': false,
-                                '2': true,
-                                '3': true,
-                                '4': true,
-                                '5': true,
-                                '6': true,
-                                '7': true})
+                            props.activateBalls(1)
+                            props.activateOpponentsBalls(1)
                                 if (props.player === 'p1'){
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(true)
@@ -185,14 +123,8 @@ const Ball = props => {
                             props.setRemaining(props.remaining - 7)
                         }
                     } else if (props.remaining === 27) {
-                        props.activate({
-                            '1': true,
-                            '2': false,
-                            '3': true,
-                            '4': true,
-                            '5': true,
-                            '6': true,
-                            '7': true})
+                        props.activateBalls(2)
+                        props.activateOpponentsBalls(2)
                         if (props.player === 'p1'){
                             props.setOverlayP1(false)
                             props.setOverlayP2(true)
@@ -204,14 +136,8 @@ const Ball = props => {
                         props.setRemaining(props.remaining - 2)
                     }
                     } else if (props.remaining === 25) {
-                        props.activate({
-                            '1': true,
-                            '2': true,
-                            '3': false,
-                            '4': true,
-                            '5': true,
-                            '6': true,
-                            '7': true})
+                        props.activateBalls(3)
+                        props.activateOpponentsBalls(3)
                         if (props.player === 'p1'){
                             props.setOverlayP1(false)
                             props.setOverlayP2(true)
@@ -223,14 +149,8 @@ const Ball = props => {
                         props.setRemaining(props.remaining - 3)
                     }
                     } else if (props.remaining === 22) {
-                        props.activate({
-                            '1': true,
-                            '2': true,
-                            '3': true,
-                            '4': false,
-                            '5': true,
-                            '6': true,
-                            '7': true})
+                        props.activateBalls(4)
+                        props.activateOpponentsBalls(4)
                         if (props.player === 'p1'){
                             props.setOverlayP1(false)
                             props.setOverlayP2(true)
@@ -242,14 +162,8 @@ const Ball = props => {
                         props.setRemaining(props.remaining - 4)
                     }
                     } else if (props.remaining === 18) {
-                        props.activate({
-                            '1': true,
-                            '2': true,
-                            '3': true,
-                            '4': true,
-                            '5': false,
-                            '6': true,
-                            '7': true})
+                        props.activateBalls(5)
+                        props.activateOpponentsBalls(5)
                         if (props.player === 'p1'){
                             props.setOverlayP1(false)
                             props.setOverlayP2(true)
@@ -261,14 +175,8 @@ const Ball = props => {
                         props.setRemaining(props.remaining - 5)
                     }
                     } else if (props.remaining === 13) {
-                        props.activate({
-                            '1': true,
-                            '2': true,
-                            '3': true,
-                            '4': true,
-                            '5': true,
-                            '6': false,
-                            '7': true})
+                        props.activateBalls(6)
+                        props.activateOpponentsBalls(6)
                         if (props.player === 'p1'){
                             props.setOverlayP1(false)
                             props.setOverlayP2(true)

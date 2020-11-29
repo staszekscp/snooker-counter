@@ -170,8 +170,6 @@ const ScoreScreen = props => {
     }, [remaining, statsP1, statsP2])
 
     const modifyArray = () => {
-        
-            console.log('DZIAŁA')
             const arr = prevShot
             if (arr.length === 5) {
                 setPrevShot(arr.splice(1,back)
@@ -184,115 +182,54 @@ const ScoreScreen = props => {
         
     }
 
-
     useEffect(()=> {
         setBreakP1(prev => prev < currentBreakP1 ? currentBreakP1 : prev)
         setBreakP2(prev => prev < currentBreakP2 ? currentBreakP2 : prev)
     }, [currentBreakP1, currentBreakP2])
 
+    const activateBallsP1 = val => {
+        setActiveBallsP1({
+            '1': val === 1 ? false : true,
+            '2': val === 2 || val === 8 ? false : true,
+            '3': val === 3 || val === 8 ? false : true,
+            '4': val === 4 || val === 8 ? false : true,
+            '5': val === 5 || val === 8 ? false : true,
+            '6': val === 6 || val === 8 ? false : true,
+            '7': val === 7 || val === 8 ? false : true,
+        })
+    }
+
+    const activateBallsP2 = val => {
+        setActiveBallsP2({
+            '1': val === 1 ? false : true,
+            '2': val === 2 || val === 8 ? false : true,
+            '3': val === 3 || val === 8 ? false : true,
+            '4': val === 4 || val === 8 ? false : true,
+            '5': val === 5 || val === 8 ? false : true,
+            '6': val === 6 || val === 8 ? false : true,
+            '7': val === 7 || val === 8 ? false : true,
+        })
+    }
+
         useEffect(() => {
             if (remaining === 27) {
-                setActiveBallsP1({
-                    '1': true,
-                    '2': false,
-                    '3': true,
-                    '4': true,
-                    '5': true,
-                    '6': true,
-                    '7': true})
-                setActiveBallsP2({
-                    '1': true,
-                    '2': false,
-                    '3': true,
-                    '4': true,
-                    '5': true,
-                    '6': true,
-                    '7': true})
+                activateBallsP1(2)
+                activateBallsP2(2)
             } else if (remaining === 25) {
-                setActiveBallsP1({
-                    '1': true,
-                    '2': true,
-                    '3': false,
-                    '4': true,
-                    '5': true,
-                    '6': true,
-                    '7': true})
-                setActiveBallsP2({
-                    '1': true,
-                    '2': true,
-                    '3': false,
-                    '4': true,
-                    '5': true,
-                    '6': true,
-                    '7': true})
+                activateBallsP1(3)
+                activateBallsP2(3)
             } else if (remaining === 22) {
-                setActiveBallsP1({
-                    '1': true,
-                    '2': true,
-                    '3': true,
-                    '4': false,
-                    '5': true,
-                    '6': true,
-                    '7': true})
-                setActiveBallsP2({
-                    '1': true,
-                    '2': true,
-                    '3': true,
-                    '4': false,
-                    '5': true,
-                    '6': true,
-                    '7': true})
+                activateBallsP1(4)
+                activateBallsP2(4)
             } else if (remaining === 18) {
-                setActiveBallsP1({
-                    '1': true,
-                    '2': true,
-                    '3': true,
-                    '4': true,
-                    '5': false,
-                    '6': true,
-                    '7': true})
-                setActiveBallsP2({
-                    '1': true,
-                    '2': true,
-                    '3': true,
-                    '4': true,
-                    '5': false,
-                    '6': true,
-                    '7': true})
+                activateBallsP1(5)
+                activateBallsP2(5)
             } else if (remaining === 13) {
-                setActiveBallsP1({
-                    '1': true,
-                    '2': true,
-                    '3': true,
-                    '4': true,
-                    '5': true,
-                    '6': false,
-                    '7': true})
-                setActiveBallsP2({
-                    '1': true,
-                    '2': true,
-                    '3': true,
-                    '4': true,
-                    '5': true,
-                    '6': false,
-                    '7': true})
+                activateBallsP1(6)
+                activateBallsP2(6)
             } else if (remaining === 7) {
-                setActiveBallsP1({
-                    '1': true,
-                    '2': true,
-                    '3': true,
-                    '4': true,
-                    '5': true,
-                    '6': true,
-                    '7': false})
-                setActiveBallsP2({
-                    '1': true,
-                    '2': true,
-                    '3': true,
-                    '4': true,
-                    '5': true,
-                    '6': true,
-                    '7': false})
+                activateBallsP1(7)
+                activateBallsP2(7)
             }
         } , [remaining, statsP1, statsP2])
 
@@ -373,6 +310,8 @@ const ScoreScreen = props => {
                     remaining={remaining}
                     activateP1={setActiveBallsP1}
                     activateP2={setActiveBallsP2}
+                    activateBallsP1={activateBallsP1}
+                    activateBallsP2={activateBallsP2}
                     stats={setStatsP1}
                     backMode={backMode}
                     setBackMode={setBackMode}
@@ -392,6 +331,8 @@ const ScoreScreen = props => {
                     remaining={remaining}
                     activateP1={setActiveBallsP1}
                     activateP2={setActiveBallsP2}
+                    activateBallsP1={activateBallsP1}
+                    activateBallsP2={activateBallsP2}
                     stats={setStatsP1}
                     backMode={backMode}
                     setBackMode={setBackMode}
@@ -416,6 +357,8 @@ const ScoreScreen = props => {
                 p2Points={setP2Points}
                 activateP1={setActiveBallsP1}
                 activateP2={setActiveBallsP2}
+                activateBallsP1={activateBallsP1}
+                activateBallsP2={activateBallsP2}
                 setCurrentBreakP1={setCurrentBreakP1}
                 setCurrentBreakP2={setCurrentBreakP2}
                 mode={mode}
@@ -448,6 +391,8 @@ const ScoreScreen = props => {
                 activeBallsP1={activeBallsP1}
                 activateP2={setActiveBallsP2}
                 activeBallsP2={activeBallsP2}
+                activateBallsP1={activateBallsP1}
+                activateBallsP2={activateBallsP2}
                 setOverlayP1={setOverlayP1}
                 setOverlayP2={setOverlayP2}
                 remaining={remaining}
@@ -476,6 +421,8 @@ const ScoreScreen = props => {
             <MissContainer 
                 activateP1={setActiveBallsP1}
                 activateP2={setActiveBallsP2}
+                activateBallsP1={activateBallsP1}
+                activateBallsP2={activateBallsP2}
                 setOverlayP1={setOverlayP1}
                 setOverlayP2={setOverlayP2}
                 remaining={remaining}
@@ -507,6 +454,8 @@ const ScoreScreen = props => {
                         <SafetyContainer 
                             activateP1={setActiveBallsP1}
                             activateP2={setActiveBallsP2}
+                            activateBallsP1={activateBallsP1}
+                            activateBallsP2={activateBallsP2}
                             setOverlayP1={setOverlayP1}
                             setOverlayP2={setOverlayP2}
                             remaining={remaining}
@@ -538,6 +487,8 @@ const ScoreScreen = props => {
                             p2={p2Points}
                             activateP1={setActiveBallsP1}
                             activateP2={setActiveBallsP2}
+                            activateBallsP1={activateBallsP1}
+                            activateBallsP2={activateBallsP2}
                             setOverlayP1={setOverlayP1}
                             setOverlayP2={setOverlayP2}
                             remaining={remaining}
@@ -641,6 +592,8 @@ const ScoreScreen = props => {
             setCurrentBreakP2={setCurrentBreakP2}
             setActiveBallsP1={setActiveBallsP1}
             setActiveBallsP2={setActiveBallsP2}
+            activateBallsP1={activateBallsP1}
+            activateBallsP2={activateBallsP2}
             setFrameRecord={setFrameRecord}
             setGameOver={setEndOfMatch}
             setPrevShot={setPrevShot}
@@ -671,6 +624,8 @@ const ScoreScreen = props => {
             setCurrentBreakP2={setCurrentBreakP2}
             setActiveBallsP1={setActiveBallsP1}
             setActiveBallsP2={setActiveBallsP2}
+            activateBallsP1={activateBallsP1}
+            activateBallsP2={activateBallsP2}
             setGameOver={setEndOfMatch}
             frameRecord={frameRecord}
             navigation={props.navigation}

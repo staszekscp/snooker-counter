@@ -27,61 +27,19 @@ const FoulContainer = props => {
                                 props.setFreeBP2(false)
                                 props.setFreeBallP1(false)
                                 if (props.remaining === 34) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(2)
+                                    props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
                                     if (!props.fbP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(1)
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': false,
-                                        '4': false,
-                                        '5': false,
-                                        '6': false,
-                                        '7': false})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(8)
+                                    props.activateBallsP2(1)
                                     if (!props.fbP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
@@ -115,61 +73,19 @@ const FoulContainer = props => {
                                 props.setFreeBP2(false)
                                 props.setFreeBallP1(false)
                                 if (props.remaining === 34) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(2)
+                                    props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
                                     if (!props.fbP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(1)
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': false,
-                                        '4': false,
-                                        '5': false,
-                                        '6': false,
-                                        '7': false})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(8)
+                                    props.activateBallsP2(1)
                                     if (!props.fbP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
@@ -203,61 +119,19 @@ const FoulContainer = props => {
                                 props.setFreeBP2(false)
                                 props.setFreeBallP1(false)
                                 if (props.remaining === 34) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(2)
+                                    props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
                                     if (!props.fbP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(1)
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': false,
-                                        '4': false,
-                                        '5': false,
-                                        '6': false,
-                                        '7': false})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(8)
+                                    props.activateBallsP2(1)
                                     if (!props.fbP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
@@ -297,61 +171,19 @@ const FoulContainer = props => {
                                     props.setFreeBallP1(false)
                                 }
                                 if (props.remaining === 34) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(2)
+                                    props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
                                     if (!props.fbP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(1)
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': false,
-                                        '4': false,
-                                        '5': false,
-                                        '6': false,
-                                        '7': false})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(8)
+                                    props.activateBallsP2(1)
                                     if (!props.fbP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
@@ -393,61 +225,19 @@ const FoulContainer = props => {
                                 props.setFreeBP2(true)
                                 props.setFreeBallP2(false)
                                 if (props.remaining === 34) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(2)
+                                    props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
                                     if (!props.fbP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(2)
+                                    props.activateBallsP2(2)
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': false,
-                                        '4': false,
-                                        '5': false,
-                                        '6': false,
-                                        '7': false})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(8)
                                     if (!props.fbP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
@@ -481,61 +271,19 @@ const FoulContainer = props => {
                                 props.setFreeBP2(true)
                                 props.setFreeBallP2(false)
                                 if (props.remaining === 34) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(2)
+                                    props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
                                     if (!props.fbP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(1)
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': false,
-                                        '4': false,
-                                        '5': false,
-                                        '6': false,
-                                        '7': false})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(8)
                                     if (!props.fbP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
@@ -569,61 +317,19 @@ const FoulContainer = props => {
                                 props.setFreeBP2(true)
                                 props.setFreeBallP2(false)
                                 if (props.remaining === 34) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(2)
+                                    props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
                                     if (!props.fbP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(1)
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': false,
-                                        '4': false,
-                                        '5': false,
-                                        '6': false,
-                                        '7': false})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(8)
                                     if (!props.fbP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
@@ -663,61 +369,19 @@ const FoulContainer = props => {
                                     props.setFreeBallP2(false)
                                 }
                                 if (props.remaining === 34) {
-                                    props.activateP1({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(2)
+                                    props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
                                     if (!props.fbP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(1)
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
-                                    props.activateP2({
-                                        '1': true,
-                                        '2': false,
-                                        '3': false,
-                                        '4': false,
-                                        '5': false,
-                                        '6': false,
-                                        '7': false})
+                                    props.activateBallsP1(1)
+                                    props.activateBallsP2(8)
                                     if (!props.fbP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }

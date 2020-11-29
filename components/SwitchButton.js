@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
 
-//ZMIEŃ REMAINING (na kolorach po naciśnięciu SWITCH powinno odejmować 7!!!!
-
 const SwitchButton = props => {
     return (<View style={styles.buttonContainer}>
                     <TouchableNativeFeedback
@@ -21,159 +19,47 @@ const SwitchButton = props => {
                             props.setFreeBP2(true)
                             props.setFreeBall(false)
                             if (props.remaining === 34) {
-                                props.activateP1({
-                                    '1': true,
-                                    '2': false,
-                                    '3': true,
-                                    '4': true,
-                                    '5': true,
-                                    '6': true,
-                                    '7': true})
-                                props.activateP2({
-                                    '1': true,
-                                    '2': false,
-                                    '3': true,
-                                    '4': true,
-                                    '5': true,
-                                    '6': true,
-                                    '7': true})
+                                props.activateBallsP1(2)
+                                props.activateBallsP2(2)
                                 props.setOverlayP1(prev => !prev)
                                 props.setOverlayP2(prev => !prev)
                                 props.setRemaining(props.remaining - 7)
                             } else if (props.remaining > 27){
-                                props.activateP1({
-                                    '1': false,
-                                    '2': true,
-                                    '3': true,
-                                    '4': true,
-                                    '5': true,
-                                    '6': true,
-                                    '7': true})
-                                props.activateP2({
-                                    '1': false,
-                                    '2': true,
-                                    '3': true,
-                                    '4': true,
-                                    '5': true,
-                                    '6': true,
-                                    '7': true})
+                                props.activateBallsP1(1)
+                                props.activateBallsP2(1)
                                 props.setOverlayP1(prev => !prev)
                                 props.setOverlayP2(prev => !prev)
                                 if ((props.remaining - 27) % 8 !== 0){
                                     props.setRemaining(props.remaining - 7)
                                 }
                             } else if (props.remaining === 27) {
-                                props.activateP1({
-                                    '1': true,
-                                    '2': false,
-                                    '3': true,
-                                    '4': true,
-                                    '5': true,
-                                    '6': true,
-                                    '7': true})
-                                props.activateP2({
-                                    '1': true,
-                                    '2': false,
-                                    '3': true,
-                                    '4': true,
-                                    '5': true,
-                                    '6': true,
-                                    '7': true})
+                                props.activateBallsP1(2)
+                                props.activateBallsP2(2)
                                 props.setOverlayP1(prev => !prev)
                                 props.setOverlayP2(prev => !prev)
                             } else if (props.remaining === 25) {
-                                props.activateP1({
-                                    '1': true,
-                                    '2': true,
-                                    '3': false,
-                                    '4': true,
-                                    '5': true,
-                                    '6': true,
-                                    '7': true})
-                                props.activateP2({
-                                    '1': true,
-                                    '2': true,
-                                    '3': false,
-                                    '4': true,
-                                    '5': true,
-                                    '6': true,
-                                    '7': true})
+                                props.activateBallsP1(3)
+                                props.activateBallsP2(3)
                                 props.setOverlayP1(prev => !prev)
                                 props.setOverlayP2(prev => !prev)
                             } else if (props.remaining === 22) {
-                                props.activateP1({
-                                    '1': true,
-                                    '2': true,
-                                    '3': true,
-                                    '4': false,
-                                    '5': true,
-                                    '6': true,
-                                    '7': true})
-                                props.activateP2({
-                                    '1': true,
-                                    '2': true,
-                                    '3': true,
-                                    '4': false,
-                                    '5': true,
-                                    '6': true,
-                                    '7': true})
+                                props.activateBallsP1(4)
+                                props.activateBallsP2(4)
                                 props.setOverlayP1(prev => !prev)
                                 props.setOverlayP2(prev => !prev)
                             } else if (props.remaining === 18) {
-                                props.activateP1({
-                                    '1': true,
-                                    '2': true,
-                                    '3': true,
-                                    '4': true,
-                                    '5': false,
-                                    '6': true,
-                                    '7': true})
-                                props.activateP2({
-                                    '1': true,
-                                    '2': true,
-                                    '3': true,
-                                    '4': true,
-                                    '5': false,
-                                    '6': true,
-                                    '7': true})
+                                props.activateBallsP1(5)
+                                props.activateBallsP2(5)
                                 props.setOverlayP1(prev => !prev)
                                 props.setOverlayP2(prev => !prev)
                             } else if (props.remaining === 13) {
-                                props.activateP1({
-                                    '1': true,
-                                    '2': true,
-                                    '3': true,
-                                    '4': true,
-                                    '5': true,
-                                    '6': false,
-                                    '7': true})
-                                props.activateP2({
-                                    '1': true,
-                                    '2': true,
-                                    '3': true,
-                                    '4': true,
-                                    '5': true,
-                                    '6': false,
-                                    '7': true})
+                                props.activateBallsP1(6)
+                                props.activateBallsP2(6)
                                 props.setOverlayP1(prev => !prev)
                                 props.setOverlayP2(prev => !prev)
                             } else if (props.remaining === 7) {
-                                props.activateP1({
-                                    '1': true,
-                                    '2': true,
-                                    '3': true,
-                                    '4': true,
-                                    '5': true,
-                                    '6': true,
-                                    '7': false})
-                                props.activateP2({
-                                    '1': true,
-                                    '2': true,
-                                    '3': true,
-                                    '4': true,
-                                    '5': true,
-                                    '6': true,
-                                    '7': false})
+                                props.activateBallsP1(7)
+                                props.activateBallsP2(7)
                                 props.setOverlayP1(prev => !prev)
                                 props.setOverlayP2(prev => !prev)
                             } 
