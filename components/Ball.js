@@ -16,7 +16,7 @@ const Ball = props => {
     return (
         <View style={{...styles.ballContainer, ...props.style}}>
             <TouchableNativeFeedback
-                disabled={active[props.val.toString()]}
+                disabled={!active[props.val.toString()]}
                 onPress={() => {
                     if (props.backwardMode) {
                         props.modifyArray()

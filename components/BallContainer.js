@@ -13,9 +13,8 @@ const BallContainer = props => {
                 <View style={styles.mainBallContainer}> 
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={props.activeBallsP1['2'] ? {...styles.ball, ...styles.yellow, ...styles.grey} : {...styles.ball, ...styles.yellow}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
+                            style={!props.activeBallsP1['2'] ? {...styles.ball, ...styles.yellow, ...styles.grey} : {...styles.ball, ...styles.yellow}} 
+                            
                             activeBalls={props.activeBallsP1}
                             val={2} 
                             
@@ -40,9 +39,8 @@ const BallContainer = props => {
                             activateOpponentsBalls={props.activateBallsP2}
                             />
                         <Ball 
-                            style={props.activeBallsP1['3'] ? {...styles.ball, ...styles.green, ...styles.grey} : {...styles.ball, ...styles.green}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
+                            style={!props.activeBallsP1['3'] ? {...styles.ball, ...styles.green, ...styles.grey} : {...styles.ball, ...styles.green}} 
+                            
                             activeBalls={props.activeBallsP1}
                             val={3} 
                             
@@ -66,9 +64,8 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP1}
                             activateOpponentsBalls={props.activateBallsP2}/>
                         <Ball 
-                            style={props.activeBallsP1['4'] ? {...styles.ball, ...styles.brown, ...styles.grey} : {...styles.ball, ...styles.brown}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
+                            style={!props.activeBallsP1['4'] ? {...styles.ball, ...styles.brown, ...styles.grey} : {...styles.ball, ...styles.brown}} 
+                            
                             activeBalls={props.activeBallsP1}
                             val={4} 
                             setPoints={props.setP1Points}
@@ -106,9 +103,8 @@ const BallContainer = props => {
                             </TouchableNativeFeedback>
                         </View>
                         <Ball 
-                            style={props.activeBallsP1['1'] ? {...styles.ball, ...styles.red, ...styles.grey} : {...styles.ball, ...styles.red}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
+                            style={!props.activeBallsP1['1'] ? {...styles.ball, ...styles.red, ...styles.grey} : {...styles.ball, ...styles.red}} 
+                            
                             activeBalls={props.activeBallsP1}
                             val={1} 
                             
@@ -166,9 +162,8 @@ const BallContainer = props => {
                     </View>
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={props.activeBallsP1['5'] ? {...styles.ball, ...styles.blue, ...styles.grey} : {...styles.ball, ...styles.blue}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
+                            style={!props.activeBallsP1['5'] ? {...styles.ball, ...styles.blue, ...styles.grey} : {...styles.ball, ...styles.blue}} 
+                            
                             activeBalls={props.activeBallsP1}
                             val={5} 
                             
@@ -192,9 +187,8 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP1}
                             activateOpponentsBalls={props.activateBallsP2}/>
                         <Ball 
-                            style={props.activeBallsP1['6'] ? {...styles.ball, ...styles.pink, ...styles.grey} : {...styles.ball, ...styles.pink}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
+                            style={!props.activeBallsP1['6'] ? {...styles.ball, ...styles.pink, ...styles.grey} : {...styles.ball, ...styles.pink}} 
+                            
                             activeBalls={props.activeBallsP1}
                             val={6} 
                             
@@ -218,9 +212,8 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP1}
                             activateOpponentsBalls={props.activateBallsP2}/>
                         <Ball 
-                            style={props.activeBallsP1['7'] ? {...styles.ball, ...styles.black, ...styles.grey} : {...styles.ball, ...styles.black}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
+                            style={!props.activeBallsP1['7'] ? {...styles.ball, ...styles.black, ...styles.grey} : {...styles.ball, ...styles.black}} 
+                            
                             activeBalls={props.activeBallsP1}
                             val={7} 
                             
@@ -248,9 +241,8 @@ const BallContainer = props => {
                 <View style={styles.mainBallContainer}> 
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={props.activeBallsP2['2'] ? {...styles.ball, ...styles.yellow, ...styles.grey} : {...styles.ball, ...styles.yellow}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
+                            style={!props.activeBallsP2['2'] ? {...styles.ball, ...styles.yellow, ...styles.grey} : {...styles.ball, ...styles.yellow}} 
+                            
                             activeBalls={props.activeBallsP2}
                             val={2} 
                             
@@ -274,9 +266,8 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP2}
                             activateOpponentsBalls={props.activateBallsP1}/>
                         <Ball 
-                            style={props.activeBallsP2['3'] ? {...styles.ball, ...styles.green, ...styles.grey} : {...styles.ball, ...styles.green}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
+                            style={!props.activeBallsP2['3'] ? {...styles.ball, ...styles.green, ...styles.grey} : {...styles.ball, ...styles.green}} 
+                            
                             activeBalls={props.activeBallsP2}
                             val={3} 
                             
@@ -300,9 +291,8 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP2}
                             activateOpponentsBalls={props.activateBallsP1}/>
                         <Ball 
-                            style={props.activeBallsP2['4'] ? {...styles.ball, ...styles.brown, ...styles.grey} : {...styles.ball, ...styles.brown}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
+                            style={!props.activeBallsP2['4'] ? {...styles.ball, ...styles.brown, ...styles.grey} : {...styles.ball, ...styles.brown}} 
+                            
                             activeBalls={props.activeBallsP2}
                             val={4} 
                             setPoints={props.setP2Points}
@@ -358,9 +348,8 @@ const BallContainer = props => {
                             </TouchableNativeFeedback>
                         </View>
                         <Ball 
-                            style={props.activeBallsP2['1'] ? {...styles.ball, ...styles.red, ...styles.grey} : {...styles.ball, ...styles.red}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
+                            style={!props.activeBallsP2['1'] ? {...styles.ball, ...styles.red, ...styles.grey} : {...styles.ball, ...styles.red}} 
+                            
                             activeBalls={props.activeBallsP2}
                             val={1} 
                             
@@ -401,9 +390,8 @@ const BallContainer = props => {
                     </View>
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={props.activeBallsP2['5'] ? {...styles.ball, ...styles.blue, ...styles.grey} : {...styles.ball, ...styles.blue}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
+                            style={!props.activeBallsP2['5'] ? {...styles.ball, ...styles.blue, ...styles.grey} : {...styles.ball, ...styles.blue}} 
+                            
                             activeBalls={props.activeBallsP2}
                             val={5} 
                             
@@ -428,9 +416,8 @@ const BallContainer = props => {
                             activateOpponentsBalls={props.activateBallsP1}
                             />
                         <Ball 
-                            style={props.activeBallsP2['6'] ? {...styles.ball, ...styles.pink, ...styles.grey} : {...styles.ball, ...styles.pink}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
+                            style={!props.activeBallsP2['6'] ? {...styles.ball, ...styles.pink, ...styles.grey} : {...styles.ball, ...styles.pink}} 
+                            
                             activeBalls={props.activeBallsP2}
                             val={6} 
                             
@@ -454,9 +441,8 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP2}
                             activateOpponentsBalls={props.activateBallsP1}/>
                         <Ball 
-                            style={props.activeBallsP2['7'] ? {...styles.ball, ...styles.black, ...styles.grey} : {...styles.ball, ...styles.black}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
+                            style={!props.activeBallsP2['7'] ? {...styles.ball, ...styles.black, ...styles.grey} : {...styles.ball, ...styles.black}} 
+                            
                             activeBalls={props.activeBallsP2}
                             val={7} 
                             

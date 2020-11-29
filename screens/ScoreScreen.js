@@ -35,24 +35,24 @@ const ScoreScreen = props => {
     const [remaining, setRemaining] = useState(props.navigation.getParam('reds')*8 + 27) //
     
     const [activeBallsP1, setActiveBallsP1] = useState({
-        '1': false,
-        '2': true,
-        '3': true,
-        '4': true,
-        '5': true,
-        '6': true,
-        '7': true})
+        '1': true,
+        '2': false,
+        '3': false,
+        '4': false,
+        '5': false,
+        '6': false,
+        '7': false})
     const [activeBallsP2, setActiveBallsP2] = useState({
-        '1': false,
-        '2': true,
-        '3': true,
-        '4': true,
-        '5': true,
-        '6': true,
-        '7': true})
+        '1': true,
+        '2': false,
+        '3': false,
+        '4': false,
+        '5': false,
+        '6': false,
+        '7': false})
     
-    const [overlayP1, setOverlayP1] = useState(false)
-    const [overlayP2, setOverlayP2] = useState(false)
+    const [overlayP1, setOverlayP1] = useState(false) //
+    const [overlayP2, setOverlayP2] = useState(false) //
 
     const [freeBallP1, setFreeBallP1] = useState(false) //
     const [freeBallP2, setFreeBallP2] = useState(false) //
@@ -186,25 +186,25 @@ const ScoreScreen = props => {
 
     const activateBallsP1 = val => {
         setActiveBallsP1({
-            '1': val === 1 ? false : true,
-            '2': val === 2 || val === 8 ? false : true,
-            '3': val === 3 || val === 8 ? false : true,
-            '4': val === 4 || val === 8 ? false : true,
-            '5': val === 5 || val === 8 ? false : true,
-            '6': val === 6 || val === 8 ? false : true,
-            '7': val === 7 || val === 8 ? false : true,
+            '1': val === 1 ? true: false,
+            '2': val === 2 || val === 8 ? true: false,
+            '3': val === 3 || val === 8 ? true: false,
+            '4': val === 4 || val === 8 ? true: false,
+            '5': val === 5 || val === 8 ? true: false,
+            '6': val === 6 || val === 8 ? true: false,
+            '7': val === 7 || val === 8 ? true: false,
         })
     }
 
     const activateBallsP2 = val => {
         setActiveBallsP2({
-            '1': val === 1 ? false : true,
-            '2': val === 2 || val === 8 ? false : true,
-            '3': val === 3 || val === 8 ? false : true,
-            '4': val === 4 || val === 8 ? false : true,
-            '5': val === 5 || val === 8 ? false : true,
-            '6': val === 6 || val === 8 ? false : true,
-            '7': val === 7 || val === 8 ? false : true,
+            '1': val === 1 ? true: false,
+            '2': val === 2 || val === 8 ? true: false,
+            '3': val === 3 || val === 8 ? true: false,
+            '4': val === 4 || val === 8 ? true: false,
+            '5': val === 5 || val === 8 ? true: false,
+            '6': val === 6 || val === 8 ? true: false,
+            '7': val === 7 || val === 8 ? true: false,
         })
     }
 
@@ -305,8 +305,6 @@ const ScoreScreen = props => {
                     setOverlayP2={setOverlayP2}
                     setRemaining={setRemaining}
                     remaining={remaining}
-                    activateP1={setActiveBallsP1}
-                    activateP2={setActiveBallsP2}
                     activateBallsP1={activateBallsP1}
                     activateBallsP2={activateBallsP2}
                     setStats={setStatsP1}
@@ -326,8 +324,6 @@ const ScoreScreen = props => {
                     setOverlayP2={setOverlayP2}
                     setRemaining={setRemaining}
                     remaining={remaining}
-                    activateP1={setActiveBallsP1}
-                    activateP2={setActiveBallsP2}
                     activateBallsP1={activateBallsP1}
                     activateBallsP2={activateBallsP2}
                     setStats={setStatsP2}
@@ -380,9 +376,7 @@ const ScoreScreen = props => {
             <BallContainer 
                 setP1Points={setP1Points} 
                 setP2Points={setP2Points} 
-                activateP1={setActiveBallsP1}
                 activeBallsP1={activeBallsP1}
-                activateP2={setActiveBallsP2}
                 activeBallsP2={activeBallsP2}
                 activateBallsP1={activateBallsP1}
                 activateBallsP2={activateBallsP2}
@@ -414,8 +408,6 @@ const ScoreScreen = props => {
                 setCurrentShotIndex={setCurrentShotIndex}
                 modifyArray={modifyArray}/>
             <MissContainer 
-                activateP1={setActiveBallsP1}
-                activateP2={setActiveBallsP2}
                 activateBallsP1={activateBallsP1}
                 activateBallsP2={activateBallsP2}
                 setOverlayP1={setOverlayP1}
@@ -445,8 +437,6 @@ const ScoreScreen = props => {
                 <ImageBackground style={styles.bottom} source={require('../assets/png/wood.png')}>
                     <View style={styles.cover}>
                         <SafetyContainer 
-                            activateP1={setActiveBallsP1}
-                            activateP2={setActiveBallsP2}
                             activateBallsP1={activateBallsP1}
                             activateBallsP2={activateBallsP2}
                             setOverlayP1={setOverlayP1}
@@ -472,8 +462,6 @@ const ScoreScreen = props => {
                         <FoulContainer 
                             setP1Points={setP1Points} 
                             setP2Points={setP2Points} 
-                            activateP1={setActiveBallsP1}
-                            activateP2={setActiveBallsP2}
                             activateBallsP1={activateBallsP1}
                             activateBallsP2={activateBallsP2}
                             setOverlayP1={setOverlayP1}
@@ -562,8 +550,6 @@ const ScoreScreen = props => {
             setOverlayP2={setOverlayP2}
             setCurrentBreakP1={setCurrentBreakP1}
             setCurrentBreakP2={setCurrentBreakP2}
-            setActiveBallsP1={setActiveBallsP1}
-            setActiveBallsP2={setActiveBallsP2}
             activateBallsP1={activateBallsP1}
             activateBallsP2={activateBallsP2}
             setFrameRecord={setFrameRecord}
@@ -586,8 +572,6 @@ const ScoreScreen = props => {
             successP2={successP2}
             breakP1={breakP1}
             breakP2={breakP2}
-            setActiveBallsP1={setActiveBallsP1}
-            setActiveBallsP2={setActiveBallsP2}
             activateBallsP1={activateBallsP1}
             activateBallsP2={activateBallsP2}
             frameRecord={frameRecord}
