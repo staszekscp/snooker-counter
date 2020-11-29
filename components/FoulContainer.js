@@ -17,7 +17,7 @@ const FoulContainer = props => {
                                     props.setBackMode(false)
                                 }
                                 props.setBack(4)
-                                props.statsP1(prev => ({
+                                props.setStatsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+4
                                 }))
@@ -63,7 +63,7 @@ const FoulContainer = props => {
                                     props.setBackMode(false)
                                 }
                                 props.setBack(4)
-                                props.statsP1(prev => ({
+                                props.setStatsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+5
                                 }))
@@ -109,7 +109,7 @@ const FoulContainer = props => {
                                     props.setBackMode(false)
                                 }
                                 props.setBack(4)
-                                props.statsP1(prev => ({
+                                props.setStatsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+6
                                 }))
@@ -155,7 +155,7 @@ const FoulContainer = props => {
                                     props.setBackMode(false)
                                 }
                                 props.setBack(4)
-                                props.statsP1(prev => ({
+                                props.setStatsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+7
                                 }))
@@ -215,7 +215,7 @@ const FoulContainer = props => {
                                     props.setBackMode(false)
                                 }
                                 props.setBack(4)
-                                props.statsP2(prev => ({
+                                props.setStatsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+4
                                 }))
@@ -261,7 +261,7 @@ const FoulContainer = props => {
                                     props.setBackMode(false)
                                 }
                                 props.setBack(4)
-                                props.statsP2(prev => ({
+                                props.setStatsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+5
                                 }))
@@ -307,7 +307,7 @@ const FoulContainer = props => {
                                     props.setBackMode(false)
                                 }
                                 props.setBack(4)
-                                props.statsP2(prev => ({
+                                props.setStatsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+6
                                 }))
@@ -353,7 +353,7 @@ const FoulContainer = props => {
                                     props.setBackMode(false)
                                 }
                                 props.setBack(4)
-                                props.statsP2(prev => ({
+                                props.setStatsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+7
                                 }))

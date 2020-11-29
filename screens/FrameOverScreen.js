@@ -127,7 +127,7 @@ const FrameOverScreen = props => {
                                     ]))
                                     props.setRemaining(props.mode * 8 + 27)
                                     props.setEndOfFrame(false)
-                                    props.setGameOver(true)
+                                    props.setEndOfMatch(true)
                                 }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                     <View style={styles.endMatchButton}>

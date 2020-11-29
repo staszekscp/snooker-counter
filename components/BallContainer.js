@@ -28,7 +28,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP1}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
+                            setStats={props.setStatsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
                             setCurrentBreak={props.setCurrentBreakP1}
@@ -55,7 +55,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP1}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
+                            setStats={props.setStatsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
                             setCurrentBreak={props.setCurrentBreakP1}
@@ -80,7 +80,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP1}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
+                            setStats={props.setStatsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
                             setCurrentBreak={props.setCurrentBreakP1}
@@ -122,7 +122,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP1}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}  
-                            stats={props.statsP1}
+                            setStats={props.setStatsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
                             setCurrentBreak={props.setCurrentBreakP1}
@@ -181,7 +181,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP1}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
+                            setStats={props.setStatsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
                             setCurrentBreak={props.setCurrentBreakP1}
@@ -207,7 +207,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP1}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
+                            setStats={props.setStatsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
                             setCurrentBreak={props.setCurrentBreakP1}
@@ -233,7 +233,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP1}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
+                            setStats={props.setStatsP1}
                             setLongPot={props.setLongPotP1}
                             longPot={props.longPotP1}
                             setCurrentBreak={props.setCurrentBreakP1}
@@ -263,7 +263,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP2}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
+                            setStats={props.setStatsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
                             setCurrentBreak={props.setCurrentBreakP2}
@@ -289,7 +289,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP2}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
+                            setStats={props.setStatsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
                             setCurrentBreak={props.setCurrentBreakP2}
@@ -314,7 +314,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP2}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
+                            setStats={props.setStatsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
                             setCurrentBreak={props.setCurrentBreakP2}
@@ -374,7 +374,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP2}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2} 
-                            stats={props.statsP2}
+                            setStats={props.setStatsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
                             setCurrentBreak={props.setCurrentBreakP2}
@@ -416,7 +416,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP2}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
+                            setStats={props.setStatsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
                             setCurrentBreak={props.setCurrentBreakP2}
@@ -443,7 +443,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP2}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
+                            setStats={props.setStatsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
                             setCurrentBreak={props.setCurrentBreakP2}
@@ -469,7 +469,7 @@ const BallContainer = props => {
                             setFreeBall={props.setFreeBallP2}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
+                            setStats={props.setStatsP2}
                             setLongPot={props.setLongPotP2}
                             longPot={props.longPotP2}
                             setCurrentBreak={props.setCurrentBreakP2}

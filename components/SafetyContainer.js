@@ -14,7 +14,7 @@ const SafetyContainer = props => {
                             }
                             props.setBack(4)
                             props.setCurrentBreakP1(0)
-                            props.statsP1(prev => ({
+                            props.setStatsP1(prev => ({
                                 ...prev,
                                 safe: prev.safe+1
                             }))
@@ -84,7 +84,7 @@ const SafetyContainer = props => {
                             }
                             props.setBack(4)
                             props.setCurrentBreakP1(0)
-                            props.statsP1(prev => ({
+                            props.setStatsP1(prev => ({
                                 ...prev,
                                 unsafe: prev.unsafe+1
                             }))
@@ -156,7 +156,7 @@ const SafetyContainer = props => {
                             }
                             props.setBack(4)
                             props.setCurrentBreakP2(0)
-                            props.statsP2(prev => ({
+                            props.setStatsP2(prev => ({
                                 ...prev,
                                 safe: prev.safe+1
                             }))
@@ -228,7 +228,7 @@ const SafetyContainer = props => {
                             }
                             props.setBack(4)
                             props.setCurrentBreakP2(0)
-                            props.statsP2(prev => ({
+                            props.setStatsP2(prev => ({
                                 ...prev,
                                 unsafe: prev.unsafe+1
                             }))

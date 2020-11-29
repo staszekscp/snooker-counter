@@ -13,7 +13,7 @@ const AdditionalRedContainer = props => {
                                 props.setBackMode(false)
                             }
                             props.setBack(4)
-                            props.statsP1(prev => ({
+                            props.setStatsP1(prev => ({
                                 ...prev,
                                 pots: prev.pots+1
                             }))
@@ -55,7 +55,7 @@ const AdditionalRedContainer = props => {
                                 props.setBackMode(false)
                             }
                             props.setBack(4)
-                            props.statsP2(prev => ({
+                            props.setStatsP2(prev => ({
                                 ...prev,
                                 pots: prev.pots+1
                             }))

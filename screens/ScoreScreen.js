@@ -26,7 +26,7 @@ const ScoreScreen = props => {
     const [p1Frames, setP1Frames] = useState(0)
     const [p2Frames, setP2Frames] = useState(0)
 
-    const [frameRecord, setFrameRecord] = useState([])
+    const [frameRecord, setFrameRecord] = useState([]) //
 
     const [prevShot, setPrevShot] = useState([])
     const [back, setBack] = useState(0)
@@ -78,13 +78,14 @@ const ScoreScreen = props => {
         safe: 0,
         unsafe: 0,
         foulPointsGivenAway: 0
-    })
+    }) //
     
     const successP1 = {
         potSuccess: statsP1.pots+statsP1.miss === 0 ? 0 : statsP1.pots/(statsP1.pots+statsP1.miss)*100,
         longPotSuccess: statsP1.long+statsP1.longMiss === 0 ? 0 : statsP1.long/(statsP1.long+statsP1.longMiss)*100,
         safetySuccess:statsP1.safe+statsP1.unsafe === 0 ? 0 :  statsP1.safe/(statsP1.safe+statsP1.unsafe)*100
-    }
+    } //
+
     const [statsP2, setStatsP2] = useState({
         points: 0,
         pots: 0,
@@ -94,21 +95,23 @@ const ScoreScreen = props => {
         safe: 0,
         unsafe: 0,
         foulPointsGivenAway: 0
-    })
+    }) //
 
     const successP2 = {
         potSuccess: statsP2.pots+statsP2.miss === 0 ? 0 : statsP2.pots/(statsP2.pots+statsP2.miss)*100,
         longPotSuccess: statsP2.long+statsP2.longMiss === 0 ? 0 : statsP2.long/(statsP2.long+statsP2.longMiss)*100,
         safetySuccess:statsP2.safe+statsP2.unsafe === 0 ? 0 :  statsP2.safe/(statsP2.safe+statsP2.unsafe)*100
-    }
+    } //
 
-    const [endOfFrame, setEndOfFrame] = useState(false)
-    const [endOfMatch, setEndOfMatch] = useState(false)
+    const [endOfFrame, setEndOfFrame] = useState(false) //
+    const [endOfMatch, setEndOfMatch] = useState(false) //
 
-    const [extraBlack, setExtraBlack] = useState(false)
+    const [extraBlack, setExtraBlack] = useState(false) //
+
+
+//========================================================================================================
 
     useEffect(() => {
-        console.log('tutaj')
         if(!backMode){
             if (prevShot.length > 4) {
                 setPrevShot(prev => 
@@ -306,7 +309,7 @@ const ScoreScreen = props => {
                     activateP2={setActiveBallsP2}
                     activateBallsP1={activateBallsP1}
                     activateBallsP2={activateBallsP2}
-                    stats={setStatsP1}
+                    setStats={setStatsP1}
                     backMode={backMode}
                     setBackMode={setBackMode}
                     setBack={setBack}
@@ -327,7 +330,7 @@ const ScoreScreen = props => {
                     activateP2={setActiveBallsP2}
                     activateBallsP1={activateBallsP1}
                     activateBallsP2={activateBallsP2}
-                    stats={setStatsP1}
+                    setStats={setStatsP2}
                     backMode={backMode}
                     setBackMode={setBackMode}
                     setBack={setBack}
@@ -397,8 +400,8 @@ const ScoreScreen = props => {
                 freeBallButtonP2={freeBallButtonP2}
                 setFreeBallButtonP2={setFreeBallButtonP2}
 
-                statsP1={setStatsP1}
-                statsP2={setStatsP2}
+                setStatsP1={setStatsP1}
+                setStatsP2={setStatsP2}
                 setLongPotP1={setLongPotP1}
                 longPotP1={longPotP1}
                 setLongPotP2={setLongPotP2}
@@ -425,8 +428,8 @@ const ScoreScreen = props => {
                 setFreeBallP2={setFreeBallP2}
                 setFreeBallButtonP1={setFreeBallButtonP1}
                 setFreeBallButtonP2={setFreeBallButtonP2}
-                statsP1={setStatsP1}
-                statsP2={setStatsP2}
+                setStatsP1={setStatsP1}
+                setStatsP2={setStatsP2}
                 setLongPotP1={setLongPotP1}
                 longPotP1={longPotP1}
                 setLongPotP2={setLongPotP2}
@@ -456,8 +459,8 @@ const ScoreScreen = props => {
                             setFreeBallP2={setFreeBallP2}
                             setFreeBallButtonP1={setFreeBallButtonP1}
                             setFreeBallButtonP2={setFreeBallButtonP2}
-                            statsP1={setStatsP1}
-                            statsP2={setStatsP2}
+                            setStatsP1={setStatsP1}
+                            setStatsP2={setStatsP2}
                             setLongPotP1={setLongPotP1}
                             setLongPotP2={setLongPotP2}
                             currentBreakP1={currentBreakP1}
@@ -493,8 +496,8 @@ const ScoreScreen = props => {
                             currentBreakP2={currentBreakP2}
                             setCurrentBreakP1={setCurrentBreakP1}
                             setCurrentBreakP2={setCurrentBreakP2}
-                            statsP1={setStatsP1}
-                            statsP2={setStatsP2}
+                            setStatsP1={setStatsP1}
+                            setStatsP2={setStatsP2}
                             backMode={backMode}
                             setBackMode={setBackMode}
                             setBack={setBack}
@@ -508,8 +511,8 @@ const ScoreScreen = props => {
                             activeBallsP2={activeBallsP2}
                             setP1Points={setP1Points} 
                             setP2Points={setP2Points} 
-                            statsP1={setStatsP1}
-                            statsP2={setStatsP2}
+                            setStatsP1={setStatsP1}
+                            setStatsP2={setStatsP2}
                             freeBallButtonP1={freeBallButtonP1}
                             freeBallButtonP2={freeBallButtonP2}
                             setCurrentBreakP1={setCurrentBreakP1}
@@ -523,12 +526,6 @@ const ScoreScreen = props => {
                             navigation={props.navigation}
                             p1Points={p1Points}
                             p2Points={p2Points}
-                            successP1={successP1}
-                            successP2={successP2}
-                            statsP1={statsP1}
-                            statsP2={statsP2}
-                            setStatsP1={setStatsP1}
-                            setStatsP2={setStatsP2}
                             breakP1={breakP1}
                             breakP2={breakP2}
                             remaining={remaining}
@@ -581,7 +578,7 @@ const ScoreScreen = props => {
             activateBallsP1={activateBallsP1}
             activateBallsP2={activateBallsP2}
             setFrameRecord={setFrameRecord}
-            setGameOver={setEndOfMatch}
+            setEndOfMatch={setEndOfMatch}
             setPrevShot={setPrevShot}
             backMode={backMode}
             setBack={setBack}
@@ -599,7 +596,6 @@ const ScoreScreen = props => {
             successP2={successP2}
             breakP1={breakP1}
             breakP2={breakP2}
-            setEndOfFrame={setEndOfFrame}
             setOverlayP1={setOverlayP1}
             setOverlayP2={setOverlayP2}
             setCurrentBreakP1={setCurrentBreakP1}
@@ -608,7 +604,6 @@ const ScoreScreen = props => {
             setActiveBallsP2={setActiveBallsP2}
             activateBallsP1={activateBallsP1}
             activateBallsP2={activateBallsP2}
-            setGameOver={setEndOfMatch}
             frameRecord={frameRecord}
             navigation={props.navigation}
             /> : score}

@@ -24,13 +24,13 @@ const Ball = props => {
                     }
                     props.setBack(4)
                     if (props.longPot) {
-                        props.stats(prev => ({
+                        props.setStats(prev => ({
                             ...prev,
                             pots: prev.pots+1,
                             long: prev.long+1
                         }))
                     } else {
-                    props.stats(prev => ({
+                    props.setStats(prev => ({
                         ...prev,
                         pots: prev.pots+1
                     }))}

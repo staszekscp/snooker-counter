@@ -10,7 +10,7 @@ const SwitchButton = props => {
                                 props.setBackMode(false)
                             }
                             props.setBack(4)
-                            props.stats(prev => ({
+                            props.setStats(prev => ({
                                 ...prev,
                                 long: prev.long + 0
                             }))

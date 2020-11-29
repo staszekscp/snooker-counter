@@ -15,13 +15,13 @@ const MissContainer = props => {
                             props.setBack(4)
                             props.setCurrentBreakP1(0)
                             if (props.longPotP1) {
-                                props.statsP1(prev => ({
+                                props.setStatsP1(prev => ({
                                     ...prev,
                                     miss: prev.miss+1,
                                     longMiss: prev.longMiss+1
                                 }))
                             } else {
-                            props.statsP1(prev => ({
+                            props.setStatsP1(prev => ({
                                 ...prev,
                                 miss: prev.miss+1
                             }))}
@@ -100,13 +100,13 @@ const MissContainer = props => {
                             props.setBack(4)
                             props.setCurrentBreakP2(0)
                             if (props.longPotP2) {
-                                props.statsP2(prev => ({
+                                props.setStatsP2(prev => ({
                                     ...prev,
                                     miss: prev.miss+1,
                                     longMiss: prev.longMiss+1
                                 }))
                             } else {
-                            props.statsP2(prev => ({
+                            props.setStatsP2(prev => ({
                                 ...prev,
                                 miss: prev.miss+1
                             }))}
