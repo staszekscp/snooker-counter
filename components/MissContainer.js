@@ -45,7 +45,7 @@ const MissContainer = props => {
                                 props.activateBallsP2(1)
                                 props.setOverlayP1(true)
                                 props.setOverlayP2(false)
-                            if (!props.fbP1){
+                            if (!props.freeBallP1){
                                 props.setRemaining(props.remaining - 7)
                             }
                             } else if (props.remaining === 27) {
@@ -130,7 +130,7 @@ const MissContainer = props => {
                                 props.activateBallsP2(1)
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(true)
-                            if (!props.fbP2){
+                            if (!props.freeBallP2){
                                 props.setRemaining(props.remaining - 7)
                             }
                             } else if (props.remaining === 27) {

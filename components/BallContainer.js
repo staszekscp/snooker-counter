@@ -92,7 +92,7 @@ const BallContainer = props => {
                             activateOpponentsBalls={props.activateBallsP2}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
-                        <View style={props.proMode ? {opacity: 0} : props.longPotP1 ? styles.touchableLongPressed : styles.touchableLong}>
+                        <View style={!props.proMode ? {opacity: 0} : props.longPotP1 ? styles.touchableLongPressed : styles.touchableLong}>
                             <TouchableNativeFeedback
                             onPress={()=>{
                                 props.setLongPotP1(prev => !prev)
@@ -118,7 +118,7 @@ const BallContainer = props => {
                             player={playerOne}
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
-                            fb={props.fbP1}
+                            freeBall={props.freeBallP1}
                             setFreeBall={props.setFreeBallP1}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2}  
@@ -137,8 +137,9 @@ const BallContainer = props => {
                                 disabled={!props.freeBallButtonP1}
                                 onPress={() => {
                                     props.setFreeBallP1(prev => !prev)
-                                    props.setOverlayP2(!props.fbP1)
-                                    if (props.fbP1 && props.remaining < 35) {
+                                    props.setOverlayP2(!props.freeBallP1)
+                                    props.setLongPotP2(false)
+                                    if (props.freeBallP1 && props.remaining < 35) {
                                         if (props.remaining === 27) {
                                             props.activateBallsP1(2)
                                         } else if (props.remaining === 25) {
@@ -330,8 +331,9 @@ const BallContainer = props => {
                                 disabled={!props.freeBallButtonP2}
                                 onPress={() => {
                                     props.setFreeBallP2(prev => !prev)
-                                    props.setOverlayP1(!props.fbP2)
-                                    if (props.fbP2 && props.remaining < 35) {
+                                    props.setOverlayP1(!props.freeBallP2)
+                                    props.setLongPotP1(false)
+                                    if (props.freeBallP2 && props.remaining < 35) {
                                         if (props.remaining === 27) {
                                             props.activateBallsP2(2)
                                         } else if (props.remaining === 25) {
@@ -368,7 +370,7 @@ const BallContainer = props => {
                             player={playerTwo}
                             remaining={props.remaining}
                             setRemaining={props.setRemaining}
-                            fb={props.fbP2}
+                            freeBall={props.freeBallP2}
                             setFreeBall={props.setFreeBallP2}
                             setFreeBallButtonP1={props.setFreeBallButtonP1} 
                             setFreeBallButtonP2={props.setFreeBallButtonP2} 
@@ -382,7 +384,7 @@ const BallContainer = props => {
                             modifyArray={props.modifyArray}
                             activateBalls={props.activateBallsP2}
                             activateOpponentsBalls={props.activateBallsP1}/>
-                        <View style={props.proMode ? {opacity: 0} : props.longPotP2 ? styles.touchableLongPressed : styles.touchableLong}>
+                        <View style={!props.proMode ? {opacity: 0} : props.longPotP2 ? styles.touchableLongPressed : styles.touchableLong}>
                             <TouchableNativeFeedback
                             onPress={()=>{
                                 props.setLongPotP2(prev => !prev)

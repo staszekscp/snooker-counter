@@ -3,7 +3,7 @@ import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, TextI
 
 
 const StartScreen = props => {
-    const [proMode, setProMode] = useState(true)
+    const [proMode, setProMode] = useState(false)
     const [reds, setReds] = useState(15)
     
     const [error, setError] = useState(false)
@@ -108,10 +108,10 @@ const StartScreen = props => {
                             <View>
                                 <Text style={styles.headerText}>COUNTER MODE</Text>
                                 <View style={styles.proModeContainer}>
-                                    <View style={proMode ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                    <View style={!proMode ? styles.proModeButtonOn : styles.proModeButtonOff}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
-                                            setProMode(true)
+                                            setProMode(false)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={styles.proMode}>
@@ -119,10 +119,10 @@ const StartScreen = props => {
                                             </View>
                                         </TouchableNativeFeedback>
                                     </View>
-                                    <View style={!proMode ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                    <View style={proMode ? styles.proModeButtonOn : styles.proModeButtonOff}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
-                                            setProMode(false)
+                                            setProMode(true)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={styles.proMode}>

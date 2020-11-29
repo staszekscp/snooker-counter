@@ -83,7 +83,7 @@ const Ball = props => {
                                 props.setOverlayP1(true)
                                 props.setOverlayP2(false)
                             }
-                        if (!props.fb){
+                        if (!props.freeBall){
                             props.setRemaining(props.remaining - 8)
                         }
                     } else if (props.remaining > 27){
@@ -97,7 +97,7 @@ const Ball = props => {
                                 props.setOverlayP1(true)
                                 props.setOverlayP2(false)
                             }
-                        if (!props.fb){
+                        if (!props.freeBall){
                             props.setRemaining(props.remaining - 1)
                         }
                         } else if ((props.remaining - 27) % 8 === 0){
@@ -132,7 +132,7 @@ const Ball = props => {
                             props.setOverlayP1(true)
                             props.setOverlayP2(false)
                         }
-                    if (!props.fb){
+                    if (!props.freeBall){
                         props.setRemaining(props.remaining - 2)
                     }
                     } else if (props.remaining === 25) {
@@ -145,7 +145,7 @@ const Ball = props => {
                             props.setOverlayP1(true)
                             props.setOverlayP2(false)
                         }
-                    if (!props.fb){
+                    if (!props.freeBall){
                         props.setRemaining(props.remaining - 3)
                     }
                     } else if (props.remaining === 22) {
@@ -158,7 +158,7 @@ const Ball = props => {
                             props.setOverlayP1(true)
                             props.setOverlayP2(false)
                         }
-                    if (!props.fb){
+                    if (!props.freeBall){
                         props.setRemaining(props.remaining - 4)
                     }
                     } else if (props.remaining === 18) {
@@ -171,7 +171,7 @@ const Ball = props => {
                             props.setOverlayP1(true)
                             props.setOverlayP2(false)
                         }
-                    if (!props.fb){
+                    if (!props.freeBall){
                         props.setRemaining(props.remaining - 5)
                     }
                     } else if (props.remaining === 13) {
@@ -184,7 +184,7 @@ const Ball = props => {
                             props.setOverlayP1(true)
                             props.setOverlayP2(false)
                         }
-                    if (!props.fb){
+                    if (!props.freeBall){
                         props.setRemaining(props.remaining - 6)
                     }
                     } 
@@ -192,9 +192,9 @@ const Ball = props => {
                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                 >
                 <View style={styles.ball}>
-                    {props.val===1 && props.fb === true && props.player === 'p1' ? p1freeBall :
+                    {props.val===1 && props.freeBall === true && props.player === 'p1' ? p1freeBall :
                     props.val===1 && props.player === 'p1' ? p1ball :
-                    props.val===1 && props.fb === true && props.player === 'p2' ? p2freeBall :
+                    props.val===1 && props.freeBall === true && props.player === 'p2' ? p2freeBall :
                     props.val===1 && props.player === 'p2' ? p2ball :
                     <Image style={styles.theBall} source={require('../assets/Ball/ball.png')} /> }
                 </View>

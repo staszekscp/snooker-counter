@@ -31,7 +31,7 @@ const FoulContainer = props => {
                                     props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
-                                    if (!props.fbP1) {
+                                    if (!props.freeBallP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
@@ -40,7 +40,7 @@ const FoulContainer = props => {
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
                                     props.activateBallsP1(8)
                                     props.activateBallsP2(1)
-                                    if (!props.fbP1) {
+                                    if (!props.freeBallP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
@@ -77,7 +77,7 @@ const FoulContainer = props => {
                                     props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
-                                    if (!props.fbP1) {
+                                    if (!props.freeBallP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
@@ -86,7 +86,7 @@ const FoulContainer = props => {
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
                                     props.activateBallsP1(8)
                                     props.activateBallsP2(1)
-                                    if (!props.fbP1) {
+                                    if (!props.freeBallP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
@@ -123,7 +123,7 @@ const FoulContainer = props => {
                                     props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
-                                    if (!props.fbP1) {
+                                    if (!props.freeBallP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
@@ -132,7 +132,7 @@ const FoulContainer = props => {
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
                                     props.activateBallsP1(8)
                                     props.activateBallsP2(1)
-                                    if (!props.fbP1) {
+                                    if (!props.freeBallP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
@@ -175,7 +175,7 @@ const FoulContainer = props => {
                                     props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
-                                    if (!props.fbP1) {
+                                    if (!props.freeBallP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
@@ -184,7 +184,7 @@ const FoulContainer = props => {
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
                                     props.activateBallsP1(8)
                                     props.activateBallsP2(1)
-                                    if (!props.fbP1) {
+                                    if (!props.freeBallP1) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
@@ -229,7 +229,7 @@ const FoulContainer = props => {
                                     props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
-                                    if (!props.fbP2) {
+                                    if (!props.freeBallP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
@@ -238,7 +238,7 @@ const FoulContainer = props => {
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
                                     props.activateBallsP1(1)
                                     props.activateBallsP2(8)
-                                    if (!props.fbP2) {
+                                    if (!props.freeBallP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
@@ -275,7 +275,7 @@ const FoulContainer = props => {
                                     props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
-                                    if (!props.fbP2) {
+                                    if (!props.freeBallP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
@@ -284,7 +284,7 @@ const FoulContainer = props => {
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
                                     props.activateBallsP1(1)
                                     props.activateBallsP2(8)
-                                    if (!props.fbP2) {
+                                    if (!props.freeBallP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
@@ -321,7 +321,7 @@ const FoulContainer = props => {
                                     props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
-                                    if (!props.fbP2) {
+                                    if (!props.freeBallP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
@@ -330,7 +330,7 @@ const FoulContainer = props => {
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
                                     props.activateBallsP1(1)
                                     props.activateBallsP2(8)
-                                    if (!props.fbP2) {
+                                    if (!props.freeBallP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
@@ -373,7 +373,7 @@ const FoulContainer = props => {
                                     props.activateBallsP2(2)
                                     props.setOverlayP1(false)
                                     props.setOverlayP2(false)
-                                    if (!props.fbP2) {
+                                    if (!props.freeBallP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 === 0) {
@@ -382,7 +382,7 @@ const FoulContainer = props => {
                                 } else if (props.remaining > 27 && (props.remaining - 27)%8 !== 0) {
                                     props.activateBallsP1(1)
                                     props.activateBallsP2(8)
-                                    if (!props.fbP2) {
+                                    if (!props.freeBallP2) {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }

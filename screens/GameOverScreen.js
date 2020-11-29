@@ -53,24 +53,24 @@ const GameOverScreen = props => {
                                     <View><Text style={p1points > p2points? styles.textBetter : styles.text}>{p1points}</Text></View>
                                     <View><Text style={p1ballsPotted > p2ballsPotted ? styles.textBetter : styles.text}>{p1ballsPotted}</Text></View>
                                     <View><Text style={p1potSuccess > p2potSuccess? styles.textBetter : styles.text}>{Math.round(p1potSuccess)}%</Text></View>
-                                    <View><Text style={proMode ? {display: 'none'} : p1longPotSuccess > p2longPotSuccess? styles.textBetter : styles.text}>{Math.round(p1longPotSuccess)}%</Text></View>
-                                    <View><Text style={proMode ? {display: 'none'} : p1safetySuccess > p2safetySuccess? styles.textBetter : styles.text}>{Math.round(p1safetySuccess)}%</Text></View>
+                                    <View><Text style={!proMode ? {display: 'none'} : p1longPotSuccess > p2longPotSuccess? styles.textBetter : styles.text}>{Math.round(p1longPotSuccess)}%</Text></View>
+                                    <View><Text style={!proMode ? {display: 'none'} : p1safetySuccess > p2safetySuccess? styles.textBetter : styles.text}>{Math.round(p1safetySuccess)}%</Text></View>
                                     <View><Text style={p1break > p2break ? styles.textBetter : styles.text}>{p1break}</Text></View>
                                 </View>
                                 <View style={styles.stats}>
                                     <View><Text style={styles.text}>TOTAL POINTS</Text></View>
                                     <View><Text style={styles.text}>BALLS POTTED</Text></View>
                                     <View><Text style={styles.text}>POT SUCCESS</Text></View>
-                                    <View><Text style={proMode ? {display: 'none'} : styles.text}>LONG POT SUCCESS</Text></View>
-                                    <View><Text style={proMode ? {display: 'none'} : styles.text}>SAFETY SUCCESS</Text></View>
+                                    <View><Text style={!proMode ? {display: 'none'} : styles.text}>LONG POT SUCCESS</Text></View>
+                                    <View><Text style={!proMode ? {display: 'none'} : styles.text}>SAFETY SUCCESS</Text></View>
                                     <View><Text style={styles.text}>HIGHEST BREAK</Text></View>
                                 </View>
                                 <View style={styles.p2Stats}>
                                     <View><Text style={p1points < p2points? styles.textBetter : styles.text}>{p2points}</Text></View>
                                     <View><Text style={p1ballsPotted < p2ballsPotted? styles.textBetter : styles.text}>{p2ballsPotted}</Text></View>
                                     <View><Text style={p1potSuccess < p2potSuccess? styles.textBetter : styles.text}>{Math.round(p2potSuccess)}%</Text></View>
-                                    <View><Text style={proMode ? {display: 'none'} : p1longPotSuccess < p2longPotSuccess? styles.textBetter : styles.text}>{Math.round(p2longPotSuccess)}%</Text></View>
-                                    <View><Text style={proMode ? {display: 'none'} : p1safetySuccess < p2safetySuccess? styles.textBetter : styles.text}>{Math.round(p2safetySuccess)}%</Text></View>
+                                    <View><Text style={!proMode ? {display: 'none'} : p1longPotSuccess < p2longPotSuccess? styles.textBetter : styles.text}>{Math.round(p2longPotSuccess)}%</Text></View>
+                                    <View><Text style={!proMode ? {display: 'none'} : p1safetySuccess < p2safetySuccess? styles.textBetter : styles.text}>{Math.round(p2safetySuccess)}%</Text></View>
                                     <View><Text style={p1break < p2break? styles.textBetter : styles.text}>{p2break}</Text></View>
                                 </View>
                             </View>
