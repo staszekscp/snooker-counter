@@ -536,8 +536,6 @@ const ScoreScreen = props => {
                             breakP1={breakP1}
                             breakP2={breakP2}
                             remaining={remaining}
-                            p1Name={p1Name}
-                            p2Name={p2Name}
                             setP1Frames={setP1Frames}
                             setP2Frames={setP2Frames}
                             setEndOfFrame={setEndOfFrame}
