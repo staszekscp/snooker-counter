@@ -19,8 +19,8 @@ const SafetyContainer = props => {
                                 safe: prev.safe+1
                             }))
                             props.setLongPotP1(false)
-                            props.setFreeBallButtonP1(true)
-                            props.setFreeBallButtonP2(true)
+                            props.setFreeBallButtonP1(false)
+                            props.setFreeBallButtonP2(false)
                             props.setFreeBallP1(false)
                             if (props.remaining === 34) {
                                 props.activateBallsP1(2)
@@ -89,8 +89,8 @@ const SafetyContainer = props => {
                                 unsafe: prev.unsafe+1
                             }))
                             props.setLongPotP1(false)
-                            props.setFreeBallButtonP1(true)
-                            props.setFreeBallButtonP2(true)
+                            props.setFreeBallButtonP1(false)
+                            props.setFreeBallButtonP2(false)
                             props.setFreeBallP1(false)
                             if (props.remaining === 34) {
                                 props.activateBallsP1(2)
@@ -161,8 +161,8 @@ const SafetyContainer = props => {
                                 safe: prev.safe+1
                             }))
                             props.setLongPotP2(false)
-                            props.setFreeBallButtonP1(true)
-                            props.setFreeBallButtonP2(true)
+                            props.setFreeBallButtonP1(false)
+                            props.setFreeBallButtonP2(false)
                             props.setFreeBallP2(false)
                             if (props.remaining === 34) {
                                 props.activateBallsP1(2)
@@ -233,8 +233,8 @@ const SafetyContainer = props => {
                                 unsafe: prev.unsafe+1
                             }))
                             props.setLongPotP2(false)
-                            props.setFreeBallButtonP1(true)
-                            props.setFreeBallButtonP2(true)
+                            props.setFreeBallButtonP1(false)
+                            props.setFreeBallButtonP2(false)
                             props.setFreeBallP2(false)
                             if (props.remaining === 34) {
                                 props.activateBallsP1(2)

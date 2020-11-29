@@ -23,8 +23,8 @@ const FoulContainer = props => {
                                 }))
                                 props.setCurrentBreakP1(0)
                                 props.setLongPotP1(false)
-                                props.setFreeBallButtonP1(true)
-                                props.setFreeBallButtonP2(false)
+                                props.setFreeBallButtonP1(false)
+                                props.setFreeBallButtonP2(true)
                                 props.setFreeBallP1(false)
                                 if (props.remaining === 34) {
                                     props.activateBallsP1(2)
@@ -69,8 +69,8 @@ const FoulContainer = props => {
                                 }))
                                 props.setCurrentBreakP1(0)
                                 props.setLongPotP1(false)
-                                props.setFreeBallButtonP1(true)
-                                props.setFreeBallButtonP2(false)
+                                props.setFreeBallButtonP1(false)
+                                props.setFreeBallButtonP2(true)
                                 props.setFreeBallP1(false)
                                 if (props.remaining === 34) {
                                     props.activateBallsP1(2)
@@ -115,8 +115,8 @@ const FoulContainer = props => {
                                 }))
                                 props.setCurrentBreakP1(0)
                                 props.setLongPotP1(false)
-                                props.setFreeBallButtonP1(true)
-                                props.setFreeBallButtonP2(false)
+                                props.setFreeBallButtonP1(false)
+                                props.setFreeBallButtonP2(true)
                                 props.setFreeBallP1(false)
                                 if (props.remaining === 34) {
                                     props.activateBallsP1(2)
@@ -162,12 +162,12 @@ const FoulContainer = props => {
                                 props.setCurrentBreakP1(0)
                                 props.setLongPotP1(false)
                                 if (props.remaining > 7) {
-                                    props.setFreeBallButtonP1(true)
-                                    props.setFreeBallButtonP2(false)
+                                    props.setFreeBallButtonP1(false)
+                                    props.setFreeBallButtonP2(true)
                                     props.setFreeBallP1(false)
                                 } else {
-                                    props.setFreeBallButtonP1(true)
-                                    props.setFreeBallButtonP2(true)
+                                    props.setFreeBallButtonP1(false)
+                                    props.setFreeBallButtonP2(false)
                                     props.setFreeBallP1(false)
                                 }
                                 if (props.remaining === 34) {
@@ -221,8 +221,8 @@ const FoulContainer = props => {
                                 }))
                                 props.setCurrentBreakP2(0)
                                 props.setLongPotP2(false)
-                                props.setFreeBallButtonP1(false)
-                                props.setFreeBallButtonP2(true)
+                                props.setFreeBallButtonP1(true)
+                                props.setFreeBallButtonP2(false)
                                 props.setFreeBallP2(false)
                                 if (props.remaining === 34) {
                                     props.activateBallsP1(2)
@@ -267,8 +267,8 @@ const FoulContainer = props => {
                                 }))
                                 props.setCurrentBreakP2(0)
                                 props.setLongPotP2(false)
-                                props.setFreeBallButtonP1(false)
-                                props.setFreeBallButtonP2(true)
+                                props.setFreeBallButtonP1(true)
+                                props.setFreeBallButtonP2(false)
                                 props.setFreeBallP2(false)
                                 if (props.remaining === 34) {
                                     props.activateBallsP1(2)
@@ -313,8 +313,8 @@ const FoulContainer = props => {
                                 }))
                                 props.setCurrentBreakP2(0)
                                 props.setLongPotP2(false)
-                                props.setFreeBallButtonP1(false)
-                                props.setFreeBallButtonP2(true)
+                                props.setFreeBallButtonP1(true)
+                                props.setFreeBallButtonP2(false)
                                 props.setFreeBallP2(false)
                                 if (props.remaining === 34) {
                                     props.activateBallsP1(2)
@@ -360,12 +360,12 @@ const FoulContainer = props => {
                                 props.setCurrentBreakP2(0)
                                 props.setLongPotP2(false)
                                 if (props.remaining > 7) {
-                                    props.setFreeBallButtonP1(false)
-                                    props.setFreeBallButtonP2(true)
+                                    props.setFreeBallButtonP1(true)
+                                    props.setFreeBallButtonP2(false)
                                     props.setFreeBallP2(false)
                                 } else {
-                                    props.setFreeBallButtonP1(true)
-                                    props.setFreeBallButtonP2(true)
+                                    props.setFreeBallButtonP1(false)
+                                    props.setFreeBallButtonP2(false)
                                     props.setFreeBallP2(false)
                                 }
                                 if (props.remaining === 34) {

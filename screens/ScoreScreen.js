@@ -13,9 +13,6 @@ import SwitchButton from '../components/SwitchButton'
 
 import FrameOverScreen from '../screens/FrameOverScreen'
 import GameOverScreen from '../screens/GameOverScreen'
-
-
-
  
 const ScoreScreen = props => {
     const mode = props.navigation.getParam('reds')
@@ -59,8 +56,8 @@ const ScoreScreen = props => {
     const [freeBallModeP1, setFreeBallModeP1] = useState(false)
     const [freeBallModeP2, setFreeBallModeP2] = useState(false)
 
-    const [freeBallButtonP1, setFreeBallButtonP1] = useState(true)
-    const [freeBallButtonP2, setFreeBallButtonP2] = useState(true)
+    const [freeBallButtonP1, setFreeBallButtonP1] = useState(false)
+    const [freeBallButtonP2, setFreeBallButtonP2] = useState(false)
 
     const [longPotP1, setLongPotP1] = useState(false)
     const [longPotP2, setLongPotP2] = useState(false)

@@ -15,8 +15,8 @@ const SwitchButton = props => {
                                 long: prev.long + 0
                             }))
                             props.setCurrentBreak(0)
-                            props.setFreeBallButtonP1(true)
-                            props.setFreeBallButtonP2(true)
+                            props.setFreeBallButtonP1(false)
+                            props.setFreeBallButtonP2(false)
                             props.setFreeBall(false)
                             if (props.remaining === 34) {
                                 props.activateBallsP1(2)

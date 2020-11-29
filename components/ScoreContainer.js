@@ -32,8 +32,8 @@ const ScoreContainer = props => {
                                             props.activateBallsP2(1)
                                             props.setFreeBallModeP1(false)
                                             props.setFreeBallModeP2(false)
-                                            props.setFreeBallButtonP1(true)
-                                            props.setFreeBallButtonP2(true)
+                                            props.setFreeBallButtonP1(false)
+                                            props.setFreeBallButtonP2(false)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={styles.btn}>

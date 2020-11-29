@@ -17,8 +17,8 @@ const ConceideContainer = props => {
                             props.setBack(4)
                             props.setFreeBallP1(false)
                             props.setFreeBallP2(false)
-                            props.setFreeBallButtonP1(true)
-                            props.setFreeBallButtonP2(true)
+                            props.setFreeBallButtonP1(false)
+                            props.setFreeBallButtonP2(false)
                             props.setEndOfFrame(true)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
@@ -57,8 +57,8 @@ const ConceideContainer = props => {
                             props.setBack(4)
                             props.setFreeBallP1(false)
                             props.setFreeBallP2(false)
-                            props.setFreeBallButtonP1(true)
-                            props.setFreeBallButtonP2(true)
+                            props.setFreeBallButtonP1(false)
+                            props.setFreeBallButtonP2(false)
                             props.setEndOfFrame(true)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}

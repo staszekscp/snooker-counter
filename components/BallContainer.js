@@ -132,20 +132,13 @@ const BallContainer = props => {
                             modifyArray={props.modifyArray}
                             activateBalls={props.activateBallsP1}
                             activateOpponentsBalls={props.activateBallsP2}/>
-                        <View style={props.freeBallButtonP1 ? {...styles.touchableFB, ...styles.grey} : styles.touchableFB}>
+                        <View style={props.freeBallButtonP1 ? styles.touchableFB : {...styles.touchableFB, ...styles.grey}}>
                             <TouchableNativeFeedback
-                                disabled={props.freeBallButtonP1}
+                                disabled={!props.freeBallButtonP1}
                                 onPress={() => {
                                     props.setFreeBallP1(prev => !prev)
                                     props.setOverlayP2(!props.fbP1)
-                                    props.activateP1({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP1(1)
                                 }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                 <View style={styles.buttonFB}>
@@ -318,20 +311,13 @@ const BallContainer = props => {
                             activateOpponentsBalls={props.activateBallsP1}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
-                    <View style={props.freeBallButtonP2 ? {...styles.touchableFB, ...styles.grey} : styles.touchableFB}>
+                    <View style={props.freeBallButtonP2 ? styles.touchableFB : {...styles.touchableFB, ...styles.grey}}>
                             <TouchableNativeFeedback
-                                disabled={props.freeBallButtonP2}
+                                disabled={!props.freeBallButtonP2}
                                 onPress={() => {
                                     props.setFreeBallP2(prev => !prev)
                                     props.setOverlayP1(!props.fbP2)
-                                    props.activateP2({
-                                        '1': false,
-                                        '2': true,
-                                        '3': true,
-                                        '4': true,
-                                        '5': true,
-                                        '6': true,
-                                        '7': true})
+                                    props.activateBallsP2(1)
                                 }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                 <View style={styles.buttonFB}>
