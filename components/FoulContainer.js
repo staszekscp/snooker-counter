@@ -44,7 +44,7 @@ const FoulContainer = props => {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
-                                props.p2Points(prev => prev+4)
+                                props.setP2Points(prev => prev+4)
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(false)
                             }}
@@ -90,7 +90,7 @@ const FoulContainer = props => {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
-                                props.p2Points(prev => prev+5)
+                                props.setP2Points(prev => prev+5)
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(false)
                             }}
@@ -136,7 +136,7 @@ const FoulContainer = props => {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
-                                props.p2Points(prev => prev+6)
+                                props.setP2Points(prev => prev+6)
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(false)
                             }}
@@ -188,7 +188,7 @@ const FoulContainer = props => {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
-                                props.p2Points(prev => prev+7)
+                                props.setP2Points(prev => prev+7)
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(false)
                             }}
@@ -242,7 +242,7 @@ const FoulContainer = props => {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
-                                props.p1Points(prev => prev+4)
+                                props.setP1Points(prev => prev+4)
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(false)
                             }}
@@ -288,7 +288,7 @@ const FoulContainer = props => {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
-                                props.p1Points(prev => prev+5)
+                                props.setP1Points(prev => prev+5)
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(false)
                             }}
@@ -334,7 +334,7 @@ const FoulContainer = props => {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
-                                props.p1Points(prev => prev+6)
+                                props.setP1Points(prev => prev+6)
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(false)
                             }}
@@ -386,7 +386,7 @@ const FoulContainer = props => {
                                         props.setRemaining(props.remaining - 7)
                                     }
                                 }
-                                props.p1Points(prev => prev+7)
+                                props.setP1Points(prev => prev+7)
                                 props.setOverlayP1(false)
                                 props.setOverlayP2(false)
                             }}

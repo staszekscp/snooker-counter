@@ -18,8 +18,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP2}
                             activeBalls={props.activeBallsP1}
                             val={2} 
-                            p={props.p1} 
-                            pPoints={props.p1Points} 
+                            
+                            setPoints={props.setP1Points} 
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerOne}
@@ -45,8 +45,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP2}
                             activeBalls={props.activeBallsP1}
                             val={3} 
-                            p={props.p1} 
-                            pPoints={props.p1Points}
+                            
+                            setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerOne}
@@ -70,8 +70,8 @@ const BallContainer = props => {
                             activate={props.activateP1} 
                             activateOpp={props.activateP2}
                             activeBalls={props.activeBallsP1}
-                            val={4} p={props.p1} 
-                            pPoints={props.p1Points}
+                            val={4} 
+                            setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerOne}
@@ -111,8 +111,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP2}
                             activeBalls={props.activeBallsP1}
                             val={1} 
-                            p={props.p1} 
-                            pPoints={props.p1Points}
+                            
+                            setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerOne}
@@ -171,8 +171,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP2}
                             activeBalls={props.activeBallsP1}
                             val={5} 
-                            p={props.p1} 
-                            pPoints={props.p1Points}
+                            
+                            setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerOne}
@@ -197,8 +197,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP2}
                             activeBalls={props.activeBallsP1}
                             val={6} 
-                            p={props.p1} 
-                            pPoints={props.p1Points}
+                            
+                            setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerOne}
@@ -223,8 +223,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP2}
                             activeBalls={props.activeBallsP1}
                             val={7} 
-                            p={props.p1} 
-                            pPoints={props.p1Points}
+                            
+                            setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerOne}
@@ -253,8 +253,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP1}
                             activeBalls={props.activeBallsP2}
                             val={2} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
+                            
+                            setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerTwo}
@@ -279,8 +279,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP1}
                             activeBalls={props.activeBallsP2}
                             val={3} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
+                            
+                            setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerTwo}
@@ -304,8 +304,8 @@ const BallContainer = props => {
                             activate={props.activateP2} 
                             activateOpp={props.activateP1}
                             activeBalls={props.activeBallsP2}
-                            val={4} p={props.p2} 
-                            pPoints={props.p2Points}
+                            val={4} 
+                            setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerTwo}
@@ -363,8 +363,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP1}
                             activeBalls={props.activeBallsP2}
                             val={1} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
+                            
+                            setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerTwo}
@@ -406,8 +406,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP1}
                             activeBalls={props.activeBallsP2}
                             val={5} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
+                            
+                            setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerTwo}
@@ -433,8 +433,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP1}
                             activeBalls={props.activeBallsP2}
                             val={6} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
+                            
+                            setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerTwo}
@@ -459,8 +459,8 @@ const BallContainer = props => {
                             activateOpp={props.activateP1}
                             activeBalls={props.activeBallsP2}
                             val={7} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
+                            
+                            setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
                             player={playerTwo}

@@ -18,7 +18,7 @@ const AdditionalRedContainer = props => {
                                 pots: prev.pots+1
                             }))
                             props.setCurrentBreakP1(prev => prev+1)
-                            props.p1Points(prev => prev+1)
+                            props.setP1Points(prev => prev+1)
                             props.setRemaining(prev => prev-8)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
@@ -60,7 +60,7 @@ const AdditionalRedContainer = props => {
                                 pots: prev.pots+1
                             }))
                             props.setCurrentBreakP2(prev => prev+1)
-                            props.p2Points(prev => prev+1)
+                            props.setP2Points(prev => prev+1)
                             props.setRemaining(prev => prev-8)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}

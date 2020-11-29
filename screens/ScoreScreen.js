@@ -18,11 +18,11 @@ const ScoreScreen = props => {
     const mode = props.navigation.getParam('reds') //
     const proMode = props.navigation.getParam('mode') //
 
-    const p1Name = props.navigation.getParam('p1')
-    const p2Name = props.navigation.getParam('p2')
+    const p1Name = props.navigation.getParam('p1') //
+    const p2Name = props.navigation.getParam('p2') //
 
-    const [p1Points, setP1Points] = useState(0)
-    const [p2Points, setP2Points] = useState(0)
+    const [p1Points, setP1Points] = useState(0) //
+    const [p2Points, setP2Points] = useState(0) //
     const [p1Frames, setP1Frames] = useState(0)
     const [p2Frames, setP2Frames] = useState(0)
 
@@ -337,16 +337,16 @@ const ScoreScreen = props => {
             <ScoreContainer 
                 p1Name={p1Name}
                 p2Name={p2Name}
-                p1={p1Points} 
-                p2={p2Points}
+                p1Points={p1Points} 
+                p2Points={p2Points}
                 f1={p1Frames}
                 f2={p2Frames}
                 remaining={remaining}
                 setRemaining={setRemaining}
                 setOverlayP1={setOverlayP1}
                 setOverlayP2={setOverlayP2}
-                p1Points={setP1Points} 
-                p2Points={setP2Points}
+                setP1Points={setP1Points} 
+                setP2Points={setP2Points}
                 activateP1={setActiveBallsP1}
                 activateP2={setActiveBallsP2}
                 activateBallsP1={activateBallsP1}
@@ -375,10 +375,8 @@ const ScoreScreen = props => {
                 style={{zIndex: 3}}/>
             
             <BallContainer 
-                p1Points={setP1Points} 
-                p1={p1Points} 
-                p2Points={setP2Points} 
-                p2={p2Points}
+                setP1Points={setP1Points} 
+                setP2Points={setP2Points} 
                 activateP1={setActiveBallsP1}
                 activeBallsP1={activeBallsP1}
                 activateP2={setActiveBallsP2}
@@ -473,10 +471,8 @@ const ScoreScreen = props => {
                             style={!proMode && {display: 'none'}}
                             />
                         <FoulContainer 
-                            p1Points={setP1Points} 
-                            p1={p1Points} 
-                            p2Points={setP2Points} 
-                            p2={p2Points}
+                            setP1Points={setP1Points} 
+                            setP2Points={setP2Points} 
                             activateP1={setActiveBallsP1}
                             activateP2={setActiveBallsP2}
                             activateBallsP1={activateBallsP1}
@@ -510,8 +506,8 @@ const ScoreScreen = props => {
                             overlayP2={overlayP2}
                             activeBallsP1={activeBallsP1}
                             activeBallsP2={activeBallsP2}
-                            p1Points={setP1Points} 
-                            p2Points={setP2Points} 
+                            setP1Points={setP1Points} 
+                            setP2Points={setP2Points} 
                             statsP1={setStatsP1}
                             statsP2={setStatsP2}
                             freeBallButtonP1={freeBallButtonP1}
@@ -597,8 +593,6 @@ const ScoreScreen = props => {
             p2Frames={p2Frames}
             p1Name={p1Name}
             p2Name={p2Name}
-            p1Points={p1Points}
-            p2Points={p2Points}
             statsP1={statsP1}
             statsP2={statsP2}
             successP1={successP1}
@@ -606,8 +600,6 @@ const ScoreScreen = props => {
             breakP1={breakP1}
             breakP2={breakP2}
             setEndOfFrame={setEndOfFrame}
-            setP1Points={setP1Points}
-            setP2Points={setP2Points}
             setOverlayP1={setOverlayP1}
             setOverlayP2={setOverlayP2}
             setCurrentBreakP1={setCurrentBreakP1}

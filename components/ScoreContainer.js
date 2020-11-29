@@ -21,8 +21,8 @@ const ScoreContainer = props => {
                                             }))
                                             props.setPrevShot([])
                                             props.setBack(0)
-                                            props.p1Points(0)
-                                            props.p2Points(0)
+                                            props.setP1Points(0)
+                                            props.setP2Points(0)
                                             props.setRemaining(props.mode * 8 + 27)
                                             props.setOverlayP1(false)
                                             props.setOverlayP2(false)
@@ -54,8 +54,8 @@ const ScoreContainer = props => {
                                                 }
                                                 if (back > 0) {
                                                     let val = back-1
-                                                    props.p1Points(props.prevShot[val].p1Points)
-                                                    props.p2Points(props.prevShot[val].p2Points)
+                                                    props.setP1Points(props.prevShot[val].p1Points)
+                                                    props.setP2Points(props.prevShot[val].p2Points)
                                                     props.setRemaining(props.prevShot[val].remaining)
                                                     props.activateP1(props.prevShot[val].activeBallsP1)
                                                     props.activateP2(props.prevShot[val].activeBallsP2)
@@ -95,8 +95,8 @@ const ScoreContainer = props => {
                                                     }
                                                     let val = back+1
                                                     if (back < 4 && props.prevShot[val]) {
-                                                        props.p1Points(props.prevShot[val].p1Points)
-                                                        props.p2Points(props.prevShot[val].p2Points)
+                                                        props.setP1Points(props.prevShot[val].p1Points)
+                                                        props.setP2Points(props.prevShot[val].p2Points)
                                                         props.setRemaining(props.prevShot[val].remaining)
                                                         props.activateP1(props.prevShot[val].activeBallsP1)
                                                         props.activateP2(props.prevShot[val].activeBallsP2)
@@ -141,11 +141,11 @@ const ScoreContainer = props => {
                         </View>
                             <View style={styles.namesContainer}>
                                 <View style={styles.p1}>
-                                    <Text style={props.p2-props.p1 > props.remaining ? {...styles.names, ...styles.grey} : styles.names}>{props.p1Name.toUpperCase()}</Text>
+                                    <Text style={props.p2Points-props.p1Points > props.remaining ? {...styles.names, ...styles.grey} : styles.names}>{props.p1Name.toUpperCase()}</Text>
                                 </View>
                                 
                                 <View style={styles.p1}>
-                                    <Text style={props.p1-props.p2 > props.remaining ? {...styles.names, ...styles.grey, ...styles.p2} : {...styles.names, ...styles.p2}}>{props.p2Name.toUpperCase()}</Text>
+                                    <Text style={props.p1Points-props.p2Points > props.remaining ? {...styles.names, ...styles.grey, ...styles.p2} : {...styles.names, ...styles.p2}}>{props.p2Name.toUpperCase()}</Text>
                                 </View>
                             </View>
                             <View style={styles.resultContainer}>
@@ -154,13 +154,13 @@ const ScoreContainer = props => {
                                 </View>
                                 <View style={styles.scoreContainer}>
                                     <View style={styles.pointContainer}>
-                                        <Text style={styles.score} >{props.p1}</Text>
+                                        <Text style={styles.score} >{props.p1Points}</Text>
                                     </View>
                                     <View style={[styles.pointContainer, , {width: '20%'}]}>
                                         <Text style={styles.score}>:</Text>
                                     </View>
                                     <View style={styles.pointContainer}>
-                                        <Text style={styles.score}>{props.p2}</Text>
+                                        <Text style={styles.score}>{props.p2Points}</Text>
                                     </View>
                                 </View>
                                 <View style={styles.framesContainer}>
@@ -169,7 +169,7 @@ const ScoreContainer = props => {
                             </View>
                             <View style={styles.remainingPointsContainer}>
                                 <View style={{flexDirection: 'row'}}>
-                                    <Text style={styles.remainingPoints}>ahead: {Math.abs(props.p1 - props.p2)}        </Text>
+                                    <Text style={styles.remainingPoints}>ahead: {Math.abs(props.p1Points - props.p2Points)}        </Text>
                                     <Text style={styles.remainingPoints}>remaining: {props.remaining}</Text>
                                 </View>
                             </View>

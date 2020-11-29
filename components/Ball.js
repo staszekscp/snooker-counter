@@ -38,25 +38,25 @@ const Ball = props => {
                     props.setFreeBallButtonP1(false)
                     props.setFreeBallButtonP2(false)
                     if (props.remaining > 27) {
-                        props.pPoints(prev => prev+props.val)
+                        props.setPoints(prev => prev+props.val)
                         props.setCurrentBreak(prev => prev+props.val)
                     } else if (props.remaining === 27) {
-                        props.pPoints(prev => prev+2)
+                        props.setPoints(prev => prev+2)
                         props.setCurrentBreak(prev => prev+2)
                     } else if (props.remaining === 25) {
-                        props.pPoints(prev => prev+3)
+                        props.setPoints(prev => prev+3)
                         props.setCurrentBreak(prev => prev+3)
                     } else if (props.remaining === 22) {
-                        props.pPoints(prev => prev+4)
+                        props.setPoints(prev => prev+4)
                         props.setCurrentBreak(prev => prev+4)
                     } else if (props.remaining === 18) {
-                        props.pPoints(prev => prev+5)
+                        props.setPoints(prev => prev+5)
                         props.setCurrentBreak(prev => prev+5)
                     } else if (props.remaining === 13) {
-                        props.pPoints(prev => prev+6)
+                        props.setPoints(prev => prev+6)
                         props.setCurrentBreak(prev => prev+6)
                     } else if (props.remaining === 7) {
-                        props.pPoints(prev => prev+7)
+                        props.setPoints(prev => prev+7)
                         props.setCurrentBreak(prev => prev+7)
                         props.setRemaining(0)
                         
