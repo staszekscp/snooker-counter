@@ -12,11 +12,11 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 22 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (props.backMode) {
+                                if (props.backwardMode) {
                                     props.modifyArray()
-                                    props.setBackMode(false)
+                                    props.setBackwardMode(false)
                                 }
-                                props.setBack(4)
+                                props.setCurrentShotIndex(4)
                                 props.setStatsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+4
@@ -58,11 +58,11 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 18 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (props.backMode) {
+                                if (props.backwardMode) {
                                     props.modifyArray()
-                                    props.setBackMode(false)
+                                    props.setBackwardMode(false)
                                 }
-                                props.setBack(4)
+                                props.setCurrentShotIndex(4)
                                 props.setStatsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+5
@@ -104,11 +104,11 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 13 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (props.backMode) {
+                                if (props.backwardMode) {
                                     props.modifyArray()
-                                    props.setBackMode(false)
+                                    props.setBackwardMode(false)
                                 }
-                                props.setBack(4)
+                                props.setCurrentShotIndex(4)
                                 props.setStatsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+6
@@ -150,11 +150,11 @@ const FoulContainer = props => {
                     <View style={styles.foulButton}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (props.backMode) {
+                                if (props.backwardMode) {
                                     props.modifyArray()
-                                    props.setBackMode(false)
+                                    props.setBackwardMode(false)
                                 }
-                                props.setBack(4)
+                                props.setCurrentShotIndex(4)
                                 props.setStatsP1(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+7
@@ -210,11 +210,11 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 22 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (props.backMode) {
+                                if (props.backwardMode) {
                                     props.modifyArray()
-                                    props.setBackMode(false)
+                                    props.setBackwardMode(false)
                                 }
-                                props.setBack(4)
+                                props.setCurrentShotIndex(4)
                                 props.setStatsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+4
@@ -256,11 +256,11 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 18 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (props.backMode) {
+                                if (props.backwardMode) {
                                     props.modifyArray()
-                                    props.setBackMode(false)
+                                    props.setBackwardMode(false)
                                 }
-                                props.setBack(4)
+                                props.setCurrentShotIndex(4)
                                 props.setStatsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+5
@@ -302,11 +302,11 @@ const FoulContainer = props => {
                     <View style={props.remaining >= 13 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (props.backMode) {
+                                if (props.backwardMode) {
                                     props.modifyArray()
-                                    props.setBackMode(false)
+                                    props.setBackwardMode(false)
                                 }
-                                props.setBack(4)
+                                props.setCurrentShotIndex(4)
                                 props.setStatsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+6
@@ -348,11 +348,11 @@ const FoulContainer = props => {
                     <View style={styles.foulButton}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (props.backMode) {
+                                if (props.backwardMode) {
                                     props.modifyArray()
-                                    props.setBackMode(false)
+                                    props.setBackwardMode(false)
                                 }
-                                props.setBack(4)
+                                props.setCurrentShotIndex(4)
                                 props.setStatsP2(prev => ({
                                     ...prev,
                                     foulPointsGivenAway: prev.foulPointsGivenAway+7

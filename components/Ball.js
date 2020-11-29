@@ -18,11 +18,11 @@ const Ball = props => {
             <TouchableNativeFeedback
                 disabled={active[props.val.toString()]}
                 onPress={() => {
-                    if (props.backMode) {
+                    if (props.backwardMode) {
                         props.modifyArray()
-                        props.setBackMode(false)
+                        props.setBackwardMode(false)
                     }
-                    props.setBack(4)
+                    props.setCurrentShotIndex(4)
                     if (props.longPot) {
                         props.setStats(prev => ({
                             ...prev,

@@ -8,11 +8,11 @@ const AdditionalRedContainer = props => {
                 <View style={props.remaining < 35 || (!props.activeBallsP1['1']) || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) || props.overlayP1 ? {display: 'none'} : styles.redButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
+                            if (props.backwardMode) {
                                 props.modifyArray()
-                                props.setBackMode(false)
+                                props.setBackwardMode(false)
                             }
-                            props.setBack(4)
+                            props.setCurrentShotIndex(4)
                             props.setStatsP1(prev => ({
                                 ...prev,
                                 pots: prev.pots+1
@@ -31,11 +31,11 @@ const AdditionalRedContainer = props => {
                 <View style={props.remaining < 35 || !props.freeBallButtonP2 ? {display: 'none'} : styles.missButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
+                            if (props.backwardMode) {
                                 props.modifyArray()
-                                props.setBackMode(false)
+                                props.setBackwardMode(false)
                             }
-                            props.setBack(4)
+                            props.setCurrentShotIndex(4)
                             props.setRemaining(prev => prev-8)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
@@ -50,11 +50,11 @@ const AdditionalRedContainer = props => {
                 <View style={props.remaining < 35 || (!props.activeBallsP2['1'])  || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) || props.overlayP2? {display: 'none'} : styles.redButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
+                            if (props.backwardMode) {
                                 props.modifyArray()
-                                props.setBackMode(false)
+                                props.setBackwardMode(false)
                             }
-                            props.setBack(4)
+                            props.setCurrentShotIndex(4)
                             props.setStatsP2(prev => ({
                                 ...prev,
                                 pots: prev.pots+1
@@ -73,11 +73,11 @@ const AdditionalRedContainer = props => {
                 <View style={props.remaining < 35 || !props.freeBallButtonP1 ? {display: 'none'} : styles.missButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
+                            if (props.backwardMode) {
                                 props.modifyArray()
-                                props.setBackMode(false)
+                                props.setBackwardMode(false)
                             }
-                            props.setBack(4)
+                            props.setCurrentShotIndex(4)
                             props.setRemaining(prev => prev-8)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}

@@ -8,11 +8,11 @@ const SafetyContainer = props => {
                 <View style={styles.safeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
+                            if (props.backwardMode) {
                                 props.modifyArray()
-                                props.setBackMode(false)
+                                props.setBackwardMode(false)
                             }
-                            props.setBack(4)
+                            props.setCurrentShotIndex(4)
                             props.setCurrentBreakP1(0)
                             props.setStatsP1(prev => ({
                                 ...prev,
@@ -78,11 +78,11 @@ const SafetyContainer = props => {
                 <View style={styles.unsafeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
+                            if (props.backwardMode) {
                                 props.modifyArray()
-                                props.setBackMode(false)
+                                props.setBackwardMode(false)
                             }
-                            props.setBack(4)
+                            props.setCurrentShotIndex(4)
                             props.setCurrentBreakP1(0)
                             props.setStatsP1(prev => ({
                                 ...prev,
@@ -150,11 +150,11 @@ const SafetyContainer = props => {
                 <View style={styles.safeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
+                            if (props.backwardMode) {
                                 props.modifyArray()
-                                props.setBackMode(false)
+                                props.setBackwardMode(false)
                             }
-                            props.setBack(4)
+                            props.setCurrentShotIndex(4)
                             props.setCurrentBreakP2(0)
                             props.setStatsP2(prev => ({
                                 ...prev,
@@ -222,11 +222,11 @@ const SafetyContainer = props => {
                 <View style={styles.unsafeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
+                            if (props.backwardMode) {
                                 props.modifyArray()
-                                props.setBackMode(false)
+                                props.setBackwardMode(false)
                             }
-                            props.setBack(4)
+                            props.setCurrentShotIndex(4)
                             props.setCurrentBreakP2(0)
                             props.setStatsP2(prev => ({
                                 ...prev,

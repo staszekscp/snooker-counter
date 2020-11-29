@@ -29,8 +29,8 @@ const ScoreScreen = props => {
     const [frameRecord, setFrameRecord] = useState([]) //
 
     const [previousShots, setPreviousShots] = useState([]) //
-    const [back, setBack] = useState(0)
-    const [backMode, setBackMode] = useState(false)
+    const [currentShotIndex, setCurrentShotIndex] = useState(0)
+    const [backwardMode, setBackwardMode] = useState(false) //
     
     const [remaining, setRemaining] = useState(props.navigation.getParam('reds')*8 + 27) //
     
@@ -112,7 +112,7 @@ const ScoreScreen = props => {
 //========================================================================================================
 
     useEffect(() => {
-        if(!backMode){
+        if(!backwardMode){
             if (previousShots.length > 4) {
                 setPreviousShots(prev => 
                     ([
@@ -169,10 +169,10 @@ const ScoreScreen = props => {
     const modifyArray = () => {
             const arr = previousShots
             if (arr.length === 5) {
-                setPreviousShots(arr.splice(1,back)
+                setPreviousShots(arr.splice(1,currentShotIndex)
                 )
             } else {
-                setPreviousShots(arr.splice(0,back+1)
+                setPreviousShots(arr.splice(0,currentShotIndex+1)
                 )
             }
             
@@ -310,9 +310,9 @@ const ScoreScreen = props => {
                     activateBallsP1={activateBallsP1}
                     activateBallsP2={activateBallsP2}
                     setStats={setStatsP1}
-                    backMode={backMode}
-                    setBackMode={setBackMode}
-                    setBack={setBack}
+                    backwardMode={backwardMode}
+                    setBackwardMode={setBackwardMode}
+                    setCurrentShotIndex={setCurrentShotIndex}
                     modifyArray={modifyArray}
                     />
             </View> : overlayP1 && <View style={styles.overlay}/>}
@@ -331,9 +331,9 @@ const ScoreScreen = props => {
                     activateBallsP1={activateBallsP1}
                     activateBallsP2={activateBallsP2}
                     setStats={setStatsP2}
-                    backMode={backMode}
-                    setBackMode={setBackMode}
-                    setBack={setBack}
+                    backwardMode={backwardMode}
+                    setBackwardMode={setBackwardMode}
+                    setCurrentShotIndex={setCurrentShotIndex}
                     modifyArray={modifyArray}/> 
             </View> : overlayP2 && <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}/>}
             <View style={{height: 25}}/>
@@ -369,10 +369,10 @@ const ScoreScreen = props => {
                 setStatsP2={setStatsP2}
                 previousShots={previousShots}
                 setPreviousShots={setPreviousShots}
-                back={back}
-                setBack={setBack}
-                backMode={backMode}
-                setBackMode={setBackMode}
+                currentShotIndex={currentShotIndex}
+                setCurrentShotIndex={setCurrentShotIndex}
+                backwardMode={backwardMode}
+                setBackwardMode={setBackwardMode}
                 modifyArray={modifyArray}
                 navigation={props.navigation}
                 style={{zIndex: 3}}/>
@@ -409,9 +409,9 @@ const ScoreScreen = props => {
                 setCurrentBreakP1={setCurrentBreakP1}
                 setCurrentBreakP2={setCurrentBreakP2}
                 proMode={proMode}
-                backMode={backMode}
-                setBackMode={setBackMode}
-                setBack={setBack}
+                backwardMode={backwardMode}
+                setBackwardMode={setBackwardMode}
+                setCurrentShotIndex={setCurrentShotIndex}
                 modifyArray={modifyArray}/>
             <MissContainer 
                 activateP1={setActiveBallsP1}
@@ -438,9 +438,9 @@ const ScoreScreen = props => {
                 currentBreakP2={currentBreakP2}
                 setCurrentBreakP1={setCurrentBreakP1}
                 setCurrentBreakP2={setCurrentBreakP2}
-                backMode={backMode}
-                setBackMode={setBackMode}
-                setBack={setBack}
+                backwardMode={backwardMode}
+                setBackwardMode={setBackwardMode}
+                setCurrentShotIndex={setCurrentShotIndex}
                 modifyArray={modifyArray}
                 />
             <View style={styles.bottomContainer}>
@@ -467,9 +467,9 @@ const ScoreScreen = props => {
                             currentBreakP2={currentBreakP2}
                             setCurrentBreakP1={setCurrentBreakP1}
                             setCurrentBreakP2={setCurrentBreakP2}
-                            backMode={backMode}
-                            setBackMode={setBackMode}
-                            setBack={setBack}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             style={!proMode && {display: 'none'}}
                             />
@@ -498,9 +498,9 @@ const ScoreScreen = props => {
                             setCurrentBreakP2={setCurrentBreakP2}
                             setStatsP1={setStatsP1}
                             setStatsP2={setStatsP2}
-                            backMode={backMode}
-                            setBackMode={setBackMode}
-                            setBack={setBack}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}/>
                         <AdditionalRedContainer 
                             remaining={remaining}
@@ -517,9 +517,9 @@ const ScoreScreen = props => {
                             freeBallButtonP2={freeBallButtonP2}
                             setCurrentBreakP1={setCurrentBreakP1}
                             setCurrentBreakP2={setCurrentBreakP2}
-                            backMode={backMode}
-                            setBackMode={setBackMode}
-                            setBack={setBack}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             />
                         <ConceideContainer 
@@ -534,9 +534,8 @@ const ScoreScreen = props => {
                             setFreeBallP2={setFreeBallP2}
                             setFreeBallButtonP1={setFreeBallButtonP1}
                             setFreeBallButtonP2={setFreeBallButtonP2}
-                            backMode={backMode}
-                            setBackMode={setBackMode}
-                            setBack={setBack}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
                             modifyArray={modifyArray}/>
                     </View>
                 </ImageBackground>
@@ -578,8 +577,9 @@ const ScoreScreen = props => {
             setFrameRecord={setFrameRecord}
             setEndOfMatch={setEndOfMatch}
             setPreviousShots={setPreviousShots}
-            backMode={backMode}
-            setBack={setBack}
+            backwardMode={backwardMode}
+            setBackwardMode={setBackwardMode}
+            setCurrentShotIndex={setCurrentShotIndex}
             setLongPotP1={setLongPotP1}
             setLongPotP2={setLongPotP2}
             />  : endOfMatch ? <GameOverScreen 
@@ -659,7 +659,5 @@ const styles = StyleSheet.create({
    },
 
 })
- 
-// backgroundColor: 'rgba(60,5,0, 0.9)',
 
 export default ScoreScreen

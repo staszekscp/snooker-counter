@@ -5,11 +5,11 @@ const SwitchButton = props => {
     return (<View style={styles.buttonContainer}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
+                            if (props.backwardMode) {
                                 props.modifyArray()
-                                props.setBackMode(false)
+                                props.setBackwardMode(false)
                             }
-                            props.setBack(4)
+                            props.setCurrentShotIndex(4)
                             props.setStats(prev => ({
                                 ...prev,
                                 long: prev.long + 0

@@ -81,11 +81,11 @@ const FrameOverScreen = props => {
                             <View style={styles.nextFrame}>
                                 <TouchableNativeFeedback
                                 onPress={() => {
-                                    if (props.backMode) {
-                                        props.setBackMode(false)
+                                    if (props.backwardMode) {
+                                        props.setBackwardMode(false)
                                     }
                                     props.setPreviousShots([])
-                                    props.setBack(0)
+                                    props.setCurrentShotIndex(0)
                                     props.setFrameRecord(prev => ([
                                         ...prev,
                                         {p1: props.p1Points,
@@ -114,11 +114,11 @@ const FrameOverScreen = props => {
                             <View style={styles.endMatch}>
                                 <TouchableNativeFeedback
                                 onPress={() => {
-                                    if (props.backMode) {
-                                        props.setBackMode(false)
+                                    if (props.backwardMode) {
+                                        props.setBackwardMode(false)
                                     }
                                     props.setPreviousShots([])
-                                    props.setBack(0)
+                                    props.setCurrentShotIndex(0)
                                     props.setFrameRecord(prev => ([
                                         ...prev,
                                         {p1: props.p1Points,

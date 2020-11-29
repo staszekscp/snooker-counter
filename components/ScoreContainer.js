@@ -12,15 +12,15 @@ const ScoreContainer = props => {
                                     <View style={styles.reRackButton}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
-                                            if (props.backMode) {
-                                                props.setBackMode(false)
+                                            if (props.backwardMode) {
+                                                props.setBackwardMode(false)
                                             }
                                             props.setStatsP1(prev => ({
                                                 ...prev,
                                                 long: prev.long + 0
                                             }))
                                             props.setPreviousShots([])
-                                            props.setBack(0)
+                                            props.setCurrentShotIndex(0)
                                             props.setP1Points(0)
                                             props.setP2Points(0)
                                             props.setRemaining(props.mode * 8 + 27)
@@ -42,18 +42,16 @@ const ScoreContainer = props => {
                                         </TouchableNativeFeedback>
                                     </View>
                                     <View style={{flexDirection: 'row'}}>
-                                        <View style={props.back > 0 && props.previousShots.length > 1 ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                        <View style={props.currentShotIndex > 0 && props.previousShots.length > 1 ? styles.proModeButtonOn : styles.proModeButtonOff}>
                                             <TouchableNativeFeedback
-                                            disabled={props.back < 1}
+                                            disabled={props.currentShotIndex < 1}
                                             onPress={() => {
-                                                let back = props.back
-                                                console.log(back)
-                                                console.log(props.previousShots.length)
-                                                if (props.previousShots.length <= back) {
-                                                    back = props.previousShots.length-1
+                                                let shotIndex = props.currentShotIndex
+                                                if (props.previousShots.length <= shotIndex) {
+                                                    shotIndex = props.previousShots.length-1
                                                 }
-                                                if (back > 0) {
-                                                    let val = back-1
+                                                if (shotIndex > 0) {
+                                                    let val = shotIndex-1
                                                     props.setP1Points(props.previousShots[val].p1Points)
                                                     props.setP2Points(props.previousShots[val].p2Points)
                                                     props.setRemaining(props.previousShots[val].remaining)
@@ -74,8 +72,8 @@ const ScoreContainer = props => {
                                                     props.setStatsP1(props.previousShots[val].statsP1),
                                                     props.setStatsP2(props.previousShots[val].statsP2)
                                                     
-                                                    props.setBack(val)
-                                                    props.setBackMode(true)
+                                                    props.setCurrentShotIndex(val)
+                                                    props.setBackwardMode(true)
                                                 }
                                                 }}
                                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
@@ -84,17 +82,16 @@ const ScoreContainer = props => {
                                                 </View>
                                             </TouchableNativeFeedback>
                                         </View>
-                                        <View style={props.back <= props.previousShots.length-2 ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                        <View style={props.currentShotIndex <= props.previousShots.length-2 ? styles.proModeButtonOn : styles.proModeButtonOff}>
                                             <TouchableNativeFeedback
-                                            disabled={props.back > props.previousShots.length-2}
+                                            disabled={props.currentShotIndex > props.previousShots.length-2}
                                             onPress={() => {
-                                                    let back = props.back
-                                                    console.log(back)
-                                                    if (props.previousShots.length <= back) {
-                                                        back = props.previousShots.length-2
+                                                    let shotIndex = props.currentShotIndex
+                                                    if (props.previousShots.length <= shotIndex) {
+                                                        shotIndex = props.previousShots.length-2
                                                     }
-                                                    let val = back+1
-                                                    if (back < 4 && props.previousShots[val]) {
+                                                    let val = shotIndex+1
+                                                    if (shotIndex < 4 && props.previousShots[val]) {
                                                         props.setP1Points(props.previousShots[val].p1Points)
                                                         props.setP2Points(props.previousShots[val].p2Points)
                                                         props.setRemaining(props.previousShots[val].remaining)
@@ -115,8 +112,8 @@ const ScoreContainer = props => {
                                                         props.setStatsP1(props.previousShots[val].statsP1),
                                                         props.setStatsP2(props.previousShots[val].statsP2)
                                                         
-                                                        props.setBack(val)
-                                                        props.setBackMode(true)
+                                                        props.setCurrentShotIndex(val)
+                                                        props.setBackwardMode(true)
                                                     }
                                             }}
                                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
