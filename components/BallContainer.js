@@ -138,7 +138,21 @@ const BallContainer = props => {
                                 onPress={() => {
                                     props.setFreeBallP1(prev => !prev)
                                     props.setOverlayP2(!props.fbP1)
-                                    props.activateBallsP1(1)
+                                    if (props.fbP1 && props.remaining < 35) {
+                                        if (props.remaining === 27) {
+                                            props.activateBallsP1(2)
+                                        } else if (props.remaining === 25) {
+                                            props.activateBallsP1(3)
+                                        } else if (props.remaining === 22) {
+                                            props.activateBallsP1(4)
+                                        } else if (props.remaining === 18) {
+                                            props.activateBallsP1(5)
+                                        } else if (props.remaining === 13) {
+                                            props.activateBallsP1(6)
+                                        }
+                                    } else {
+                                        props.activateBallsP1(1)
+                                    }
                                 }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                 <View style={styles.buttonFB}>
@@ -317,7 +331,21 @@ const BallContainer = props => {
                                 onPress={() => {
                                     props.setFreeBallP2(prev => !prev)
                                     props.setOverlayP1(!props.fbP2)
-                                    props.activateBallsP2(1)
+                                    if (props.fbP2 && props.remaining < 35) {
+                                        if (props.remaining === 27) {
+                                            props.activateBallsP2(2)
+                                        } else if (props.remaining === 25) {
+                                            props.activateBallsP2(3)
+                                        } else if (props.remaining === 22) {
+                                            props.activateBallsP2(4)
+                                        } else if (props.remaining === 18) {
+                                            props.activateBallsP2(5)
+                                        } else if (props.remaining === 13) {
+                                            props.activateBallsP2(6)
+                                        }
+                                    } else {
+                                        props.activateBallsP2(1)
+                                    }
                                 }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                 <View style={styles.buttonFB}>
