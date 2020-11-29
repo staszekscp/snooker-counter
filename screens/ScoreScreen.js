@@ -29,7 +29,7 @@ const ScoreScreen = props => {
     const [frameRecord, setFrameRecord] = useState([]) //
 
     const [previousShots, setPreviousShots] = useState([]) //
-    const [currentShotIndex, setCurrentShotIndex] = useState(0)
+    const [currentShotIndex, setCurrentShotIndex] = useState(0) //
     const [backwardMode, setBackwardMode] = useState(false) //
     
     const [remaining, setRemaining] = useState(props.navigation.getParam('reds')*8 + 27) //
@@ -63,11 +63,11 @@ const ScoreScreen = props => {
     const [longPotP1, setLongPotP1] = useState(false) //
     const [longPotP2, setLongPotP2] = useState(false) //
 
-    const [breakP1, setBreakP1] = useState(0)
-    const [breakP2, setBreakP2] = useState(0)
+    const [breakP1, setBreakP1] = useState(0) //
+    const [breakP2, setBreakP2] = useState(0) //
 
-    const [currentBreakP1, setCurrentBreakP1] = useState(0)
-    const [currentBreakP2, setCurrentBreakP2] = useState(0)
+    const [currentBreakP1, setCurrentBreakP1] = useState(0) //
+    const [currentBreakP2, setCurrentBreakP2] = useState(0) //
 
     const [statsP1, setStatsP1] = useState({
         points: 0,
@@ -434,8 +434,6 @@ const ScoreScreen = props => {
                 longPotP1={longPotP1}
                 setLongPotP2={setLongPotP2}
                 longPotP2={longPotP2}
-                currentBreakP1={currentBreakP1}
-                currentBreakP2={currentBreakP2}
                 setCurrentBreakP1={setCurrentBreakP1}
                 setCurrentBreakP2={setCurrentBreakP2}
                 backwardMode={backwardMode}
@@ -463,8 +461,6 @@ const ScoreScreen = props => {
                             setStatsP2={setStatsP2}
                             setLongPotP1={setLongPotP1}
                             setLongPotP2={setLongPotP2}
-                            currentBreakP1={currentBreakP1}
-                            currentBreakP2={currentBreakP2}
                             setCurrentBreakP1={setCurrentBreakP1}
                             setCurrentBreakP2={setCurrentBreakP2}
                             backwardMode={backwardMode}
@@ -492,8 +488,6 @@ const ScoreScreen = props => {
                             setFreeBallButtonP2={setFreeBallButtonP2}
                             setLongPotP1={setLongPotP1}
                             setLongPotP2={setLongPotP2}
-                            currentBreakP1={currentBreakP1}
-                            currentBreakP2={currentBreakP2}
                             setCurrentBreakP1={setCurrentBreakP1}
                             setCurrentBreakP2={setCurrentBreakP2}
                             setStatsP1={setStatsP1}
@@ -526,8 +520,6 @@ const ScoreScreen = props => {
                             navigation={props.navigation}
                             p1Points={p1Points}
                             p2Points={p2Points}
-                            breakP1={breakP1}
-                            breakP2={breakP2}
                             remaining={remaining}
                             setEndOfFrame={setEndOfFrame}
                             setFreeBallP1={setFreeBallP1}
@@ -594,10 +586,6 @@ const ScoreScreen = props => {
             successP2={successP2}
             breakP1={breakP1}
             breakP2={breakP2}
-            setOverlayP1={setOverlayP1}
-            setOverlayP2={setOverlayP2}
-            setCurrentBreakP1={setCurrentBreakP1}
-            setCurrentBreakP2={setCurrentBreakP2}
             setActiveBallsP1={setActiveBallsP1}
             setActiveBallsP2={setActiveBallsP2}
             activateBallsP1={activateBallsP1}
