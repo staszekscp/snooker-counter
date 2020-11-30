@@ -371,7 +371,6 @@ const ScoreScreen = props => {
                 setCurrentShotIndex={setCurrentShotIndex}
                 backwardMode={backwardMode}
                 setBackwardMode={setBackwardMode}
-                modifyArray={modifyArray}
                 navigation={props.navigation}
                 style={{zIndex: 3}}/>
             <BallContainer 
@@ -504,7 +503,6 @@ const ScoreScreen = props => {
                             modifyArray={modifyArray}
                             />
                         <ConceideContainer 
-                            navigation={props.navigation}
                             p1Points={p1Points}
                             p2Points={p2Points}
                             remaining={remaining}
@@ -515,7 +513,7 @@ const ScoreScreen = props => {
                             setFreeBallButtonP2={setFreeBallButtonP2}
                             backwardMode={backwardMode}
                             setBackwardMode={setBackwardMode}
-                            modifyArray={modifyArray}/>
+                            modifyArray={modifyArray}/> 
                     </View>
                 </ImageBackground>
             </View>  
@@ -554,7 +552,7 @@ const ScoreScreen = props => {
         setCurrentShotIndex={setCurrentShotIndex}
         setLongPotP1={setLongPotP1}
         setLongPotP2={setLongPotP2}
-        />
+        /> 
 
     const gameOverScreen = <GameOverScreen 
         proMode={proMode}
@@ -568,13 +566,10 @@ const ScoreScreen = props => {
         successP2={successP2}
         breakP1={breakP1}
         breakP2={breakP2}
-        activateBallsP1={activateBallsP1}
-        activateBallsP2={activateBallsP2}
         frameRecord={frameRecord}
         navigation={props.navigation}
-        />
+        /> 
         
-
     return (
         <View style={styles.main}>
             {endOfFrame ? frameOverScreen : endOfMatch ?  gameOverScreen : mainScoreScreen}

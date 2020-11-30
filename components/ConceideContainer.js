@@ -1,23 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
  
-const ConceideContainer = props => {
+const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFreeBallP1, setFreeBallP2,
+    setFreeBallButtonP1, setFreeBallButtonP2, backwardMode, setBackwardMode, modifyArray}) => {
     
     return (
         <View style={styles.main}>
             <View style={styles.conceideButtonContainer}>
-                <View style={props.p2Points-props.p1Points > props.remaining ? styles.conceideButton : {display: 'none'}}>
+                <View style={p2Points-p1Points > remaining ? styles.conceideButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backwardMode) {
-                                props.modifyArray()
-                                props.setBackwardMode(false)
+                            if (backwardMode) {
+                                modifyArray()
+                                setBackwardMode(false)
                             }
-                            props.setFreeBallP1(false)
-                            props.setFreeBallP2(false)
-                            props.setFreeBallButtonP1(false)
-                            props.setFreeBallButtonP2(false)
-                            props.setEndOfFrame(true)
+                            setFreeBallP1(false)
+                            setFreeBallP2(false)
+                            setFreeBallButtonP1(false)
+                            setFreeBallButtonP2(false)
+                            setEndOfFrame(true)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -26,15 +27,15 @@ const ConceideContainer = props => {
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-                <View style={props.remaining === 7 && props.p1Points-props.p2Points > 7 ? styles.endFrameButton : {display: 'none'}}>
+                <View style={remaining === 7 && p1Points-p2Points > 7 ? styles.endFrameButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backwardMode) {
-                                props.modifyArray()
-                                props.setBackwardMode(false)
+                            if (backwardMode) {
+                                modifyArray()
+                                setBackwardMode(false)
                             }
                             
-                            props.setEndOfFrame(true)
+                            setEndOfFrame(true)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -45,18 +46,18 @@ const ConceideContainer = props => {
                 </View>
             </View>
             <View style={styles.conceideButtonContainer}>
-                <View style={props.p1Points-props.p2Points > props.remaining ? styles.conceideButton : {display: 'none'}}>
+                <View style={p1Points-p2Points > remaining ? styles.conceideButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backwardMode) {
-                                props.modifyArray()
-                                props.setBackwardMode(false)
+                            if (backwardMode) {
+                                modifyArray()
+                                setBackwardMode(false)
                             }
-                            props.setFreeBallP1(false)
-                            props.setFreeBallP2(false)
-                            props.setFreeBallButtonP1(false)
-                            props.setFreeBallButtonP2(false)
-                            props.setEndOfFrame(true)
+                            setFreeBallP1(false)
+                            setFreeBallP2(false)
+                            setFreeBallButtonP1(false)
+                            setFreeBallButtonP2(false)
+                            setEndOfFrame(true)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -65,14 +66,14 @@ const ConceideContainer = props => {
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-                <View style={props.remaining === 7 && props.p2Points-props.p1Points > 7 ? styles.endFrameButton : {display: 'none'}}>
+                <View style={remaining === 7 && p2Points-p1Points > 7 ? styles.endFrameButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backwardMode) {
-                                props.modifyArray()
-                                props.setBackwardMode(false)
+                            if (backwardMode) {
+                                modifyArray()
+                                setBackwardMode(false)
                             }
-                            props.setEndOfFrame(true)
+                            setEndOfFrame(true)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >

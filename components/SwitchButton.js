@@ -1,67 +1,68 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
 
-const SwitchButton = props => {
+const SwitchButton = ({setCurrentBreak, setFreeBallButtonP1, setFreeBallButtonP2, setFreeBall, setOverlayP1, setOverlayP2,
+setRemaining, remaining, activateBallsP1, activateBallsP2, setStats, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
     return (<View style={styles.buttonContainer}>
                 <TouchableNativeFeedback
                     onPress={() => {
-                        if (props.backwardMode) {
-                            props.modifyArray()
-                            props.setBackwardMode(false)
+                        if (backwardMode) {
+                            modifyArray()
+                            setBackwardMode(false)
                         }
-                        props.setCurrentShotIndex(4)
-                        props.setStats(prev => ({
+                        setCurrentShotIndex(4)
+                        setStats(prev => ({
                             ...prev,
                             long: prev.long + 0
                         }))
-                        props.setCurrentBreak(0)
-                        props.setFreeBallButtonP1(false)
-                        props.setFreeBallButtonP2(false)
-                        props.setFreeBall(false)
-                        if (props.remaining === 34) {
-                            props.activateBallsP1(2)
-                            props.activateBallsP2(2)
-                            props.setOverlayP1(prev => !prev)
-                            props.setOverlayP2(prev => !prev)
-                            props.setRemaining(props.remaining - 7)
-                        } else if (props.remaining > 27){
-                            props.activateBallsP1(1)
-                            props.activateBallsP2(1)
-                            props.setOverlayP1(prev => !prev)
-                            props.setOverlayP2(prev => !prev)
-                            if ((props.remaining - 27) % 8 !== 0){
-                                props.setRemaining(props.remaining - 7)
+                        setCurrentBreak(0)
+                        setFreeBallButtonP1(false)
+                        setFreeBallButtonP2(false)
+                        setFreeBall(false)
+                        if (remaining === 34) {
+                            activateBallsP1(2)
+                            activateBallsP2(2)
+                            setOverlayP1(prev => !prev)
+                            setOverlayP2(prev => !prev)
+                            setRemaining(remaining - 7)
+                        } else if (remaining > 27){
+                            activateBallsP1(1)
+                            activateBallsP2(1)
+                            setOverlayP1(prev => !prev)
+                            setOverlayP2(prev => !prev)
+                            if ((remaining - 27) % 8 !== 0){
+                                setRemaining(remaining - 7)
                             }
-                        } else if (props.remaining === 27) {
-                            props.activateBallsP1(2)
-                            props.activateBallsP2(2)
-                            props.setOverlayP1(prev => !prev)
-                            props.setOverlayP2(prev => !prev)
-                        } else if (props.remaining === 25) {
-                            props.activateBallsP1(3)
-                            props.activateBallsP2(3)
-                            props.setOverlayP1(prev => !prev)
-                            props.setOverlayP2(prev => !prev)
-                        } else if (props.remaining === 22) {
-                            props.activateBallsP1(4)
-                            props.activateBallsP2(4)
-                            props.setOverlayP1(prev => !prev)
-                            props.setOverlayP2(prev => !prev)
-                        } else if (props.remaining === 18) {
-                            props.activateBallsP1(5)
-                            props.activateBallsP2(5)
-                            props.setOverlayP1(prev => !prev)
-                            props.setOverlayP2(prev => !prev)
-                        } else if (props.remaining === 13) {
-                            props.activateBallsP1(6)
-                            props.activateBallsP2(6)
-                            props.setOverlayP1(prev => !prev)
-                            props.setOverlayP2(prev => !prev)
-                        } else if (props.remaining === 7) {
-                            props.activateBallsP1(7)
-                            props.activateBallsP2(7)
-                            props.setOverlayP1(prev => !prev)
-                            props.setOverlayP2(prev => !prev)
+                        } else if (remaining === 27) {
+                            activateBallsP1(2)
+                            activateBallsP2(2)
+                            setOverlayP1(prev => !prev)
+                            setOverlayP2(prev => !prev)
+                        } else if (remaining === 25) {
+                            activateBallsP1(3)
+                            activateBallsP2(3)
+                            setOverlayP1(prev => !prev)
+                            setOverlayP2(prev => !prev)
+                        } else if (remaining === 22) {
+                            activateBallsP1(4)
+                            activateBallsP2(4)
+                            setOverlayP1(prev => !prev)
+                            setOverlayP2(prev => !prev)
+                        } else if (remaining === 18) {
+                            activateBallsP1(5)
+                            activateBallsP2(5)
+                            setOverlayP1(prev => !prev)
+                            setOverlayP2(prev => !prev)
+                        } else if (remaining === 13) {
+                            activateBallsP1(6)
+                            activateBallsP2(6)
+                            setOverlayP1(prev => !prev)
+                            setOverlayP2(prev => !prev)
+                        } else if (remaining === 7) {
+                            activateBallsP1(7)
+                            activateBallsP2(7)
+                            setOverlayP1(prev => !prev)
+                            setOverlayP2(prev => !prev)
                         } 
                     }}
                     background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
