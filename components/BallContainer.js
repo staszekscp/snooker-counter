@@ -3,161 +3,154 @@ import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
 
 import Ball from '../components/Ball'
  
-const BallContainer = props => {
+const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, activateBallsP1, activateBallsP2,
+    setOverlayP1, setOverlayP2, remaining, setRemaining, freeBallP1, setFreeBallP1, freeBallP2, setFreeBallP2, freeBallButtonP1,
+    setFreeBallButtonP1, freeBallButtonP2, setFreeBallButtonP2, setStatsP1, setStatsP2, setLongPotP1, longPotP1, setLongPotP2, longPotP2,
+    setCurrentBreakP1, setCurrentBreakP2, proMode, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
+        
     const playerOne = 'p1'
     const playerTwo = 'p2'
 
     return (
         <View style={styles.main}>
-            <View style={styles.mainStats}>
+            <View style={styles.ballSection}>
                 <View style={styles.mainBallContainer}> 
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={props.activeBallsP1['2'] ? {...styles.ball, ...styles.yellow, ...styles.grey} : {...styles.ball, ...styles.yellow}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
-                            activeBalls={props.activeBallsP1}
+                            style={!activeBallsP1['2'] ? {...styles.ball, ...styles.yellow, ...styles.invisible} : {...styles.ball, ...styles.yellow}} 
+                            activeBalls={activeBallsP1}
                             val={2} 
-                            p={props.p1} 
-                            pPoints={props.p1Points} 
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            setPoints={setP1Points} 
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerOne}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP1}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
-                            setLongPot={props.setLongPotP1}
-                            longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP1}
-                            activateOpponentsBalls={props.activateBallsP2}
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP1}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP1}
+                            setLongPot={setLongPotP1}
+                            longPot={longPotP1}
+                            setCurrentBreak={setCurrentBreakP1}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP1}
+                            activateOpponentsBalls={activateBallsP2}
                             />
                         <Ball 
-                            style={props.activeBallsP1['3'] ? {...styles.ball, ...styles.green, ...styles.grey} : {...styles.ball, ...styles.green}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
-                            activeBalls={props.activeBallsP1}
+                            style={!activeBallsP1['3'] ? {...styles.ball, ...styles.green, ...styles.invisible} : {...styles.ball, ...styles.green}} 
+                            activeBalls={activeBallsP1}
                             val={3} 
-                            p={props.p1} 
-                            pPoints={props.p1Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            setPoints={setP1Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerOne}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP1}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
-                            setLongPot={props.setLongPotP1}
-                            longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP1}
-                            activateOpponentsBalls={props.activateBallsP2}/>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP1}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP1}
+                            setLongPot={setLongPotP1}
+                            longPot={longPotP1}
+                            setCurrentBreak={setCurrentBreakP1}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP1}
+                            activateOpponentsBalls={activateBallsP2}/>
                         <Ball 
-                            style={props.activeBallsP1['4'] ? {...styles.ball, ...styles.brown, ...styles.grey} : {...styles.ball, ...styles.brown}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
-                            activeBalls={props.activeBallsP1}
-                            val={4} p={props.p1} 
-                            pPoints={props.p1Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            style={!activeBallsP1['4'] ? {...styles.ball, ...styles.brown, ...styles.invisible} : {...styles.ball, ...styles.brown}} 
+                            activeBalls={activeBallsP1}
+                            val={4} 
+                            setPoints={setP1Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerOne}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP1}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
-                            setLongPot={props.setLongPotP1}
-                            longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP1}
-                            activateOpponentsBalls={props.activateBallsP2}/>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP1}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP1}
+                            setLongPot={setLongPotP1}
+                            longPot={longPotP1}
+                            setCurrentBreak={setCurrentBreakP1}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP1}
+                            activateOpponentsBalls={activateBallsP2}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
-                        <View style={!props.proMode ? {opacity: 0} : props.longPotP1 ? styles.touchableLongPressed : styles.touchableLong}>
+                        <View style={!proMode ? {opacity: 0} : longPotP1 ? styles.touchableLongPressed : styles.touchableLong}>
                             <TouchableNativeFeedback
                             onPress={()=>{
-                                props.setLongPotP1(prev => !prev)
+                                setLongPotP1(prev => !prev)
                             }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                 <View style={styles.buttonLong}>
-                                    <Text style={props.longPotP1 ? styles.buttonTextLongPressed : styles.buttonText} >
+                                    <Text style={longPotP1 ? styles.buttonTextLongPressed : styles.buttonText} >
                                         LONG
                                     </Text>
                                 </View>
                             </TouchableNativeFeedback>
                         </View>
                         <Ball 
-                            style={props.activeBallsP1['1'] ? {...styles.ball, ...styles.red, ...styles.grey} : {...styles.ball, ...styles.red}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
-                            activeBalls={props.activeBallsP1}
+                            style={!activeBallsP1['1'] ? {...styles.ball, ...styles.red, ...styles.invisible} : {...styles.ball, ...styles.red}} 
+                            activeBalls={activeBallsP1}
                             val={1} 
-                            p={props.p1} 
-                            pPoints={props.p1Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            setPoints={setP1Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerOne}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            freeBall={props.freeBallP1}
-                            setFreeBall={props.setFreeBallP1}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}  
-                            stats={props.statsP1}
-                            setLongPot={props.setLongPotP1}
-                            longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP1}
-                            activateOpponentsBalls={props.activateBallsP2}/>
-                        <View style={props.freeBallButtonP1 ? styles.touchableFB : {...styles.touchableFB, ...styles.grey}}>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            freeBall={freeBallP1}
+                            setFreeBall={setFreeBallP1}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}  
+                            setStats={setStatsP1}
+                            setLongPot={setLongPotP1}
+                            longPot={longPotP1}
+                            setCurrentBreak={setCurrentBreakP1}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP1}
+                            activateOpponentsBalls={activateBallsP2}/>
+                        <View style={!freeBallButtonP1 ? {...styles.touchableFB, ...styles.invisible} : !freeBallP1 ? styles.touchableFB : styles.touchableFBPressed}>
                             <TouchableNativeFeedback
-                                disabled={!props.freeBallButtonP1}
+                                disabled={!freeBallButtonP1}
                                 onPress={() => {
-                                    props.setFreeBallP1(prev => !prev)
-                                    props.setOverlayP2(!props.freeBallP1)
-                                    props.setLongPotP2(false)
-                                    if (props.freeBallP1 && props.remaining < 35) {
-                                        if (props.remaining === 27) {
-                                            props.activateBallsP1(2)
-                                        } else if (props.remaining === 25) {
-                                            props.activateBallsP1(3)
-                                        } else if (props.remaining === 22) {
-                                            props.activateBallsP1(4)
-                                        } else if (props.remaining === 18) {
-                                            props.activateBallsP1(5)
-                                        } else if (props.remaining === 13) {
-                                            props.activateBallsP1(6)
+                                    setFreeBallP1(prev => !prev)
+                                    setOverlayP2(!freeBallP1)
+                                    setLongPotP2(false)
+                                    if (freeBallP1 && remaining < 35) {
+                                        if (remaining === 27) {
+                                            activateBallsP1(2)
+                                        } else if (remaining === 25) {
+                                            activateBallsP1(3)
+                                        } else if (remaining === 22) {
+                                            activateBallsP1(4)
+                                        } else if (remaining === 18) {
+                                            activateBallsP1(5)
+                                        } else if (remaining === 13) {
+                                            activateBallsP1(6)
                                         }
                                     } else {
-                                        props.activateBallsP1(1)
+                                        activateBallsP1(1)
                                     }
                                 }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                 <View style={styles.buttonFB}>
-                                    <Text style={styles.buttonText}>
+                                    <Text style={freeBallP1 ? styles.buttonTextFBPressed : styles.buttonText}>
                                         FREE BALL
                                     </Text >
                                 </View>
@@ -166,330 +159,298 @@ const BallContainer = props => {
                     </View>
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={props.activeBallsP1['5'] ? {...styles.ball, ...styles.blue, ...styles.grey} : {...styles.ball, ...styles.blue}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
-                            activeBalls={props.activeBallsP1}
+                            style={!activeBallsP1['5'] ? {...styles.ball, ...styles.blue, ...styles.invisible} : {...styles.ball, ...styles.blue}} 
+                            activeBalls={activeBallsP1}
                             val={5} 
-                            p={props.p1} 
-                            pPoints={props.p1Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            setPoints={setP1Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerOne}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP1}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
-                            setLongPot={props.setLongPotP1}
-                            longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP1}
-                            activateOpponentsBalls={props.activateBallsP2}/>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP1}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP1}
+                            setLongPot={setLongPotP1}
+                            longPot={longPotP1}
+                            setCurrentBreak={setCurrentBreakP1}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP1}
+                            activateOpponentsBalls={activateBallsP2}/>
                         <Ball 
-                            style={props.activeBallsP1['6'] ? {...styles.ball, ...styles.pink, ...styles.grey} : {...styles.ball, ...styles.pink}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
-                            activeBalls={props.activeBallsP1}
-                            val={6} 
-                            p={props.p1} 
-                            pPoints={props.p1Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            style={!activeBallsP1['6'] ? {...styles.ball, ...styles.pink, ...styles.invisible} : {...styles.ball, ...styles.pink}} 
+                            activeBalls={activeBallsP1}
+                            val={6}
+                            setPoints={setP1Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerOne}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP1}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
-                            setLongPot={props.setLongPotP1}
-                            longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP1}
-                            activateOpponentsBalls={props.activateBallsP2}/>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP1}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP1}
+                            setLongPot={setLongPotP1}
+                            longPot={longPotP1}
+                            setCurrentBreak={setCurrentBreakP1}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP1}
+                            activateOpponentsBalls={activateBallsP2}/>
                         <Ball 
-                            style={props.activeBallsP1['7'] ? {...styles.ball, ...styles.black, ...styles.grey} : {...styles.ball, ...styles.black}} 
-                            activate={props.activateP1} 
-                            activateOpp={props.activateP2}
-                            activeBalls={props.activeBallsP1}
-                            val={7} 
-                            p={props.p1} 
-                            pPoints={props.p1Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            style={!activeBallsP1['7'] ? {...styles.ball, ...styles.black, ...styles.invisible} : {...styles.ball, ...styles.black}} 
+                            activeBalls={activeBallsP1}
+                            val={7}
+                            setPoints={setP1Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerOne}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP1}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP1}
-                            setLongPot={props.setLongPotP1}
-                            longPot={props.longPotP1}
-                            setCurrentBreak={props.setCurrentBreakP1}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP1}
-                            activateOpponentsBalls={props.activateBallsP2}/>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP1}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP1}
+                            setLongPot={setLongPotP1}
+                            longPot={longPotP1}
+                            setCurrentBreak={setCurrentBreakP1}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP1}
+                            activateOpponentsBalls={activateBallsP2}/>
                     </View>
                 </View>
                 <View style={styles.mainBallContainer}> 
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={props.activeBallsP2['2'] ? {...styles.ball, ...styles.yellow, ...styles.grey} : {...styles.ball, ...styles.yellow}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
-                            activeBalls={props.activeBallsP2}
-                            val={2} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            style={!activeBallsP2['2'] ? {...styles.ball, ...styles.yellow, ...styles.invisible} : {...styles.ball, ...styles.yellow}} 
+                            activeBalls={activeBallsP2}
+                            val={2}
+                            setPoints={setP2Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerTwo}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP2}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
-                            setLongPot={props.setLongPotP2}
-                            longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP2}
-                            activateOpponentsBalls={props.activateBallsP1}/>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP2}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP2}
+                            setLongPot={setLongPotP2}
+                            longPot={longPotP2}
+                            setCurrentBreak={setCurrentBreakP2}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP2}
+                            activateOpponentsBalls={activateBallsP1}/>
                         <Ball 
-                            style={props.activeBallsP2['3'] ? {...styles.ball, ...styles.green, ...styles.grey} : {...styles.ball, ...styles.green}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
-                            activeBalls={props.activeBallsP2}
-                            val={3} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            style={!activeBallsP2['3'] ? {...styles.ball, ...styles.green, ...styles.invisible} : {...styles.ball, ...styles.green}} 
+                            activeBalls={activeBallsP2}
+                            val={3}
+                            setPoints={setP2Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerTwo}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP2}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
-                            setLongPot={props.setLongPotP2}
-                            longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP2}
-                            activateOpponentsBalls={props.activateBallsP1}/>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP2}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP2}
+                            setLongPot={setLongPotP2}
+                            longPot={longPotP2}
+                            setCurrentBreak={setCurrentBreakP2}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP2}
+                            activateOpponentsBalls={activateBallsP1}/>
                         <Ball 
-                            style={props.activeBallsP2['4'] ? {...styles.ball, ...styles.brown, ...styles.grey} : {...styles.ball, ...styles.brown}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
-                            activeBalls={props.activeBallsP2}
-                            val={4} p={props.p2} 
-                            pPoints={props.p2Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            style={!activeBallsP2['4'] ? {...styles.ball, ...styles.brown, ...styles.invisible} : {...styles.ball, ...styles.brown}} 
+                            activeBalls={activeBallsP2}
+                            val={4} 
+                            setPoints={setP2Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerTwo}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP2}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
-                            setLongPot={props.setLongPotP2}
-                            longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP2}
-                            activateOpponentsBalls={props.activateBallsP1}/>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP2}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP2}
+                            setLongPot={setLongPotP2}
+                            longPot={longPotP2}
+                            setCurrentBreak={setCurrentBreakP2}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP2}
+                            activateOpponentsBalls={activateBallsP1}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
-                    <View style={props.freeBallButtonP2 ? styles.touchableFB : {...styles.touchableFB, ...styles.grey}}>
+                    <View style={!freeBallButtonP2 ? {...styles.touchableFB, ...styles.invisible} : !freeBallP2 ? styles.touchableFB : styles.touchableFBPressed}>
                             <TouchableNativeFeedback
-                                disabled={!props.freeBallButtonP2}
+                                disabled={!freeBallButtonP2}
                                 onPress={() => {
-                                    props.setFreeBallP2(prev => !prev)
-                                    props.setOverlayP1(!props.freeBallP2)
-                                    props.setLongPotP1(false)
-                                    if (props.freeBallP2 && props.remaining < 35) {
-                                        if (props.remaining === 27) {
-                                            props.activateBallsP2(2)
-                                        } else if (props.remaining === 25) {
-                                            props.activateBallsP2(3)
-                                        } else if (props.remaining === 22) {
-                                            props.activateBallsP2(4)
-                                        } else if (props.remaining === 18) {
-                                            props.activateBallsP2(5)
-                                        } else if (props.remaining === 13) {
-                                            props.activateBallsP2(6)
+                                    setFreeBallP2(prev => !prev)
+                                    setOverlayP1(!freeBallP2)
+                                    setLongPotP1(false)
+                                    if (freeBallP2 && remaining < 35) {
+                                        if (remaining === 27) {
+                                            activateBallsP2(2)
+                                        } else if (remaining === 25) {
+                                            activateBallsP2(3)
+                                        } else if (remaining === 22) {
+                                            activateBallsP2(4)
+                                        } else if (remaining === 18) {
+                                            activateBallsP2(5)
+                                        } else if (remaining === 13) {
+                                            activateBallsP2(6)
                                         }
                                     } else {
-                                        props.activateBallsP2(1)
+                                        activateBallsP2(1)
                                     }
                                 }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                 <View style={styles.buttonFB}>
-                                    <Text style={styles.buttonText}>
+                                    <Text style={freeBallP2 ? styles.buttonTextFBPressed : styles.buttonText}>
                                         FREE BALL
                                     </Text >
                                 </View>
                             </TouchableNativeFeedback>
                         </View>
                         <Ball 
-                            style={props.activeBallsP2['1'] ? {...styles.ball, ...styles.red, ...styles.grey} : {...styles.ball, ...styles.red}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
-                            activeBalls={props.activeBallsP2}
+                            style={!activeBallsP2['1'] ? {...styles.ball, ...styles.red, ...styles.invisible} : {...styles.ball, ...styles.red}} 
+                            activeBalls={activeBallsP2}
                             val={1} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            setPoints={setP2Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerTwo}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            freeBall={props.freeBallP2}
-                            setFreeBall={props.setFreeBallP2}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2} 
-                            stats={props.statsP2}
-                            setLongPot={props.setLongPotP2}
-                            longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP2}
-                            activateOpponentsBalls={props.activateBallsP1}/>
-                        <View style={!props.proMode ? {opacity: 0} : props.longPotP2 ? styles.touchableLongPressed : styles.touchableLong}>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            freeBall={freeBallP2}
+                            setFreeBall={setFreeBallP2}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2} 
+                            setStats={setStatsP2}
+                            setLongPot={setLongPotP2}
+                            longPot={longPotP2}
+                            setCurrentBreak={setCurrentBreakP2}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP2}
+                            activateOpponentsBalls={activateBallsP1}/>
+                        <View style={!proMode ? {opacity: 0} : longPotP2 ? styles.touchableLongPressed : styles.touchableLong}>
                             <TouchableNativeFeedback
                             onPress={()=>{
-                                props.setLongPotP2(prev => !prev)
+                                setLongPotP2(prev => !prev)
                             }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                 <View style={styles.buttonLong}>
-                                    <Text style={props.longPotP2 ? styles.buttonTextLongPressed : styles.buttonText} >
+                                    <Text style={longPotP2 ? styles.buttonTextLongPressed : styles.buttonText} >
                                         LONG
                                     </Text>
                                 </View>
                             </TouchableNativeFeedback>
                         </View>
-                        
                     </View>
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={props.activeBallsP2['5'] ? {...styles.ball, ...styles.blue, ...styles.grey} : {...styles.ball, ...styles.blue}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
-                            activeBalls={props.activeBallsP2}
+                            style={!activeBallsP2['5'] ? {...styles.ball, ...styles.blue, ...styles.invisible} : {...styles.ball, ...styles.blue}} 
+                            activeBalls={activeBallsP2}
                             val={5} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            setPoints={setP2Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerTwo}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP2}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
-                            setLongPot={props.setLongPotP2}
-                            longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP2}
-                            activateOpponentsBalls={props.activateBallsP1}
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP2}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP2}
+                            setLongPot={setLongPotP2}
+                            longPot={longPotP2}
+                            setCurrentBreak={setCurrentBreakP2}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP2}
+                            activateOpponentsBalls={activateBallsP1}
                             />
                         <Ball 
-                            style={props.activeBallsP2['6'] ? {...styles.ball, ...styles.pink, ...styles.grey} : {...styles.ball, ...styles.pink}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
-                            activeBalls={props.activeBallsP2}
-                            val={6} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            style={!activeBallsP2['6'] ? {...styles.ball, ...styles.pink, ...styles.invisible} : {...styles.ball, ...styles.pink}} 
+                            activeBalls={activeBallsP2}
+                            val={6}
+                            setPoints={setP2Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerTwo}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP2}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
-                            setLongPot={props.setLongPotP2}
-                            longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP2}
-                            activateOpponentsBalls={props.activateBallsP1}/>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP2}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP2}
+                            setLongPot={setLongPotP2}
+                            longPot={longPotP2}
+                            setCurrentBreak={setCurrentBreakP2}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP2}
+                            activateOpponentsBalls={activateBallsP1}/>
                         <Ball 
-                            style={props.activeBallsP2['7'] ? {...styles.ball, ...styles.black, ...styles.grey} : {...styles.ball, ...styles.black}} 
-                            activate={props.activateP2} 
-                            activateOpp={props.activateP1}
-                            activeBalls={props.activeBallsP2}
+                            style={!activeBallsP2['7'] ? {...styles.ball, ...styles.black, ...styles.invisible} : {...styles.ball, ...styles.black}} 
+                            activeBalls={activeBallsP2}
                             val={7} 
-                            p={props.p2} 
-                            pPoints={props.p2Points}
-                            setOverlayP1={props.setOverlayP1}
-                            setOverlayP2={props.setOverlayP2}
+                            setPoints={setP2Points}
+                            setOverlayP1={setOverlayP1}
+                            setOverlayP2={setOverlayP2}
                             player={playerTwo}
-                            remaining={props.remaining}
-                            setRemaining={props.setRemaining}
-                            setFreeBall={props.setFreeBallP2}
-                            setFreeBallButtonP1={props.setFreeBallButtonP1} 
-                            setFreeBallButtonP2={props.setFreeBallButtonP2}
-                            stats={props.statsP2}
-                            setLongPot={props.setLongPotP2}
-                            longPot={props.longPotP2}
-                            setCurrentBreak={props.setCurrentBreakP2}
-                            backMode={props.backMode}
-                            setBackMode={props.setBackMode}
-                            setBack={props.setBack}
-                            modifyArray={props.modifyArray}
-                            activateBalls={props.activateBallsP2}
-                            activateOpponentsBalls={props.activateBallsP1}/>
+                            remaining={remaining}
+                            setRemaining={setRemaining}
+                            setFreeBall={setFreeBallP2}
+                            setFreeBallButtonP1={setFreeBallButtonP1} 
+                            setFreeBallButtonP2={setFreeBallButtonP2}
+                            setStats={setStatsP2}
+                            setLongPot={setLongPotP2}
+                            longPot={longPotP2}
+                            setCurrentBreak={setCurrentBreakP2}
+                            backwardMode={backwardMode}
+                            setBackwardMode={setBackwardMode}
+                            setCurrentShotIndex={setCurrentShotIndex}
+                            modifyArray={modifyArray}
+                            activateBalls={activateBallsP2}
+                            activateOpponentsBalls={activateBallsP1}/>
                     </View>
                 </View>
             </View>
         </View>
-    )}
+    )
+}
  
 const styles = StyleSheet.create({
-    main: {
-
-    },
-    mainStats: {
+    ballSection: {
         flexDirection: 'row'
     },
     ballContainer: {
@@ -513,7 +474,17 @@ const styles = StyleSheet.create({
         height: 30,
         width: 45,
         borderRadius: 5,
-        backgroundColor: 'lightblue',
+        backgroundColor: '#9ecdff',
+        marginVertical: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation:5,
+    },
+    touchableFBPressed: {
+        height: 30,
+        width: 45,
+        borderRadius: 5,
+        backgroundColor: '#050778',
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -523,7 +494,7 @@ const styles = StyleSheet.create({
         height: 30,
         width: 45,
         borderRadius: 5,
-        backgroundColor: 'lightgreen',
+        backgroundColor: '#99ff94',
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -534,7 +505,7 @@ const styles = StyleSheet.create({
         height: 30,
         width: 45,
         borderRadius: 5,
-        backgroundColor: 'darkgreen',
+        backgroundColor: '#006905',
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -548,7 +519,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 2,
-        
     },
     buttonLong: {
         height: 30,
@@ -556,19 +526,24 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-
     },
     buttonText: {
         fontSize: 10,
         textAlign: 'center',
         fontFamily: 'scoreBold',
-        color: 'black'
+        color: '#000'
     },
     buttonTextLongPressed: {
         fontSize: 10,
         textAlign: 'center',
-        fontFamily: 'scoreBold',
-        color: 'white'
+        fontFamily: 'score',
+        color: '#fff'
+    },
+    buttonTextFBPressed: {
+        fontSize: 10,
+        textAlign: 'center',
+        fontFamily: 'score',
+        color: '#fff'
     },
     ball: {
         height: 49,
@@ -577,31 +552,31 @@ const styles = StyleSheet.create({
         margin: 5
     },
     red: {
-        backgroundColor: 'red',
+        backgroundColor: '#ff0022',
         margin: 10
     },
     yellow: {
-        backgroundColor: 'yellow',
+        backgroundColor: '#fbff00',
         top: 30
     },
     green: {
-        backgroundColor: 'green',
+        backgroundColor: '#029e0c',
     },
     brown: {
-        backgroundColor: 'brown',
+        backgroundColor: '#99001a',
         top: 30
     },
     blue: {
-        backgroundColor: 'blue',
+        backgroundColor: '#0f1bff',
     },
     pink: {
-        backgroundColor: 'pink',
+        backgroundColor: '#ff8af7',
         top: 30
     },
     black: {
         backgroundColor: '#333',
     },
-    grey: {
+    invisible: {
         opacity: 0
     }
 })

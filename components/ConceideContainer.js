@@ -1,86 +1,70 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
  
-const ConceideContainer = props => {
-
+const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFreeBallP1, setFreeBallP2,
+    setFreeBallButtonP1, setFreeBallButtonP2, backwardMode, setBackwardMode, modifyArray}) => {
     
+    const conceide = () => {
+        if (backwardMode) {
+            modifyArray()
+            setBackwardMode(false)
+        }
+        setFreeBallP1(false)
+        setFreeBallP2(false)
+        setFreeBallButtonP1(false)
+        setFreeBallButtonP2(false)
+        setEndOfFrame(true)
+    }
+
     return (
         <View style={styles.main}>
-            <View style={styles.missButtonContainer}>
-                <View style={props.p2Points-props.p1Points > props.remaining ? styles.missButton : {display: 'none'}}>
+            <View style={styles.conceideButtonContainer}>
+                <View style={p2Points-p1Points > remaining ? styles.conceideButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.setFreeBallP1(false)
-                            props.setFreeBallP2(false)
-                            props.setFreeBallButtonP1(false)
-                            props.setFreeBallButtonP2(false)
-                            props.setEndOfFrame(true)
+                            conceide()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
+                        <View style={styles.button}>
                             <Text style={styles.buttonText}>CONCEIDE</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-                <View style={props.remaining === 7 && props.p1Points-props.p2Points > 7 ? styles.endFrameButton : {display: 'none'}}>
+                <View style={remaining === 7 && p1Points-p2Points > 7 ? styles.endFrameButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.setEndOfFrame(true)
+                            conceide()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
+                        <View style={styles.button}>
                             <Text style={styles.buttonText}>END OF FRAME</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
             </View>
-            <View style={styles.missButtonContainer}>
-                <View style={props.p1Points-props.p2Points > props.remaining ? styles.missButton : {display: 'none'}}>
+            <View style={styles.conceideButtonContainer}>
+                <View style={p1Points-p2Points > remaining ? styles.conceideButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.setFreeBallP1(false)
-                            props.setFreeBallP2(false)
-                            props.setFreeBallButtonP1(false)
-                            props.setFreeBallButtonP2(false)
-                            props.setEndOfFrame(true)
+                            conceide()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
+                        <View style={styles.button}>
                             <Text style={styles.buttonText}>CONCEIDE</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-                <View style={props.remaining === 7 && props.p2Points-props.p1Points > 7 ? styles.endFrameButton : {display: 'none'}}>
+                <View style={remaining === 7 && p2Points-p1Points > 7 ? styles.endFrameButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.setEndOfFrame(true)
+                            conceide()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
+                        <View style={styles.button}>
                             <Text style={styles.buttonText}>END OF FRAME</Text>
                         </View>
                     </TouchableNativeFeedback>
@@ -96,12 +80,12 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
     },
-    missButtonContainer: {
+    conceideButtonContainer: {
         width: '50%',
         justifyContent: 'center',
         alignItems: 'center',
     },
-    missButton: {
+    conceideButton: {
         height: 50,
         width: 120,
         borderRadius: 15,
@@ -119,11 +103,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(24,210,0,0.5)',
         borderWidth: 3,
     },
-    miss: {
+    button: {
         height: 50,
         width: 120,
         borderRadius: 15,
-        borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
     },
