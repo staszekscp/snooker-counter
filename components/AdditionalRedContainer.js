@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
  
 const AdditionalRedContainer = props => {
     return (
         <View style={styles.main}>
-            <View style={styles.missButtonContainer}>
-                <View style={props.remaining < 35 || (props.activeBallsP1['1']) || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) || props.overlayP1 ? {display: 'none'} : styles.redButton}>
+            <View style={styles.additionalRedsContainer}>
+                <View style={props.remaining < 35 || (props.activeBallsP1['1']) || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) || props.overlayP1 ? {display: 'none'} : styles.additionalRedButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
                             if (props.backwardMode) {
@@ -23,12 +23,12 @@ const AdditionalRedContainer = props => {
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
-                            <Text style={styles.buttonText}>+1 RED</Text>
+                        <View style={styles.button}>
+                            <Text style={styles.additionalRedText}>+1 RED</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-                <View style={props.remaining < 35 || !props.freeBallButtonP2 ? {display: 'none'} : styles.missButton}>
+                <View style={props.remaining < 35 || !props.freeBallButtonP2 ? {display: 'none'} : styles.redWentInButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
                             if (props.backwardMode) {
@@ -40,14 +40,14 @@ const AdditionalRedContainer = props => {
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
-                            <Text style={styles.button2Text}>RED WENT IN!</Text>
+                        <View style={styles.button}>
+                            <Text style={styles.redWentInText}>RED WENT IN!</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
             </View>
-            <View style={styles.missButtonContainer}>
-                <View style={props.remaining < 35 || (props.activeBallsP2['1'])  || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) || props.overlayP2? {display: 'none'} : styles.redButton}>
+            <View style={styles.additionalRedsContainer}>
+                <View style={props.remaining < 35 || (props.activeBallsP2['1'])  || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) || props.overlayP2? {display: 'none'} : styles.additionalRedButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
                             if (props.backwardMode) {
@@ -65,12 +65,12 @@ const AdditionalRedContainer = props => {
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
-                            <Text style={styles.buttonText}>+1 RED</Text>
+                        <View style={styles.button}>
+                            <Text style={styles.additionalRedText}>+1 RED</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-                <View style={props.remaining < 35 || !props.freeBallButtonP1 ? {display: 'none'} : styles.missButton}>
+                <View style={props.remaining < 35 || !props.freeBallButtonP1 ? {display: 'none'} : styles.redWentInButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
                             if (props.backwardMode) {
@@ -82,8 +82,8 @@ const AdditionalRedContainer = props => {
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
-                            <Text style={styles.button2Text}>RED WENT IN!</Text>
+                        <View style={styles.button}>
+                            <Text style={styles.redWentInText}>RED WENT IN!</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
@@ -97,14 +97,14 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
     },
-    missButtonContainer: {
+    additionalRedsContainer: {
         width: '50%',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 15,
     },
-    missButton: {
+    redWentInButton: {
         height: 50,
         width: 80,
         borderRadius: 15,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,0,0,0.7)',
         borderWidth: 3,
     },
-    redButton: {
+    additionalRedButton: {
         height: 50,
         width: 80,
         borderRadius: 15,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(24,210,0,0.5)',
         marginRight: 5
     },
-    miss: {
+    button: {
         height: 50,
         width: 80,
         borderRadius: 15,
@@ -131,12 +131,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    buttonText: {
+    additionalRedText: {
         fontFamily: 'score',
         fontSize: 16,
         textAlign: 'center'
     },
-    button2Text: {
+    redWentInText: {
         fontFamily: 'score',
         fontSize: 13,
         textAlign: 'center',

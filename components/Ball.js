@@ -1,17 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
+import { StyleSheet, View, TouchableNativeFeedback, Image } from 'react-native';
  
 const Ball = props => {
     let active = {...props.activeBalls}
 
-    const p1ball = <Image style={styles.theBall} source={require('../assets/Ball/ball.png')} /> 
-    const p1freeBall = <Image style={styles.theBall} source={require('../assets/Ball/freeball.png')} />
+    const p1ball = <Image style={styles.ballImage} source={require('../assets/Ball/ball.png')} /> 
+    const p1freeBall = <Image style={styles.ballImage} source={require('../assets/Ball/freeball.png')} />
 
-    const p2ball = <Image style={styles.theBall} source={require('../assets/Ball/ball.png')} /> 
-    const p2freeBall = <Image style={styles.theBall} source={require('../assets/Ball/freeball.png')} />
-    
-
-     
+    const p2ball = <Image style={styles.ballImage} source={require('../assets/Ball/ball.png')} /> 
+    const p2freeBall = <Image style={styles.ballImage} source={require('../assets/Ball/freeball.png')} />
 
     return (
         <View style={{...styles.ballContainer, ...props.style}}>
@@ -196,16 +193,13 @@ const Ball = props => {
                     props.val===1 && props.player === 'p1' ? p1ball :
                     props.val===1 && props.freeBall === true && props.player === 'p2' ? p2freeBall :
                     props.val===1 && props.player === 'p2' ? p2ball :
-                    <Image style={styles.theBall} source={require('../assets/Ball/ball.png')} /> }
+                    <Image style={styles.ballImage} source={require('../assets/Ball/ball.png')} /> }
                 </View>
             </TouchableNativeFeedback>
         </View>
     )}
  
 const styles = StyleSheet.create({
-    body: {
-        fontFamily: 'open-sans'
-    },
     ball: {
         height: 50,
         width: 50,
@@ -216,7 +210,7 @@ const styles = StyleSheet.create({
         width: 50,
         borderRadius: 25,
     },
-    theBall: {
+    ballImage: {
         height: 50,
         width: 50,
         borderRadius: 25,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
  
 const MissContainer = props => {
     return (

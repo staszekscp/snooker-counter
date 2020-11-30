@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
  
 const SafetyContainer = props => {
     return (
@@ -296,8 +296,7 @@ const SafetyContainer = props => {
 const styles = StyleSheet.create({
     main: {
         height: 65,
-        flexDirection: 'row',
-        
+        flexDirection: 'row'
     },
     safetyButtonContainer: {
         width: '50%',

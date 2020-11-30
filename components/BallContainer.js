@@ -9,15 +9,13 @@ const BallContainer = props => {
 
     return (
         <View style={styles.main}>
-            <View style={styles.mainStats}>
+            <View style={styles.ballSection}>
                 <View style={styles.mainBallContainer}> 
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={!props.activeBallsP1['2'] ? {...styles.ball, ...styles.yellow, ...styles.grey} : {...styles.ball, ...styles.yellow}} 
-                            
+                            style={!props.activeBallsP1['2'] ? {...styles.ball, ...styles.yellow, ...styles.invisible} : {...styles.ball, ...styles.yellow}} 
                             activeBalls={props.activeBallsP1}
                             val={2} 
-                            
                             setPoints={props.setP1Points} 
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -39,11 +37,9 @@ const BallContainer = props => {
                             activateOpponentsBalls={props.activateBallsP2}
                             />
                         <Ball 
-                            style={!props.activeBallsP1['3'] ? {...styles.ball, ...styles.green, ...styles.grey} : {...styles.ball, ...styles.green}} 
-                            
+                            style={!props.activeBallsP1['3'] ? {...styles.ball, ...styles.green, ...styles.invisible} : {...styles.ball, ...styles.green}} 
                             activeBalls={props.activeBallsP1}
                             val={3} 
-                            
                             setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -64,8 +60,7 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP1}
                             activateOpponentsBalls={props.activateBallsP2}/>
                         <Ball 
-                            style={!props.activeBallsP1['4'] ? {...styles.ball, ...styles.brown, ...styles.grey} : {...styles.ball, ...styles.brown}} 
-                            
+                            style={!props.activeBallsP1['4'] ? {...styles.ball, ...styles.brown, ...styles.invisible} : {...styles.ball, ...styles.brown}} 
                             activeBalls={props.activeBallsP1}
                             val={4} 
                             setPoints={props.setP1Points}
@@ -103,11 +98,9 @@ const BallContainer = props => {
                             </TouchableNativeFeedback>
                         </View>
                         <Ball 
-                            style={!props.activeBallsP1['1'] ? {...styles.ball, ...styles.red, ...styles.grey} : {...styles.ball, ...styles.red}} 
-                            
+                            style={!props.activeBallsP1['1'] ? {...styles.ball, ...styles.red, ...styles.invisible} : {...styles.ball, ...styles.red}} 
                             activeBalls={props.activeBallsP1}
                             val={1} 
-                            
                             setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -128,7 +121,7 @@ const BallContainer = props => {
                             modifyArray={props.modifyArray}
                             activateBalls={props.activateBallsP1}
                             activateOpponentsBalls={props.activateBallsP2}/>
-                        <View style={props.freeBallButtonP1 ? styles.touchableFB : {...styles.touchableFB, ...styles.grey}}>
+                        <View style={props.freeBallButtonP1 ? styles.touchableFB : {...styles.touchableFB, ...styles.invisible}}>
                             <TouchableNativeFeedback
                                 disabled={!props.freeBallButtonP1}
                                 onPress={() => {
@@ -162,11 +155,9 @@ const BallContainer = props => {
                     </View>
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={!props.activeBallsP1['5'] ? {...styles.ball, ...styles.blue, ...styles.grey} : {...styles.ball, ...styles.blue}} 
-                            
+                            style={!props.activeBallsP1['5'] ? {...styles.ball, ...styles.blue, ...styles.invisible} : {...styles.ball, ...styles.blue}} 
                             activeBalls={props.activeBallsP1}
                             val={5} 
-                            
                             setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -187,11 +178,9 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP1}
                             activateOpponentsBalls={props.activateBallsP2}/>
                         <Ball 
-                            style={!props.activeBallsP1['6'] ? {...styles.ball, ...styles.pink, ...styles.grey} : {...styles.ball, ...styles.pink}} 
-                            
+                            style={!props.activeBallsP1['6'] ? {...styles.ball, ...styles.pink, ...styles.invisible} : {...styles.ball, ...styles.pink}} 
                             activeBalls={props.activeBallsP1}
-                            val={6} 
-                            
+                            val={6}
                             setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -212,11 +201,9 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP1}
                             activateOpponentsBalls={props.activateBallsP2}/>
                         <Ball 
-                            style={!props.activeBallsP1['7'] ? {...styles.ball, ...styles.black, ...styles.grey} : {...styles.ball, ...styles.black}} 
-                            
+                            style={!props.activeBallsP1['7'] ? {...styles.ball, ...styles.black, ...styles.invisible} : {...styles.ball, ...styles.black}} 
                             activeBalls={props.activeBallsP1}
-                            val={7} 
-                            
+                            val={7}
                             setPoints={props.setP1Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -241,11 +228,9 @@ const BallContainer = props => {
                 <View style={styles.mainBallContainer}> 
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={!props.activeBallsP2['2'] ? {...styles.ball, ...styles.yellow, ...styles.grey} : {...styles.ball, ...styles.yellow}} 
-                            
+                            style={!props.activeBallsP2['2'] ? {...styles.ball, ...styles.yellow, ...styles.invisible} : {...styles.ball, ...styles.yellow}} 
                             activeBalls={props.activeBallsP2}
-                            val={2} 
-                            
+                            val={2}
                             setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -266,11 +251,9 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP2}
                             activateOpponentsBalls={props.activateBallsP1}/>
                         <Ball 
-                            style={!props.activeBallsP2['3'] ? {...styles.ball, ...styles.green, ...styles.grey} : {...styles.ball, ...styles.green}} 
-                            
+                            style={!props.activeBallsP2['3'] ? {...styles.ball, ...styles.green, ...styles.invisible} : {...styles.ball, ...styles.green}} 
                             activeBalls={props.activeBallsP2}
-                            val={3} 
-                            
+                            val={3}
                             setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -291,8 +274,7 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP2}
                             activateOpponentsBalls={props.activateBallsP1}/>
                         <Ball 
-                            style={!props.activeBallsP2['4'] ? {...styles.ball, ...styles.brown, ...styles.grey} : {...styles.ball, ...styles.brown}} 
-                            
+                            style={!props.activeBallsP2['4'] ? {...styles.ball, ...styles.brown, ...styles.invisible} : {...styles.ball, ...styles.brown}} 
                             activeBalls={props.activeBallsP2}
                             val={4} 
                             setPoints={props.setP2Points}
@@ -316,7 +298,7 @@ const BallContainer = props => {
                             activateOpponentsBalls={props.activateBallsP1}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
-                    <View style={props.freeBallButtonP2 ? styles.touchableFB : {...styles.touchableFB, ...styles.grey}}>
+                    <View style={props.freeBallButtonP2 ? styles.touchableFB : {...styles.touchableFB, ...styles.invisible}}>
                             <TouchableNativeFeedback
                                 disabled={!props.freeBallButtonP2}
                                 onPress={() => {
@@ -348,11 +330,9 @@ const BallContainer = props => {
                             </TouchableNativeFeedback>
                         </View>
                         <Ball 
-                            style={!props.activeBallsP2['1'] ? {...styles.ball, ...styles.red, ...styles.grey} : {...styles.ball, ...styles.red}} 
-                            
+                            style={!props.activeBallsP2['1'] ? {...styles.ball, ...styles.red, ...styles.invisible} : {...styles.ball, ...styles.red}} 
                             activeBalls={props.activeBallsP2}
                             val={1} 
-                            
                             setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -386,15 +366,12 @@ const BallContainer = props => {
                                 </View>
                             </TouchableNativeFeedback>
                         </View>
-                        
                     </View>
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
-                            style={!props.activeBallsP2['5'] ? {...styles.ball, ...styles.blue, ...styles.grey} : {...styles.ball, ...styles.blue}} 
-                            
+                            style={!props.activeBallsP2['5'] ? {...styles.ball, ...styles.blue, ...styles.invisible} : {...styles.ball, ...styles.blue}} 
                             activeBalls={props.activeBallsP2}
                             val={5} 
-                            
                             setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -416,11 +393,9 @@ const BallContainer = props => {
                             activateOpponentsBalls={props.activateBallsP1}
                             />
                         <Ball 
-                            style={!props.activeBallsP2['6'] ? {...styles.ball, ...styles.pink, ...styles.grey} : {...styles.ball, ...styles.pink}} 
-                            
+                            style={!props.activeBallsP2['6'] ? {...styles.ball, ...styles.pink, ...styles.invisible} : {...styles.ball, ...styles.pink}} 
                             activeBalls={props.activeBallsP2}
-                            val={6} 
-                            
+                            val={6}
                             setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -441,11 +416,9 @@ const BallContainer = props => {
                             activateBalls={props.activateBallsP2}
                             activateOpponentsBalls={props.activateBallsP1}/>
                         <Ball 
-                            style={!props.activeBallsP2['7'] ? {...styles.ball, ...styles.black, ...styles.grey} : {...styles.ball, ...styles.black}} 
-                            
+                            style={!props.activeBallsP2['7'] ? {...styles.ball, ...styles.black, ...styles.invisible} : {...styles.ball, ...styles.black}} 
                             activeBalls={props.activeBallsP2}
                             val={7} 
-                            
                             setPoints={props.setP2Points}
                             setOverlayP1={props.setOverlayP1}
                             setOverlayP2={props.setOverlayP2}
@@ -469,13 +442,11 @@ const BallContainer = props => {
                 </View>
             </View>
         </View>
-    )}
+    )
+}
  
 const styles = StyleSheet.create({
-    main: {
-
-    },
-    mainStats: {
+    ballSection: {
         flexDirection: 'row'
     },
     ballContainer: {
@@ -534,7 +505,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 2,
-        
     },
     buttonLong: {
         height: 30,
@@ -542,7 +512,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-
     },
     buttonText: {
         fontSize: 10,
@@ -587,7 +556,7 @@ const styles = StyleSheet.create({
     black: {
         backgroundColor: '#333',
     },
-    grey: {
+    invisible: {
         opacity: 0
     }
 })
