@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, ScrollView} from 'react-native';
 
 const FrameOverScreen = props => {
@@ -32,24 +32,24 @@ const FrameOverScreen = props => {
 
     return (
         <View style={styles.main}>
-            <ImageBackground style={styles.img} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
+            <ImageBackground style={styles.clothImage} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
             <ScrollView contentContainerStyle={styles.summaryContainer}>
                 <View>
-                    <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                    <ImageBackground style={styles.woodImage} source={require('../assets/png/wood.png')}>
                         <View style={styles.cover}>
-                            <View style={styles.top}>
-                                <Text style={styles.textWinner}><Text style={{color: '#e0de94'}}>MATCH STATS</Text></Text>
+                            <View style={styles.topContainer}>
+                                <Text style={styles.textMainHeader}><Text style={{color: '#e0de94'}}>MATCH STATS</Text></Text>
                             </View>
-                            <View style={styles.topResult}>
-                                <View><Text style={p1frames > p2frames ? [styles.textResult, {color: '#e0de94'}] : styles.textResult}>{p1.toUpperCase()}</Text></View>
+                            <View style={styles.matchResultContainer}>
+                                <View><Text style={p1frames > p2frames ? [styles.textPlayerName, {color: '#e0de94'}] : styles.textPlayerName}>{p1.toUpperCase()}</Text></View>
                                 <View>
                                     <Text>
-                                        <Text style={p1frames > p2frames ? [styles.textScore, {color: '#e0de94'}] : styles.textScore} >{p1frames}</Text> 
-                                        <Text style={styles.textScore}> : </Text> 
-                                        <Text style={p1frames < p2frames ? [styles.textScore, {color: '#e0de94'}] : styles.textScore}>{p2frames}</Text>
+                                        <Text style={p1frames > p2frames ? [styles.textFrameResult, {color: '#e0de94'}] : styles.textFrameResult} >{p1frames}</Text> 
+                                        <Text style={styles.textFrameResult}> : </Text> 
+                                        <Text style={p1frames < p2frames ? [styles.textFrameResult, {color: '#e0de94'}] : styles.textFrameResult}>{p2frames}</Text>
                                     </Text>
                                 </View>
-                                <View><Text style={p1frames < p2frames ? [styles.textResult, {color: '#e0de94'}] : styles.textResult}>{p2.toUpperCase()}</Text></View>
+                                <View><Text style={p1frames < p2frames ? [styles.textPlayerName, {color: '#e0de94'}] : styles.textPlayerName}>{p2.toUpperCase()}</Text></View>
                             </View>
                             <View style={styles.statsContainer}>
                                 <View style={styles.p1Stats}>
@@ -60,7 +60,7 @@ const FrameOverScreen = props => {
                                     <View><Text style={!proMode ? {display: 'none'} : p1safetySuccess > p2safetySuccess? styles.textBetter : styles.text}>{Math.round(p1safetySuccess)}%</Text></View>
                                     <View><Text style={p1break > p2break ? styles.textBetter : styles.text}>{p1break}</Text></View>
                                 </View>
-                                <View style={styles.stats}>
+                                <View style={styles.statNames}>
                                     <View><Text style={styles.text}>TOTAL POINTS</Text></View>
                                     <View><Text style={styles.text}>BALLS POTTED</Text></View>
                                     <View><Text style={styles.text}>POT SUCCESS</Text></View>
@@ -150,15 +150,14 @@ const FrameOverScreen = props => {
 const styles = StyleSheet.create({
     main: {
         flex: 1,
-        
     },
-    img: {
+    clothImage: {
         height: '100%',
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center'
         },
-    img2: {
+    woodImage: {
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center'
@@ -171,32 +170,15 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         top:100
     },
-    summaryContainer2: {
-        height: '20%',
-        width: '40%',
-        borderRadius: 20,
-        overflow: 'hidden',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 3
-    },
     cover: {
         backgroundColor: 'rgba(60,5,0, 0.6)',
         width: '100%',
         padding: 20
        },
-    cover2: {
-        backgroundColor: 'rgba(60,5,0, 0.6)',
-        height: '100%',
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center'
-       },
-    top: {
+    topContainer: {
         marginBottom: 10
     },
-    topResult: {
-
+    matchResultContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -204,7 +186,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     statsContainer: {
-
         flexDirection: 'row',
         backgroundColor: 'rgba(255,255,255,0.1)',
         borderRadius: 20,
@@ -216,7 +197,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '15%'
     },
-    stats: {
+    statNames: {
         justifyContent: 'center',
         alignItems: 'center',
         width: '70%'
@@ -234,21 +215,21 @@ const styles = StyleSheet.create({
         color: '#e0de94',
         fontFamily: 'score'
     },
-    textResult: {
+    textPlayerName: {
         color: 'white',
         fontFamily: 'score',
         fontSize: 16,
         width: 100,
         textAlign: 'center'
     },
-    textWinner: {
+    textMainHeader: {
         color: 'white',
         fontFamily: 'score',
         textAlign: 'center',
         fontSize: 20,
         paddingHorizontal: 30
     },
-    textScore: {
+    textFrameResult: {
         color: 'white',
         fontFamily: 'score',
         textAlign: 'center',
@@ -273,6 +254,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    nextFrameText: {
+        color: 'black',
+        fontFamily: 'scoreBold',
+        fontSize: 18
+    },
     endMatch: {
         height: 40,
         width: 100,
@@ -291,11 +277,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    nextFrameText: {
-        color: 'black',
-        fontFamily: 'scoreBold',
-        fontSize: 18
-    },
+    
     endMatchText: {
         color: '#bbb',
         fontFamily: 'score',

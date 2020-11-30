@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Dimensions, ImageBackground, View, TouchableNativeFeedback, Text} from 'react-native';
+import { StyleSheet, Dimensions, ImageBackground, View } from 'react-native';
 
-import Ball from '../components/Ball'
 import BallContainer from '../components/BallContainer'
 import ScoreContainer from '../components/ScoreContainer'
 import MissContainer from '../components/MissContainer'
@@ -167,16 +166,14 @@ const ScoreScreen = props => {
     }, [remaining, statsP1, statsP2])
 
     const modifyArray = () => {
-            const arr = previousShots
-            if (arr.length === 5) {
-                setPreviousShots(arr.splice(1,currentShotIndex)
-                )
-            } else {
-                setPreviousShots(arr.splice(0,currentShotIndex+1)
-                )
-            }
-            
-        
+        const arr = previousShots
+        if (arr.length === 5) {
+            setPreviousShots(arr.splice(1,currentShotIndex)
+            )
+        } else {
+            setPreviousShots(arr.splice(0,currentShotIndex+1)
+            )
+        }
     }
 
     useEffect(()=> {
@@ -186,114 +183,116 @@ const ScoreScreen = props => {
 
     const activateBallsP1 = val => {
         setActiveBallsP1({
-            '1': val === 1 ? true: false,
-            '2': val === 2 || val === 8 ? true: false,
-            '3': val === 3 || val === 8 ? true: false,
-            '4': val === 4 || val === 8 ? true: false,
-            '5': val === 5 || val === 8 ? true: false,
-            '6': val === 6 || val === 8 ? true: false,
-            '7': val === 7 || val === 8 ? true: false,
+            '1': val === 1,
+            '2': val === 2 || val === 8,
+            '3': val === 3 || val === 8,
+            '4': val === 4 || val === 8,
+            '5': val === 5 || val === 8,
+            '6': val === 6 || val === 8,
+            '7': val === 7 || val === 8,
         })
     }
 
     const activateBallsP2 = val => {
         setActiveBallsP2({
-            '1': val === 1 ? true: false,
-            '2': val === 2 || val === 8 ? true: false,
-            '3': val === 3 || val === 8 ? true: false,
-            '4': val === 4 || val === 8 ? true: false,
-            '5': val === 5 || val === 8 ? true: false,
-            '6': val === 6 || val === 8 ? true: false,
-            '7': val === 7 || val === 8 ? true: false,
+            '1': val === 1,
+            '2': val === 2 || val === 8,
+            '3': val === 3 || val === 8,
+            '4': val === 4 || val === 8,
+            '5': val === 5 || val === 8,
+            '6': val === 6 || val === 8,
+            '7': val === 7 || val === 8,
         })
     }
 
-        useEffect(() => {
-            if (remaining === 27) {
-                activateBallsP1(2)
-                activateBallsP2(2)
-            } else if (remaining === 25) {
-                activateBallsP1(3)
-                activateBallsP2(3)
-            } else if (remaining === 22) {
-                activateBallsP1(4)
-                activateBallsP2(4)
-            } else if (remaining === 18) {
-                activateBallsP1(5)
-                activateBallsP2(5)
-            } else if (remaining === 13) {
-                activateBallsP1(6)
-                activateBallsP2(6)
-            } else if (remaining === 7) {
-                activateBallsP1(7)
-                activateBallsP2(7)
-            }
-        } , [remaining, statsP1, statsP2])
+    useEffect(() => {
+        if (remaining === 27) {
+            activateBallsP1(2)
+            activateBallsP2(2)
+        } else if (remaining === 25) {
+            activateBallsP1(3)
+            activateBallsP2(3)
+        } else if (remaining === 22) {
+            activateBallsP1(4)
+            activateBallsP2(4)
+        } else if (remaining === 18) {
+            activateBallsP1(5)
+            activateBallsP2(5)
+        } else if (remaining === 13) {
+            activateBallsP1(6)
+            activateBallsP2(6)
+        } else if (remaining === 7) {
+            activateBallsP1(7)
+            activateBallsP2(7)
+        }
+    } , [remaining, statsP1, statsP2])
 
-        useEffect(() => {
-            if (remaining === 7 && extraBlack) {
+    useEffect(() => {
+        if (remaining === 7 && extraBlack) {
+            if (p1Points > p2Points) {
+                setEndOfFrame(true)
+                setExtraBlack(false)
+            } else if (p1Points < p2Points) {
+                setEndOfFrame(true)
+                setExtraBlack(false)
+            }
+        } else if (remaining === 7) {
+            if (p1Points - p2Points > 7 && overlayP1 || p1Points - p2Points > 7 && !overlayP1 && !overlayP2) {
+                setEndOfFrame(true)
+            } else if (p2Points - p1Points > 7 && overlayP2 || p2Points - p1Points > 7 && !overlayP1 && !overlayP2) {
+                setEndOfFrame(true)
+            }
+        } else if (remaining === 0) {
+            if (!extraBlack) {
+                if (p1Points > p2Points) {
+                    setEndOfFrame(true)
+                } else if (p1Points < p2Points) {
+                    setEndOfFrame(true)
+                } else if (p1Points === p2Points) {
+                    setRemaining(7)
+                    setExtraBlack(true)
+                    setOverlayP1(false)
+                    setOverlayP2(false)
+                }
+            } else {
                 if (p1Points > p2Points) {
                     setEndOfFrame(true)
                     setExtraBlack(false)
                 } else if (p1Points < p2Points) {
                     setEndOfFrame(true)
                     setExtraBlack(false)
-                }
-            } else if (remaining === 7) {
-                if (p1Points - p2Points > 7 && overlayP1 || p1Points - p2Points > 7 && !overlayP1 && !overlayP2) {
-                    setEndOfFrame(true)
-                } else if (p2Points - p1Points > 7 && overlayP2 || p2Points - p1Points > 7 && !overlayP1 && !overlayP2) {
-                    setEndOfFrame(true)
-                }
-            } else if (remaining === 0) {
-                if (!extraBlack) {
-                    if (p1Points > p2Points) {
-                        setEndOfFrame(true)
-                    } else if (p1Points < p2Points) {
-                        setEndOfFrame(true)
-                    } else if (p1Points === p2Points) {
-                        setRemaining(7)
-                        setExtraBlack(true)
-                        setOverlayP1(false)
-                        setOverlayP2(false)
-                    }
-                } else {
-                    if (p1Points > p2Points) {
-                        setEndOfFrame(true)
-                        setExtraBlack(false)
-                    } else if (p1Points < p2Points) {
-                        setEndOfFrame(true)
-                        setExtraBlack(false)
                 }
             } 
-        }}, [statsP1, statsP2])
+        }
+    }, [statsP1, statsP2])
 
-        useEffect(()=>{
-            if (endOfFrame){
-                if (p1Points > p2Points) {
-                    setP1Frames(prev => prev+1)
-                    setStatsP1(prev => ({
-                        ...prev,
-                        points: prev.points+p1Points
-                    }))
-                    setStatsP2(prev => ({
-                        ...prev,
-                        points: prev.points+p2Points
-                    }))
-                } else if (p1Points < p2Points) {
-                    setP2Frames(prev => prev+1)
-                    setStatsP1(prev => ({
-                        ...prev,
-                        points: prev.points+p1Points
-                    }))
-                    setStatsP2(prev => ({
-                        ...prev,
-                        points: prev.points+p2Points
-                    }))
-            }}
-        }, [endOfFrame])
+    useEffect(()=>{
+        if (endOfFrame){
+            if (p1Points > p2Points) {
+                setP1Frames(prev => prev+1)
+                setStatsP1(prev => ({
+                    ...prev,
+                    points: prev.points+p1Points
+                }))
+                setStatsP2(prev => ({
+                    ...prev,
+                    points: prev.points+p2Points
+                }))
+            } else if (p1Points < p2Points) {
+                setP2Frames(prev => prev+1)
+                setStatsP1(prev => ({
+                    ...prev,
+                    points: prev.points+p1Points
+                }))
+                setStatsP2(prev => ({
+                    ...prev,
+                    points: prev.points+p2Points
+                }))
+            }
+        }
+    }, [endOfFrame])
 
-        const score = <ImageBackground style={styles.img} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
+    const mainScoreScreen = <ImageBackground style={styles.clothImage} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
         <View style={styles.bar}/>
         {overlayP1 && !proMode ? <View style={styles.overlay}>
                 <SwitchButton 
@@ -372,7 +371,6 @@ const ScoreScreen = props => {
                 modifyArray={modifyArray}
                 navigation={props.navigation}
                 style={{zIndex: 3}}/>
-            
             <BallContainer 
                 setP1Points={setP1Points} 
                 setP2Points={setP2Points} 
@@ -384,7 +382,6 @@ const ScoreScreen = props => {
                 setOverlayP2={setOverlayP2}
                 remaining={remaining}
                 setRemaining={setRemaining}
-
                 freeBallP1={freeBallP1}
                 setFreeBallP1={setFreeBallP1}
                 freeBallP2={freeBallP2}
@@ -393,7 +390,6 @@ const ScoreScreen = props => {
                 setFreeBallButtonP1={setFreeBallButtonP1}
                 freeBallButtonP2={freeBallButtonP2}
                 setFreeBallButtonP2={setFreeBallButtonP2}
-
                 setStatsP1={setStatsP1}
                 setStatsP2={setStatsP2}
                 setLongPotP1={setLongPotP1}
@@ -434,7 +430,7 @@ const ScoreScreen = props => {
                 modifyArray={modifyArray}
                 />
             <View style={styles.bottomContainer}>
-                <ImageBackground style={styles.bottom} source={require('../assets/png/wood.png')}>
+                <ImageBackground style={styles.woodImage} source={require('../assets/png/wood.png')}>
                     <View style={styles.cover}>
                         <SafetyContainer 
                             activateBallsP1={activateBallsP1}
@@ -519,72 +515,73 @@ const ScoreScreen = props => {
                             modifyArray={modifyArray}/>
                     </View>
                 </ImageBackground>
-            </View>
-            
-
+            </View>  
         </ImageBackground>
+
+    const frameOverScreen = <FrameOverScreen 
+        mode={mode}
+        proMode={proMode}
+        p1Frames={p1Frames}
+        p2Frames={p2Frames}
+        p1Name={p1Name}
+        p2Name={p2Name}
+        p1Points={p1Points}
+        p2Points={p2Points}
+        statsP1={statsP1}
+        statsP2={statsP2}
+        successP1={successP1}
+        successP2={successP2}
+        breakP1={breakP1}
+        breakP2={breakP2}
+        setEndOfFrame={setEndOfFrame}
+        setP1Points={setP1Points}
+        setP2Points={setP2Points}
+        setRemaining={setRemaining}
+        setOverlayP1={setOverlayP1}
+        setOverlayP2={setOverlayP2}
+        setCurrentBreakP1={setCurrentBreakP1}
+        setCurrentBreakP2={setCurrentBreakP2}
+        activateBallsP1={activateBallsP1}
+        activateBallsP2={activateBallsP2}
+        setFrameRecord={setFrameRecord}
+        setEndOfMatch={setEndOfMatch}
+        setPreviousShots={setPreviousShots}
+        backwardMode={backwardMode}
+        setBackwardMode={setBackwardMode}
+        setCurrentShotIndex={setCurrentShotIndex}
+        setLongPotP1={setLongPotP1}
+        setLongPotP2={setLongPotP2}
+        />
+
+    const gameOverScreen = <GameOverScreen 
+        proMode={proMode}
+        p1Frames={p1Frames}
+        p2Frames={p2Frames}
+        p1Name={p1Name}
+        p2Name={p2Name}
+        statsP1={statsP1}
+        statsP2={statsP2}
+        successP1={successP1}
+        successP2={successP2}
+        breakP1={breakP1}
+        breakP2={breakP2}
+        activateBallsP1={activateBallsP1}
+        activateBallsP2={activateBallsP2}
+        frameRecord={frameRecord}
+        navigation={props.navigation}
+        />
         
 
     return (
         <View style={styles.main}>
-            {endOfFrame ? <FrameOverScreen 
-            mode={mode}
-            proMode={proMode}
-            p1Frames={p1Frames}
-            p2Frames={p2Frames}
-            p1Name={p1Name}
-            p2Name={p2Name}
-            p1Points={p1Points}
-            p2Points={p2Points}
-            statsP1={statsP1}
-            statsP2={statsP2}
-            successP1={successP1}
-            successP2={successP2}
-            breakP1={breakP1}
-            breakP2={breakP2}
-            setEndOfFrame={setEndOfFrame}
-            setP1Points={setP1Points}
-            setP2Points={setP2Points}
-            setRemaining={setRemaining}
-            setOverlayP1={setOverlayP1}
-            setOverlayP2={setOverlayP2}
-            setCurrentBreakP1={setCurrentBreakP1}
-            setCurrentBreakP2={setCurrentBreakP2}
-            activateBallsP1={activateBallsP1}
-            activateBallsP2={activateBallsP2}
-            setFrameRecord={setFrameRecord}
-            setEndOfMatch={setEndOfMatch}
-            setPreviousShots={setPreviousShots}
-            backwardMode={backwardMode}
-            setBackwardMode={setBackwardMode}
-            setCurrentShotIndex={setCurrentShotIndex}
-            setLongPotP1={setLongPotP1}
-            setLongPotP2={setLongPotP2}
-            />  : endOfMatch ? <GameOverScreen 
-            proMode={proMode}
-            p1Frames={p1Frames}
-            p2Frames={p2Frames}
-            p1Name={p1Name}
-            p2Name={p2Name}
-            statsP1={statsP1}
-            statsP2={statsP2}
-            successP1={successP1}
-            successP2={successP2}
-            breakP1={breakP1}
-            breakP2={breakP2}
-            activateBallsP1={activateBallsP1}
-            activateBallsP2={activateBallsP2}
-            frameRecord={frameRecord}
-            navigation={props.navigation}
-            /> : score}
-            
+            {endOfFrame ? frameOverScreen : endOfMatch ?  gameOverScreen : mainScoreScreen}
         </View>
-    )}
+    )
+}
  
-    ScoreScreen.navigationOptions = {
-        headerShown: false
-    }
-    
+ScoreScreen.navigationOptions = {
+    headerShown: false
+}
 
 const styles = StyleSheet.create({
    main: {
@@ -607,11 +604,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 2
    },
-   img: {
+   clothImage: {
     height: '100%',
     width: '100%'
     },
-   bottom: {
+   woodImage: {
        borderRadius: 20,
        paddingBottom: 200
    },
@@ -626,10 +623,8 @@ const styles = StyleSheet.create({
    cover: {
     paddingTop: 3,
     backgroundColor: 'rgba(60,5,0, 0.6)',
-    paddingBottom: 200,
-
-   },
-
+    paddingBottom: 200
+   }
 })
 
 export default ScoreScreen

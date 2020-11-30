@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, TextInput, Image, KeyboardAvoidingView} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, TextInput, Image } from 'react-native';
 
 
 const StartScreen = props => {
@@ -13,23 +13,23 @@ const StartScreen = props => {
 
     return (
         <View style={styles.main}>
-            <ImageBackground style={styles.img} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
+            <ImageBackground style={styles.backgroundImage} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
                 {error && <View style={styles.overlay}>
-                    <View style={styles.summaryContainerError}>
-                        <ImageBackground style={styles.img} source={require('../assets/png/wood.png')}>
-                            <View style={styles.coverError}>
+                    <View style={styles.errorContainer}>
+                        <ImageBackground style={styles.backgroundImage} source={require('../assets/png/wood.png')}>
+                            <View style={styles.coverSmall}>
                                 <View style={styles.errorMessage}>
                                     <Text style={styles.errorMessageTextHeader}>Invalid name!</Text>
                                     <Text style={styles.errorMessageText}>Please, enter a correct one before starting the game. Player's name must be at least 2 characters long.</Text>
                                 </View>
-                                <View style={styles.endMatch}>
+                                <View style={styles.smallButtonContainer}>
                                     <TouchableNativeFeedback
                                     onPress={() => {
                                         setError(false)
                                     }}
                                     background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
-                                        <View style={styles.endMatchButton}>
-                                            <Text style={styles.endMatchText}>OK</Text>
+                                        <View style={styles.smallButton}>
+                                            <Text style={styles.smallButtonText}>OK</Text>
                                         </View>
                                     </TouchableNativeFeedback>
                                 </View>
@@ -37,11 +37,11 @@ const StartScreen = props => {
                         </ImageBackground>
                     </View>
                 </View>}
-                <View style={styles.summaryContainer}>
-                    <ImageBackground style={styles.img} source={require('../assets/png/wood.png')}>
+                <View style={styles.mainContainer}>
+                    <ImageBackground style={styles.backgroundImage} source={require('../assets/png/wood.png')}>
                         <View style={styles.cover}>
-                            <View style={styles.name}>
-                                <Text style={styles.topHeader}>SNOOKER COUNTER</Text>
+                            <View style={styles.appNameContainer}>
+                                <Text style={styles.appName}>SNOOKER COUNTER</Text>
                             </View>
                             <View style={styles.playersContainer}>
                                 <View>
@@ -107,26 +107,26 @@ const StartScreen = props => {
                             </View>
                             <View>
                                 <Text style={styles.headerText}>COUNTER MODE</Text>
-                                <View style={styles.proModeContainer}>
-                                    <View style={!proMode ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                <View style={styles.modeContainer}>
+                                    <View style={!proMode ? styles.modeButtonOn : styles.modeButtonOff}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
                                             setProMode(false)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
-                                            <View style={styles.proMode}>
-                                                <Text style={styles.proModeText}>Normal</Text>
+                                            <View style={styles.mode}>
+                                                <Text style={styles.modeText}>Normal</Text>
                                             </View>
                                         </TouchableNativeFeedback>
                                     </View>
-                                    <View style={proMode ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                    <View style={proMode ? styles.modeButtonOn : styles.modeButtonOff}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
                                             setProMode(true)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
-                                            <View style={styles.proMode}>
-                                                <Text style={styles.proModeText}>Pro</Text>
+                                            <View style={styles.mode}>
+                                                <Text style={styles.modeText}>Pro</Text>
                                             </View>
                                         </TouchableNativeFeedback>
                                     </View>
@@ -135,10 +135,10 @@ const StartScreen = props => {
                         </View>
                     </ImageBackground>
                 </View>
-                <View style={styles.summaryContainer2}>
-                    <ImageBackground style={styles.img} source={require('../assets/png/wood.png')}>
-                        <View style={styles.cover2}>
-                            <View style={styles.nextFrame}>
+                <View style={styles.buttonsContainer}>
+                    <ImageBackground style={styles.backgroundImage} source={require('../assets/png/wood.png')}>
+                        <View style={styles.coverSmall}>
+                            <View style={styles.startGame}>
                                 <TouchableNativeFeedback
                                 onPress={() => {
                                     if (p1Name.length >= 2 && p2Name.length >= 2){
@@ -156,19 +156,19 @@ const StartScreen = props => {
                                     }
                                 }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
-                                    <View style={styles.nextFrameButton}>
-                                        <Text style={styles.nextFrameText}>START</Text>
+                                    <View style={styles.startGameButton}>
+                                        <Text style={styles.startGameText}>START</Text>
                                     </View>
                                 </TouchableNativeFeedback>
                             </View>
-                            <View style={styles.endMatch}>
+                            <View style={styles.smallButtonContainer}>
                                 <TouchableNativeFeedback
                                 onPress={() => {
                                     props.navigation.navigate('Help')
                                 }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
-                                    <View style={styles.endMatchButton}>
-                                        <Text style={styles.endMatchText}>How to use?</Text>
+                                    <View style={styles.smallButton}>
+                                        <Text style={styles.smallButtonText}>How to use?</Text>
                                     </View>
                                 </TouchableNativeFeedback>
                             </View>
@@ -196,9 +196,8 @@ StartScreen.navigationOptions = {
 const styles = StyleSheet.create({
     main: {
         flex: 1,
-        
     },
-    img: {
+    backgroundImage: {
         height: '100%',
         width: '100%',
         justifyContent: 'center',
@@ -213,7 +212,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    summaryContainer: {
+    mainContainer: {
         height: '60%',
         width: '80%',
         borderRadius: 20,
@@ -221,7 +220,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderWidth: 3
     },
-    summaryContainer2: {
+    buttonsContainer: {
         height: '20%',
         width: '80%',
         borderRadius: 20,
@@ -230,7 +229,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 3
     },
-    summaryContainerError: {
+    errorContainer: {
         height: '30%',
         width: '60%',
         borderRadius: 20,
@@ -245,20 +244,13 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 20
        },
-    cover2: {
+    coverSmall: {
         backgroundColor: 'rgba(60,5,0, 0.6)',
         height: '100%',
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center'
        },
-    coverError: {
-        backgroundColor: 'rgba(60,5,0, 0.6)',
-        height: '100%',
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     errorMessage: {
         height: '65%',
         width: '90%',
@@ -281,10 +273,10 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         padding: 10
     },
-    name: {
+    appNameContainer: {
         height: '15%'
     },
-    topHeader: {
+    appName: {
         color: '#e0de94',
         fontFamily: 'scoreBold',
         textAlign: 'center',
@@ -300,6 +292,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    headerText: {
+        color: '#e0de94',
+        fontFamily: 'scoreBold',
+        textAlign: 'center',
+        fontSize: 18
+    },
     textInput: {
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
         borderRadius: 5,
@@ -307,8 +305,6 @@ const styles = StyleSheet.create({
         color: '#ddd',
         fontFamily: 'score'
     },
-
-
     redButtonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -353,14 +349,7 @@ const styles = StyleSheet.create({
         height: 28,
         width: 30
     },
-    headerText: {
-        color: '#e0de94',
-        fontFamily: 'scoreBold',
-        textAlign: 'center',
-        fontSize: 18
-    },
-
-    proModeButtonOff: {
+    modeButtonOff: {
         height: 45,
         width: 75,
         borderRadius: 22.5,
@@ -370,7 +359,7 @@ const styles = StyleSheet.create({
         opacity: 0.4,
         marginHorizontal: 10
     },
-    proModeButtonOn: {
+    modeButtonOn: {
         height: 45,
         width: 75,
         borderRadius: 22.5,
@@ -379,7 +368,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255,0.3)',
         marginHorizontal: 10
     },
-    proMode: {
+    mode: {
         height: 45,
         width: 75,
         borderRadius: 22.5,
@@ -388,21 +377,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    proModeText: {
+    modeText: {
         fontFamily: 'score',
         fontSize: 16,
         textAlign: 'center',
         color: '#ddd'
     },
-    proModeContainer: {
+    modeContainer: {
         flexDirection: 'row', 
         justifyContent: 'center',
         paddingVertical: 10
     },
-
-
-
-    nextFrame: {
+    startGame: {
         height: 60,
         width: 140,
         borderRadius: 15,
@@ -411,7 +397,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255,0.4)',
         marginBottom: 5
     },
-    nextFrameButton: {
+    startGameButton: {
         height: 60,
         width: 140,
         borderRadius: 15,
@@ -420,7 +406,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    endMatch: {
+    startGameText: {
+        color: '#ddd',
+        fontFamily: 'scoreBold',
+        fontSize: 22
+    },
+    smallButtonContainer: {
         height: 40,
         width: 100,
         borderRadius: 15,
@@ -429,7 +420,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255,0.2)',
         marginVertical: 5
     },
-    endMatchButton: {
+    smallButton: {
         height: 40,
         width: 100,
         borderRadius: 15,
@@ -438,12 +429,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    nextFrameText: {
-        color: '#ddd',
-        fontFamily: 'scoreBold',
-        fontSize: 22
-    },
-    endMatchText: {
+    smallButtonText: {
         color: '#bbb',
         fontFamily: 'score',
         fontSize: 14
