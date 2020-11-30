@@ -7,6 +7,7 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
     setOverlayP1, setOverlayP2, remaining, setRemaining, freeBallP1, setFreeBallP1, freeBallP2, setFreeBallP2, freeBallButtonP1,
     setFreeBallButtonP1, freeBallButtonP2, setFreeBallButtonP2, setStatsP1, setStatsP2, setLongPotP1, longPotP1, setLongPotP2, longPotP2,
     setCurrentBreakP1, setCurrentBreakP2, proMode, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
+        
     const playerOne = 'p1'
     const playerTwo = 'p2'
 

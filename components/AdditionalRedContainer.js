@@ -4,24 +4,29 @@ import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
 const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, activeBallsP1, activeBallsP2,
     setP1Points, setP2Points, setStatsP1, setStatsP2, freeBallButtonP1, freeBallButtonP2, setCurrentBreakP1,
     setCurrentBreakP2, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
+
+    const redWentIn = () => {
+        if (backwardMode) {
+            modifyArray()
+            setBackwardMode(false)
+        }
+        setCurrentShotIndex(4)
+        setRemaining(prev => prev-8)
+    }
+
     return (
         <View style={styles.main}>
             <View style={styles.additionalRedsContainer}>
                 <View style={remaining < 35 || (activeBallsP1['1']) || (remaining !== 147 && !overlayP1 && !overlayP2) || overlayP1 ? {display: 'none'} : styles.additionalRedButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (backwardMode) {
-                                modifyArray()
-                                setBackwardMode(false)
-                            }
-                            setCurrentShotIndex(4)
+                            redWentIn()
                             setStatsP1(prev => ({
                                 ...prev,
                                 pots: prev.pots+1
                             }))
                             setCurrentBreakP1(prev => prev+1)
                             setP1Points(prev => prev+1)
-                            setRemaining(prev => prev-8)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -33,12 +38,7 @@ const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, 
                 <View style={remaining < 35 || !freeBallButtonP2 ? {display: 'none'} : styles.redWentInButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (backwardMode) {
-                                modifyArray()
-                                setBackwardMode(false)
-                            }
-                            setCurrentShotIndex(4)
-                            setRemaining(prev => prev-8)
+                            redWentIn()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -52,18 +52,13 @@ const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, 
                 <View style={remaining < 35 || (activeBallsP2['1'])  || (remaining !== 147 && !overlayP1 && !overlayP2) || overlayP2? {display: 'none'} : styles.additionalRedButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (backwardMode) {
-                                modifyArray()
-                                setBackwardMode(false)
-                            }
-                            setCurrentShotIndex(4)
+                            redWentIn()
                             setStatsP2(prev => ({
                                 ...prev,
                                 pots: prev.pots+1
                             }))
                             setCurrentBreakP2(prev => prev+1)
                             setP2Points(prev => prev+1)
-                            setRemaining(prev => prev-8)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -75,12 +70,7 @@ const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, 
                 <View style={remaining < 35 || !freeBallButtonP1 ? {display: 'none'} : styles.redWentInButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (backwardMode) {
-                                modifyArray()
-                                setBackwardMode(false)
-                            }
-                            setCurrentShotIndex(4)
-                            setRemaining(prev => prev-8)
+                            redWentIn()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >

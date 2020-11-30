@@ -4,21 +4,25 @@ import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
 const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFreeBallP1, setFreeBallP2,
     setFreeBallButtonP1, setFreeBallButtonP2, backwardMode, setBackwardMode, modifyArray}) => {
     
+    const conceide = () => {
+        if (backwardMode) {
+            modifyArray()
+            setBackwardMode(false)
+        }
+        setFreeBallP1(false)
+        setFreeBallP2(false)
+        setFreeBallButtonP1(false)
+        setFreeBallButtonP2(false)
+        setEndOfFrame(true)
+    }
+
     return (
         <View style={styles.main}>
             <View style={styles.conceideButtonContainer}>
                 <View style={p2Points-p1Points > remaining ? styles.conceideButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (backwardMode) {
-                                modifyArray()
-                                setBackwardMode(false)
-                            }
-                            setFreeBallP1(false)
-                            setFreeBallP2(false)
-                            setFreeBallButtonP1(false)
-                            setFreeBallButtonP2(false)
-                            setEndOfFrame(true)
+                            conceide()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -30,12 +34,7 @@ const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFre
                 <View style={remaining === 7 && p1Points-p2Points > 7 ? styles.endFrameButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (backwardMode) {
-                                modifyArray()
-                                setBackwardMode(false)
-                            }
-                            
-                            setEndOfFrame(true)
+                            conceide()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -49,15 +48,7 @@ const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFre
                 <View style={p1Points-p2Points > remaining ? styles.conceideButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (backwardMode) {
-                                modifyArray()
-                                setBackwardMode(false)
-                            }
-                            setFreeBallP1(false)
-                            setFreeBallP2(false)
-                            setFreeBallButtonP1(false)
-                            setFreeBallButtonP2(false)
-                            setEndOfFrame(true)
+                            conceide()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -69,11 +60,7 @@ const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFre
                 <View style={remaining === 7 && p2Points-p1Points > 7 ? styles.endFrameButton : {display: 'none'}}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (backwardMode) {
-                                modifyArray()
-                                setBackwardMode(false)
-                            }
-                            setEndOfFrame(true)
+                            conceide()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >

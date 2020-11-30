@@ -4,7 +4,60 @@ import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
 const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBallsP2, setOverlayP1, setOverlayP2,
     remaining, setRemaining, freeBallP1, setFreeBallP1, freeBallP2, setFreeBallP2, setFreeBallButtonP1, setFreeBallButtonP2, setLongPotP1, setLongPotP2,
     setCurrentBreakP1, setCurrentBreakP2,setStatsP1, setStatsP2, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
-    return (
+    
+    const foul = (p, val) => {
+        if (backwardMode) {
+            modifyArray()
+            setBackwardMode(false)
+        }
+        setCurrentShotIndex(4)
+        setOverlayP1(false)
+        setOverlayP2(false)
+        setCurrentBreakP1(0)
+        setCurrentBreakP2(0)
+        setLongPotP1(false)
+        setLongPotP2(false)
+        if (p === 1) {
+            setP2Points(prev => prev+val)
+            setStatsP1(prev => ({
+                ...prev,
+                foulPointsGivenAway: prev.foulPointsGivenAway+val
+            }))
+            setFreeBallButtonP1(false)
+            setFreeBallButtonP2(remaining > 7)
+            setFreeBallP1(false)
+        } else {
+            setP1Points(prev => prev+val)
+            setStatsP2(prev => ({
+                ...prev,
+                foulPointsGivenAway: prev.foulPointsGivenAway+val
+            }))
+            setFreeBallButtonP1(remaining > 7)
+            setFreeBallButtonP2(false)
+            setFreeBallP2(false)
+        }
+
+        if (remaining === 34) {
+            activateBallsP1(2)
+            activateBallsP2(2)
+            setOverlayP1(false)
+            setOverlayP2(false)
+            if (p === 1 && !freeBallP1 || p === 2 && !freeBallP2) {
+                setRemaining(remaining - 7)
+            }
+        } else if (remaining > 27 && (remaining - 27)%8 === 0) {
+            activateBallsP1(1)
+            activateBallsP2(1)
+        } else if (remaining > 27 && (remaining - 27)%8 !== 0) {
+            activateBallsP1(p === 1 ? 8 : 1)
+            activateBallsP2(p === 2 ? 8 : 1)
+            if (p === 1 && !freeBallP1 || p === 2 && !freeBallP2) {
+                setRemaining(remaining - 7)
+            }
+        }
+    }
+
+        return (
         <View style={styles.main}>
             <View style={styles.mainFoulButtonContainer}>
                 <View style={styles.textContainer}>
@@ -14,41 +67,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     <View style={remaining >= 22 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (backwardMode) {
-                                    modifyArray()
-                                    setBackwardMode(false)
-                                }
-                                setCurrentShotIndex(4)
-                                setStatsP1(prev => ({
-                                    ...prev,
-                                    foulPointsGivenAway: prev.foulPointsGivenAway+4
-                                }))
-                                setCurrentBreakP1(0)
-                                setLongPotP1(false)
-                                setFreeBallButtonP1(false)
-                                setFreeBallButtonP2(true)
-                                setFreeBallP1(false)
-                                if (remaining === 34) {
-                                    activateBallsP1(2)
-                                    activateBallsP2(2)
-                                    setOverlayP1(false)
-                                    setOverlayP2(false)
-                                    if (!freeBallP1) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                } else if (remaining > 27 && (remaining - 27)%8 === 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(1)
-                                } else if (remaining > 27 && (remaining - 27)%8 !== 0) {
-                                    activateBallsP1(8)
-                                    activateBallsP2(1)
-                                    if (!freeBallP1) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                }
-                                setP2Points(prev => prev+4)
-                                setOverlayP1(false)
-                                setOverlayP2(false)
+                                foul(1, 4)
                             }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                             >
@@ -60,41 +79,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     <View style={remaining >= 18 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (backwardMode) {
-                                    modifyArray()
-                                    setBackwardMode(false)
-                                }
-                                setCurrentShotIndex(4)
-                                setStatsP1(prev => ({
-                                    ...prev,
-                                    foulPointsGivenAway: prev.foulPointsGivenAway+5
-                                }))
-                                setCurrentBreakP1(0)
-                                setLongPotP1(false)
-                                setFreeBallButtonP1(false)
-                                setFreeBallButtonP2(true)
-                                setFreeBallP1(false)
-                                if (remaining === 34) {
-                                    activateBallsP1(2)
-                                    activateBallsP2(2)
-                                    setOverlayP1(false)
-                                    setOverlayP2(false)
-                                    if (!freeBallP1) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                } else if (remaining > 27 && (remaining - 27)%8 === 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(1)
-                                } else if (remaining > 27 && (remaining - 27)%8 !== 0) {
-                                    activateBallsP1(8)
-                                    activateBallsP2(1)
-                                    if (!freeBallP1) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                }
-                                setP2Points(prev => prev+5)
-                                setOverlayP1(false)
-                                setOverlayP2(false)
+                                foul(1, 5)
                             }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                             >
@@ -106,41 +91,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     <View style={remaining >= 13 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (backwardMode) {
-                                    modifyArray()
-                                    setBackwardMode(false)
-                                }
-                                setCurrentShotIndex(4)
-                                setStatsP1(prev => ({
-                                    ...prev,
-                                    foulPointsGivenAway: prev.foulPointsGivenAway+6
-                                }))
-                                setCurrentBreakP1(0)
-                                setLongPotP1(false)
-                                setFreeBallButtonP1(false)
-                                setFreeBallButtonP2(true)
-                                setFreeBallP1(false)
-                                if (remaining === 34) {
-                                    activateBallsP1(2)
-                                    activateBallsP2(2)
-                                    setOverlayP1(false)
-                                    setOverlayP2(false)
-                                    if (!freeBallP1) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                } else if (remaining > 27 && (remaining - 27)%8 === 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(1)
-                                } else if (remaining > 27 && (remaining - 27)%8 !== 0) {
-                                    activateBallsP1(8)
-                                    activateBallsP2(1)
-                                    if (!freeBallP1) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                }
-                                setP2Points(prev => prev+6)
-                                setOverlayP1(false)
-                                setOverlayP2(false)
+                                foul(1, 6)
                             }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                             >
@@ -152,47 +103,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     <View style={styles.foulButton}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (backwardMode) {
-                                    modifyArray()
-                                    setBackwardMode(false)
-                                }
-                                setCurrentShotIndex(4)
-                                setStatsP1(prev => ({
-                                    ...prev,
-                                    foulPointsGivenAway: prev.foulPointsGivenAway+7
-                                }))
-                                setCurrentBreakP1(0)
-                                setLongPotP1(false)
-                                if (remaining > 7) {
-                                    setFreeBallButtonP1(false)
-                                    setFreeBallButtonP2(true)
-                                    setFreeBallP1(false)
-                                } else {
-                                    setFreeBallButtonP1(false)
-                                    setFreeBallButtonP2(false)
-                                    setFreeBallP1(false)
-                                }
-                                if (remaining === 34) {
-                                    activateBallsP1(2)
-                                    activateBallsP2(2)
-                                    setOverlayP1(false)
-                                    setOverlayP2(false)
-                                    if (!freeBallP1) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                } else if (remaining > 27 && (remaining - 27)%8 === 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(1)
-                                } else if (remaining > 27 && (remaining - 27)%8 !== 0) {
-                                    activateBallsP1(8)
-                                    activateBallsP2(1)
-                                    if (!freeBallP1) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                }
-                                setP2Points(prev => prev+7)
-                                setOverlayP1(false)
-                                setOverlayP2(false)
+                                foul(1, 7)
                             }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                             >
@@ -212,41 +123,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     <View style={remaining >= 22 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (backwardMode) {
-                                    modifyArray()
-                                    setBackwardMode(false)
-                                }
-                                setCurrentShotIndex(4)
-                                setStatsP2(prev => ({
-                                    ...prev,
-                                    foulPointsGivenAway: prev.foulPointsGivenAway+4
-                                }))
-                                setCurrentBreakP2(0)
-                                setLongPotP2(false)
-                                setFreeBallButtonP1(true)
-                                setFreeBallButtonP2(false)
-                                setFreeBallP2(false)
-                                if (remaining === 34) {
-                                    activateBallsP1(2)
-                                    activateBallsP2(2)
-                                    setOverlayP1(false)
-                                    setOverlayP2(false)
-                                    if (!freeBallP2) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                } else if (remaining > 27 && (remaining - 27)%8 === 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(1)
-                                } else if (remaining > 27 && (remaining - 27)%8 !== 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(8)
-                                    if (!freeBallP2) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                }
-                                setP1Points(prev => prev+4)
-                                setOverlayP1(false)
-                                setOverlayP2(false)
+                                foul(2, 4)
                             }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                             >
@@ -258,41 +135,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     <View style={remaining >= 18 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (backwardMode) {
-                                    modifyArray()
-                                    setBackwardMode(false)
-                                }
-                                setCurrentShotIndex(4)
-                                setStatsP2(prev => ({
-                                    ...prev,
-                                    foulPointsGivenAway: prev.foulPointsGivenAway+5
-                                }))
-                                setCurrentBreakP2(0)
-                                setLongPotP2(false)
-                                setFreeBallButtonP1(true)
-                                setFreeBallButtonP2(false)
-                                setFreeBallP2(false)
-                                if (remaining === 34) {
-                                    activateBallsP1(2)
-                                    activateBallsP2(2)
-                                    setOverlayP1(false)
-                                    setOverlayP2(false)
-                                    if (!freeBallP2) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                } else if (remaining > 27 && (remaining - 27)%8 === 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(1)
-                                } else if (remaining > 27 && (remaining - 27)%8 !== 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(8)
-                                    if (!freeBallP2) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                }
-                                setP1Points(prev => prev+5)
-                                setOverlayP1(false)
-                                setOverlayP2(false)
+                                foul(2, 5)
                             }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                             >
@@ -304,41 +147,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     <View style={remaining >= 13 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (backwardMode) {
-                                    modifyArray()
-                                    setBackwardMode(false)
-                                }
-                                setCurrentShotIndex(4)
-                                setStatsP2(prev => ({
-                                    ...prev,
-                                    foulPointsGivenAway: prev.foulPointsGivenAway+6
-                                }))
-                                setCurrentBreakP2(0)
-                                setLongPotP2(false)
-                                setFreeBallButtonP1(true)
-                                setFreeBallButtonP2(false)
-                                setFreeBallP2(false)
-                                if (remaining === 34) {
-                                    activateBallsP1(2)
-                                    activateBallsP2(2)
-                                    setOverlayP1(false)
-                                    setOverlayP2(false)
-                                    if (!freeBallP2) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                } else if (remaining > 27 && (remaining - 27)%8 === 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(1)
-                                } else if (remaining > 27 && (remaining - 27)%8 !== 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(8)
-                                    if (!freeBallP2) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                }
-                                setP1Points(prev => prev+6)
-                                setOverlayP1(false)
-                                setOverlayP2(false)
+                                foul(2, 6)
                             }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                             >
@@ -350,47 +159,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     <View style={styles.foulButton}>
                         <TouchableNativeFeedback
                             onPress={() => {
-                                if (backwardMode) {
-                                    modifyArray()
-                                    setBackwardMode(false)
-                                }
-                                setCurrentShotIndex(4)
-                                setStatsP2(prev => ({
-                                    ...prev,
-                                    foulPointsGivenAway: prev.foulPointsGivenAway+7
-                                }))
-                                setCurrentBreakP2(0)
-                                setLongPotP2(false)
-                                if (remaining > 7) {
-                                    setFreeBallButtonP1(true)
-                                    setFreeBallButtonP2(false)
-                                    setFreeBallP2(false)
-                                } else {
-                                    setFreeBallButtonP1(false)
-                                    setFreeBallButtonP2(false)
-                                    setFreeBallP2(false)
-                                }
-                                if (remaining === 34) {
-                                    activateBallsP1(2)
-                                    activateBallsP2(2)
-                                    setOverlayP1(false)
-                                    setOverlayP2(false)
-                                    if (!freeBallP2) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                } else if (remaining > 27 && (remaining - 27)%8 === 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(1)
-                                } else if (remaining > 27 && (remaining - 27)%8 !== 0) {
-                                    activateBallsP1(1)
-                                    activateBallsP2(8)
-                                    if (!freeBallP2) {
-                                        setRemaining(remaining - 7)
-                                    }
-                                }
-                                setP1Points(prev => prev+7)
-                                setOverlayP1(false)
-                                setOverlayP2(false)
+                                foul(2, 7)
                             }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                             >

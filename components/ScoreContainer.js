@@ -8,6 +8,32 @@ setOverlayP1, setOverlayP2, setP1Points, setP2Points, activateP1, activateP2, ac
 setCurrentBreakP1, setCurrentBreakP2, mode, setFreeBallP1, setFreeBallP2, setFreeBallButtonP1, setFreeBallButtonP2,
 setLongPotP1, setLongPotP2, setBreakP1, setBreakP2, setStatsP1, setStatsP2, previousShots, setPreviousShots,
 currentShotIndex, setCurrentShotIndex, backwardMode, setBackwardMode, navigation, style}) => {
+
+    const setShot = val => {
+        setP1Points(previousShots[val].p1Points)
+        setP2Points(previousShots[val].p2Points)
+        setRemaining(previousShots[val].remaining)
+        activateP1(previousShots[val].activeBallsP1)
+        activateP2(previousShots[val].activeBallsP2)
+        setOverlayP1(previousShots[val].overlayP1),
+        setOverlayP2(previousShots[val].overlayP2),
+        setFreeBallP1(previousShots[val].freeBallP1),
+        setFreeBallP2(previousShots[val].freeBallP2),
+        setFreeBallButtonP1(previousShots[val].freeBallButtonP1),
+        setFreeBallButtonP2(previousShots[val].freeBallButtonP2),
+        setLongPotP1(previousShots[val].longPotP1),
+        setLongPotP2(previousShots[val].longPotP2),
+        setBreakP1(previousShots[val].breakP1),
+        setBreakP2(previousShots[val].breakP2),
+        setCurrentBreakP1(previousShots[val].currentBreakP1),
+        setCurrentBreakP2(previousShots[val].currentBreakP2),
+        setStatsP1(previousShots[val].statsP1),
+        setStatsP2(previousShots[val].statsP2)
+        
+        setCurrentShotIndex(val)
+        setBackwardMode(true)
+    }
+
     return (
             <View style={{...styles.main, ...style}}>
                 <View style={styles.mainContainer}>
@@ -58,28 +84,7 @@ currentShotIndex, setCurrentShotIndex, backwardMode, setBackwardMode, navigation
                                                 }
                                                 if (shotIndex > 0) {
                                                     let val = shotIndex-1
-                                                    setP1Points(previousShots[val].p1Points)
-                                                    setP2Points(previousShots[val].p2Points)
-                                                    setRemaining(previousShots[val].remaining)
-                                                    activateP1(previousShots[val].activeBallsP1)
-                                                    activateP2(previousShots[val].activeBallsP2)
-                                                    setOverlayP1(previousShots[val].overlayP1),
-                                                    setOverlayP2(previousShots[val].overlayP2),
-                                                    setFreeBallP1(previousShots[val].freeBallP1),
-                                                    setFreeBallP2(previousShots[val].freeBallP2),
-                                                    setFreeBallButtonP1(previousShots[val].freeBallButtonP1),
-                                                    setFreeBallButtonP2(previousShots[val].freeBallButtonP2),
-                                                    setLongPotP1(previousShots[val].longPotP1),
-                                                    setLongPotP2(previousShots[val].longPotP2),
-                                                    setBreakP1(previousShots[val].breakP1),
-                                                    setBreakP2(previousShots[val].breakP2),
-                                                    setCurrentBreakP1(previousShots[val].currentBreakP1),
-                                                    setCurrentBreakP2(previousShots[val].currentBreakP2),
-                                                    setStatsP1(previousShots[val].statsP1),
-                                                    setStatsP2(previousShots[val].statsP2)
-                                                    
-                                                    setCurrentShotIndex(val)
-                                                    setBackwardMode(true)
+                                                    setShot(val)
                                                 }
                                                 }}
                                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
@@ -98,28 +103,7 @@ currentShotIndex, setCurrentShotIndex, backwardMode, setBackwardMode, navigation
                                                 }
                                                 let val = shotIndex+1
                                                 if (shotIndex < 4 && previousShots[val]) {
-                                                    setP1Points(previousShots[val].p1Points)
-                                                    setP2Points(previousShots[val].p2Points)
-                                                    setRemaining(previousShots[val].remaining)
-                                                    activateP1(previousShots[val].activeBallsP1)
-                                                    activateP2(previousShots[val].activeBallsP2)
-                                                    setOverlayP1(previousShots[val].overlayP1),
-                                                    setOverlayP2(previousShots[val].overlayP2),
-                                                    setFreeBallP1(previousShots[val].freeBallP1),
-                                                    setFreeBallP2(previousShots[val].freeBallP2),
-                                                    setFreeBallButtonP1(previousShots[val].freeBallButtonP1),
-                                                    setFreeBallButtonP2(previousShots[val].freeBallButtonP2),
-                                                    setLongPotP1(previousShots[val].longPotP1),
-                                                    setLongPotP2(previousShots[val].longPotP2),
-                                                    setBreakP1(previousShots[val].breakP1),
-                                                    setBreakP2(previousShots[val].breakP2),
-                                                    setCurrentBreakP1(previousShots[val].currentBreakP1),
-                                                    setCurrentBreakP2(previousShots[val].currentBreakP2),
-                                                    setStatsP1(previousShots[val].statsP1),
-                                                    setStatsP2(previousShots[val].statsP2)
-                                                    
-                                                    setCurrentShotIndex(val)
-                                                    setBackwardMode(true)
+                                                    setShot(val)
                                                 }
                                             }}
                                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>

@@ -15,6 +15,13 @@ const Ball = ({style, activeBalls, val, setPoints, setOverlayP1, setOverlayP2, p
     const p2ball = <Image style={styles.ballImg} source={ballImage} /> 
     const p2freeBall = <Image style={styles.ballImg} source={freeBallImage} />
 
+    const activateColor = (val, val2) => {
+        activateBalls(val)
+        activateOpponentsBalls(val2)
+        setOverlayP1(player === 'p2')
+        setOverlayP2(player === 'p1')
+    }
+
     return (
         <View style={{...styles.ballContainer, ...style}}>
             <TouchableNativeFeedback
@@ -61,134 +68,53 @@ const Ball = ({style, activeBalls, val, setPoints, setOverlayP1, setOverlayP2, p
                         setPoints(prev => prev+7)
                         setCurrentBreak(prev => prev+7)
                         setRemaining(0)
-                        
                     }
                     setFreeBall(false)
                     if (remaining === 34) {
-                        activateBalls(2)
-                        activateOpponentsBalls(2)
-                            if (player === 'p1'){
-                                setOverlayP1(false)
-                                setOverlayP2(true)
-                            } else {
-                                setOverlayP1(true)
-                                setOverlayP2(false)
-                            }
+                        activateColor(2, 2)
                         setRemaining(remaining - 7)
                     } else if (remaining > 27 && (remaining - 27) % 8 !== 0 && val === 1) {
-                        activateBalls(8)
-                        activateOpponentsBalls(1)
-                            if (player === 'p1'){
-                                setOverlayP1(false)
-                                setOverlayP2(true)
-                            } else {
-                                setOverlayP1(true)
-                                setOverlayP2(false)
-                            }
+                        activateColor(8, 1)
                         if (!freeBall){
                             setRemaining(remaining - 8)
                         }
                     } else if (remaining > 27){
                         if (val === 1){
-                            activateBalls(8)
-                            activateOpponentsBalls(1)
-                            if (player === 'p1'){
-                                setOverlayP1(false)
-                                setOverlayP2(true)
-                            } else {
-                                setOverlayP1(true)
-                                setOverlayP2(false)
+                            activateColor(8, 1)
+                            if (!freeBall){
+                                setRemaining(remaining - 1)
                             }
-                        if (!freeBall){
-                            setRemaining(remaining - 1)
-                        }
                         } else if ((remaining - 27) % 8 === 0){
-                            activateBalls(1)
-                            activateOpponentsBalls(1)
-                                if (player === 'p1'){
-                                    setOverlayP1(false)
-                                    setOverlayP2(true)
-                                } else {
-                                    setOverlayP1(true)
-                                    setOverlayP2(false)
-                                }
+                            activateColor(1, 1)
                         } else {
-                            activateBalls(1)
-                            activateOpponentsBalls(1)
-                                if (player === 'p1'){
-                                    setOverlayP1(false)
-                                    setOverlayP2(true)
-                                } else {
-                                    setOverlayP1(true)
-                                    setOverlayP2(false)
-                                }
+                            activateColor(1, 1)
                             setRemaining(remaining - 7)
                         }
                     } else if (remaining === 27) {
-                        activateBalls(2)
-                        activateOpponentsBalls(2)
-                        if (player === 'p1'){
-                            setOverlayP1(false)
-                            setOverlayP2(true)
-                        } else {
-                            setOverlayP1(true)
-                            setOverlayP2(false)
+                        activateColor(2, 2)
+                        if (!freeBall){
+                            setRemaining(remaining - 2)
                         }
-                    if (!freeBall){
-                        setRemaining(remaining - 2)
-                    }
                     } else if (remaining === 25) {
-                        activateBalls(3)
-                        activateOpponentsBalls(3)
-                        if (player === 'p1'){
-                            setOverlayP1(false)
-                            setOverlayP2(true)
-                        } else {
-                            setOverlayP1(true)
-                            setOverlayP2(false)
+                        activateColor(3, 3)
+                        if (!freeBall){
+                            setRemaining(remaining - 3)
                         }
-                    if (!freeBall){
-                        setRemaining(remaining - 3)
-                    }
                     } else if (remaining === 22) {
-                        activateBalls(4)
-                        activateOpponentsBalls(4)
-                        if (player === 'p1'){
-                            setOverlayP1(false)
-                            setOverlayP2(true)
-                        } else {
-                            setOverlayP1(true)
-                            setOverlayP2(false)
+                        activateColor(4, 4)
+                        if (!freeBall){
+                            setRemaining(remaining - 4)
                         }
-                    if (!freeBall){
-                        setRemaining(remaining - 4)
-                    }
                     } else if (remaining === 18) {
-                        activateBalls(5)
-                        activateOpponentsBalls(5)
-                        if (player === 'p1'){
-                            setOverlayP1(false)
-                            setOverlayP2(true)
-                        } else {
-                            setOverlayP1(true)
-                            setOverlayP2(false)
+                        activateColor(5, 5)
+                        if (!freeBall){
+                            setRemaining(remaining - 5)
                         }
-                    if (!freeBall){
-                        setRemaining(remaining - 5)
-                    }
                     } else if (remaining === 13) {
-                        activateBalls(6)
-                        activateOpponentsBalls(6)
-                        if (player === 'p1'){
-                            setOverlayP1(false)
-                            setOverlayP2(true)
-                        } else {
-                            setOverlayP1(true)
-                            setOverlayP2(false)
+                        activateColor(6, 6)
+                        if (!freeBall){
+                            setRemaining(remaining - 6)
                         }
-                    if (!freeBall){
-                        setRemaining(remaining - 6)
-                    }
                     } 
                 }}
                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
