@@ -1,211 +1,136 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
- 
-const Ball = props => {
-    let active = {...props.activeBalls}
+import { StyleSheet, View, TouchableNativeFeedback, Image } from 'react-native';
 
-    const p1ball = <Image style={styles.theBall} source={require('../assets/Ball/ball.png')} /> 
-    const p1freeBall = <Image style={styles.theBall} source={require('../assets/Ball/freeball.png')} />
+import ballImage from '../assets/Ball/ball.png'
+import freeBallImage from '../assets/Ball/freeball.png'
 
-    const p2ball = <Image style={styles.theBall} source={require('../assets/Ball/ball.png')} /> 
-    const p2freeBall = <Image style={styles.theBall} source={require('../assets/Ball/freeball.png')} />
-    
+const Ball = ({style, activeBalls, val, setPoints, setOverlayP1, setOverlayP2, player, remaining, setRemaining,
+    freeBall, setFreeBall, setFreeBallButtonP1, setFreeBallButtonP2, setStats, setLongPot, longPot, setCurrentBreak,
+    backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray, activateBalls, activateOpponentsBalls}) => {
+    let active = {...activeBalls}
 
-     
+    const p1ball = <Image style={styles.ballImg} source={ballImage} /> 
+    const p1freeBall = <Image style={styles.ballImg} source={freeBallImage} />
+
+    const p2ball = <Image style={styles.ballImg} source={ballImage} /> 
+    const p2freeBall = <Image style={styles.ballImg} source={freeBallImage} />
+
+    const activateColor = (val, val2) => {
+        activateBalls(val)
+        activateOpponentsBalls(val2)
+        setOverlayP1(player === 'p2')
+        setOverlayP2(player === 'p1')
+    }
 
     return (
-        <View style={{...styles.ballContainer, ...props.style}}>
+        <View style={{...styles.ballContainer, ...style}}>
             <TouchableNativeFeedback
-                disabled={active[props.val.toString()]}
+                disabled={!active[val.toString()]}
                 onPress={() => {
-                    if (props.backMode) {
-                        props.modifyArray()
-                        props.setBackMode(false)
+                    if (backwardMode) {
+                        modifyArray()
+                        setBackwardMode(false)
                     }
-                    props.setBack(4)
-                    if (props.longPot) {
-                        props.stats(prev => ({
+                    setCurrentShotIndex(4)
+                    if (longPot) {
+                        setStats(prev => ({
                             ...prev,
                             pots: prev.pots+1,
                             long: prev.long+1
                         }))
                     } else {
-                    props.stats(prev => ({
+                    setStats(prev => ({
                         ...prev,
                         pots: prev.pots+1
                     }))}
-                    props.setLongPot(false)
-                    props.setFreeBallButtonP1(false)
-                    props.setFreeBallButtonP2(false)
-                    if (props.remaining > 27) {
-                        props.pPoints(prev => prev+props.val)
-                        props.setCurrentBreak(prev => prev+props.val)
-                    } else if (props.remaining === 27) {
-                        props.pPoints(prev => prev+2)
-                        props.setCurrentBreak(prev => prev+2)
-                    } else if (props.remaining === 25) {
-                        props.pPoints(prev => prev+3)
-                        props.setCurrentBreak(prev => prev+3)
-                    } else if (props.remaining === 22) {
-                        props.pPoints(prev => prev+4)
-                        props.setCurrentBreak(prev => prev+4)
-                    } else if (props.remaining === 18) {
-                        props.pPoints(prev => prev+5)
-                        props.setCurrentBreak(prev => prev+5)
-                    } else if (props.remaining === 13) {
-                        props.pPoints(prev => prev+6)
-                        props.setCurrentBreak(prev => prev+6)
-                    } else if (props.remaining === 7) {
-                        props.pPoints(prev => prev+7)
-                        props.setCurrentBreak(prev => prev+7)
-                        props.setRemaining(0)
-                        
+                    setLongPot(false)
+                    setFreeBallButtonP1(false)
+                    setFreeBallButtonP2(false)
+                    if (remaining > 27) {
+                        setPoints(prev => prev+val)
+                        setCurrentBreak(prev => prev+val)
+                    } else if (remaining === 27) {
+                        setPoints(prev => prev+2)
+                        setCurrentBreak(prev => prev+2)
+                    } else if (remaining === 25) {
+                        setPoints(prev => prev+3)
+                        setCurrentBreak(prev => prev+3)
+                    } else if (remaining === 22) {
+                        setPoints(prev => prev+4)
+                        setCurrentBreak(prev => prev+4)
+                    } else if (remaining === 18) {
+                        setPoints(prev => prev+5)
+                        setCurrentBreak(prev => prev+5)
+                    } else if (remaining === 13) {
+                        setPoints(prev => prev+6)
+                        setCurrentBreak(prev => prev+6)
+                    } else if (remaining === 7) {
+                        setPoints(prev => prev+7)
+                        setCurrentBreak(prev => prev+7)
+                        setRemaining(0)
                     }
-                    props.setFreeBall(false)
-                    if (props.remaining === 34) {
-                        props.activateBalls(2)
-                        props.activateOpponentsBalls(2)
-                            if (props.player === 'p1'){
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else {
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
+                    setFreeBall(false)
+                    if (remaining === 34) {
+                        activateColor(2, 2)
+                        setRemaining(remaining - 7)
+                    } else if (remaining > 27 && (remaining - 27) % 8 !== 0 && val === 1) {
+                        activateColor(8, 1)
+                        if (!freeBall){
+                            setRemaining(remaining - 8)
+                        }
+                    } else if (remaining > 27){
+                        if (val === 1){
+                            activateColor(8, 1)
+                            if (!freeBall){
+                                setRemaining(remaining - 1)
                             }
-                        props.setRemaining(props.remaining - 7)
-                    } else if (props.remaining > 27 && (props.remaining - 27) % 8 !== 0 && props.val === 1) {
-                        props.activateBalls(8)
-                        props.activateOpponentsBalls(1)
-                            if (props.player === 'p1'){
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else {
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            }
-                        if (!props.freeBall){
-                            props.setRemaining(props.remaining - 8)
-                        }
-                    } else if (props.remaining > 27){
-                        if (props.val === 1){
-                            props.activateBalls(8)
-                            props.activateOpponentsBalls(1)
-                            if (props.player === 'p1'){
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else {
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            }
-                        if (!props.freeBall){
-                            props.setRemaining(props.remaining - 1)
-                        }
-                        } else if ((props.remaining - 27) % 8 === 0){
-                            props.activateBalls(1)
-                            props.activateOpponentsBalls(1)
-                                if (props.player === 'p1'){
-                                    props.setOverlayP1(false)
-                                    props.setOverlayP2(true)
-                                } else {
-                                    props.setOverlayP1(true)
-                                    props.setOverlayP2(false)
-                                }
+                        } else if ((remaining - 27) % 8 === 0){
+                            activateColor(1, 1)
                         } else {
-                            props.activateBalls(1)
-                            props.activateOpponentsBalls(1)
-                                if (props.player === 'p1'){
-                                    props.setOverlayP1(false)
-                                    props.setOverlayP2(true)
-                                } else {
-                                    props.setOverlayP1(true)
-                                    props.setOverlayP2(false)
-                                }
-                            props.setRemaining(props.remaining - 7)
+                            activateColor(1, 1)
+                            setRemaining(remaining - 7)
                         }
-                    } else if (props.remaining === 27) {
-                        props.activateBalls(2)
-                        props.activateOpponentsBalls(2)
-                        if (props.player === 'p1'){
-                            props.setOverlayP1(false)
-                            props.setOverlayP2(true)
-                        } else {
-                            props.setOverlayP1(true)
-                            props.setOverlayP2(false)
+                    } else if (remaining === 27) {
+                        activateColor(2, 2)
+                        if (!freeBall){
+                            setRemaining(remaining - 2)
                         }
-                    if (!props.freeBall){
-                        props.setRemaining(props.remaining - 2)
-                    }
-                    } else if (props.remaining === 25) {
-                        props.activateBalls(3)
-                        props.activateOpponentsBalls(3)
-                        if (props.player === 'p1'){
-                            props.setOverlayP1(false)
-                            props.setOverlayP2(true)
-                        } else {
-                            props.setOverlayP1(true)
-                            props.setOverlayP2(false)
+                    } else if (remaining === 25) {
+                        activateColor(3, 3)
+                        if (!freeBall){
+                            setRemaining(remaining - 3)
                         }
-                    if (!props.freeBall){
-                        props.setRemaining(props.remaining - 3)
-                    }
-                    } else if (props.remaining === 22) {
-                        props.activateBalls(4)
-                        props.activateOpponentsBalls(4)
-                        if (props.player === 'p1'){
-                            props.setOverlayP1(false)
-                            props.setOverlayP2(true)
-                        } else {
-                            props.setOverlayP1(true)
-                            props.setOverlayP2(false)
+                    } else if (remaining === 22) {
+                        activateColor(4, 4)
+                        if (!freeBall){
+                            setRemaining(remaining - 4)
                         }
-                    if (!props.freeBall){
-                        props.setRemaining(props.remaining - 4)
-                    }
-                    } else if (props.remaining === 18) {
-                        props.activateBalls(5)
-                        props.activateOpponentsBalls(5)
-                        if (props.player === 'p1'){
-                            props.setOverlayP1(false)
-                            props.setOverlayP2(true)
-                        } else {
-                            props.setOverlayP1(true)
-                            props.setOverlayP2(false)
+                    } else if (remaining === 18) {
+                        activateColor(5, 5)
+                        if (!freeBall){
+                            setRemaining(remaining - 5)
                         }
-                    if (!props.freeBall){
-                        props.setRemaining(props.remaining - 5)
-                    }
-                    } else if (props.remaining === 13) {
-                        props.activateBalls(6)
-                        props.activateOpponentsBalls(6)
-                        if (props.player === 'p1'){
-                            props.setOverlayP1(false)
-                            props.setOverlayP2(true)
-                        } else {
-                            props.setOverlayP1(true)
-                            props.setOverlayP2(false)
+                    } else if (remaining === 13) {
+                        activateColor(6, 6)
+                        if (!freeBall){
+                            setRemaining(remaining - 6)
                         }
-                    if (!props.freeBall){
-                        props.setRemaining(props.remaining - 6)
-                    }
                     } 
                 }}
                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                 >
                 <View style={styles.ball}>
-                    {props.val===1 && props.freeBall === true && props.player === 'p1' ? p1freeBall :
-                    props.val===1 && props.player === 'p1' ? p1ball :
-                    props.val===1 && props.freeBall === true && props.player === 'p2' ? p2freeBall :
-                    props.val===1 && props.player === 'p2' ? p2ball :
-                    <Image style={styles.theBall} source={require('../assets/Ball/ball.png')} /> }
+                    {val===1 && freeBall === true && player === 'p1' ? p1freeBall :
+                    val===1 && player === 'p1' ? p1ball :
+                    val===1 && freeBall === true && player === 'p2' ? p2freeBall :
+                    val===1 && player === 'p2' ? p2ball :
+                    <Image style={styles.ballImg} source={ballImage} /> }
                 </View>
             </TouchableNativeFeedback>
         </View>
     )}
  
 const styles = StyleSheet.create({
-    body: {
-        fontFamily: 'open-sans'
-    },
     ball: {
         height: 50,
         width: 50,
@@ -216,7 +141,7 @@ const styles = StyleSheet.create({
         width: 50,
         borderRadius: 25,
     },
-    theBall: {
+    ballImg: {
         height: 50,
         width: 50,
         borderRadius: 25,

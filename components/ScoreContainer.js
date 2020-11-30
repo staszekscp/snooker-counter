@@ -1,127 +1,114 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, ImageBackground, Image } from 'react-native';
- 
-const ScoreContainer = props => {
+import { StyleSheet, Text, View, TouchableNativeFeedback, ImageBackground } from 'react-native';
+
+import wood from '../assets/png/wood.png'
+
+const ScoreContainer = ({p1Name, p2Name, p1Points,  p2Points, p1Frames, p2Frames, remaining, setRemaining,
+setOverlayP1, setOverlayP2, setP1Points, setP2Points, activateP1, activateP2, activateBallsP1, activateBallsP2,
+setCurrentBreakP1, setCurrentBreakP2, mode, setFreeBallP1, setFreeBallP2, setFreeBallButtonP1, setFreeBallButtonP2,
+setLongPotP1, setLongPotP2, setBreakP1, setBreakP2, setStatsP1, setStatsP2, previousShots, setPreviousShots,
+currentShotIndex, setCurrentShotIndex, backwardMode, setBackwardMode, navigation, style}) => {
+
+    const setShot = val => {
+        setP1Points(previousShots[val].p1Points)
+        setP2Points(previousShots[val].p2Points)
+        setRemaining(previousShots[val].remaining)
+        activateP1(previousShots[val].activeBallsP1)
+        activateP2(previousShots[val].activeBallsP2)
+        setOverlayP1(previousShots[val].overlayP1),
+        setOverlayP2(previousShots[val].overlayP2),
+        setFreeBallP1(previousShots[val].freeBallP1),
+        setFreeBallP2(previousShots[val].freeBallP2),
+        setFreeBallButtonP1(previousShots[val].freeBallButtonP1),
+        setFreeBallButtonP2(previousShots[val].freeBallButtonP2),
+        setLongPotP1(previousShots[val].longPotP1),
+        setLongPotP2(previousShots[val].longPotP2),
+        setBreakP1(previousShots[val].breakP1),
+        setBreakP2(previousShots[val].breakP2),
+        setCurrentBreakP1(previousShots[val].currentBreakP1),
+        setCurrentBreakP2(previousShots[val].currentBreakP2),
+        setStatsP1(previousShots[val].statsP1),
+        setStatsP2(previousShots[val].statsP2)
+        
+        setCurrentShotIndex(val)
+        setBackwardMode(true)
+    }
+
     return (
-            <View style={{...styles.main, ...props.style}}>
-                <View style={styles.frame}>
-                    <ImageBackground style={styles.background} source={require('../assets/png/wood.png')}>
-                        <View style={styles.frameContainer}>
-                        <View>
-                                <View style={styles.proModeContainer}>
+            <View style={{...styles.main, ...style}}>
+                <View style={styles.mainContainer}>
+                    <ImageBackground style={styles.background} source={wood}>
+                        <View style={styles.contentContainer}>
+                            <View>
+                                <View style={styles.undoRedoContainer}>
                                     <View style={styles.reRackButton}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
-                                            if (props.backMode) {
-                                                props.setBackMode(false)
+                                            if (backwardMode) {
+                                                setBackwardMode(false)
                                             }
-                                            props.setStatsP1(prev => ({
+                                            setStatsP1(prev => ({
                                                 ...prev,
                                                 long: prev.long + 0
                                             }))
-                                            props.setPrevShot([])
-                                            props.setBack(0)
-                                            props.p1Points(0)
-                                            props.p2Points(0)
-                                            props.setRemaining(props.mode * 8 + 27)
-                                            props.setOverlayP1(false)
-                                            props.setOverlayP2(false)
-                                            props.setCurrentBreakP1(0)
-                                            props.setCurrentBreakP2(0)
-                                            props.activateBallsP1(1)
-                                            props.activateBallsP2(1)
-                                            props.setFreeBallP1(false)
-                                            props.setFreeBallP2(false)
-                                            props.setFreeBallButtonP1(false)
-                                            props.setFreeBallButtonP2(false)
+                                            setPreviousShots([])
+                                            setCurrentShotIndex(0)
+                                            setP1Points(0)
+                                            setP2Points(0)
+                                            setRemaining(mode * 8 + 27)
+                                            setOverlayP1(false)
+                                            setOverlayP2(false)
+                                            setCurrentBreakP1(0)
+                                            setCurrentBreakP2(0)
+                                            activateBallsP1(1)
+                                            activateBallsP2(1)
+                                            setFreeBallP1(false)
+                                            setFreeBallP2(false)
+                                            setFreeBallButtonP1(false)
+                                            setFreeBallButtonP2(false)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
-                                            <View style={styles.btn}>
-                                                <Text style={styles.proModeText}>Re-rack</Text>
+                                            <View style={styles.lateralButton}>
+                                                <Text style={styles.buttonText}>Re-rack</Text>
                                             </View>
                                         </TouchableNativeFeedback>
                                     </View>
                                     <View style={{flexDirection: 'row'}}>
-                                        <View style={props.back > 0 && props.prevShot.length > 1 ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                        <View style={currentShotIndex > 0 && previousShots.length > 1 ? styles.undoRedoButtonOn : styles.undoRedoButtonOff}>
                                             <TouchableNativeFeedback
-                                            disabled={props.back < 1}
+                                            disabled={currentShotIndex < 1}
                                             onPress={() => {
-                                                let back = props.back
-                                                console.log(back)
-                                                console.log(props.prevShot.length)
-                                                if (props.prevShot.length <= back) {
-                                                    back = props.prevShot.length-1
+                                                let shotIndex = currentShotIndex
+                                                if (previousShots.length <= shotIndex) {
+                                                    shotIndex = previousShots.length-1
                                                 }
-                                                if (back > 0) {
-                                                    let val = back-1
-                                                    props.p1Points(props.prevShot[val].p1Points)
-                                                    props.p2Points(props.prevShot[val].p2Points)
-                                                    props.setRemaining(props.prevShot[val].remaining)
-                                                    props.activateP1(props.prevShot[val].activeBallsP1)
-                                                    props.activateP2(props.prevShot[val].activeBallsP2)
-                                                    props.setOverlayP1(props.prevShot[val].overlayP1),
-                                                    props.setOverlayP2(props.prevShot[val].overlayP2),
-                                                    props.setFreeBallP1(props.prevShot[val].freeBallP1),
-                                                    props.setFreeBallP2(props.prevShot[val].freeBallP2),
-                                                    props.setFreeBallButtonP1(props.prevShot[val].freeBallButtonP1),
-                                                    props.setFreeBallButtonP2(props.prevShot[val].freeBallButtonP2),
-                                                    props.setLongPotP1(props.prevShot[val].longPotP1),
-                                                    props.setLongPotP2(props.prevShot[val].longPotP2),
-                                                    props.setBreakP1(props.prevShot[val].breakP1),
-                                                    props.setBreakP2(props.prevShot[val].breakP2),
-                                                    props.setCurrentBreakP1(props.prevShot[val].currentBreakP1),
-                                                    props.setCurrentBreakP2(props.prevShot[val].currentBreakP2),
-                                                    props.setStatsP1(props.prevShot[val].statsP1),
-                                                    props.setStatsP2(props.prevShot[val].statsP2)
-                                                    
-                                                    props.setBack(val)
-                                                    props.setBackMode(true)
+                                                if (shotIndex > 0) {
+                                                    let val = shotIndex-1
+                                                    setShot(val)
                                                 }
                                                 }}
                                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
-                                                <View style={styles.proMode}>
-                                                    <Text style={styles.proModeText}>Undo</Text>
+                                                <View style={styles.undoRedo}>
+                                                    <Text style={styles.buttonText}>Undo</Text>
                                                 </View>
                                             </TouchableNativeFeedback>
                                         </View>
-                                        <View style={props.back <= props.prevShot.length-2 ? styles.proModeButtonOn : styles.proModeButtonOff}>
+                                        <View style={currentShotIndex <= previousShots.length-2 ? styles.undoRedoButtonOn : styles.undoRedoButtonOff}>
                                             <TouchableNativeFeedback
-                                            disabled={props.back > props.prevShot.length-2}
+                                            disabled={currentShotIndex > previousShots.length-2}
                                             onPress={() => {
-                                                    let back = props.back
-                                                    console.log(back)
-                                                    if (props.prevShot.length <= back) {
-                                                        back = props.prevShot.length-2
-                                                    }
-                                                    let val = back+1
-                                                    if (back < 4 && props.prevShot[val]) {
-                                                        props.p1Points(props.prevShot[val].p1Points)
-                                                        props.p2Points(props.prevShot[val].p2Points)
-                                                        props.setRemaining(props.prevShot[val].remaining)
-                                                        props.activateP1(props.prevShot[val].activeBallsP1)
-                                                        props.activateP2(props.prevShot[val].activeBallsP2)
-                                                        props.setOverlayP1(props.prevShot[val].overlayP1),
-                                                        props.setOverlayP2(props.prevShot[val].overlayP2),
-                                                        props.setFreeBallP1(props.prevShot[val].freeBallP1),
-                                                        props.setFreeBallP2(props.prevShot[val].freeBallP2),
-                                                        props.setFreeBallButtonP1(props.prevShot[val].freeBallButtonP1),
-                                                        props.setFreeBallButtonP2(props.prevShot[val].freeBallButtonP2),
-                                                        props.setLongPotP1(props.prevShot[val].longPotP1),
-                                                        props.setLongPotP2(props.prevShot[val].longPotP2),
-                                                        props.setBreakP1(props.prevShot[val].breakP1),
-                                                        props.setBreakP2(props.prevShot[val].breakP2),
-                                                        props.setCurrentBreakP1(props.prevShot[val].currentBreakP1),
-                                                        props.setCurrentBreakP2(props.prevShot[val].currentBreakP2),
-                                                        props.setStatsP1(props.prevShot[val].statsP1),
-                                                        props.setStatsP2(props.prevShot[val].statsP2)
-                                                        
-                                                        props.setBack(val)
-                                                        props.setBackMode(true)
-                                                    }
+                                                let shotIndex = currentShotIndex
+                                                if (previousShots.length <= shotIndex) {
+                                                    shotIndex = previousShots.length-2
+                                                }
+                                                let val = shotIndex+1
+                                                if (shotIndex < 4 && previousShots[val]) {
+                                                    setShot(val)
+                                                }
                                             }}
                                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
-                                                <View style={styles.proMode}>
-                                                    <Text style={styles.proModeText}>Redo</Text>
+                                                <View style={styles.undoRedo}>
+                                                    <Text style={styles.buttonText}>Redo</Text>
                                                 </View>
                                             </TouchableNativeFeedback>
                                         </View>
@@ -129,48 +116,48 @@ const ScoreContainer = props => {
                                     <View style={styles.helpButton}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
-                                            props.navigation.navigate('Help')
+                                            navigation.navigate('Help')
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
-                                            <View style={styles.btn}>
-                                                <Text style={styles.proModeText}>Help</Text>
+                                            <View style={styles.lateralButton}>
+                                                <Text style={styles.buttonText}>Help</Text>
                                             </View>
                                         </TouchableNativeFeedback>
                                     </View>
                                 </View>
-                        </View>
+                            </View>
                             <View style={styles.namesContainer}>
                                 <View style={styles.p1}>
-                                    <Text style={props.p2-props.p1 > props.remaining ? {...styles.names, ...styles.grey} : styles.names}>{props.p1Name.toUpperCase()}</Text>
+                                    <Text style={p2Points-p1Points > remaining ? {...styles.names, ...styles.grey} : styles.names}>{p1Name.toUpperCase()}</Text>
                                 </View>
                                 
                                 <View style={styles.p1}>
-                                    <Text style={props.p1-props.p2 > props.remaining ? {...styles.names, ...styles.grey, ...styles.p2} : {...styles.names, ...styles.p2}}>{props.p2Name.toUpperCase()}</Text>
+                                    <Text style={p1Points-p2Points > remaining ? {...styles.names, ...styles.grey, ...styles.p2} : {...styles.names, ...styles.p2}}>{p2Name.toUpperCase()}</Text>
                                 </View>
                             </View>
                             <View style={styles.resultContainer}>
                                 <View style={styles.framesContainer}>
-                                    <Text style={styles.frames}>({props.f1})</Text>
+                                    <Text style={styles.frames}>({p1Frames})</Text>
                                 </View>
                                 <View style={styles.scoreContainer}>
                                     <View style={styles.pointContainer}>
-                                        <Text style={styles.score} >{props.p1}</Text>
+                                        <Text style={styles.score} >{p1Points}</Text>
                                     </View>
                                     <View style={[styles.pointContainer, , {width: '20%'}]}>
                                         <Text style={styles.score}>:</Text>
                                     </View>
                                     <View style={styles.pointContainer}>
-                                        <Text style={styles.score}>{props.p2}</Text>
+                                        <Text style={styles.score}>{p2Points}</Text>
                                     </View>
                                 </View>
                                 <View style={styles.framesContainer}>
-                                    <Text style={styles.frames}>({props.f2})</Text>
+                                    <Text style={styles.frames}>({p2Frames})</Text>
                                 </View>
                             </View>
                             <View style={styles.remainingPointsContainer}>
                                 <View style={{flexDirection: 'row'}}>
-                                    <Text style={styles.remainingPoints}>ahead: {Math.abs(props.p1 - props.p2)}        </Text>
-                                    <Text style={styles.remainingPoints}>remaining: {props.remaining}</Text>
+                                    <Text style={styles.remainingPoints}>ahead: {Math.abs(p1Points - p2Points)}        </Text>
+                                    <Text style={styles.remainingPoints}>remaining: {remaining}</Text>
                                 </View>
                             </View>
                         </View>
@@ -185,7 +172,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    frame: {
+    background: {
+        justifyContent: 'center'
+    },
+    mainContainer: {
         top: 5,
         width: '98%',
         borderRadius: 20,
@@ -193,10 +183,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderTopWidth: 0
     },
-    background: {
-
-    },
-    frameContainer: {
+    contentContainer: {
         backgroundColor: 'rgba(60,5,0,0.6)'
     },
     namesContainer: {
@@ -209,7 +196,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         marginTop: 10,
         fontSize: 16,
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score',
         color: '#e0de94'
     },
@@ -239,7 +226,7 @@ const styles = StyleSheet.create({
     },
     frames: {
         fontSize: 16,
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score'
     },
     framesContainer: {
@@ -249,19 +236,18 @@ const styles = StyleSheet.create({
         marginHorizontal: 20
     },
     remainingPointsContainer: {
-
         justifyContent: 'center',
         alignItems: 'center',
         paddingBottom: 10
     },
     remainingPoints: {
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score'
     },
     grey: {
-        color: 'grey'
+        color: '#7a7a67'
     },
-    proModeButtonOff: {
+    undoRedoButtonOff: {
         height: 30,
         width: 50,
         borderRadius: 15,
@@ -270,7 +256,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255,0.3)',
         opacity: 0.4
     },
-    proModeButtonOn: {
+    undoRedoButtonOn: {
         height: 30,
         width: 50,
         borderRadius: 15,
@@ -294,31 +280,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgba(0, 255, 0,0.2)'
     },
-    btn: {
+    lateralButton: {
         height: 30,
         width: 70,
         borderRadius: 15,
         borderWidth: 3,
-        borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
     },
-    proMode: {
+    undoRedo: {
         height: 30,
         width: 50,
         borderRadius: 15,
         borderWidth: 3,
-        borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
     },
-    proModeText: {
+    buttonText: {
         fontFamily: 'score',
         fontSize: 10,
         textAlign: 'center',
-        color: 'white'
+        color: '#fff'
     },
-    proModeContainer: {
+    undoRedoContainer: {
         flexDirection: 'row', 
         justifyContent: 'space-around',
         paddingVertical: 5,

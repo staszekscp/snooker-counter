@@ -1,16 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableNativeFeedback, ImageBackground, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+
+import cloth from '../assets/png/green-snooker-cloth-background.jpg'
+import wood from '../assets/png/wood.png'
  
 const HelpScreen = props => {
 
     return (
     <View style={styles.main}>
-        <ImageBackground style={styles.img} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
+        <ImageBackground style={styles.img} source={cloth}>
             <ScrollView contentContainerStyle={{width: '100%'}}>
                 <View style={{justifyContent: 'center'}}>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                             <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 <View style={styles.helpOptionHeader}>
@@ -29,7 +32,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 
@@ -49,7 +52,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 
@@ -69,7 +72,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 <View style={styles.helpOptionHeader}>
@@ -88,7 +91,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 
@@ -108,7 +111,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 
@@ -128,7 +131,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 
@@ -148,7 +151,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 
@@ -168,7 +171,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 
@@ -188,7 +191,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 
@@ -208,7 +211,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
                                 
@@ -228,7 +231,7 @@ const HelpScreen = props => {
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.img2} source={wood}>
                         <TouchableNativeFeedback>
                             <View style={styles.cover}>
 

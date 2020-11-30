@@ -1,72 +1,83 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
  
-const SafetyContainer = props => {
+const SafetyContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverlayP2, remaining, setRemaining, setFreeBallP1,
+    setFreeBallP2, setFreeBallButtonP1, setFreeBallButtonP2, setStatsP1, setStatsP2, setLongPotP1, setLongPotP2,
+    setCurrentBreakP1, setCurrentBreakP2, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray, style}) => {
+    
+    const setShot = (p) => {
+        if (backwardMode) {
+            modifyArray()
+            setBackwardMode(false)
+        }
+        setCurrentShotIndex(4)
+        setFreeBallButtonP1(false)
+        setFreeBallButtonP2(false)
+        setCurrentBreakP1(0)
+        setCurrentBreakP2(0)
+        setLongPotP1(false)
+        setLongPotP2(false)
+        setFreeBallP1(false)
+        setFreeBallP2(false)
+        if (remaining === 34) {
+            activateBallsP1(2)
+            activateBallsP2(2)
+            setOverlayP1(p === 1)
+            setOverlayP2(p === 2)
+            setRemaining(remaining - 7)
+        } else if (remaining > 27){
+            activateBallsP1(1)
+            activateBallsP2(1)
+            setOverlayP1(p === 1)
+            setOverlayP2(p === 2)
+            if ((remaining - 27) % 8 !== 0){
+                setRemaining(remaining - 7)
+            }
+        } else if (remaining === 27) {
+            activateBallsP1(2)
+            activateBallsP2(2)
+            setOverlayP1(p === 1)
+            setOverlayP2(p === 2)
+        } else if (remaining === 25) {
+            activateBallsP1(3)
+            activateBallsP2(3)
+            setOverlayP1(p === 1)
+            setOverlayP2(p === 2)
+        } else if (remaining === 22) {
+            activateBallsP1(4)
+            activateBallsP2(4)
+            setOverlayP1(p === 1)
+            setOverlayP2(p === 2)
+        } else if (remaining === 18) {
+            activateBallsP1(5)
+            activateBallsP2(5)
+            setOverlayP1(p === 1)
+            setOverlayP2(p === 2)
+        } else if (remaining === 13) {
+            activateBallsP1(6)
+            activateBallsP2(6)
+            setOverlayP1(p === 1)
+            setOverlayP2(p === 2)
+        } else if (remaining === 7) {
+            activateBallsP1(7)
+            activateBallsP2(7)
+            setOverlayP1(p === 1)
+            setOverlayP2(p === 2)
+        } 
+    }
+
+    
     return (
-        <View style={{...styles.main, ...props.style}}>
+        <View style={{...styles.main, ...style}}>
             <View style={styles.safetyButtonContainer}>
                 <View style={styles.safeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.setCurrentBreakP1(0)
-                            props.statsP1(prev => ({
+                            setShot(1)
+                            setStatsP1(prev => ({
                                 ...prev,
                                 safe: prev.safe+1
                             }))
-                            props.setLongPotP1(false)
-                            props.setFreeBallButtonP1(false)
-                            props.setFreeBallButtonP2(false)
-                            props.setFreeBallP1(false)
-                            if (props.remaining === 34) {
-                                props.activateBallsP1(2)
-                                props.activateBallsP2(2)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                                props.setRemaining(props.remaining - 7)
-                            } else if (props.remaining > 27){
-                                props.activateBallsP1(1)
-                                props.activateBallsP2(1)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                                if ((props.remaining - 27) % 8 !== 0){
-                                    props.setRemaining(props.remaining - 7)
-                                }
-                            } else if (props.remaining === 27) {
-                                props.activateBallsP1(2)
-                                props.activateBallsP2(2)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } else if (props.remaining === 25) {
-                                props.activateBallsP1(3)
-                                props.activateBallsP2(3)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } else if (props.remaining === 22) {
-                                props.activateBallsP1(4)
-                                props.activateBallsP2(4)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } else if (props.remaining === 18) {
-                                props.activateBallsP1(5)
-                                props.activateBallsP2(5)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } else if (props.remaining === 13) {
-                                props.activateBallsP1(6)
-                                props.activateBallsP2(6)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } else if (props.remaining === 7) {
-                                props.activateBallsP1(7)
-                                props.activateBallsP2(7)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } 
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -78,65 +89,11 @@ const SafetyContainer = props => {
                 <View style={styles.unsafeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.setCurrentBreakP1(0)
-                            props.statsP1(prev => ({
+                            setShot(1)
+                            setStatsP1(prev => ({
                                 ...prev,
                                 unsafe: prev.unsafe+1
                             }))
-                            props.setLongPotP1(false)
-                            props.setFreeBallButtonP1(false)
-                            props.setFreeBallButtonP2(false)
-                            props.setFreeBallP1(false)
-                            if (props.remaining === 34) {
-                                props.activateBallsP1(2)
-                                props.activateBallsP2(2)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                                props.setRemaining(props.remaining - 7)
-                            } else if (props.remaining > 27){
-                                props.activateBallsP1(1)
-                                props.activateBallsP2(1)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                                if ((props.remaining - 27) % 8 !== 0){
-                                    props.setRemaining(props.remaining - 7)
-                                }
-                            } else if (props.remaining === 27) {
-                                props.activateBallsP1(2)
-                                props.activateBallsP2(2)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } else if (props.remaining === 25) {
-                                props.activateBallsP1(3)
-                                props.activateBallsP2(3)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } else if (props.remaining === 22) {
-                                props.activateBallsP1(4)
-                                props.activateBallsP2(4)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } else if (props.remaining === 18) {
-                                props.activateBallsP1(5)
-                                props.activateBallsP2(5)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } else if (props.remaining === 13) {
-                                props.activateBallsP1(6)
-                                props.activateBallsP2(6)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } else if (props.remaining === 7) {
-                                props.activateBallsP1(7)
-                                props.activateBallsP2(7)
-                                props.setOverlayP1(true)
-                                props.setOverlayP2(false)
-                            } 
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -150,67 +107,11 @@ const SafetyContainer = props => {
                 <View style={styles.safeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.setCurrentBreakP2(0)
-                            props.statsP2(prev => ({
+                            setShot(2)
+                            setStatsP2(prev => ({
                                 ...prev,
                                 safe: prev.safe+1
                             }))
-                            props.setLongPotP2(false)
-                            props.setFreeBallButtonP1(false)
-                            props.setFreeBallButtonP2(false)
-                            props.setFreeBallP2(false)
-                            if (props.remaining === 34) {
-                                props.activateBallsP1(2)
-                                props.activateBallsP2(2)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                                props.setRemaining(props.remaining - 7)
-                            } else if (props.remaining > 27){
-                                props.activateBallsP1(1)
-                                props.activateBallsP2(1)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                                if ((props.remaining - 27) % 8 !== 0){
-                                    props.setRemaining(props.remaining - 7)
-                                }
-                            } else if (props.remaining === 27) {
-                                props.activateBallsP1(2)
-                                props.activateBallsP2(2)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else if (props.remaining === 25) {
-                                props.activateBallsP1(3)
-                                props.activateBallsP2(3)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else if (props.remaining === 22) {
-                                props.activateBallsP1(4)
-                                props.activateBallsP2(4)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else if (props.remaining === 18) {
-                                props.activateBallsP1(5)
-                                props.activateBallsP2(5)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else if (props.remaining === 13) {
-                                props.activateBallsP1(6)
-                                props.activateBallsP2(6)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else if (props.remaining === 7) {
-                                props.activateBallsP1(7)
-                                props.activateBallsP2(7)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } 
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -222,65 +123,11 @@ const SafetyContainer = props => {
                 <View style={styles.unsafeButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.setCurrentBreakP2(0)
-                            props.statsP2(prev => ({
+                            setShot(2)
+                            setStatsP2(prev => ({
                                 ...prev,
                                 unsafe: prev.unsafe+1
                             }))
-                            props.setLongPotP2(false)
-                            props.setFreeBallButtonP1(false)
-                            props.setFreeBallButtonP2(false)
-                            props.setFreeBallP2(false)
-                            if (props.remaining === 34) {
-                                props.activateBallsP1(2)
-                                props.activateBallsP2(2)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                                props.setRemaining(props.remaining - 7)
-                            } else if (props.remaining > 27){
-                                props.activateBallsP1(1)
-                                props.activateBallsP2(1)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                                if ((props.remaining - 27) % 8 !== 0){
-                                    props.setRemaining(props.remaining - 7)
-                                }
-                            } else if (props.remaining === 27) {
-                                props.activateBallsP1(2)
-                                props.activateBallsP2(2)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else if (props.remaining === 25) {
-                                props.activateBallsP1(3)
-                                props.activateBallsP2(3)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else if (props.remaining === 22) {
-                                props.activateBallsP1(4)
-                                props.activateBallsP2(4)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else if (props.remaining === 18) {
-                                props.activateBallsP1(5)
-                                props.activateBallsP2(5)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else if (props.remaining === 13) {
-                                props.activateBallsP1(6)
-                                props.activateBallsP2(6)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } else if (props.remaining === 7) {
-                                props.activateBallsP1(7)
-                                props.activateBallsP2(7)
-                                props.setOverlayP1(false)
-                                props.setOverlayP2(true)
-                            } 
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
@@ -296,8 +143,7 @@ const SafetyContainer = props => {
 const styles = StyleSheet.create({
     main: {
         height: 65,
-        flexDirection: 'row',
-        
+        flexDirection: 'row'
     },
     safetyButtonContainer: {
         width: '50%',
@@ -328,12 +174,11 @@ const styles = StyleSheet.create({
         width: 80,
         borderRadius: 15,
         borderWidth: 3,
-        borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
     },
     safeText: {
-        color: 'black',
+        color: '#000',
         fontFamily: 'scoreBold',
         fontSize: 16
     }

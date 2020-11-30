@@ -1,89 +1,81 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
  
-const AdditionalRedContainer = props => {
+const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, activeBallsP1, activeBallsP2,
+    setP1Points, setP2Points, setStatsP1, setStatsP2, freeBallButtonP1, freeBallButtonP2, setCurrentBreakP1,
+    setCurrentBreakP2, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
+
+    const redWentIn = () => {
+        if (backwardMode) {
+            modifyArray()
+            setBackwardMode(false)
+        }
+        setCurrentShotIndex(4)
+        setRemaining(prev => prev-8)
+    }
+
     return (
         <View style={styles.main}>
-            <View style={styles.missButtonContainer}>
-                <View style={props.remaining < 35 || (!props.activeBallsP1['1']) || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) || props.overlayP1 ? {display: 'none'} : styles.redButton}>
+            <View style={styles.additionalRedsContainer}>
+                <View style={remaining < 35 || (activeBallsP1['1']) || (remaining !== 147 && !overlayP1 && !overlayP2) || overlayP1 ? {display: 'none'} : styles.additionalRedButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.statsP1(prev => ({
+                            redWentIn()
+                            setStatsP1(prev => ({
                                 ...prev,
                                 pots: prev.pots+1
                             }))
-                            props.setCurrentBreakP1(prev => prev+1)
-                            props.p1Points(prev => prev+1)
-                            props.setRemaining(prev => prev-8)
+                            setCurrentBreakP1(prev => prev+1)
+                            setP1Points(prev => prev+1)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
-                            <Text style={styles.buttonText}>+1 RED</Text>
+                        <View style={styles.button}>
+                            <Text style={styles.additionalRedText}>+1 RED</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-                <View style={props.remaining < 35 || !props.freeBallButtonP2 ? {display: 'none'} : styles.missButton}>
+                <View style={remaining < 35 || !freeBallButtonP2 ? {display: 'none'} : styles.redWentInButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.setRemaining(prev => prev-8)
+                            redWentIn()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
-                            <Text style={styles.button2Text}>RED WENT IN!</Text>
+                        <View style={styles.button}>
+                            <Text style={styles.redWentInText}>RED WENT IN!</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
             </View>
-            <View style={styles.missButtonContainer}>
-                <View style={props.remaining < 35 || (!props.activeBallsP2['1'])  || (props.remaining !== 147 && !props.overlayP1 && !props.overlayP2) || props.overlayP2? {display: 'none'} : styles.redButton}>
+            <View style={styles.additionalRedsContainer}>
+                <View style={remaining < 35 || (activeBallsP2['1'])  || (remaining !== 147 && !overlayP1 && !overlayP2) || overlayP2? {display: 'none'} : styles.additionalRedButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.statsP2(prev => ({
+                            redWentIn()
+                            setStatsP2(prev => ({
                                 ...prev,
                                 pots: prev.pots+1
                             }))
-                            props.setCurrentBreakP2(prev => prev+1)
-                            props.p2Points(prev => prev+1)
-                            props.setRemaining(prev => prev-8)
+                            setCurrentBreakP2(prev => prev+1)
+                            setP2Points(prev => prev+1)
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
-                            <Text style={styles.buttonText}>+1 RED</Text>
+                        <View style={styles.button}>
+                            <Text style={styles.additionalRedText}>+1 RED</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-                <View style={props.remaining < 35 || !props.freeBallButtonP1 ? {display: 'none'} : styles.missButton}>
+                <View style={remaining < 35 || !freeBallButtonP1 ? {display: 'none'} : styles.redWentInButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
-                            if (props.backMode) {
-                                props.modifyArray()
-                                props.setBackMode(false)
-                            }
-                            props.setBack(4)
-                            props.setRemaining(prev => prev-8)
+                            redWentIn()
                         }}
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
-                        <View style={styles.miss}>
-                            <Text style={styles.button2Text}>RED WENT IN!</Text>
+                        <View style={styles.button}>
+                            <Text style={styles.redWentInText}>RED WENT IN!</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
@@ -97,14 +89,14 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
     },
-    missButtonContainer: {
+    additionalRedsContainer: {
         width: '50%',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 15,
     },
-    missButton: {
+    redWentInButton: {
         height: 50,
         width: 80,
         borderRadius: 15,
@@ -113,7 +105,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,0,0,0.7)',
         borderWidth: 3,
     },
-    redButton: {
+    additionalRedButton: {
         height: 50,
         width: 80,
         borderRadius: 15,
@@ -123,20 +115,19 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(24,210,0,0.5)',
         marginRight: 5
     },
-    miss: {
+    button: {
         height: 50,
         width: 80,
         borderRadius: 15,
-        borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
     },
-    buttonText: {
+    additionalRedText: {
         fontFamily: 'score',
         fontSize: 16,
         textAlign: 'center'
     },
-    button2Text: {
+    redWentInText: {
         fontFamily: 'score',
         fontSize: 13,
         textAlign: 'center',
