@@ -12,6 +12,9 @@ import SwitchButton from '../components/SwitchButton'
 
 import FrameOverScreen from '../screens/FrameOverScreen'
 import GameOverScreen from '../screens/GameOverScreen'
+
+import cloth from '../assets/png/green-snooker-cloth-background.jpg'
+import wood from '../assets/png/wood.png'
  
 const ScoreScreen = props => {
     const mode = props.navigation.getParam('reds') //
@@ -292,7 +295,7 @@ const ScoreScreen = props => {
         }
     }, [endOfFrame])
 
-    const mainScoreScreen = <ImageBackground style={styles.clothImage} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
+    const mainScoreScreen = <ImageBackground style={styles.clothImage} source={cloth}>
         <View style={styles.bar}/>
         {overlayP1 && !proMode ? <View style={styles.overlay}>
                 <SwitchButton 
@@ -430,7 +433,7 @@ const ScoreScreen = props => {
                 modifyArray={modifyArray}
                 />
             <View style={styles.bottomContainer}>
-                <ImageBackground style={styles.woodImage} source={require('../assets/png/wood.png')}>
+                <ImageBackground style={styles.woodImage} source={wood}>
                     <View style={styles.cover}>
                         <SafetyContainer 
                             activateBallsP1={activateBallsP1}

@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableNativeFeedback, ImageBackground } from 'react-native';
- 
+
+import wood from '../assets/png/wood.png'
+
 const ScoreContainer = props => {
     return (
             <View style={{...styles.main, ...props.style}}>
                 <View style={styles.mainContainer}>
-                    <ImageBackground style={styles.background} source={require('../assets/png/wood.png')}>
+                    <ImageBackground style={styles.background} source={wood}>
                         <View style={styles.contentContainer}>
                             <View>
                                 <View style={styles.undoRedoContainer}>

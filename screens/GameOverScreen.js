@@ -1,14 +1,17 @@
 import React from 'react';
 import { StyleSheet, ScrollView, ImageBackground, View, Text, TouchableNativeFeedback} from 'react-native';
 
+import cloth from '../assets/png/green-snooker-cloth-background.jpg'
+import wood from '../assets/png/wood.png'
+
 const GameOverScreen = props => {
 
     return (
         <View style={styles.main}>
-            <ImageBackground style={styles.clothImage} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
+            <ImageBackground style={styles.clothImage} source={cloth}>
                 <ScrollView contentContainerStyle={styles.summaryContainer}>
                 <View >
-                    <ImageBackground style={styles.woodImage} source={require('../assets/png/wood.png')}>
+                    <ImageBackground style={styles.woodImage} source={wood}>
                         <View style={styles.cover}>
                             <View style={styles.topContainer}>
                                 <Text style={styles.textMainHeader}><Text style={{color: '#e0de94'}}>MATCH SUMMARY</Text></Text>

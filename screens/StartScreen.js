@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, TextInput, Image } from 'react-native';
 
+import cloth from '../assets/png/green-snooker-cloth-background.jpg'
+import wood from '../assets/png/wood.png'
+import red15 from '../assets/Ball/15reds.png'
+import red10 from '../assets/Ball/10reds.png'
+import red6 from '../assets/Ball/6reds.png'
 
 const StartScreen = props => {
     const [proMode, setProMode] = useState(false)
@@ -13,10 +18,10 @@ const StartScreen = props => {
 
     return (
         <View style={styles.main}>
-            <ImageBackground style={styles.backgroundImage} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
+            <ImageBackground style={styles.backgroundImage} source={cloth}>
                 {error && <View style={styles.overlay}>
                     <View style={styles.errorContainer}>
-                        <ImageBackground style={styles.backgroundImage} source={require('../assets/png/wood.png')}>
+                        <ImageBackground style={styles.backgroundImage} source={wood}>
                             <View style={styles.coverSmall}>
                                 <View style={styles.errorMessage}>
                                     <Text style={styles.errorMessageTextHeader}>Invalid name!</Text>
@@ -38,7 +43,7 @@ const StartScreen = props => {
                     </View>
                 </View>}
                 <View style={styles.mainContainer}>
-                    <ImageBackground style={styles.backgroundImage} source={require('../assets/png/wood.png')}>
+                    <ImageBackground style={styles.backgroundImage} source={wood}>
                         <View style={styles.cover}>
                             <View style={styles.appNameContainer}>
                                 <Text style={styles.appName}>SNOOKER COUNTER</Text>
@@ -77,7 +82,7 @@ const StartScreen = props => {
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={reds === 15 ? styles.redButtonOn : styles.redButtonOff}>
-                                                <Image style={styles.reds15} source={require('../assets/Ball/15reds.png')}/>
+                                                <Image style={styles.reds15} source={red15}/>
                                             </View>
                                         </TouchableNativeFeedback>
                                     </View>
@@ -88,7 +93,7 @@ const StartScreen = props => {
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={reds === 10 ? styles.redButtonOn : styles.redButtonOff}>
-                                                <Image style={styles.reds10} source={require('../assets/Ball/10reds.png')}/>
+                                                <Image style={styles.reds10} source={red10}/>
                                             </View>
                                         </TouchableNativeFeedback>
                                     </View>
@@ -99,7 +104,7 @@ const StartScreen = props => {
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={reds === 6 ? styles.redButtonOn : styles.redButtonOff}>
-                                                <Image style={styles.reds6} source={require('../assets/Ball/6reds.png')}/>
+                                                <Image style={styles.reds6} source={red6}/>
                                             </View>
                                         </TouchableNativeFeedback>
                                     </View>
@@ -136,7 +141,7 @@ const StartScreen = props => {
                     </ImageBackground>
                 </View>
                 <View style={styles.buttonsContainer}>
-                    <ImageBackground style={styles.backgroundImage} source={require('../assets/png/wood.png')}>
+                    <ImageBackground style={styles.backgroundImage} source={wood}>
                         <View style={styles.coverSmall}>
                             <View style={styles.startGame}>
                                 <TouchableNativeFeedback
