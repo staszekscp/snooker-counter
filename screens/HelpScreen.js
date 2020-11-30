@@ -1,17 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableNativeFeedback, ImageBackground, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+
+import cloth from '../assets/png/green-snooker-cloth-background.jpg'
+import wood from '../assets/png/wood.png'
  
 const HelpScreen = props => {
 
+    const [helpOptions, setHelpOptions] = useState({
+        start: false,
+        pot: false,
+        safe: false,
+        switch: false,
+        foul: false,
+        freeBall: false,
+        redWentIn: false,
+        plusOneRed: false,
+        longPot: false,
+        undo: false,
+        reRack: false,
+        endOfFrame: false,
+        endOfMatch: false
+    })
+
     return (
     <View style={styles.main}>
-        <ImageBackground style={styles.img} source={require('../assets/png/green-snooker-cloth-background.jpg')}>
-            <ScrollView contentContainerStyle={{width: '100%'}}>
+        <ImageBackground style={styles.img} source={cloth}>
+            <ScrollView style={{width: '85%'}} contentContainerStyle={{width: '100%'}}>
                 <View style={{justifyContent: 'center'}}>
-                    <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                            <TouchableNativeFeedback>
+                    <View style={[styles.summaryContainer, {marginTop: 70}]}>
+                        <ImageBackground style={styles.img2} source={wood}>
+                            <TouchableNativeFeedback
+                            onPress={() => {
+                                setHelpOptions(prev => ({
+                                    ...prev,
+                                    start: !prev.start
+                                }))
+                            }}>
                             <View style={styles.cover}>
                                 <View style={styles.helpOptionHeader}>
                                     <View>
@@ -21,16 +46,22 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.start ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>In order to start the game you must type the players' names (2-20 characters). That's it! If you wish you may also change the game variant (15, 10 or 6 reds) or the counter mode. The Pro mode is a bit more complex allowing you to keep players' safety and long pot success statistics.</Text>
                                 </View>
                             </View>
                             </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                pot: !prev.pot
+                            }))
+                        }}>
                             <View style={styles.cover}>
                                 
                                 <View style={styles.helpOptionHeader}>
@@ -41,16 +72,22 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.pot ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>When a ball was potted just press the correct ball symbol on the potting player's side of the screen. The available options will change automatically. If a player missed a ball press the MISS button instead.</Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                safe: !prev.safe
+                            }))
+                        }}>
                             <View style={styles.cover}>
                                 
                                 <View style={styles.helpOptionHeader}>
@@ -61,16 +98,22 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.safe ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>If you want to keep the safety statistics you can do it! In the Pro Mode press the safe or unsafe button depending on the quality of the player's safety shot.</Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                switch: !prev.switch
+                            }))
+                        }}>
                             <View style={styles.cover}>
                                 <View style={styles.helpOptionHeader}>
                                     <View>
@@ -80,16 +123,22 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.switch ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>Press it if you want to switch players - this button works in moreless the same way as if one would play a succesuful safety shot. If the player misses a shot press the MISS button and if there was a foul use one of the FOUL buttons instead!</Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                foul: !prev.foul
+                            }))
+                        }}>
                             <View style={styles.cover}>
                                 
                                 <View style={styles.helpOptionHeader}>
@@ -100,16 +149,22 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.foul ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>In case of a foul choose the number of points the opponent gains. For example if the player on the left side of the screen committed a foul for 5 points press the number 5 on the left side of the screen. The 5 points will be added to the account of the player on the right.</Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                freeBall: !prev.freeBall
+                            }))
+                        }}>
                             <View style={styles.cover}>
                                 
                                 <View style={styles.helpOptionHeader}>
@@ -120,16 +175,22 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.freeBall ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>After each foul the FREE BALL button will show up. Of course not after every foul there will be a free ball but sometimes it will happen. This is the moment when you can press the FREE BALL button (you can press it again to switch it off). A colorful ball image will show up. Press it only if the player pots the free ball.</Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                redWentIn: !prev.redWentIn
+                            }))
+                        }}>
                             <View style={styles.cover}>
                                 
                                 <View style={styles.helpOptionHeader}>
@@ -140,18 +201,49 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.redWentIn ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>If someone committed a foul and potted a red at the same time press the RED WENT IN button to inform the counter that currently there is one red less on the table. Or more than just one!</Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                plusOneRed: !prev.plusOneRed
+                            }))
+                        }}>
                             <View style={styles.cover}>
                                 
+                                <View style={styles.helpOptionHeader}>
+                                    <View>
+                                        <Text style={styles.headerText}>+1 RED</Text>
+                                    </View>
+                                    <View>
+                                        <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
+                                    </View>
+                                </View>
+                                <View style={helpOptions.plusOneRed ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>Use it if a player potted more than one red at once without a foul!</Text>
+                                </View>
+                            </View>
+                        </TouchableNativeFeedback>
+                        </ImageBackground>
+                    </View>
+                    <View style={styles.summaryContainer}>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                longPot: !prev.longPot
+                            }))
+                        }}>
+                            <View style={styles.cover}>
                                 <View style={styles.helpOptionHeader}>
                                     <View>
                                         <Text style={styles.headerText}>LONG POT</Text>
@@ -160,18 +252,23 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.longPot ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>Press it when a player attempts a long pot. The long pot mode will be turned on. If the ball was potted press the correct ball image. In the case of a miss press the MISS button. The long pot mode will turn off automatically.</Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                undo: !prev.undo
+                            }))
+                        }}>
                             <View style={styles.cover}>
-                                
                                 <View style={styles.helpOptionHeader}>
                                     <View>
                                         <Text style={styles.headerText}>UNDO/REDO</Text>
@@ -180,16 +277,22 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.undo ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>During the game 5 previous shots will be kept in memory. That's why you may undo shots if you made a mistake! In order to do so press the UNDO button (or REDO if you changed your mind!)</Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                reRack: !prev.reRack
+                            }))
+                        }}>
                             <View style={styles.cover}>
                                 
                                 <View style={styles.helpOptionHeader}>
@@ -200,16 +303,22 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.reRack ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>The players will start the frame again? Just press the RE-RACK button!</Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                endOfFrame: !prev.endOfFrame
+                            }))
+                        }}>
                             <View style={styles.cover}>
                                 
                                 <View style={styles.helpOptionHeader}>
@@ -220,18 +329,23 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.endOfFrame ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>The player that needs snookers to win the frame may press the CONCEIDE button to give up a frame. This is not the only option to end it, though. Frame will end automatically when the last black is potted OR when there is only the black remaining and the difference between the players' points is greater than 7 at the moment when the winner ends its turn. If the winner is at the table and doesn't want to pot the last black can press the END OF FRAME button that will appear on the screen. </Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
                         </ImageBackground>
                     </View>
                     <View style={styles.summaryContainer}>
-                        <ImageBackground style={styles.img2} source={require('../assets/png/wood.png')}>
-                        <TouchableNativeFeedback>
+                        <ImageBackground style={styles.img2} source={wood}>
+                        <TouchableNativeFeedback
+                        onPress={() => {
+                            setHelpOptions(prev => ({
+                                ...prev,
+                                endOfMatch: !prev.endOfMatch
+                            }))
+                        }}>
                             <View style={styles.cover}>
-
                                 <View style={styles.helpOptionHeader}>
                                     <View>
                                         <Text style={styles.headerText}>END OF MATCH</Text>
@@ -240,8 +354,8 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={styles.playersContainer}>
-                                    
+                                <View style={helpOptions.endOfMatch ? styles.explanationContainer : {display: 'none'}}>
+                                    <Text style={styles.explanationText}>After the end of a frame you may end the whole match by pressing the END MATCH button. If you want to continue press the NEXT FRAME button instead</Text>
                                 </View>
                             </View>
                         </TouchableNativeFeedback>
@@ -254,16 +368,19 @@ const HelpScreen = props => {
     )
 }
 
+HelpScreen.navigationOptions = {
+    headerShown: false
+}
+
 const styles = StyleSheet.create({
     main: {
         flex: 1,
-        
     },
     img: {
         height: '100%',
         width: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
         },
     img2: {
         width: '100%',
@@ -354,16 +471,23 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 26
     },
-    playersContainer: {
+    explanationContainer: {
         width: '98%',
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
-        paddingVertical: 10,
+        padding: 10,
         marginVertical: 10,
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
-
     },
+    explanationText: {
+        color: '#fff',
+        fontFamily: 'score',
+        textAlign: 'justify'
+    },
+
+
+
     textInput: {
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
         borderRadius: 5,
@@ -426,7 +550,7 @@ const styles = StyleSheet.create({
     helpOptionHeader: {
         justifyContent: 'space-between',
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
 
     proModeButtonOff: {
