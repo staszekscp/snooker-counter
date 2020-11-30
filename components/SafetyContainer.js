@@ -327,12 +327,11 @@ const styles = StyleSheet.create({
         width: 80,
         borderRadius: 15,
         borderWidth: 3,
-        borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
     },
     safeText: {
-        color: 'black',
+        color: '#000',
         fontFamily: 'scoreBold',
         fontSize: 16
     }

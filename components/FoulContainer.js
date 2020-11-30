@@ -426,7 +426,6 @@ const styles = StyleSheet.create({
         width: 40,
         borderRadius: 15,
         borderWidth: 3,
-        borderColor: 'black',
         marginHorizontal: 2,
         justifyContent: 'center',
         alignItems: 'center',
@@ -446,13 +445,13 @@ const styles = StyleSheet.create({
     },
     textFoul: {
         textAlign: 'center',
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score',
         fontSize: 16,
         color: '#e0de94'
     },
     textFoulPoints: {
-        color: 'black',
+        color: '#000',
         fontFamily: 'score',
         fontSize: 16,
         

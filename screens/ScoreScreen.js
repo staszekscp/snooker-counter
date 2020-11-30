@@ -600,7 +600,7 @@ const styles = StyleSheet.create({
     left:Dimensions.get('window').width/2,
     height: '100%',
     width: 2,
-    backgroundColor: 'black',
+    backgroundColor: '#000',
     position: 'absolute',
     zIndex: 2
    },
@@ -614,7 +614,6 @@ const styles = StyleSheet.create({
    },
    bottomContainer: {
     borderRadius: 20,
-    borderColor: 'black',
     borderWidth: 2,
     marginHorizontal: 5,
     paddingBottom: 200,

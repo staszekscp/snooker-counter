@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
         width: '15%'
     },
     text: {
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score',
         textAlign: 'center'
     },
@@ -173,20 +173,20 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     textPlayerName: {
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score',
         fontSize: 16,
         width: 100,
         textAlign: 'center'
     },
     textMainHeader: {
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score',
         textAlign: 'center',
         fontSize: 20,
     },
     textFrameResult: {
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score',
         textAlign: 'center',
         fontSize: 30,
@@ -206,12 +206,11 @@ const styles = StyleSheet.create({
         width: 140,
         borderRadius: 15,
         borderWidth: 3,
-        borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
     },
     newMatchText: {
-        color: 'black',
+        color: '#000',
         fontFamily: 'scoreBold',
         fontSize: 18
     },

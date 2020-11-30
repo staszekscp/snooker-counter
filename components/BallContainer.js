@@ -121,7 +121,7 @@ const BallContainer = props => {
                             modifyArray={props.modifyArray}
                             activateBalls={props.activateBallsP1}
                             activateOpponentsBalls={props.activateBallsP2}/>
-                        <View style={props.freeBallButtonP1 ? styles.touchableFB : {...styles.touchableFB, ...styles.invisible}}>
+                        <View style={!props.freeBallButtonP1 ? {...styles.touchableFB, ...styles.invisible} : !props.freeBallP1 ? styles.touchableFB : styles.touchableFBPressed}>
                             <TouchableNativeFeedback
                                 disabled={!props.freeBallButtonP1}
                                 onPress={() => {
@@ -146,7 +146,7 @@ const BallContainer = props => {
                                 }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                 <View style={styles.buttonFB}>
-                                    <Text style={styles.buttonText}>
+                                    <Text style={props.freeBallP1 ? styles.buttonTextFBPressed : styles.buttonText}>
                                         FREE BALL
                                     </Text >
                                 </View>
@@ -298,7 +298,7 @@ const BallContainer = props => {
                             activateOpponentsBalls={props.activateBallsP1}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
-                    <View style={props.freeBallButtonP2 ? styles.touchableFB : {...styles.touchableFB, ...styles.invisible}}>
+                    <View style={!props.freeBallButtonP2 ? {...styles.touchableFB, ...styles.invisible} : !props.freeBallP2 ? styles.touchableFB : styles.touchableFBPressed}>
                             <TouchableNativeFeedback
                                 disabled={!props.freeBallButtonP2}
                                 onPress={() => {
@@ -323,7 +323,7 @@ const BallContainer = props => {
                                 }}
                             background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                 <View style={styles.buttonFB}>
-                                    <Text style={styles.buttonText}>
+                                    <Text style={props.freeBallP2 ? styles.buttonTextFBPressed : styles.buttonText}>
                                         FREE BALL
                                     </Text >
                                 </View>
@@ -470,7 +470,17 @@ const styles = StyleSheet.create({
         height: 30,
         width: 45,
         borderRadius: 5,
-        backgroundColor: 'lightblue',
+        backgroundColor: '#9ecdff',
+        marginVertical: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation:5,
+    },
+    touchableFBPressed: {
+        height: 30,
+        width: 45,
+        borderRadius: 5,
+        backgroundColor: '#050778',
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -480,7 +490,7 @@ const styles = StyleSheet.create({
         height: 30,
         width: 45,
         borderRadius: 5,
-        backgroundColor: 'lightgreen',
+        backgroundColor: '#99ff94',
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -491,7 +501,7 @@ const styles = StyleSheet.create({
         height: 30,
         width: 45,
         borderRadius: 5,
-        backgroundColor: 'darkgreen',
+        backgroundColor: '#006905',
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -517,13 +527,19 @@ const styles = StyleSheet.create({
         fontSize: 10,
         textAlign: 'center',
         fontFamily: 'scoreBold',
-        color: 'black'
+        color: '#000'
     },
     buttonTextLongPressed: {
         fontSize: 10,
         textAlign: 'center',
-        fontFamily: 'scoreBold',
-        color: 'white'
+        fontFamily: 'score',
+        color: '#fff'
+    },
+    buttonTextFBPressed: {
+        fontSize: 10,
+        textAlign: 'center',
+        fontFamily: 'score',
+        color: '#fff'
     },
     ball: {
         height: 49,
@@ -532,25 +548,25 @@ const styles = StyleSheet.create({
         margin: 5
     },
     red: {
-        backgroundColor: 'red',
+        backgroundColor: '#ff0022',
         margin: 10
     },
     yellow: {
-        backgroundColor: 'yellow',
+        backgroundColor: '#fbff00',
         top: 30
     },
     green: {
-        backgroundColor: 'green',
+        backgroundColor: '#029e0c',
     },
     brown: {
-        backgroundColor: 'brown',
+        backgroundColor: '#99001a',
         top: 30
     },
     blue: {
-        backgroundColor: 'blue',
+        backgroundColor: '#0f1bff',
     },
     pink: {
-        backgroundColor: 'pink',
+        backgroundColor: '#ff8af7',
         top: 30
     },
     black: {

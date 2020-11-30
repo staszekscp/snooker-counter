@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     background: {
-
+        justifyContent: 'center'
     },
     mainContainer: {
         top: 5,
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         marginTop: 10,
         fontSize: 16,
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score',
         color: '#e0de94'
     },
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     },
     frames: {
         fontSize: 16,
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score'
     },
     framesContainer: {
@@ -251,11 +251,11 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     remainingPoints: {
-        color: 'white',
+        color: '#fff',
         fontFamily: 'score'
     },
     grey: {
-        color: 'grey'
+        color: '#7a7a67'
     },
     undoRedoButtonOff: {
         height: 30,
@@ -295,7 +295,6 @@ const styles = StyleSheet.create({
         width: 70,
         borderRadius: 15,
         borderWidth: 3,
-        borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -304,7 +303,6 @@ const styles = StyleSheet.create({
         width: 50,
         borderRadius: 15,
         borderWidth: 3,
-        borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -312,7 +310,7 @@ const styles = StyleSheet.create({
         fontFamily: 'score',
         fontSize: 10,
         textAlign: 'center',
-        color: 'white'
+        color: '#fff'
     },
     undoRedoContainer: {
         flexDirection: 'row', 
