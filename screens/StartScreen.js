@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, TextInput, Image } from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, TextInput, Image, Animated, Easing } from 'react-native';
 
 import cloth from '../assets/png/green-snooker-cloth-background.jpg'
 import wood from '../assets/png/wood.png'
@@ -16,11 +16,42 @@ const StartScreen = props => {
     const [p1Name, setP1Name] = useState('')
     const [p2Name, setP2Name] = useState('')
 
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const fadeAnimBottom = useRef(new Animated.Value(0)).current;
+    const fadeAnimError = useRef(new Animated.Value(0)).current;
+ 
+    const fadeIn = () => {
+        Animated.sequence([
+            Animated.timing(fadeAnim, {
+                toValue: 1,
+                duration: 700,
+                useNativeDriver: true
+              }),
+              Animated.timing(fadeAnimBottom, {
+                toValue: 1,
+                duration: 700,
+                useNativeDriver: true
+              })
+        ]).start()
+    }
+        
+    const fadeInError = val => {
+        Animated.timing(fadeAnimError, {
+          toValue: val,
+          duration: 300,
+          useNativeDriver: true
+        }).start();
+      };
+
+    useEffect(() => {
+        fadeIn()
+    }, [])
+
     return (
         <View style={styles.main}>
             <ImageBackground style={styles.backgroundImage} source={cloth}>
-                {error && <View style={styles.overlay}>
-                    <View style={styles.errorContainer}>
+                {error && <Animated.View style={[styles.overlay, {opacity: fadeAnimError}]}>
+                    <Animated.View style={[styles.errorContainer, {opacity: fadeAnimError}]}>
                         <ImageBackground style={styles.backgroundImage} source={wood}>
                             <View style={styles.coverSmall}>
                                 <View style={styles.errorMessage}>
@@ -30,7 +61,8 @@ const StartScreen = props => {
                                 <View style={styles.smallButtonContainer}>
                                     <TouchableNativeFeedback
                                     onPress={() => {
-                                        setError(false)
+                                        fadeInError(0)
+                                        setTimeout(() => {setError(false)}, 300)
                                     }}
                                     background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                         <View style={styles.smallButton}>
@@ -40,9 +72,9 @@ const StartScreen = props => {
                                 </View>
                             </View>
                         </ImageBackground>
-                    </View>
-                </View>}
-                <View style={styles.mainContainer}>
+                    </Animated.View>
+                </Animated.View>}
+                <Animated.View style={[styles.mainContainer, {opacity:fadeAnim }]}>
                     <ImageBackground style={styles.backgroundImage} source={wood}>
                         <View style={styles.cover}>
                             <View style={styles.appNameContainer}>
@@ -139,8 +171,8 @@ const StartScreen = props => {
                             </View>
                         </View>
                     </ImageBackground>
-                </View>
-                <View style={styles.buttonsContainer}>
+                </Animated.View>
+                <Animated.View style={[styles.buttonsContainer, {opacity:fadeAnimBottom }]}>
                     <ImageBackground style={styles.backgroundImage} source={wood}>
                         <View style={styles.coverSmall}>
                             <View style={styles.startGame}>
@@ -158,6 +190,7 @@ const StartScreen = props => {
                                         })
                                     } else {
                                         setError(true)
+                                        fadeInError(1)
                                     }
                                 }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
@@ -179,7 +212,7 @@ const StartScreen = props => {
                             </View>
                         </View>
                     </ImageBackground>
-                </View>
+                </Animated.View>
             </ImageBackground>
 
         </View>
