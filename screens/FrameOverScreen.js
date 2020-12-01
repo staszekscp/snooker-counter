@@ -14,7 +14,7 @@ const FrameOverScreen = ({mode, proMode, p1Frames, p2Frames, p1Name, p2Name, p1P
     const fadeIn = () => {
         Animated.timing(fadeAnim, {
             toValue: 1,
-            duration: 1500,
+            duration: 750,
             useNativeDriver: true
         }).start()
     }
@@ -22,7 +22,7 @@ const FrameOverScreen = ({mode, proMode, p1Frames, p2Frames, p1Name, p2Name, p1P
     const fadeOut = () => {
         Animated.timing(fadeAnim, {
             toValue: 0,
-            duration: 1500,
+            duration: 750,
             useNativeDriver: true
         }).start()
     }
@@ -33,12 +33,12 @@ const FrameOverScreen = ({mode, proMode, p1Frames, p2Frames, p1Name, p2Name, p1P
             setTimeout(() => {
                 setEndOfFrame(false)
                 setEndOfMatch(true)
-            }, 1500)
+        }, 750)
         } else {
             setTimeout(() => {
                 startNewFrame()
                 setEndOfFrame(false)
-            }, 1500)}
+        }, 750)}
     }
 
     useEffect(() => {

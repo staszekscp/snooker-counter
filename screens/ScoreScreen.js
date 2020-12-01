@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Dimensions, ImageBackground, View, Animated } from 'react-native';
+import { StyleSheet, Dimensions, ImageBackground, View, Animated, Text, TouchableNativeFeedback } from 'react-native';
 
 import BallContainer from '../components/BallContainer'
 import ScoreContainer from '../components/ScoreContainer'
@@ -19,6 +19,8 @@ import wood from '../assets/png/wood.png'
 const ScoreScreen = props => {
     const mode = props.navigation.getParam('reds') //
     const proMode = props.navigation.getParam('mode') //
+
+    const [endModal, setEndModal] = useState(false)
 
     const p1Name = props.navigation.getParam('p1') //
     const p2Name = props.navigation.getParam('p2') //
@@ -111,41 +113,54 @@ const ScoreScreen = props => {
     const [extraBlack, setExtraBlack] = useState(false) //
 
 //========================================================================================================
+const fadeAnimModal = useRef(new Animated.Value(0)).current
 
-const fadeAnim = useRef(new Animated.Value(0)).current;
-
-const fadeIn = (time) => {
-    Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: time,
-        useNativeDriver: true
-    }).start()
-}
-
-const fadeOut = () => {
-    Animated.timing(fadeAnim, {
-        toValue: 0,
-        duration: 1500,
-        useNativeDriver: true
-    }).start()
-}
-
+const fadeInModal = val => {
+    Animated.timing(fadeAnimModal, {
+      toValue: val,
+      duration: 500,
+      useNativeDriver: true
+    }).start();
+  };
 //========================================================================================================
 
     const endFrame = () => {
-        fadeOut()
-        setTimeout(() => {
-            setEndOfFrame(true)
-        }, 1500)
+        setEndModal(true)
+        fadeInModal(1)
+    }
+
+    const finishFrame = () => {
+        setEndOfFrame(true)
     }
 
     const startNewFrame = () => {
-        fadeIn(1500)
+
     }
 
-    useEffect(() => {
-        fadeIn(1)
-    }, [])
+    const setShot = val => {
+        setP1Points(previousShots[val].p1Points)
+        setP2Points(previousShots[val].p2Points)
+        setRemaining(previousShots[val].remaining)
+        setActiveBallsP1(previousShots[val].activeBallsP1)
+        setActiveBallsP2(previousShots[val].activeBallsP2)
+        setOverlayP1(previousShots[val].overlayP1),
+        setOverlayP2(previousShots[val].overlayP2),
+        setFreeBallP1(previousShots[val].freeBallP1),
+        setFreeBallP2(previousShots[val].freeBallP2),
+        setFreeBallButtonP1(previousShots[val].freeBallButtonP1),
+        setFreeBallButtonP2(previousShots[val].freeBallButtonP2),
+        setLongPotP1(previousShots[val].longPotP1),
+        setLongPotP2(previousShots[val].longPotP2),
+        setBreakP1(previousShots[val].breakP1),
+        setBreakP2(previousShots[val].breakP2),
+        setCurrentBreakP1(previousShots[val].currentBreakP1),
+        setCurrentBreakP2(previousShots[val].currentBreakP2),
+        setStatsP1(previousShots[val].statsP1),
+        setStatsP2(previousShots[val].statsP2)
+        
+        setCurrentShotIndex(val)
+        setBackwardMode(true)
+    }
 
     useEffect(() => {
         if(!backwardMode){
@@ -329,8 +344,63 @@ const fadeOut = () => {
         }
     }, [endOfFrame])
 
-    const mainScoreScreen = <ImageBackground style={styles.clothImage} source={cloth}>
-        <Animated.View style={{opacity: fadeAnim}}>
+    const mainScoreScreen = <View>
+        <ImageBackground style={styles.clothImage} source={cloth}>
+        {endModal && <Animated.View style={[styles.mainOverlay, {opacity: fadeAnimModal}]}>
+                    <Animated.View style={[styles.endOfFrameContainer, {opacity: fadeAnimModal}]}>
+                        <ImageBackground style={styles.backgroundImageModal} source={wood}>
+                            <View style={styles.coverSmall}>
+                            <Text style={styles.endOfFrameMessageTextHeader}>FRAME HAS ENDED!</Text>
+                                <View style={styles.endOfFrameMessage}>
+                                    
+                                    <View style={styles.resultContainer}>
+                                        <View style={{width: '35%'}}>
+                                            <Text style={styles.endOfFrameMessageTextName}>{p1Name}</Text>
+                                        </View>
+                                        <View style={{width: '30%'}}>
+                                            <Text style={styles.endOfFrameMessageTextPoints}> {p1Points} : {p2Points} </Text>
+                                        </View>
+                                        <View style={{width: '35%'}}>
+                                            <Text style={styles.endOfFrameMessageTextName}>{p2Name}</Text>
+                                        </View>
+                                    </View>
+                                    
+                                </View>
+                                <Text style={styles.endOfFrameMessageText}>Please confirm the result:</Text>
+                                <View style={styles.buttonsContainer}>
+                                    <View style={styles.smallButtonContainerNo}>
+                                        <TouchableNativeFeedback
+                                        onPress={() => {
+                                            if (remaining < 7) {
+                                                setShot(previousShots.length-2)
+                                            } 
+                                            fadeInModal(0)
+                                            setTimeout(() => {
+                                                setEndModal(false)}, 500)
+                                        }}
+                                        background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
+                                            <View style={styles.smallButton}>
+                                                <Text style={styles.smallButtonText}>GO BACK</Text>
+                                            </View>
+                                        </TouchableNativeFeedback>
+                                    </View>
+                                    <View style={styles.smallButtonContainerOk}>
+                                        <TouchableNativeFeedback
+                                        onPress={() => {
+                                            finishFrame()
+                                            setEndModal(false)
+                                        }}
+                                        background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
+                                            <View style={styles.smallButton}>
+                                                <Text style={styles.smallButtonText}>CONFIRM</Text>
+                                            </View>
+                                        </TouchableNativeFeedback>
+                                    </View>
+                                </View>
+                            </View>
+                        </ImageBackground>
+                    </Animated.View>
+                </Animated.View>}
         <View style={styles.bar}/>
         {overlayP1 && !proMode ? <View style={styles.overlay}>
                 <SwitchButton 
@@ -554,8 +624,7 @@ const fadeOut = () => {
                     </View>
                 </ImageBackground>
             </View>  
-            </Animated.View>
-        </ImageBackground>
+        </ImageBackground></View>
 
     const frameOverScreen = <FrameOverScreen 
         mode={mode}
@@ -633,6 +702,115 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
    },
+   mainOverlay: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#000',
+    position: 'absolute',
+    zIndex: 5,
+    justifyContent: 'center',
+    alignItems: 'center'
+   },
+   endOfFrameContainer: {
+    height: '30%',
+    width: '80%',
+    borderRadius: 20,
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 3,
+    },
+    backgroundImageModal: {
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    coverSmall: {
+        backgroundColor: 'rgba(60,5,0, 0.6)',
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+       },
+    endOfFrameMessage: {
+        width: '90%',
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+        paddingVertical: 10,
+        margin: 5,
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    endOfFrameMessageTextHeader: {
+        color: '#e0de94',
+        fontFamily: 'scoreBold',
+        fontSize: 20, 
+        marginBottom: 10,
+        textAlign: 'center'
+    },
+    endOfFrameMessageTextName: {
+        color: '#fff',
+        fontFamily: 'scoreBold',
+        fontSize: 16, 
+        textAlign: 'center'
+    },
+    endOfFrameMessageTextPoints: {
+        color: '#e0de94',
+        fontFamily: 'scoreBold',
+        fontSize: 20, 
+        textAlign: 'center'
+    },
+    endOfFrameMessageText: {
+        color: '#ddd',
+        fontFamily: 'scoreBold',
+        fontSize: 16,
+        textAlign: 'justify',
+        padding: 10
+    },
+    resultContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: 10
+    },
+    buttonsContainer:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    smallButtonContainerNo: {
+        height: 40,
+        width: 100,
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+        margin: 5
+    },
+    smallButtonContainerOk: {
+        height: 40,
+        width: 100,
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 255, 0, 0.2)',
+        margin: 5
+    },
+    smallButton: {
+        height: 40,
+        width: 100,
+        borderRadius: 15,
+        borderWidth: 3,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    smallButtonText: {
+        color: '#bbb',
+        fontFamily: 'score',
+        fontSize: 14,
+        textAlign: 'center'
+    },
    bar: {
     left:Dimensions.get('window').width/2,
     height: '100%',

@@ -11,12 +11,14 @@ const StartScreen = props => {
     const [proMode, setProMode] = useState(false)
     const [reds, setReds] = useState(15)
     
+    const [mainOverlay, setMainOverlay] = useState(true)
+    const [mainOverlayOut, setMainOverlayOut] = useState(false)
     const [error, setError] = useState(false)
 
     const [p1Name, setP1Name] = useState('')
     const [p2Name, setP2Name] = useState('')
 
-    const fadeAnim = useRef(new Animated.Value(0)).current
+    const fadeAnim = useRef(new Animated.Value(1)).current
     const fadeAnimError = useRef(new Animated.Value(0)).current
     const turnAround15 = useRef(new Animated.Value(0)).current
     const turnAround10 = useRef(new Animated.Value(0)).current
@@ -34,19 +36,11 @@ const StartScreen = props => {
         inputRange: [0, 1],
         outputRange: ['0deg', '360deg']
       })
- 
-    const fadeIn = () => {
-        Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 700,
-            useNativeDriver: true
-        }).start()
-    }
 
     const fadeOut = () => {
         Animated.timing(fadeAnim, {
             toValue: 0,
-            duration: 1500,
+            duration: 2000,
             useNativeDriver: true
         }).start()
     }
@@ -75,11 +69,15 @@ const StartScreen = props => {
     }
 
     useEffect(() => {
-        fadeIn()
+        fadeOut()
+        setTimeout(() => {
+            setMainOverlay(false)
+        }, 2000)
     }, [])
 
     return (
         <View style={styles.main}>
+            {mainOverlay && <Animated.View style={[styles.mainOverlay, {opacity:fadeAnim }]}/>}
             <ImageBackground style={styles.backgroundImage} source={cloth}>
                 {error && <Animated.View style={[styles.overlay, {opacity: fadeAnimError}]}>
                     <Animated.View style={[styles.errorContainer, {opacity: fadeAnimError}]}>
@@ -105,7 +103,7 @@ const StartScreen = props => {
                         </ImageBackground>
                     </Animated.View>
                 </Animated.View>}
-                <Animated.View style={[styles.mainContainer, {opacity:fadeAnim }]}>
+                <View style={styles.mainContainer}>
                     <ImageBackground style={styles.backgroundImage} source={wood}>
                         <View style={styles.cover}>
                             <View style={styles.appNameContainer}>
@@ -205,8 +203,8 @@ const StartScreen = props => {
                             </View>
                         </View>
                     </ImageBackground>
-                </Animated.View>
-                <Animated.View style={[styles.buttonsContainer, {opacity:fadeAnim }]}>
+                </View>
+                <View style={styles.buttonsContainer}>
                     <ImageBackground style={styles.backgroundImage} source={wood}>
                         <View style={styles.coverSmall}>
                             <View style={styles.startGame}>
@@ -246,29 +244,30 @@ const StartScreen = props => {
                             </View>
                         </View>
                     </ImageBackground>
-                </Animated.View>
+                </View>
             </ImageBackground>
-
         </View>
     )
 }
 
 StartScreen.navigationOptions = {
-    headerTitle: 'Snooker Counter',
-    headerStyle: {
-        backgroundColor: 'rgb(40,5,0)'
-    },
-    headerTintColor: '#e0de94',
-    headerTitleStyle: {
-        fontFamily: "score",
-        fontSize: 20,
-    }
+    headerShown: false
 }
 
 const styles = StyleSheet.create({
     main: {
         flex: 1,
+        backgroundColor: '#000'
     },
+    mainOverlay: {
+        height: '100%',
+        width: '100%',
+        backgroundColor: '#000',
+        position: 'absolute',
+        zIndex: 2,
+        justifyContent: 'center',
+        alignItems: 'center'
+       },
     backgroundImage: {
         height: '100%',
         width: '100%',

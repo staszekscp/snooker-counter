@@ -12,7 +12,7 @@ const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, s
     const fadeIn = () => {
         Animated.timing(fadeAnim, {
             toValue: 1,
-            duration: 1500,
+            duration: 750,
             useNativeDriver: true
         }).start()
     }
@@ -20,7 +20,7 @@ const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, s
     const fadeOut = () => {
         Animated.timing(fadeAnim, {
             toValue: 0,
-            duration: 1500,
+            duration: 750,
             useNativeDriver: true
         }).start()
     }
@@ -29,7 +29,7 @@ const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, s
         fadeOut()
         setTimeout(() => {
             navigation.navigate('Start')
-        }, 1500)
+        }, 750)
     }
 
 

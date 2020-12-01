@@ -19,20 +19,20 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
         Animated.parallel([
             Animated.sequence([
                 Animated.timing(fadeAnim, {
-                    toValue: 0.5,
-                    duration: 700,
+                    toValue: 0.35,
+                    duration: 500,
                     useNativeDriver: true
                 }),
                 Animated.timing(fadeAnim, {
                     toValue: 0,
-                    duration: 700,
+                    duration: 500,
                     useNativeDriver: true
                 })
             ]),
             Animated.sequence([
                 Animated.timing(scaleAnim, {
                     toValue: 3,
-                    duration: 1400,
+                    duration: 1000,
                     useNativeDriver: true
                 }),
                 Animated.timing(scaleAnim, {
@@ -50,14 +50,14 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
     useEffect(() => {
         if (currentBreakP1 !== 0 && showP1Break) {
             fadeIn()
-            setTimeout(() => {setShowP1Break(false)}, 1450)
+            setTimeout(() => {setShowP1Break(false)}, 1050)
         }
     }, [currentBreakP1])
 
     useEffect(() => {
         if (currentBreakP2 !== 0 && showP2Break) {
             fadeIn()
-            setTimeout(() => {setShowP2Break(false)}, 1450)
+            setTimeout(() => {setShowP2Break(false)}, 1050)
         }
     }, [currentBreakP2])
 
