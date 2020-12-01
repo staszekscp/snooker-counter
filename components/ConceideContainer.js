@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
  
-const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFreeBallP1, setFreeBallP2,
+const ConceideContainer = ({p1Points, p2Points, remaining, endFrame, setFreeBallP1, setFreeBallP2,
     setFreeBallButtonP1, setFreeBallButtonP2, backwardMode, setBackwardMode, modifyArray}) => {
     
     const conceide = () => {
@@ -13,7 +13,7 @@ const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFre
         setFreeBallP2(false)
         setFreeBallButtonP1(false)
         setFreeBallButtonP2(false)
-        setEndOfFrame(true)
+        endFrame()
     }
 
     return (

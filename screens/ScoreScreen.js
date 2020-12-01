@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Dimensions, ImageBackground, View } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, Dimensions, ImageBackground, View, Animated } from 'react-native';
 
 import BallContainer from '../components/BallContainer'
 import ScoreContainer from '../components/ScoreContainer'
@@ -111,6 +111,41 @@ const ScoreScreen = props => {
     const [extraBlack, setExtraBlack] = useState(false) //
 
 //========================================================================================================
+
+const fadeAnim = useRef(new Animated.Value(0)).current;
+
+const fadeIn = (time) => {
+    Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: time,
+        useNativeDriver: true
+    }).start()
+}
+
+const fadeOut = () => {
+    Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 1500,
+        useNativeDriver: true
+    }).start()
+}
+
+//========================================================================================================
+
+    const endFrame = () => {
+        fadeOut()
+        setTimeout(() => {
+            setEndOfFrame(true)
+        }, 1500)
+    }
+
+    const startNewFrame = () => {
+        fadeIn(1500)
+    }
+
+    useEffect(() => {
+        fadeIn(1)
+    }, [])
 
     useEffect(() => {
         if(!backwardMode){
@@ -232,24 +267,24 @@ const ScoreScreen = props => {
     useEffect(() => {
         if (remaining === 7 && extraBlack) {
             if (p1Points > p2Points) {
-                setEndOfFrame(true)
+                endFrame()
                 setExtraBlack(false)
             } else if (p1Points < p2Points) {
-                setEndOfFrame(true)
+                endFrame()
                 setExtraBlack(false)
             }
         } else if (remaining === 7) {
             if (p1Points - p2Points > 7 && overlayP1 || p1Points - p2Points > 7 && !overlayP1 && !overlayP2) {
-                setEndOfFrame(true)
+                endFrame()
             } else if (p2Points - p1Points > 7 && overlayP2 || p2Points - p1Points > 7 && !overlayP1 && !overlayP2) {
-                setEndOfFrame(true)
+                endFrame()
             }
         } else if (remaining === 0) {
             if (!extraBlack) {
                 if (p1Points > p2Points) {
-                    setEndOfFrame(true)
+                    endFrame()
                 } else if (p1Points < p2Points) {
-                    setEndOfFrame(true)
+                    endFrame()
                 } else if (p1Points === p2Points) {
                     setRemaining(7)
                     setExtraBlack(true)
@@ -258,10 +293,10 @@ const ScoreScreen = props => {
                 }
             } else {
                 if (p1Points > p2Points) {
-                    setEndOfFrame(true)
+                    endFrame()
                     setExtraBlack(false)
                 } else if (p1Points < p2Points) {
-                    setEndOfFrame(true)
+                    endFrame()
                     setExtraBlack(false)
                 }
             } 
@@ -295,6 +330,7 @@ const ScoreScreen = props => {
     }, [endOfFrame])
 
     const mainScoreScreen = <ImageBackground style={styles.clothImage} source={cloth}>
+        <Animated.View style={{opacity: fadeAnim}}>
         <View style={styles.bar}/>
         {overlayP1 && !proMode ? <View style={styles.overlay}>
                 <SwitchButton 
@@ -507,7 +543,7 @@ const ScoreScreen = props => {
                             p1Points={p1Points}
                             p2Points={p2Points}
                             remaining={remaining}
-                            setEndOfFrame={setEndOfFrame}
+                            endFrame={endFrame}
                             setFreeBallP1={setFreeBallP1}
                             setFreeBallP2={setFreeBallP2}
                             setFreeBallButtonP1={setFreeBallButtonP1}
@@ -518,6 +554,7 @@ const ScoreScreen = props => {
                     </View>
                 </ImageBackground>
             </View>  
+            </Animated.View>
         </ImageBackground>
 
     const frameOverScreen = <FrameOverScreen 
@@ -553,6 +590,7 @@ const ScoreScreen = props => {
         setCurrentShotIndex={setCurrentShotIndex}
         setLongPotP1={setLongPotP1}
         setLongPotP2={setLongPotP2}
+        startNewFrame={startNewFrame}
         /> 
 
     const gameOverScreen = <GameOverScreen 

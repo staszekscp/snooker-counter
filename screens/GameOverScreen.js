@@ -1,16 +1,47 @@
-import React from 'react';
-import { StyleSheet, ScrollView, ImageBackground, View, Text, TouchableNativeFeedback} from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, ScrollView, ImageBackground, View, Text, TouchableNativeFeedback, Animated} from 'react-native';
 
 import cloth from '../assets/png/green-snooker-cloth-background.jpg'
 import wood from '../assets/png/wood.png'
 
-const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, statsP2, successP1, successP2, breakP1, breakP2, frameRecord, navigation }) => {
+const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, statsP2, successP1, successP2,
+    breakP1, breakP2, frameRecord, navigation }) => {
+
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+
+    const fadeIn = () => {
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 1500,
+            useNativeDriver: true
+        }).start()
+    }
+    
+    const fadeOut = () => {
+        Animated.timing(fadeAnim, {
+            toValue: 0,
+            duration: 1500,
+            useNativeDriver: true
+        }).start()
+    }
+
+    const endMatch = () => {
+        fadeOut()
+        setTimeout(() => {
+            navigation.navigate('Start')
+        }, 1500)
+    }
+
+
+    useEffect(() => {
+        fadeIn()
+    }, [])
 
     return (
         <View style={styles.main}>
             <ImageBackground style={styles.clothImage} source={cloth}>
                 <ScrollView contentContainerStyle={styles.summaryContainer}>
-                <View >
+                <Animated.View style={{opacity: fadeAnim, borderWidth: 3}}>
                     <ImageBackground style={styles.woodImage} source={wood}>
                         <View style={styles.cover}>
                             <View style={styles.topContainer}>
@@ -76,7 +107,7 @@ const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, s
                                 <View style={styles.newMatch}>
                                     <TouchableNativeFeedback
                                     onPress={() => {
-                                        navigation.navigate('Start')
+                                        endMatch()
                                     }}
                                     background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                         <View style={styles.newMatchButton}>
@@ -87,7 +118,7 @@ const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, s
                             </View>
                         </View>
                     </ImageBackground>
-                    </View>
+                    </Animated.View>
                 </ScrollView>
             </ImageBackground>
         </View>
@@ -114,7 +145,6 @@ const styles = StyleSheet.create({
         width: '80%',
         overflow: 'hidden',
         top: 100,
-        borderWidth: 3,
         borderRadius: 20,
     },
     cover: {

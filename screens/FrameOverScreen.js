@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, ScrollView} from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, ScrollView, Animated} from 'react-native';
 
 import cloth from '../assets/png/green-snooker-cloth-background.jpg'
 import wood from '../assets/png/wood.png'
@@ -7,13 +7,49 @@ import wood from '../assets/png/wood.png'
 const FrameOverScreen = ({mode, proMode, p1Frames, p2Frames, p1Name, p2Name, p1Points, p2Points, statsP1, statsP2,
     successP1, successP2, breakP1, breakP2, setEndOfFrame, setP1Points, setP2Points, setRemaining, setOverlayP1, setOverlayP2,
     setCurrentBreakP1, setCurrentBreakP2, activateBallsP1, activateBallsP2, setFrameRecord, setEndOfMatch, setPreviousShots, backwardMode,
-    setBackwardMode, setCurrentShotIndex, setLongPotP1, setLongPotP2}) => {
+    setBackwardMode, setCurrentShotIndex, setLongPotP1, setLongPotP2, startNewFrame}) => {
+
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+
+    const fadeIn = () => {
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 1500,
+            useNativeDriver: true
+        }).start()
+    }
+
+    const fadeOut = () => {
+        Animated.timing(fadeAnim, {
+            toValue: 0,
+            duration: 1500,
+            useNativeDriver: true
+        }).start()
+    }
+
+    const endFrame = (end) => {
+        fadeOut()
+        if (end === "M") { 
+            setTimeout(() => {
+                setEndOfFrame(false)
+                setEndOfMatch(true)
+            }, 1500)
+        } else {
+            setTimeout(() => {
+                startNewFrame()
+                setEndOfFrame(false)
+            }, 1500)}
+    }
+
+    useEffect(() => {
+        fadeIn()
+    }, [])
 
     return (
         <View style={styles.main}>
             <ImageBackground style={styles.clothImage} source={cloth}>
             <ScrollView contentContainerStyle={styles.summaryContainer}>
-                <View>
+                <Animated.View style={{opacity: fadeAnim, borderWidth: 3}}>
                     <ImageBackground style={styles.woodImage} source={wood}>
                         <View style={styles.cover}>
                             <View style={styles.topContainer}>
@@ -71,7 +107,6 @@ const FrameOverScreen = ({mode, proMode, p1Frames, p2Frames, p1Name, p2Name, p1P
                                         p2: p2Points,
                                         id: p1Frames+p2Frames}
                                     ]))
-                                    setEndOfFrame(false)
                                     setP1Points(0)
                                     setP2Points(0)
                                     setRemaining(mode * 8 + 27)
@@ -83,6 +118,7 @@ const FrameOverScreen = ({mode, proMode, p1Frames, p2Frames, p1Name, p2Name, p1P
                                     activateBallsP2(1)
                                     setLongPotP1(false)
                                     setLongPotP2(false)
+                                    endFrame("F")
                                 }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                     <View style={styles.nextFrameButton}>
@@ -105,8 +141,7 @@ const FrameOverScreen = ({mode, proMode, p1Frames, p2Frames, p1Name, p2Name, p1P
                                         id: p1Frames+p2Frames}
                                     ]))
                                     setRemaining(mode * 8 + 27)
-                                    setEndOfFrame(false)
-                                    setEndOfMatch(true)
+                                    endFrame("M")
                                 }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                     <View style={styles.endMatchButton}>
@@ -118,10 +153,9 @@ const FrameOverScreen = ({mode, proMode, p1Frames, p2Frames, p1Name, p2Name, p1P
                         </View>
                         </View>
                     </ImageBackground>
-                </View>
+                </Animated.View>
             </ScrollView>
             </ImageBackground>
-
         </View>
     )
 }
@@ -146,7 +180,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         overflow: 'hidden',
         marginBottom: 30,
-        borderWidth: 3,
         top:100
     },
     cover: {

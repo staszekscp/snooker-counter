@@ -16,9 +16,8 @@ const StartScreen = props => {
     const [p1Name, setP1Name] = useState('')
     const [p2Name, setP2Name] = useState('')
 
-    const fadeAnim = useRef(new Animated.Value(0)).current;
-    const fadeAnimBottom = useRef(new Animated.Value(0)).current;
-    const fadeAnimError = useRef(new Animated.Value(0)).current;
+    const fadeAnim = useRef(new Animated.Value(0)).current
+    const fadeAnimError = useRef(new Animated.Value(0)).current
     const turnAround15 = useRef(new Animated.Value(0)).current
     const turnAround10 = useRef(new Animated.Value(0)).current
     const turnAround6 = useRef(new Animated.Value(0)).current
@@ -37,21 +36,21 @@ const StartScreen = props => {
       })
  
     const fadeIn = () => {
-        Animated.parallel([
-            Animated.timing(fadeAnim, {
-                toValue: 1,
-                duration: 700,
-                useNativeDriver: true
-              }),
-              Animated.timing(fadeAnimBottom, {
-                toValue: 1,
-                duration: 700,
-                delay: 350,
-                useNativeDriver: true
-              })
-        ]).start()
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 700,
+            useNativeDriver: true
+        }).start()
     }
-        
+
+    const fadeOut = () => {
+        Animated.timing(fadeAnim, {
+            toValue: 0,
+            duration: 1500,
+            useNativeDriver: true
+        }).start()
+    }
+    
     const fadeInError = val => {
         Animated.timing(fadeAnimError, {
           toValue: val,
@@ -207,7 +206,7 @@ const StartScreen = props => {
                         </View>
                     </ImageBackground>
                 </Animated.View>
-                <Animated.View style={[styles.buttonsContainer, {opacity:fadeAnimBottom }]}>
+                <Animated.View style={[styles.buttonsContainer, {opacity:fadeAnim }]}>
                     <ImageBackground style={styles.backgroundImage} source={wood}>
                         <View style={styles.coverSmall}>
                             <View style={styles.startGame}>
