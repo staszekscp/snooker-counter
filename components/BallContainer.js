@@ -6,7 +6,7 @@ import Ball from '../components/Ball'
 const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, activateBallsP1, activateBallsP2,
     setOverlayP1, setOverlayP2, remaining, setRemaining, freeBallP1, setFreeBallP1, freeBallP2, setFreeBallP2, freeBallButtonP1,
     setFreeBallButtonP1, freeBallButtonP2, setFreeBallButtonP2, setStatsP1, setStatsP2, setLongPotP1, longPotP1, setLongPotP2, longPotP2,
-    currentBreakP1, currentBreakP2, setCurrentBreakP1, setCurrentBreakP2, proMode, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
+    currentBreakP1, currentBreakP2, setCurrentBreakP1, setCurrentBreakP2, proMode, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray, extraBlack}) => {
         
     const playerOne = 'p1'
     const playerTwo = 'p2'
@@ -46,6 +46,7 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
 
     const [showP1Break, setShowP1Break] = useState(false)
     const [showP2Break, setShowP2Break] = useState(false)
+    const [respottedBlack, setRespottedBlack] = useState(false)
 
     useEffect(() => {
         if (currentBreakP1 !== 0 && showP1Break) {
@@ -61,9 +62,26 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
         }
     }, [currentBreakP2])
 
+    useEffect(() => {
+        if (extraBlack) {
+            setTimeout(() => {
+                setRespottedBlack(true)
+                fadeIn()
+                setTimeout(() => {
+                    setRespottedBlack(false)
+                }, 1050)
+            }, 1000)
+            
+        }
+    }, [extraBlack])
+
     return (
         <View style={styles.main}>
             <View style={styles.ballSection}>
+                    {respottedBlack && <Animated.View style={[styles.animatedRespottedView, {opacity: fadeAnim, transform: [{ scale:scaleAnim }]}]}>
+                        <Text style={styles.respottedText}>RE-SPOTTED</Text>
+                        <Text style={styles.respottedText}>BLACK</Text>
+                    </Animated.View>}
                 <View style={styles.mainBallContainer}> 
                     {showP1Break && <Animated.View style={[styles.animatedView, {opacity: fadeAnim, transform: [{ scale:scaleAnim }]}]}>
                         <Text style={styles.animatedText}>{currentBreakP1}</Text>
@@ -520,7 +538,9 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
  
 const styles = StyleSheet.create({
     ballSection: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     ballContainer: {
         flexDirection: 'row',
@@ -618,9 +638,18 @@ const styles = StyleSheet.create({
         position: 'absolute',
         zIndex: 2
     },
+    animatedRespottedView: {
+        position: 'absolute',
+        zIndex: 5
+    },
     animatedText: {
         fontSize: 70,
         fontFamily: 'scoreBold'
+    },
+    respottedText: {
+        fontSize: 25,
+        fontFamily: 'scoreBold',
+        textAlign: 'center'
     },
     ball: {
         height: 49,

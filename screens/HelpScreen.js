@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, ImageBackground, Image } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { StyleSheet, Text, View, TouchableNativeFeedback, ImageBackground, Image, Animated } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import cloth from '../assets/png/green-snooker-cloth-background.jpg'
@@ -22,6 +22,20 @@ const HelpScreen = props => {
         endOfFrame: false,
         endOfMatch: false
     })
+    const turnAround = useRef(new Animated.Value(0)).current
+
+    const turn = turnAround.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['90deg', '0deg']
+      })
+
+    const aroundAnimation = (anim) => {
+        Animated.timing(anim, {
+            toValue: 1,
+            duration: 500,
+            useNativeDriver: true
+        }).start()
+    }
 
     return (
     <View style={styles.main}>
@@ -46,7 +60,7 @@ const HelpScreen = props => {
                                         <Image style={{height: 50, width: 50}} source={require('../assets/Ball/ball.png')} />
                                     </View>
                                 </View>
-                                <View style={helpOptions.start ? styles.explanationContainer : {display: 'none'}}>
+                                <View style={helpOptions.start ? [styles.explanationContainer, {transform: [{ rotateX: '90deg' }]}] : {display: 'none'}}>
                                     <Text style={styles.explanationText}>In order to start the game you must type the players' names (2-20 characters). That's it! If you wish you may also change the game variant (15, 10 or 6 reds) or the counter mode. The Pro mode is a bit more complex allowing you to keep players' safety and long pot success statistics.</Text>
                                 </View>
                             </View>

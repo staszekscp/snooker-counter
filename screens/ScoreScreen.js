@@ -131,10 +131,11 @@ const fadeInModal = val => {
 
     const finishFrame = () => {
         setEndOfFrame(true)
+        setEndModal(false)
     }
 
     const startNewFrame = () => {
-
+        setEndModal(false)
     }
 
     const setShot = val => {
@@ -388,7 +389,6 @@ const fadeInModal = val => {
                                         <TouchableNativeFeedback
                                         onPress={() => {
                                             finishFrame()
-                                            setEndModal(false)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={styles.smallButton}>
@@ -511,7 +511,8 @@ const fadeInModal = val => {
                 backwardMode={backwardMode}
                 setBackwardMode={setBackwardMode}
                 setCurrentShotIndex={setCurrentShotIndex}
-                modifyArray={modifyArray}/>
+                modifyArray={modifyArray}
+                extraBlack={extraBlack}/>
             <MissContainer 
                 activateBallsP1={activateBallsP1}
                 activateBallsP2={activateBallsP2}
@@ -660,6 +661,7 @@ const fadeInModal = val => {
         setLongPotP1={setLongPotP1}
         setLongPotP2={setLongPotP2}
         startNewFrame={startNewFrame}
+        finishFrame={finishFrame}
         /> 
 
     const gameOverScreen = <GameOverScreen 
