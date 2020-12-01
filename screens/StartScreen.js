@@ -19,9 +19,25 @@ const StartScreen = props => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
     const fadeAnimBottom = useRef(new Animated.Value(0)).current;
     const fadeAnimError = useRef(new Animated.Value(0)).current;
+    const turnAround15 = useRef(new Animated.Value(0)).current
+    const turnAround10 = useRef(new Animated.Value(0)).current
+    const turnAround6 = useRef(new Animated.Value(0)).current
+
+    const turn15 = turnAround15.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+      })
+    const turn10 = turnAround10.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+      })
+    const turn6 = turnAround6.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+      })
  
     const fadeIn = () => {
-        Animated.sequence([
+        Animated.parallel([
             Animated.timing(fadeAnim, {
                 toValue: 1,
                 duration: 700,
@@ -30,6 +46,7 @@ const StartScreen = props => {
               Animated.timing(fadeAnimBottom, {
                 toValue: 1,
                 duration: 700,
+                delay: 350,
                 useNativeDriver: true
               })
         ]).start()
@@ -42,6 +59,21 @@ const StartScreen = props => {
           useNativeDriver: true
         }).start();
       };
+
+    const aroundAnimation = (anim) => {
+        Animated.sequence([
+            Animated.timing(anim, {
+                toValue: 0.5,
+                duration: 500,
+                useNativeDriver: true
+              }),
+              Animated.timing(anim, {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: true
+              })
+        ]).start()
+    }
 
     useEffect(() => {
         fadeIn()
@@ -107,39 +139,42 @@ const StartScreen = props => {
                             <View>
                                 <Text style={styles.headerText}>NUMBER OF REDS</Text>
                                 <View style={styles.redButtonsContainer}>
-                                    <View style={styles.redButtonContainer}>
+                                    <Animated.View style={[styles.redButtonContainer, {transform: [{ rotateY: turn15 }]}]}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
                                             setReds(15)
+                                            aroundAnimation(turnAround15)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={reds === 15 ? styles.redButtonOn : styles.redButtonOff}>
                                                 <Image style={styles.reds15} source={red15}/>
                                             </View>
                                         </TouchableNativeFeedback>
-                                    </View>
-                                    <View style={styles.redButtonContainer}>
+                                    </Animated.View>
+                                    <Animated.View style={[styles.redButtonContainer, {transform: [{ rotateY: turn10 }]}]}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
                                             setReds(10)
+                                            aroundAnimation(turnAround10)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={reds === 10 ? styles.redButtonOn : styles.redButtonOff}>
                                                 <Image style={styles.reds10} source={red10}/>
                                             </View>
                                         </TouchableNativeFeedback>
-                                    </View>
-                                    <View style={styles.redButtonContainer}>
+                                    </Animated.View>
+                                    <Animated.View style={[styles.redButtonContainer, {transform: [{ rotateY: turn6 }]}]}>
                                         <TouchableNativeFeedback 
                                         onPress={() => {
                                             setReds(6)
+                                            aroundAnimation(turnAround6)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={reds === 6 ? styles.redButtonOn : styles.redButtonOff}>
                                                 <Image style={styles.reds6} source={red6}/>
                                             </View>
                                         </TouchableNativeFeedback>
-                                    </View>
+                                    </Animated.View>
                                 </View>
                             </View>
                             <View>

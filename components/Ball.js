@@ -6,7 +6,7 @@ import freeBallImage from '../assets/Ball/freeball.png'
 
 const Ball = ({style, activeBalls, val, setPoints, setOverlayP1, setOverlayP2, player, remaining, setRemaining,
     freeBall, setFreeBall, setFreeBallButtonP1, setFreeBallButtonP2, setStats, setLongPot, longPot, setCurrentBreak,
-    backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray, activateBalls, activateOpponentsBalls}) => {
+    backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray, activateBalls, activateOpponentsBalls, setShowBreak}) => {
     let active = {...activeBalls}
 
     const p1ball = <Image style={styles.ballImg} source={ballImage} /> 
@@ -27,6 +27,7 @@ const Ball = ({style, activeBalls, val, setPoints, setOverlayP1, setOverlayP2, p
             <TouchableNativeFeedback
                 disabled={!active[val.toString()]}
                 onPress={() => {
+                    setShowBreak(true)
                     if (backwardMode) {
                         modifyArray()
                         setBackwardMode(false)

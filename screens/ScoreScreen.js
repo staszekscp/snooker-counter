@@ -110,7 +110,6 @@ const ScoreScreen = props => {
 
     const [extraBlack, setExtraBlack] = useState(false) //
 
-
 //========================================================================================================
 
     useEffect(() => {
@@ -398,6 +397,8 @@ const ScoreScreen = props => {
                 longPotP1={longPotP1}
                 setLongPotP2={setLongPotP2}
                 longPotP2={longPotP2}
+                currentBreakP1={currentBreakP1}
+                currentBreakP2={currentBreakP2}
                 setCurrentBreakP1={setCurrentBreakP1}
                 setCurrentBreakP2={setCurrentBreakP2}
                 proMode={proMode}
