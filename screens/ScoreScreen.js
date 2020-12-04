@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Dimensions, ImageBackground, View, Animated, Text, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Dimensions, ImageBackground, View, Animated, Text, TouchableNativeFeedback, Easing } from 'react-native';
 
 import BallContainer from '../components/BallContainer'
 import ScoreContainer from '../components/ScoreContainer'
@@ -122,6 +122,36 @@ const fadeInModal = val => {
       useNativeDriver: true
     }).start();
   };
+
+const fadeBar = useRef(new Animated.Value(0)).current
+
+const fadeBarAnim = () => {
+    Animated.timing(fadeBar, {
+      toValue: 1,
+      delay: 2000,
+      duration: 1500,
+      useNativeDriver: true
+    }).start();
+  };
+
+  const start = useRef(new Animated.Value(400)).current
+
+  const startAnim = () => {
+      Animated.timing(start, {
+          toValue: 0,
+          delay: 500,
+          duration: 2000,
+          easing: Easing.elastic(1),
+          useNativeDriver: true
+      }).start()
+  }
+
+  useEffect(() => {
+      if (!endOfFrame){
+        startAnim()
+        fadeBarAnim()
+    }
+  }, [endOfFrame])
 //========================================================================================================
 
     const endFrame = () => {
@@ -401,7 +431,7 @@ const fadeInModal = val => {
                         </ImageBackground>
                     </Animated.View>
                 </Animated.View>}
-        <View style={styles.bar}/>
+        <Animated.View style={[styles.bar, {opacity: fadeBar}]}/>
         {overlayP1 && !proMode ? <View style={styles.overlay}>
                 <SwitchButton 
                     setCurrentBreak={setCurrentBreakP2}
@@ -539,7 +569,7 @@ const fadeInModal = val => {
                 setCurrentShotIndex={setCurrentShotIndex}
                 modifyArray={modifyArray}
                 />
-            <View style={styles.bottomContainer}>
+            <Animated.View style={[styles.bottomContainer, {transform: [{ translateY: start }]}]}>
                 <ImageBackground style={styles.woodImage} source={wood}>
                     <View style={styles.cover}>
                         <SafetyContainer 
@@ -624,7 +654,7 @@ const fadeInModal = val => {
                             modifyArray={modifyArray}/> 
                     </View>
                 </ImageBackground>
-            </View>  
+            </Animated.View>  
         </ImageBackground></View>
 
     const frameOverScreen = <FrameOverScreen 

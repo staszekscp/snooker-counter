@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, ImageBackground } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, Text, View, TouchableNativeFeedback, ImageBackground, Animated, Easing } from 'react-native';
 
 import wood from '../assets/png/wood.png'
 
@@ -34,9 +34,24 @@ currentShotIndex, setCurrentShotIndex, backwardMode, setBackwardMode, navigation
         setBackwardMode(true)
     }
 
+    const start = useRef(new Animated.Value(-200)).current
+
+    const startAnim = () => {
+        Animated.timing(start, {
+            toValue: 0,
+            duration: 1500,
+            easing: Easing.elastic(1),
+            useNativeDriver: true
+        }).start()
+    }
+
+    useEffect(() => {
+        startAnim()
+    }, [])
+
     return (
             <View style={{...styles.main, ...style}}>
-                <View style={styles.mainContainer}>
+                <Animated.View style={[styles.mainContainer, {transform: [{ translateY: start }]}]}>
                     <ImageBackground style={styles.background} source={wood}>
                         <View style={styles.contentContainer}>
                             <View>
@@ -162,7 +177,7 @@ currentShotIndex, setCurrentShotIndex, backwardMode, setBackwardMode, navigation
                             </View>
                         </View>
                     </ImageBackground>
-                </View>
+                </Animated.View>
             </View>
     )}
  

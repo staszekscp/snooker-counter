@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import React, { useRef, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableNativeFeedback, Animated } from 'react-native';
  
 const MissContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverlayP2, remaining, setRemaining,
     freeBallP1, setFreeBallP1, freeBallP2, setFreeBallP2, setFreeBallButtonP1, setFreeBallButtonP2, setStatsP1, setStatsP2,
@@ -99,9 +99,26 @@ const MissContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverl
         } 
     }
 
+const fadeSectionLeft = useRef(new Animated.Value(0)).current
+const fadeSectionRight = useRef(new Animated.Value(0)).current
+
+const fadeSectionAnim = (anim, del) => {
+    Animated.timing(anim, {
+      toValue: 1,
+      delay: del,
+      duration: 1500,
+      useNativeDriver: true
+    }).start();
+  };
+
+  useEffect(() => {
+    fadeSectionAnim(fadeSectionLeft, 3000)
+    fadeSectionAnim(fadeSectionRight, 3500)
+  }, [])
+
     return (
         <View style={styles.main}>
-            <View style={styles.missButtonContainer}>
+            <Animated.View style={[styles.missButtonContainer, {opacity: fadeSectionLeft}]}>
                 <View style={styles.missButton}>
                     <TouchableNativeFeedback
                         onPress={() => {
@@ -115,8 +132,8 @@ const MissContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverl
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-            </View>
-            <View style={styles.missButtonContainer}>
+            </Animated.View>
+            <Animated.View style={[styles.missButtonContainer, {opacity: fadeSectionRight}]}>
                 <View style={styles.missButton}>
                     <TouchableNativeFeedback
                          onPress={() => {
@@ -129,7 +146,7 @@ const MissContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverl
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-            </View>
+            </Animated.View>
         </View>
     )}
  

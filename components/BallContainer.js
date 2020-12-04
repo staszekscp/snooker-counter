@@ -44,6 +44,23 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
         ]).start()
     }
 
+const fadeSectionLeft = useRef(new Animated.Value(0)).current
+const fadeSectionRight = useRef(new Animated.Value(0)).current
+
+const fadeSectionAnim = (anim, del) => {
+    Animated.timing(anim, {
+      toValue: 1,
+      delay: del,
+      duration: 1500,
+      useNativeDriver: true
+    }).start();
+  };
+
+  useEffect(() => {
+    fadeSectionAnim(fadeSectionLeft, 3000)
+    fadeSectionAnim(fadeSectionRight, 3500)
+  }, [])
+
     const [showP1Break, setShowP1Break] = useState(false)
     const [showP2Break, setShowP2Break] = useState(false)
     const [respottedBlack, setRespottedBlack] = useState(false)
@@ -82,7 +99,7 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                         <Text style={styles.respottedText}>RE-SPOTTED</Text>
                         <Text style={styles.respottedText}>BLACK</Text>
                     </Animated.View>}
-                <View style={styles.mainBallContainer}> 
+                <Animated.View style={[styles.mainBallContainer, {opacity: fadeSectionLeft}]}> 
                     {showP1Break && <Animated.View style={[styles.animatedView, {opacity: fadeAnim, transform: [{ scale:scaleAnim }]}]}>
                         <Text style={styles.animatedText}>{currentBreakP1}</Text>
                     </Animated.View>}
@@ -306,8 +323,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             activateOpponentsBalls={activateBallsP2}
                             setShowBreak={setShowP1Break}/>
                     </View>
-                </View>
-                <View style={styles.mainBallContainer}> 
+                </Animated.View>
+                <Animated.View style={[styles.mainBallContainer, {opacity: fadeSectionRight}]}> 
                     {showP2Break && <Animated.View style={[styles.animatedView, {opacity: fadeAnim, transform: [{ scale:scaleAnim }]}]}>
                         <Text style={styles.animatedText}>{currentBreakP2}</Text>
                     </Animated.View>}
@@ -530,7 +547,7 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             activateOpponentsBalls={activateBallsP1}
                             setShowBreak={setShowP2Break}/>
                     </View>
-                </View>
+                </Animated.View>
             </View>
         </View>
     )
