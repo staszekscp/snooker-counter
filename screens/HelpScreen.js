@@ -22,7 +22,7 @@ const HelpScreen = props => {
         endOfFrame: false,
         endOfMatch: false
     })
-    const turnAround = useRef(new Animated.Value(0)).current
+
     const start = useRef(new Animated.Value(0)).current
     const pot = useRef(new Animated.Value(0)).current
     const safe = useRef(new Animated.Value(0)).current
@@ -48,9 +48,20 @@ const HelpScreen = props => {
     return (
     <View style={styles.main}>
         <ImageBackground style={styles.img} source={cloth}>
-            <ScrollView style={{width: '90%'}} contentContainerStyle={{width: '100%'}}>
+            <ScrollView style={{width: '100%'}} contentContainerStyle={{width: '100%'}}>
                 <View style={{justifyContent: 'center'}}>
-                    <View style={[styles.summaryContainer, {marginTop: 70}]}>
+                <View style={styles.topContainer}>
+                        <ImageBackground style={styles.img2} source={wood}>
+                            <View style={[styles.cover, {backgroundColor: 'rgba(0,0,0, 0.5)'}]}>
+                                <View style={styles.topHeader}>
+                                    <View>
+                                        <Text style={styles.topHeaderText}>FAQ</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </ImageBackground>
+                    </View>
+                    <View style={styles.summaryContainer}>
                         <ImageBackground style={styles.img2} source={wood}>
                             <TouchableNativeFeedback
                             onPress={() => {
@@ -63,14 +74,14 @@ const HelpScreen = props => {
                             <View style={styles.cover}>
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>START</Text>
+                                        <Text style={styles.headerText}>How do I start a game?</Text>
                                     </View>
                                     <View>
                                         
                                     </View>
                                 </View>
                                 <Animated.View style={helpOptions.start ? [styles.explanationContainer, {opacity: start}] : {display: 'none'}}>
-                                    <Text style={styles.explanationText}>In order to start the game you must type the players' names (2-20 characters) and tap the <Text style={{fontSize: 20}}><Image style={{height: 30, width: 70}}source={require('../assets/help/start.png')} /></Text> button. That's it! If you wish you may also change the game variant (15, 10 or 6 reds) or the counter mode. The <Text style={{fontSize: 20}}><Image style={{height: 30, width: 50}} source={require('../assets/help/pro.png')} /></Text> mode is a bit more complex allowing you to keep players' safety and long pot success statistics.</Text>
+                                    <Text style={styles.explanationText}>In order to start the game you must type the players' names (2-20 characters) and tap the <Image style={{height: 30, width: 70}}source={require('../assets/help/start.png')} /> button. That's it! If you wish you may also change the game variant (15, 10 or 6 reds) or the counter mode. The <Image style={{height: 30, width: 50}} source={require('../assets/help/pro.png')} /> mode is a bit more complex allowing you to keep players' safety and long pot success statistics.</Text>
                                 </Animated.View>
                             </View>
                             </TouchableNativeFeedback>
@@ -90,14 +101,14 @@ const HelpScreen = props => {
                                 
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>POT/MISS</Text>
+                                        <Text style={styles.headerText}>I potted/missed a ball!</Text>
                                     </View>
                                     <View>
 
                                     </View>
                                 </View>
                                 <Animated.View style={helpOptions.pot ? [styles.explanationContainer, {opacity: pot}] : {display: 'none'}}>
-                                    <Text style={styles.explanationText}>When a ball was potted just press the correct <Text style={{fontSize: 20}}><Image style={{height: 30, width: 30}}source={require('../assets/help/redbll.png')} /></Text> symbol on the potting player's side of the screen. The available options will change automatically. If a player missed a ball press the <Text style={{fontSize: 20}}><Image style={{height: 30, width: 70}}source={require('../assets/help/miss.png')} /></Text> button instead.</Text>
+                                    <Text style={styles.explanationText}>If you potted a ball just press the correct <Image style={{height: 30, width: 30}}source={require('../assets/help/redbll.png')} /> symbol on your side of the screen. The available options will change automatically. If you missed a ball press the <Image style={{height: 30, width: 70}}source={require('../assets/help/miss.png')} /> button instead.</Text>
                                 </Animated.View>
                             </View>
                         </TouchableNativeFeedback>
@@ -116,15 +127,15 @@ const HelpScreen = props => {
                             <View style={styles.cover}>
                                 
                                 <View style={styles.helpOptionHeader}>
-                                    <View>
-                                        <Text style={styles.headerText}>SAFE/UNSAFE</Text>
+                                    <View style={{width: '70%'}}>
+                                        <Text style={styles.headerText}>What are SAFE/UNSAFE buttons for?</Text>
                                     </View>
                                     <View>
                                         <Image style={{height: 40, width: 60}}source={require('../assets/help/pro.png')} />
                                     </View>
                                 </View>
                                 <Animated.View style={helpOptions.safe ? [styles.explanationContainer, {opacity: safe}] : {display: 'none'}}>
-                                    <Text style={styles.explanationText}>If you want to keep the safety statistics you can do it! In the <Text style={{fontSize: 20}}><Image style={{height: 30, width: 50}}source={require('../assets/help/pro.png')} /></Text> Mode press the <Text style={{fontSize: 20}}><Image style={{height: 30, width: 48}}source={require('../assets/help/safe.png')} /></Text> or <Text style={{fontSize: 20}}><Image style={{height: 30, width: 48}}source={require('../assets/help/unsafe.png')} /></Text> button depending on the quality of the player's safety shot.</Text>
+                                    <Text style={styles.explanationText}>If you want to keep the safety statistics you can do it! In the <Image style={{height: 30, width: 50}}source={require('../assets/help/pro.png')} /> Mode press the <Image style={{height: 30, width: 48}}source={require('../assets/help/safe.png')} /> or <Image style={{height: 30, width: 48}}source={require('../assets/help/unsafe.png')} /> button depending on the quality of the player's safety shot.</Text>
                                 </Animated.View>
                             </View>
                         </TouchableNativeFeedback>
@@ -143,14 +154,14 @@ const HelpScreen = props => {
                             <View style={styles.cover}>
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>SWITCH PLAYERS</Text>
+                                        <Text style={styles.headerText}>When do I use the SWITCH PLAYERS button?</Text>
                                     </View>
                                     <View>
                                         
                                     </View>
                                 </View>
                                 <Animated.View style={helpOptions.switch ? [styles.explanationContainer, {opacity: switchP}] : {display: 'none'}}>
-                                    <Text style={styles.explanationText}>Press it if you want to switch players - <Text style={{fontSize: 20}}><Image style={{height: 30, width: 40}}source={require('../assets/help/switch.png')} /></Text> button works in moreless the same way as if one would play a succesuful safety shot. But remember: if the player misses a shot tap the <Text style={{fontSize: 20}}><Image style={{height: 30, width: 70}}source={require('../assets/help/miss.png')} /></Text> button and if there was a foul use one of the foul buttons <Text style={{fontSize: 20}}><Image style={{height: 28, width: 90}}source={require('../assets/help/fouls.png')} /></Text> instead!</Text>
+                                    <Text style={styles.explanationText}>Press it if you want to switch players - <Image style={{height: 30, width: 40}}source={require('../assets/help/switch.png')} /> button works in moreless the same way as if one would play a succesuful safety shot. But remember: if the player misses a shot tap the <Image style={{height: 30, width: 70}}source={require('../assets/help/miss.png')} /> button and if there was a foul use one of the foul buttons <Image style={{height: 28, width: 90}}source={require('../assets/help/fouls.png')} /> instead!</Text>
                                 </Animated.View>
                             </View>
                         </TouchableNativeFeedback>
@@ -170,14 +181,14 @@ const HelpScreen = props => {
                                 
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>FOUL</Text>
+                                        <Text style={styles.headerText}>I commited a foul!</Text>
                                     </View>
                                     <View>
                                         
                                     </View>
                                 </View>
                                 <Animated.View style={helpOptions.foul ? [styles.explanationContainer, {opacity: foul}] : {display: 'none'}}>
-                                    <Text style={styles.explanationText}>In case of a foul press one of the foul buttons: <Text style={{fontSize: 20}}><Image style={{height: 28, width: 90}}source={require('../assets/help/fouls.png')} /></Text> . These points will be added to the opponent's account.</Text>
+                                    <Text style={styles.explanationText}>In case of a foul press one of the foul buttons: <Image style={{height: 28, width: 90}}source={require('../assets/help/fouls.png')} /> . These points will be added to the opponent's account.</Text>
                                 </Animated.View>
                             </View>
                         </TouchableNativeFeedback>
@@ -197,14 +208,14 @@ const HelpScreen = props => {
                                 
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>FREE BALL</Text>
+                                        <Text style={styles.headerText}>Free ball was declared!</Text>
                                     </View>
                                     <View>
                                         
                                     </View>
                                 </View>
                                 <Animated.View style={helpOptions.freeBall ? [styles.explanationContainer, {opacity: freeBall}] : {display: 'none'}}>
-                                    <Text style={styles.explanationText}>If after a foul the free ball was declared press the <Text style={{fontSize: 20}}><Image style={{height: 30, width: 43}}source={require('../assets/help/freeballbuttonoff.png')} /></Text> button. A colorful ball <Text style={{fontSize: 20}}><Image style={{height: 30, width: 30}}source={require('../assets/Ball/freeball.png')} /></Text> will show up. Press it if the player potted the declared free ball. The free ball mode can be turned off by tapping on the <Text style={{fontSize: 20}}><Image style={{height: 30, width: 43}}source={require('../assets/help/freeballbuttonon.png')} /></Text> button once more.</Text>
+                                    <Text style={styles.explanationText}>If after a foul the free ball was declared press the <Image style={{height: 30, width: 43}}source={require('../assets/help/freeballbuttonoff.png')} /> button. A colorful ball like this one: <Image style={{height: 30, width: 30}}source={require('../assets/Ball/freeball.png')} /> will show up. Press it if you potted the declared free ball. The free ball mode can be turned off by tapping on the <Image style={{height: 30, width: 43}}source={require('../assets/help/freeballbuttonon.png')} /> button once more.</Text>
                                 </Animated.View>
                             </View>
                         </TouchableNativeFeedback>
@@ -224,14 +235,14 @@ const HelpScreen = props => {
                                 
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>RED WENT IN</Text>
+                                        <Text style={styles.headerText}>I accidentally potted a red and committed a foul!</Text>
                                     </View>
                                     <View>
                                         
                                     </View>
                                 </View>
                                 <Animated.View style={helpOptions.redWentIn ? [styles.explanationContainer, {opacity: redWentIn}] : {display: 'none'}}>
-                                    <Text style={styles.explanationText}>If one of the players committed a foul and potted a red at the same time press the <Text style={{fontSize: 20}}><Image style={{height: 30, width: 48}}source={require('../assets/help/redwentin.png')} /></Text> button to inform the counter that currently there is one red less on the table.</Text>
+                                    <Text style={styles.explanationText}>In this case press the <Image style={{height: 30, width: 48}}source={require('../assets/help/redwentin.png')} /> button to inform the counter that currently there is one red less on the table.</Text>
                                 </Animated.View>
                             </View>
                         </TouchableNativeFeedback>
@@ -251,14 +262,14 @@ const HelpScreen = props => {
                                 
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>+1 RED</Text>
+                                        <Text style={styles.headerText}>I potted more than one red!</Text>
                                     </View>
                                     <View>
                                         
                                     </View>
                                 </View>
                                 <Animated.View style={helpOptions.plusOneRed ? [styles.explanationContainer, {opacity: plusOneRed}] : {display: 'none'}}>
-                                    <Text style={styles.explanationText}>Use the <Text style={{fontSize: 20}}><Image style={{height: 28, width: 48}}source={require('../assets/help/plusonered.png')} /></Text> button whenever a player potted more than one red at the same time!</Text>
+                                    <Text style={styles.explanationText}>Use the <Image style={{height: 28, width: 48}}source={require('../assets/help/plusonered.png')} /> button in this case!</Text>
                                 </Animated.View>
                             </View>
                         </TouchableNativeFeedback>
@@ -276,8 +287,8 @@ const HelpScreen = props => {
                         }}>
                             <View style={styles.cover}>
                                 <View style={styles.helpOptionHeader}>
-                                    <View>
-                                        <Text style={styles.headerText}>LONG POT</Text>
+                                    <View style={{width: '70%'}}>
+                                        <Text style={styles.headerText}>How do I use the LONG button?</Text>
                                     </View>
                                     <View>
                                         <Image style={{height: 40, width: 60}}source={require('../assets/help/pro.png')} />
@@ -303,14 +314,14 @@ const HelpScreen = props => {
                             <View style={styles.cover}>
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>UNDO/REDO</Text>
+                                        <Text style={styles.headerText}>I tapped a wrong button! What do I have to do now?</Text>
                                     </View>
                                     <View>
                                         
                                     </View>
                                 </View>
                                 <Animated.View style={helpOptions.undo ? [styles.explanationContainer, {opacity: undo}] : {display: 'none'}}>
-                                    <Text style={styles.explanationText}>During the game 5 previous shots will be kept in memory. That's why you may undo shots if you made a mistake! In order to do so press the <Image style={{height: 27, width: 46}}source={require('../assets/help/undo.png')} /> button (or <Image style={{height: 28, width: 45}}source={require('../assets/help/redo.png')} /> if you changed your mind!)</Text>
+                                    <Text style={styles.explanationText}>During the game 5 previous shots will be kept in memory. That's why you may undo shots if you make a mistake! In order to do so press the <Image style={{height: 27, width: 46}}source={require('../assets/help/undo.png')} /> button (or <Image style={{height: 28, width: 45}}source={require('../assets/help/redo.png')} /> if you changed your mind!)</Text>
                                 </Animated.View>
                             </View>
                         </TouchableNativeFeedback>
@@ -330,14 +341,14 @@ const HelpScreen = props => {
                                 
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>RE-RACK</Text>
+                                        <Text style={styles.headerText}>We restart a frame. How can we inform the counter about it?</Text>
                                     </View>
                                     <View>
                                         
                                     </View>
                                 </View>
                                 <Animated.View style={helpOptions.reRack ? [styles.explanationContainer, {opacity: reRack}] : {display: 'none'}}>
-                                    <Text style={styles.explanationText}>The frame will restart? Just press the <Image style={{height: 28, width: 60}}source={require('../assets/help/rerack.png')} /> button to reset the progress of the frame!</Text>
+                                    <Text style={styles.explanationText}>Just press the <Image style={{height: 28, width: 60}}source={require('../assets/help/rerack.png')} /> button to reset the progress of the frame!</Text>
                                 </Animated.View>
                             </View>
                         </TouchableNativeFeedback>
@@ -357,7 +368,7 @@ const HelpScreen = props => {
                                 
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>END OF FRAME</Text>
+                                        <Text style={styles.headerText}>When does a frame end?</Text>
                                     </View>
                                     <View>
                                         
@@ -383,7 +394,7 @@ const HelpScreen = props => {
                             <View style={styles.cover}>
                                 <View style={styles.helpOptionHeader}>
                                     <View>
-                                        <Text style={styles.headerText}>END OF MATCH</Text>
+                                        <Text style={styles.headerText}>What do we do when a frame has ended?</Text>
                                     </View>
                                     <View>
                                         
@@ -436,7 +447,8 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         overflow: 'hidden',
         marginBottom: 20,
-        marginLeft: '20%',
+        marginLeft: '16%',
+        marginRight: '4%',
         borderWidth: 3
     },
     summaryContainerR: {
@@ -444,7 +456,29 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         overflow: 'hidden',
         marginBottom: 20,
+        marginHorizontal: '4%',
         borderWidth: 3
+    },
+    topContainer: {
+        width: '100%',
+        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        overflow: 'hidden',
+        marginBottom: 30,
+        borderWidth: 3,
+    },
+    topHeader: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
+        marginTop: 20
+    },
+    topHeaderText: {
+        color: '#fff',
+        fontFamily: 'scoreBold',
+        textAlign: 'center',
+        paddingTop: 20,
+        fontSize: 36
     },
     summaryContainerError: {
         height: '30%',
@@ -582,12 +616,13 @@ const styles = StyleSheet.create({
         color: '#e0de94',
         fontFamily: 'scoreBold',
         textAlign: 'center',
-        fontSize: 26
+        fontSize: 16
     },
     helpOptionHeader: {
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
+        minHeight: 50
     },
 
     proModeButtonOff: {
