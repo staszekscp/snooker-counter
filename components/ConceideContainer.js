@@ -27,7 +27,7 @@ const ConceideContainer = ({p1Points, p2Points, remaining, endFrame, setFreeBall
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
                         <View style={styles.button}>
-                            <Text style={styles.buttonText}>CONCEIDE</Text>
+                            <Text style={styles.buttonText}>CONCEDE</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
@@ -53,7 +53,7 @@ const ConceideContainer = ({p1Points, p2Points, remaining, endFrame, setFreeBall
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
                         <View style={styles.button}>
-                            <Text style={styles.buttonText}>CONCEIDE</Text>
+                            <Text style={styles.buttonText}>CONCEDE</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>

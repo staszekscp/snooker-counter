@@ -567,7 +567,6 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation:5,
     },
     touchableFBPressed: {
         height: 30,
@@ -577,7 +576,6 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation:5,
     },
     touchableLong: {
         height: 30,
@@ -587,7 +585,6 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 5,
         borderWidth: 2,
     },
     touchableLongPressed: {
@@ -598,7 +595,6 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 5,
         borderWidth: 2,
     },
     buttonFB: {
@@ -636,7 +632,7 @@ const styles = StyleSheet.create({
     },
     animatedView: {
         position: 'absolute',
-        zIndex: 2
+        zIndex: 4
     },
     animatedRespottedView: {
         position: 'absolute',
