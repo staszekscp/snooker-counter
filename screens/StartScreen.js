@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, TextInput, Image, Animated, Easing } from 'react-native';
+import { StyleSheet, Dimensions, TouchableNativeFeedback, ImageBackground, View, Text, TextInput, Image, Animated, Easing } from 'react-native';
 
 import cloth from '../assets/png/green-snooker-cloth-background.jpg'
 import wood from '../assets/png/wood.png'
@@ -110,7 +110,7 @@ const StartScreen = props => {
                                 <Text style={styles.appName}>SNOOKER COUNTER</Text>
                             </View>
                             <View style={styles.playersContainer}>
-                                <View>
+                                <View style={{width: '100%', alignItems: 'center'}}>
                                     <Text style={styles.headerText}>PLAYER 1</Text>
                                     <TextInput 
                                         placeholder="Type player's name"
@@ -121,7 +121,7 @@ const StartScreen = props => {
                                         maxLength={20}
                                         style={styles.textInput}/>
                                 </View>
-                                <View style={{marginTop: 10}}>
+                                <View style={{marginTop: 10, width: '100%', alignItems: 'center'}}>
                                     <Text style={styles.headerText}>PLAYER 2</Text>
                                     <TextInput 
                                         placeholder="Type player's name"
@@ -133,7 +133,7 @@ const StartScreen = props => {
                                         style={styles.textInput}/>
                                 </View>
                             </View>
-                            <View>
+                            <View style={{height: '25%'}}>
                                 <Text style={styles.headerText}>NUMBER OF REDS</Text>
                                 <View style={styles.redButtonsContainer}>
                                     <Animated.View style={[styles.redButtonContainer, {transform: [{ rotateY: turn15 }]}]}>
@@ -174,7 +174,7 @@ const StartScreen = props => {
                                     </Animated.View>
                                 </View>
                             </View>
-                            <View>
+                            <View style={{height: '25%'}}>
                                 <Text style={styles.headerText}>COUNTER MODE</Text>
                                 <View style={styles.modeContainer}>
                                     <View style={!proMode ? styles.modeButtonOn : styles.modeButtonOff}>
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     mainContainer: {
-        height: '60%',
+        height: Dimensions.get('window').height < 680 ? '65%': '60%',
         width: '80%',
         borderRadius: 20,
         overflow: 'hidden',
@@ -372,7 +372,7 @@ const styles = StyleSheet.create({
     textInput: {
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
         borderRadius: 5,
-        width: 200,
+        width: '80%',
         color: '#ddd',
         fontFamily: 'score'
     },
@@ -380,7 +380,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingVertical: 10
+        paddingVertical: 10,
+        width: '100%',
+        height: '70%'
     },
     redButtonContainer: {
         height: 60,
@@ -421,8 +423,8 @@ const styles = StyleSheet.create({
         width: 30
     },
     modeButtonOff: {
-        height: 45,
-        width: 75,
+        height: '75%',
+        width: '25%',
         borderRadius: 22.5,
         justifyContent: 'center',
         alignItems: 'center',
@@ -431,8 +433,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 10
     },
     modeButtonOn: {
-        height: 45,
-        width: 75,
+        height: '75%',
+        width: '25%',
         borderRadius: 22.5,
         justifyContent: 'center',
         alignItems: 'center',
@@ -440,8 +442,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 10
     },
     mode: {
-        height: 45,
-        width: 75,
+        height: '100%',
+        width: '100%',
         borderRadius: 22.5,
         borderWidth: 3,
         justifyContent: 'center',
@@ -456,11 +458,13 @@ const styles = StyleSheet.create({
     modeContainer: {
         flexDirection: 'row', 
         justifyContent: 'center',
-        paddingVertical: 10
+        paddingVertical: 10,
+        height: '70%',
+        width: '100%'
     },
     startGame: {
-        height: 60,
-        width: 140,
+        height: '35%',
+        width: '50%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -468,8 +472,8 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     startGameButton: {
-        height: 60,
-        width: 140,
+        height: '100%',
+        width: '100%',
         borderRadius: 15,
         borderWidth: 3,
         justifyContent: 'center',
@@ -481,8 +485,8 @@ const styles = StyleSheet.create({
         fontSize: 22
     },
     smallButtonContainer: {
-        height: 40,
-        width: 100,
+        height: '25%',
+        width: '40%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -490,8 +494,8 @@ const styles = StyleSheet.create({
         marginVertical: 5
     },
     smallButton: {
-        height: 40,
-        width: 100,
+        height: '100%',
+        width: '100%',
         borderRadius: 15,
         borderWidth: 3,
         justifyContent: 'center',
