@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Dimensions, Text, View, TouchableNativeFeedback } from 'react-native';
  
 const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, activeBallsP1, activeBallsP2,
     setP1Points, setP2Points, setStatsP1, setStatsP2, freeBallButtonP1, freeBallButtonP2, setCurrentBreakP1,
@@ -85,20 +85,20 @@ const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, 
  
 const styles = StyleSheet.create({
     main: {
-        height: 60,
+        height: Dimensions.get('window').height <= 740 ? '6%' : '7%',
         width: '100%',
         flexDirection: 'row',
     },
     additionalRedsContainer: {
         width: '50%',
+        paddingVertical: 5,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 15,
     },
     redWentInButton: {
-        height: 50,
-        width: 80,
+        height: '100%',
+        width: '60%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
         borderWidth: 3,
     },
     additionalRedButton: {
-        height: 50,
-        width: 80,
+        height: '100%',
+        width: '60%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
         marginRight: 5
     },
     button: {
-        height: 50,
-        width: 80,
+        height: '100%',
+        width: '100%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',

@@ -860,16 +860,16 @@ const styles = StyleSheet.create({
        paddingBottom: 200
    },
    bottomContainer: {
+    height: 1000,
     borderRadius: 20,
     borderWidth: 2,
     marginHorizontal: 5,
-    paddingBottom: 200,
     overflow: 'hidden'
    },
    cover: {
+    height: '100%',
     paddingTop: 3,
-    backgroundColor: 'rgba(60,5,0, 0.6)',
-    paddingBottom: 200
+    backgroundColor: 'rgba(60,5,0, 0.6)'
    }
 })
 

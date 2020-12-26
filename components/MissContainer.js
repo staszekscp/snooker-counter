@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, Animated } from 'react-native';
+import { StyleSheet, Dimensions, Text, View, TouchableNativeFeedback, Animated } from 'react-native';
  
 const MissContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverlayP2, remaining, setRemaining,
     freeBallP1, setFreeBallP1, freeBallP2, setFreeBallP2, setFreeBallButtonP1, setFreeBallButtonP2, setStatsP1, setStatsP2,
@@ -152,7 +152,7 @@ const fadeSectionAnim = (anim, del) => {
  
 const styles = StyleSheet.create({
     main: {
-        height: 75,
+        height: Dimensions.get('window').height <= 740 ? 60 : 75,
         width: '100%',
         flexDirection: 'row'
     },
@@ -162,16 +162,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     missButton: {
-        height: 50,
-        width: 120,
+        height: '65%',
+        width: '55%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(255, 17, 0,0.7)'
     },
     miss: {
-        height: 50,
-        width: 120,
+        height: '100%',
+        width: '100%',
         borderRadius: 15,
         borderWidth: 3,
         justifyContent: 'center',

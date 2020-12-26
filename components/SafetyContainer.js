@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Dimensions, Text, View, TouchableNativeFeedback } from 'react-native';
  
 const SafetyContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverlayP2, remaining, setRemaining, setFreeBallP1,
     setFreeBallP2, setFreeBallButtonP1, setFreeBallButtonP2, setStatsP1, setStatsP2, setLongPotP1, setLongPotP2,
@@ -142,7 +142,8 @@ const SafetyContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOve
  
 const styles = StyleSheet.create({
     main: {
-        height: 65,
+        height: Dimensions.get('window').height <= 740 ? '5%' : '6.5%',
+        paddingBottom: 5,
         flexDirection: 'row'
     },
     safetyButtonContainer: {
@@ -154,24 +155,24 @@ const styles = StyleSheet.create({
     },
     safeButton: {
         marginRight: 5,
-        height: 50,
-        width: 80,
+        height: '100%',
+        width: '45%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(255,255,255,0.5)'
     },
     unsafeButton: {
-        height: 50,
-        width: 80,
+        height: '100%',
+        width: '45%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(255,255,255,0.35)'
     },
     safety: {
-        height: 50,
-        width: 80,
+        height: '100%',
+        width: '100%',
         borderRadius: 15,
         borderWidth: 3,
         justifyContent: 'center',

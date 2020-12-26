@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, Animated, Easing } from 'react-native';
+import { StyleSheet, Dimensions, Text, View, TouchableNativeFeedback, Animated, Easing } from 'react-native';
 
 import Ball from '../components/Ball'
  
@@ -570,7 +570,7 @@ const styles = StyleSheet.create({
         borderRightWidth: 0.01
     },
     borderContainer: {
-        height: 90
+        height: Dimensions.get('window').height <= 740 ? 60: 90
     },
     centralContainer: {
         alignItems: 'center',
@@ -676,21 +676,21 @@ const styles = StyleSheet.create({
     },
     yellow: {
         backgroundColor: '#fbff00',
-        top: 30
+        top: Dimensions.get('window').height <= 740 ? 0: 30
     },
     green: {
         backgroundColor: '#029e0c',
     },
     brown: {
         backgroundColor: '#99001a',
-        top: 30
+        top: Dimensions.get('window').height <= 740 ? 0: 30
     },
     blue: {
         backgroundColor: '#0f1bff',
     },
     pink: {
         backgroundColor: '#ff8af7',
-        top: 30
+        top: Dimensions.get('window').height <= 740 ? 0: 30
     },
     black: {
         backgroundColor: '#333',

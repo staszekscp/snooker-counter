@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Dimensions,  Text, View, TouchableNativeFeedback } from 'react-native';
  
 const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBallsP2, setOverlayP1, setOverlayP2,
     remaining, setRemaining, freeBallP1, setFreeBallP1, freeBallP2, setFreeBallP2, setFreeBallButtonP1, setFreeBallButtonP2, setLongPotP1, setLongPotP2,
@@ -176,7 +176,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
  
 const styles = StyleSheet.create({
     main: {
-        height: 90,
+        height: Dimensions.get('window').height <= 740 ? '9%' : '12%',
         marginHorizontal: 3,
         borderRadius: 15,
         flexDirection: 'row',
@@ -191,10 +191,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        height: '50%'
     },
     foulButton: {
-        height: 50,
-        width: 40,
+        height: '100%',
+        width: '22%',
         borderRadius: 15,
         borderWidth: 3,
         marginHorizontal: 2,
@@ -203,8 +204,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.35)'
     },
     foul: {
-        height: 50,
-        width: 40,
+        height: '100%',
+        width: '100%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
