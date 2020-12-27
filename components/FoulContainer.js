@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     mainFoulButtonContainer: {
         width: '50%',
         paddingHorizontal: 15,
-        paddingBottom: 5
+        paddingBottom: Dimensions.get('window').height <= 680 ? 2 : 5
     },
     foulButtonContainer: {
         flexDirection: 'row',

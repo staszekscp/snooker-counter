@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Dimensions, Text, View, TouchableNativeFeedback } from 'react-native';
 
 const SwitchButton = ({setCurrentBreak, setFreeBallButtonP1, setFreeBallButtonP2, setFreeBall, setOverlayP1, setOverlayP2,
 setRemaining, remaining, activateBallsP1, activateBallsP2, setStats, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgba(255,255,255,0.8)',
         borderWidth: 3,
-        bottom: 100
+        bottom: Dimensions.get('window').height/10
     },
     button: {
         height: 90,

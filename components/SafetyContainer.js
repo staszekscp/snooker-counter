@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     safeText: {
         color: '#000',
         fontFamily: 'scoreBold',
-        fontSize: 16
+        fontSize: Dimensions.get('window').height <=740 ? 14 : 16
     }
 })
  

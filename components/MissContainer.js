@@ -152,7 +152,7 @@ const fadeSectionAnim = (anim, del) => {
  
 const styles = StyleSheet.create({
     main: {
-        height: Dimensions.get('window').height <= 740 ? 60 : 75,
+        height: Dimensions.get('window').height <= 740 ? 55 : 75,
         width: '100%',
         flexDirection: 'row'
     },
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontFamily: 'scoreBold',
-        fontSize: 20
+        fontSize: Dimensions.get('window').height <= 740 ? 18 : 20
     }
 })
  

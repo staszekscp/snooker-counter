@@ -121,7 +121,7 @@ const StartScreen = props => {
                                         maxLength={20}
                                         style={styles.textInput}/>
                                 </View>
-                                <View style={{marginTop: 10, width: '100%', alignItems: 'center'}}>
+                                <View style={{marginTop: Dimensions.get('window').height <= 680 ? 5 : 10, width: '100%', alignItems: 'center'}}>
                                     <Text style={styles.headerText}>PLAYER 2</Text>
                                     <TextInput 
                                         placeholder="Type player's name"
@@ -424,7 +424,7 @@ const styles = StyleSheet.create({
     },
     modeButtonOff: {
         height: '75%',
-        width: '25%',
+        width: '30%',
         borderRadius: 22.5,
         justifyContent: 'center',
         alignItems: 'center',
@@ -434,7 +434,7 @@ const styles = StyleSheet.create({
     },
     modeButtonOn: {
         height: '75%',
-        width: '25%',
+        width: '30%',
         borderRadius: 22.5,
         justifyContent: 'center',
         alignItems: 'center',

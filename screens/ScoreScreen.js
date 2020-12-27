@@ -409,7 +409,7 @@ const fadeBarAnim = () => {
                                         onPress={() => {
                                             fadeInModal(0)
                                             setTimeout(() => {
-                                                setEndModal(false)}, 500)
+                                                setSureModal(false)}, 500)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={styles.smallButton}>
@@ -524,7 +524,7 @@ const fadeBarAnim = () => {
                     setCurrentShotIndex={setCurrentShotIndex}
                     modifyArray={modifyArray}/> 
             </View> : overlayP2 && <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}/>}
-            <View style={{height: 25}}/>
+            <View style={{height: Dimensions.get('window').height <= 680 ? 20 : 25}}/>
             <ScoreContainer 
                 p1Name={p1Name}
                 p2Name={p2Name}
@@ -778,7 +778,7 @@ ScoreScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
    main: {
-       flex: 1,
+       flex: 1
    },
    overlay: {
     height: '100%',
@@ -799,7 +799,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
    },
    endOfFrameContainer: {
-    height: '30%',
+    height: Dimensions.get('window').height <= 740 ? '40%' : '30%',
     width: '80%',
     borderRadius: 20,
     overflow: 'hidden',
@@ -915,7 +915,7 @@ const styles = StyleSheet.create({
        paddingBottom: 200
    },
    bottomContainer: {
-    height: 1000,
+    height: Dimensions.get('window').height <= 580 ? 900 : 1000,
     borderRadius: 20,
     borderWidth: 2,
     marginHorizontal: 5,

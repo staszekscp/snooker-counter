@@ -570,7 +570,7 @@ const styles = StyleSheet.create({
         borderRightWidth: 0.01
     },
     borderContainer: {
-        height: Dimensions.get('window').height <= 740 ? 60: 90
+        height: Dimensions.get('window').height <= 600 ? 50 : Dimensions.get('window').height <= 740 ? 65: 90
     },
     centralContainer: {
         alignItems: 'center',
@@ -665,8 +665,8 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     ball: {
-        height: 49,
-        width: 49,
+        height: Dimensions.get('window').height <= 680 ? 40 : 49,
+        width: Dimensions.get('window').height <= 680 ? 40 : 49,
         borderRadius: 24.5,
         margin: 5
     },
@@ -676,21 +676,21 @@ const styles = StyleSheet.create({
     },
     yellow: {
         backgroundColor: '#fbff00',
-        top: Dimensions.get('window').height <= 740 ? 0: 30
+        top: Dimensions.get('window').height <= 600 ? 0 : Dimensions.get('window').height <= 740 ? 20: 30
     },
     green: {
         backgroundColor: '#029e0c',
     },
     brown: {
         backgroundColor: '#99001a',
-        top: Dimensions.get('window').height <= 740 ? 0: 30
+        top: Dimensions.get('window').height <= 600 ? 0 : Dimensions.get('window').height <= 740 ? 20: 30
     },
     blue: {
         backgroundColor: '#0f1bff',
     },
     pink: {
         backgroundColor: '#ff8af7',
-        top: Dimensions.get('window').height <= 740 ? 0: 30
+        top: Dimensions.get('window').height <= 600 ? 0 : Dimensions.get('window').height <= 740 ? 20: 30
     },
     black: {
         backgroundColor: '#333',

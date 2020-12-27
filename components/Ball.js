@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableNativeFeedback, Image } from 'react-native';
+import { StyleSheet, Dimensions, View, TouchableNativeFeedback, Image } from 'react-native';
 
 import ballImage from '../assets/Ball/ball.png'
 import freeBallImage from '../assets/Ball/freeball.png'
@@ -133,18 +133,18 @@ const Ball = ({style, activeBalls, val, setPoints, setOverlayP1, setOverlayP2, p
  
 const styles = StyleSheet.create({
     ball: {
-        height: 50,
-        width: 50,
+        height: Dimensions.get('window').height <= 680 ? 40 : 50,
+        width: Dimensions.get('window').height <= 680 ? 40 : 50,
         borderRadius: 25,
     },
     ballContainer: {
-        height: 50,
-        width: 50,
+        height: Dimensions.get('window').height <= 680 ? 40 : 50,
+        width: Dimensions.get('window').height <= 680 ? 40 : 50,
         borderRadius: 25,
     },
     ballImg: {
-        height: 50,
-        width: 50,
+        height: Dimensions.get('window').height <= 680 ? 40 : 50,
+        width: Dimensions.get('window').height <= 680 ? 40 : 50,
         borderRadius: 25,
         borderWidth: 3,
         borderColor: 'black'

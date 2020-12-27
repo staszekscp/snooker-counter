@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback, ImageBackground, Animated, Easing } from 'react-native';
+import { StyleSheet, Dimensions, Text, View, TouchableNativeFeedback, ImageBackground, Animated, Easing } from 'react-native';
 
 import wood from '../assets/png/wood.png'
 
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     },
     names: {
         marginHorizontal: 10,
-        marginTop: 10,
+        marginTop: Dimensions.get('window').height <= 680 ? 0 : 10,
         fontSize: 16,
         color: '#fff',
         fontFamily: 'score',
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     score: {
-        fontSize: 36,
+        fontSize: Dimensions.get('window').height <= 680 ? 28 : 36,
         color: '#e0de94',
         fontFamily: 'score'
     },
@@ -251,9 +251,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 20
     },
     remainingPointsContainer: {
+        display: Dimensions.get('window').height < 580 ? 'none' : 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: 10
+        paddingBottom: Dimensions.get('window').height <= 680 ? 5 : 10
     },
     remainingPoints: {
         color: '#fff',
@@ -263,7 +264,7 @@ const styles = StyleSheet.create({
         color: '#7a7a67'
     },
     undoRedoButtonOff: {
-        height: 30,
+        height: Dimensions.get('window').height <= 680 ? 25 : 30,
         width: 50,
         borderRadius: 15,
         justifyContent: 'center',
@@ -272,7 +273,7 @@ const styles = StyleSheet.create({
         opacity: 0.4
     },
     undoRedoButtonOn: {
-        height: 30,
+        height: Dimensions.get('window').height <= 680 ? 25 : 30,
         width: 50,
         borderRadius: 15,
         justifyContent: 'center',
@@ -280,7 +281,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255,0.3)'
     },
     reRackButton: {
-        height: 30,
+        height: Dimensions.get('window').height <= 680 ? 25 : 30,
         width: 70,
         borderRadius: 15,
         justifyContent: 'center',
@@ -288,7 +289,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 0, 0,0.2)'
     },
     helpButton: {
-        height: 30,
+        height: Dimensions.get('window').height <= 680 ? 25 : 30,
         width: 70,
         borderRadius: 15,
         justifyContent: 'center',
@@ -296,7 +297,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 255, 0,0.2)'
     },
     lateralButton: {
-        height: 30,
+        height: Dimensions.get('window').height <= 680 ? 25 : 30,
         width: 70,
         borderRadius: 15,
         borderWidth: 3,
@@ -304,7 +305,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     undoRedo: {
-        height: 30,
+        height: Dimensions.get('window').height <= 680 ? 25 : 30,
         width: 50,
         borderRadius: 15,
         borderWidth: 3,
@@ -320,7 +321,7 @@ const styles = StyleSheet.create({
     undoRedoContainer: {
         flexDirection: 'row', 
         justifyContent: 'space-around',
-        paddingVertical: 5,
+        paddingVertical: Dimensions.get('window').height <= 680 ? 2 : 5,
         borderBottomWidth: 3,
         backgroundColor: 'rgba(0,0,0,0.4)'
     },
