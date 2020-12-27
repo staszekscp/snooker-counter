@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Dimensions, ImageBackground, View, Animated, Text, TouchableNativeFeedback, Easing } from 'react-native';
+import { StyleSheet, BackHandler, Dimensions, ImageBackground, View, Animated, Text, TouchableNativeFeedback, Easing } from 'react-native';
 
 import BallContainer from '../components/BallContainer'
 import ScoreContainer from '../components/ScoreContainer'
@@ -21,6 +21,7 @@ const ScoreScreen = props => {
     const proMode = props.navigation.getParam('mode') //
 
     const [endModal, setEndModal] = useState(false)
+    const [sureModal, setSureModal] = useState(false)
 
     const p1Name = props.navigation.getParam('p1') //
     const p2Name = props.navigation.getParam('p2') //
@@ -320,9 +321,9 @@ const fadeBarAnim = () => {
                 setExtraBlack(false)
             }
         } else if (remaining === 7) {
-            if (p1Points - p2Points > 7 && overlayP1 || p1Points - p2Points > 7 && !overlayP1 && !overlayP2) {
+            if (p1Points - p2Points > 7 && overlayP1 || p1Points > p2Points && !overlayP1 && !overlayP2) {
                 endFrame()
-            } else if (p2Points - p1Points > 7 && overlayP2 || p2Points - p1Points > 7 && !overlayP1 && !overlayP2) {
+            } else if (p2Points - p1Points > 7 && overlayP2 || p2Points > p1Points && !overlayP1 && !overlayP2) {
                 endFrame()
             }
         } else if (remaining === 0) {
@@ -375,15 +376,69 @@ const fadeBarAnim = () => {
         }
     }, [endOfFrame])
 
+    useEffect(() => {
+        const backAction = () => {
+          setSureModal(true)
+          fadeInModal(1)
+          return true;
+        };
+    
+        const backHandler = BackHandler.addEventListener(
+          "hardwareBackPress",
+          backAction
+        );
+    
+        return () => backHandler.remove();
+      }, []);
+
     const mainScoreScreen = <View>
         <ImageBackground style={styles.clothImage} source={cloth}>
+        {sureModal && <Animated.View style={[styles.mainOverlay, {opacity: fadeAnimModal}]}>
+                    <Animated.View style={[styles.endOfFrameContainer, {opacity: fadeAnimModal}]}>
+                        <ImageBackground style={styles.backgroundImageModal} source={wood}>
+                            <View style={styles.coverSmall}>
+                            <Text style={styles.endOfFrameMessageTextHeader}>WARNING</Text>
+                                <View style={styles.endOfFrameMessage}>
+                                    <View style={styles.resultContainer}>
+                                        <Text style={styles.endOfFrameMessageTextName}>The progress will be lost. Are you sure?</Text>
+                                    </View>
+                                </View>
+                                <View style={styles.buttonsContainer}>
+                                    <View style={styles.smallButtonContainerNo}>
+                                        <TouchableNativeFeedback
+                                        onPress={() => {
+                                            fadeInModal(0)
+                                            setTimeout(() => {
+                                                setEndModal(false)}, 500)
+                                        }}
+                                        background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
+                                            <View style={styles.smallButton}>
+                                                <Text style={styles.smallButtonText}>NO</Text>
+                                            </View>
+                                        </TouchableNativeFeedback>
+                                    </View>
+                                    <View style={styles.smallButtonContainerOk}>
+                                        <TouchableNativeFeedback
+                                        onPress={() => {
+                                            props.navigation.goBack()
+                                        }}
+                                        background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
+                                            <View style={styles.smallButton}>
+                                                <Text style={styles.smallButtonText}>YES</Text>
+                                            </View>
+                                        </TouchableNativeFeedback>
+                                    </View>
+                                </View>
+                            </View>
+                        </ImageBackground>
+                    </Animated.View>
+                </Animated.View>}
         {endModal && <Animated.View style={[styles.mainOverlay, {opacity: fadeAnimModal}]}>
                     <Animated.View style={[styles.endOfFrameContainer, {opacity: fadeAnimModal}]}>
                         <ImageBackground style={styles.backgroundImageModal} source={wood}>
                             <View style={styles.coverSmall}>
                             <Text style={styles.endOfFrameMessageTextHeader}>FRAME HAS ENDED!</Text>
                                 <View style={styles.endOfFrameMessage}>
-                                    
                                     <View style={styles.resultContainer}>
                                         <View style={{width: '35%'}}>
                                             <Text style={styles.endOfFrameMessageTextName}>{p1Name}</Text>
@@ -402,7 +457,7 @@ const fadeBarAnim = () => {
                                     <View style={styles.smallButtonContainerNo}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
-                                            if (remaining < 7) {
+                                            if (remaining <= 7) {
                                                 setShot(previousShots.length-2)
                                             } 
                                             fadeInModal(0)
