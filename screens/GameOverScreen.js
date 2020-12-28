@@ -7,41 +7,15 @@ import wood from '../assets/png/wood.png'
 const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, statsP2, successP1, successP2,
     breakP1, breakP2, frameRecord, navigation }) => {
 
-    const fadeAnim = useRef(new Animated.Value(0)).current;
-
-    const fadeIn = () => {
-        Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 750,
-            useNativeDriver: true
-        }).start()
-    }
-    
-    const fadeOut = () => {
-        Animated.timing(fadeAnim, {
-            toValue: 0,
-            duration: 750,
-            useNativeDriver: true
-        }).start()
-    }
-
     const endMatch = () => {
-        fadeOut()
-        setTimeout(() => {
-            navigation.navigate('Start')
-        }, 750)
+        navigation.navigate('Start')
     }
-
-
-    useEffect(() => {
-        fadeIn()
-    }, [])
 
     return (
         <View style={styles.main}>
             <ImageBackground style={styles.clothImage} source={cloth}>
                 <ScrollView contentContainerStyle={styles.summaryContainer}>
-                <Animated.View style={{opacity: fadeAnim, borderWidth: 3}}>
+                <Animated.View style={{borderWidth: 3}}>
                     <ImageBackground style={styles.woodImage} source={wood}>
                         <View style={styles.cover}>
                             <View style={styles.topContainer}>
@@ -89,13 +63,13 @@ const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, s
                             </View>
 
                             <View style={styles.frameResultContainer}>
-                                {frameRecord.map(x => <View style={{flexDirection: 'row'}}>
+                                {frameRecord.map(x => <View key={x.key} style={{flexDirection: 'row'}}>
                                     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
                                         <View style={{width: '40%'}}>
                                             <Text style={x.p2 < x.p1 ? styles.textBetter : styles.text}>{x.p1}</Text>
                                         </View>
                                         <View style={{width: '20%'}}>
-                                            <Text style={styles.text}>{x.id}</Text>
+                                            <Text style={styles.text}>{x.key}</Text>
                                         </View>
                                         <View style={{width: '40%'}}>
                                             <Text style={x.p2 > x.p1 ? styles.textBetter : styles.text}>{x.p2}</Text>

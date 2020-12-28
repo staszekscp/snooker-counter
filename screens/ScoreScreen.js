@@ -20,6 +20,8 @@ const ScoreScreen = props => {
     const mode = props.navigation.getParam('reds') //
     const proMode = props.navigation.getParam('mode') //
 
+    const [disabled, setDisabled] = useState(false)
+
     const [endModal, setEndModal] = useState(false)
     const [sureModal, setSureModal] = useState(false)
 
@@ -129,8 +131,8 @@ const fadeBar = useRef(new Animated.Value(0)).current
 const fadeBarAnim = () => {
     Animated.timing(fadeBar, {
       toValue: 1,
-      delay: 2000,
-      duration: 1500,
+      delay: 1500,
+      duration: 1000,
       useNativeDriver: true
     }).start();
   };
@@ -623,6 +625,8 @@ const fadeBarAnim = () => {
                 setBackwardMode={setBackwardMode}
                 setCurrentShotIndex={setCurrentShotIndex}
                 modifyArray={modifyArray}
+                disabled={disabled}
+                setDisabled={setDisabled}
                 />
             <Animated.View style={[styles.bottomContainer, {transform: [{ translateY: start }]}]}>
                 <ImageBackground style={styles.woodImage} source={wood}>
@@ -648,6 +652,8 @@ const fadeBarAnim = () => {
                             setBackwardMode={setBackwardMode}
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
+                            disabled={disabled}
+                            setDisabled={setDisabled}
                             style={!proMode && {display: 'none'}}
                             />
                         <FoulContainer 
@@ -674,7 +680,9 @@ const fadeBarAnim = () => {
                             backwardMode={backwardMode}
                             setBackwardMode={setBackwardMode}
                             setCurrentShotIndex={setCurrentShotIndex}
-                            modifyArray={modifyArray}/>
+                            modifyArray={modifyArray}
+                            disabled={disabled}
+                            setDisabled={setDisabled}/>
                         <AdditionalRedContainer 
                             remaining={remaining}
                             setRemaining={setRemaining}
@@ -694,6 +702,8 @@ const fadeBarAnim = () => {
                             setBackwardMode={setBackwardMode}
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
+                            disabled={disabled}
+                            setDisabled={setDisabled}
                             />
                         <ConceideContainer 
                             p1Points={p1Points}

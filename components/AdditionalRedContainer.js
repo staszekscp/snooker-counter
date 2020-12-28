@@ -3,9 +3,13 @@ import { StyleSheet, Dimensions, Text, View, TouchableNativeFeedback } from 'rea
  
 const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, activeBallsP1, activeBallsP2,
     setP1Points, setP2Points, setStatsP1, setStatsP2, freeBallButtonP1, freeBallButtonP2, setCurrentBreakP1,
-    setCurrentBreakP2, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
+    setCurrentBreakP2, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray, disabled, setDisabled}) => {
 
     const redWentIn = () => {
+        setDisabled(true)
+        setTimeout(() => {
+            setDisabled(false)
+        }, 2000)
         if (backwardMode) {
             modifyArray()
             setBackwardMode(false)
@@ -19,6 +23,7 @@ const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, 
             <View style={styles.additionalRedsContainer}>
                 <View style={remaining < 35 || (activeBallsP1['1']) || (remaining !== 147 && !overlayP1 && !overlayP2) || overlayP1 ? {display: 'none'} : styles.additionalRedButton}>
                     <TouchableNativeFeedback
+                        disabled={disabled}
                         onPress={() => {
                             redWentIn()
                             setStatsP1(prev => ({
@@ -37,6 +42,7 @@ const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, 
                 </View>
                 <View style={remaining < 35 || !freeBallButtonP2 ? {display: 'none'} : styles.redWentInButton}>
                     <TouchableNativeFeedback
+                        disabled={disabled}
                         onPress={() => {
                             redWentIn()
                         }}
@@ -51,6 +57,7 @@ const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, 
             <View style={styles.additionalRedsContainer}>
                 <View style={remaining < 35 || (activeBallsP2['1'])  || (remaining !== 147 && !overlayP1 && !overlayP2) || overlayP2? {display: 'none'} : styles.additionalRedButton}>
                     <TouchableNativeFeedback
+                        disabled={disabled}
                         onPress={() => {
                             redWentIn()
                             setStatsP2(prev => ({
@@ -69,6 +76,7 @@ const AdditionalRedContainer = ({remaining, setRemaining, overlayP1, overlayP2, 
                 </View>
                 <View style={remaining < 35 || !freeBallButtonP1 ? {display: 'none'} : styles.redWentInButton}>
                     <TouchableNativeFeedback
+                        disabled={disabled}
                         onPress={() => {
                             redWentIn()
                         }}

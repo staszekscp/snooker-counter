@@ -51,14 +51,14 @@ const fadeSectionAnim = (anim, del) => {
     Animated.timing(anim, {
       toValue: 1,
       delay: del,
-      duration: 1500,
+      duration: 1000,
       useNativeDriver: true
     }).start();
   };
 
   useEffect(() => {
-    fadeSectionAnim(fadeSectionLeft, 3000)
-    fadeSectionAnim(fadeSectionRight, 3500)
+    fadeSectionAnim(fadeSectionLeft, 2000)
+    fadeSectionAnim(fadeSectionRight, 2500)
   }, [])
 
     const [showP1Break, setShowP1Break] = useState(false)

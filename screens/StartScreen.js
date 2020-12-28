@@ -12,7 +12,6 @@ const StartScreen = props => {
     const [reds, setReds] = useState(15)
     
     const [mainOverlay, setMainOverlay] = useState(true)
-    const [mainOverlayOut, setMainOverlayOut] = useState(false)
     const [error, setError] = useState(false)
 
     const [p1Name, setP1Name] = useState('')
@@ -87,7 +86,7 @@ const StartScreen = props => {
                                     <Text style={styles.errorMessageTextHeader}>Invalid name!</Text>
                                     <Text style={styles.errorMessageText}>Please, enter a correct one before starting the game. Player's name must be at least 2 characters long.</Text>
                                 </View>
-                                <View style={styles.smallButtonContainer}>
+                                <View style={[styles.smallButtonContainer, {height: '15%'}]}>
                                     <TouchableNativeFeedback
                                     onPress={() => {
                                         fadeInError(0)
@@ -257,6 +256,7 @@ StartScreen.navigationOptions = {
 const styles = StyleSheet.create({
     main: {
         flex: 1,
+        minHeight: 550,
         backgroundColor: '#000'
     },
     mainOverlay: {
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
         borderWidth: 3
     },
     errorContainer: {
-        height: '30%',
+        height: Dimensions.get('window').height <= 740 ? '40%' : '30%',
         width: '60%',
         borderRadius: 20,
         overflow: 'hidden',

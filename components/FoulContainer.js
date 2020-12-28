@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Dimensions,  Text, View, TouchableNativeFeedback } from 'react-native';
  
 const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBallsP2, setOverlayP1, setOverlayP2,
     remaining, setRemaining, freeBallP1, setFreeBallP1, freeBallP2, setFreeBallP2, setFreeBallButtonP1, setFreeBallButtonP2, setLongPotP1, setLongPotP2,
-    setCurrentBreakP1, setCurrentBreakP2,setStatsP1, setStatsP2, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
-    
+    setCurrentBreakP1, setCurrentBreakP2,setStatsP1, setStatsP2, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray, disabled, setDisabled}) => {
+
     const foul = (p, val) => {
+        setDisabled(true)
+        setTimeout(() => {
+            setDisabled(false)
+        }, 2000)
         if (backwardMode) {
             modifyArray()
             setBackwardMode(false)
@@ -66,6 +70,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                 <View style={styles.foulButtonContainer}>
                     <View style={remaining >= 22 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
+                            disabled={disabled}
                             onPress={() => {
                                 foul(1, 4)
                             }}
@@ -78,6 +83,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     </View>
                     <View style={remaining >= 18 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
+                            disabled={disabled}
                             onPress={() => {
                                 foul(1, 5)
                             }}
@@ -90,6 +96,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     </View>
                     <View style={remaining >= 13 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
+                            disabled={disabled}
                             onPress={() => {
                                 foul(1, 6)
                             }}
@@ -102,6 +109,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     </View>
                     <View style={styles.foulButton}>
                         <TouchableNativeFeedback
+                            disabled={disabled}
                             onPress={() => {
                                 foul(1, 7)
                             }}
@@ -122,6 +130,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                 <View style={styles.foulButtonContainer}>
                     <View style={remaining >= 22 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
+                            disabled={disabled}
                             onPress={() => {
                                 foul(2, 4)
                             }}
@@ -134,6 +143,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     </View>
                     <View style={remaining >= 18 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
+                            disabled={disabled}
                             onPress={() => {
                                 foul(2, 5)
                             }}
@@ -146,6 +156,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     </View>
                     <View style={remaining >= 13 ? styles.foulButton : {display: 'none'}}>
                         <TouchableNativeFeedback
+                            disabled={disabled}
                             onPress={() => {
                                 foul(2, 6)
                             }}
@@ -158,6 +169,7 @@ const FoulContainer = ({setP1Points, setP2Points, activateBallsP1, activateBalls
                     </View>
                     <View style={styles.foulButton}>
                         <TouchableNativeFeedback
+                            disabled={disabled}
                             onPress={() => {
                                 foul(2, 7)
                             }}
