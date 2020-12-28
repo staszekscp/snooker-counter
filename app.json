@@ -1,8 +1,11 @@
 {
   "expo": {
-    "name": "snooker-counter",
+    "name": "Snooker Counter",
     "slug": "snooker-counter",
     "version": "1.0.0",
+    "platforms": [
+      "android"
+    ],
     "orientation": "portrait",
     "icon": "./assets/Ball/6reds-icon.png",
     "splash": {
@@ -16,18 +19,12 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/Ball/6reds.png",
         "backgroundColor": "#FFFFFF"
       },
       "softwareKeyboardLayoutMode": "pan"
-    },
-    "web": {
-      "favicon": "./assets/Ball/6reds-icon.png"
     }
   }
 }
