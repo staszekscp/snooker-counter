@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, TouchableNativeFeedback, Image } from 'react-native';
+import { StyleSheet, Dimensions, View, TouchableNativeFeedback, Image } from 'react-native';
 
 import ballImage from '../assets/Ball/ball.png'
 import freeBallImage from '../assets/Ball/freeball.png'
 
 const Ball = ({style, activeBalls, val, setPoints, setOverlayP1, setOverlayP2, player, remaining, setRemaining,
     freeBall, setFreeBall, setFreeBallButtonP1, setFreeBallButtonP2, setStats, setLongPot, longPot, setCurrentBreak,
-    backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray, activateBalls, activateOpponentsBalls}) => {
+    backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray, activateBalls, activateOpponentsBalls, setShowBreak}) => {
     let active = {...activeBalls}
 
     const p1ball = <Image style={styles.ballImg} source={ballImage} /> 
@@ -27,6 +27,7 @@ const Ball = ({style, activeBalls, val, setPoints, setOverlayP1, setOverlayP2, p
             <TouchableNativeFeedback
                 disabled={!active[val.toString()]}
                 onPress={() => {
+                    setShowBreak(true)
                     if (backwardMode) {
                         modifyArray()
                         setBackwardMode(false)
@@ -132,18 +133,18 @@ const Ball = ({style, activeBalls, val, setPoints, setOverlayP1, setOverlayP2, p
  
 const styles = StyleSheet.create({
     ball: {
-        height: 50,
-        width: 50,
+        height: Dimensions.get('window').height <= 680 ? 40 : 50,
+        width: Dimensions.get('window').height <= 680 ? 40 : 50,
         borderRadius: 25,
     },
     ballContainer: {
-        height: 50,
-        width: 50,
+        height: Dimensions.get('window').height <= 680 ? 40 : 50,
+        width: Dimensions.get('window').height <= 680 ? 40 : 50,
         borderRadius: 25,
     },
     ballImg: {
-        height: 50,
-        width: 50,
+        height: Dimensions.get('window').height <= 680 ? 40 : 50,
+        width: Dimensions.get('window').height <= 680 ? 40 : 50,
         borderRadius: 25,
         borderWidth: 3,
         borderColor: 'black'

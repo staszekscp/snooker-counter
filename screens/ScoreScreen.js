@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Dimensions, ImageBackground, View } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, BackHandler, Dimensions, ImageBackground, View, Animated, Text, TouchableNativeFeedback, Easing } from 'react-native';
 
 import BallContainer from '../components/BallContainer'
 import ScoreContainer from '../components/ScoreContainer'
@@ -19,6 +19,11 @@ import wood from '../assets/png/wood.png'
 const ScoreScreen = props => {
     const mode = props.navigation.getParam('reds') //
     const proMode = props.navigation.getParam('mode') //
+
+    const [disabled, setDisabled] = useState(false)
+
+    const [endModal, setEndModal] = useState(false)
+    const [sureModal, setSureModal] = useState(false)
 
     const p1Name = props.navigation.getParam('p1') //
     const p2Name = props.navigation.getParam('p2') //
@@ -110,8 +115,86 @@ const ScoreScreen = props => {
 
     const [extraBlack, setExtraBlack] = useState(false) //
 
-
 //========================================================================================================
+const fadeAnimModal = useRef(new Animated.Value(0)).current
+
+const fadeInModal = val => {
+    Animated.timing(fadeAnimModal, {
+      toValue: val,
+      duration: 500,
+      useNativeDriver: true
+    }).start();
+  };
+
+const fadeBar = useRef(new Animated.Value(0)).current
+
+const fadeBarAnim = () => {
+    Animated.timing(fadeBar, {
+      toValue: 1,
+      delay: 1500,
+      duration: 1000,
+      useNativeDriver: true
+    }).start();
+  };
+
+  const start = useRef(new Animated.Value(400)).current
+
+  const startAnim = () => {
+      Animated.timing(start, {
+          toValue: 0,
+          delay: 500,
+          duration: 2000,
+          easing: Easing.elastic(1),
+          useNativeDriver: true
+      }).start()
+  }
+
+  useEffect(() => {
+      if (!endOfFrame){
+        startAnim()
+        fadeBarAnim()
+    }
+  }, [endOfFrame])
+//========================================================================================================
+
+    const endFrame = () => {
+        setEndModal(true)
+        fadeInModal(1)
+    }
+
+    const finishFrame = () => {
+        setEndOfFrame(true)
+        setEndModal(false)
+    }
+
+    const startNewFrame = () => {
+        setEndModal(false)
+    }
+
+    const setShot = val => {
+        setP1Points(previousShots[val].p1Points)
+        setP2Points(previousShots[val].p2Points)
+        setRemaining(previousShots[val].remaining)
+        setActiveBallsP1(previousShots[val].activeBallsP1)
+        setActiveBallsP2(previousShots[val].activeBallsP2)
+        setOverlayP1(previousShots[val].overlayP1),
+        setOverlayP2(previousShots[val].overlayP2),
+        setFreeBallP1(previousShots[val].freeBallP1),
+        setFreeBallP2(previousShots[val].freeBallP2),
+        setFreeBallButtonP1(previousShots[val].freeBallButtonP1),
+        setFreeBallButtonP2(previousShots[val].freeBallButtonP2),
+        setLongPotP1(previousShots[val].longPotP1),
+        setLongPotP2(previousShots[val].longPotP2),
+        setBreakP1(previousShots[val].breakP1),
+        setBreakP2(previousShots[val].breakP2),
+        setCurrentBreakP1(previousShots[val].currentBreakP1),
+        setCurrentBreakP2(previousShots[val].currentBreakP2),
+        setStatsP1(previousShots[val].statsP1),
+        setStatsP2(previousShots[val].statsP2)
+        
+        setCurrentShotIndex(val)
+        setBackwardMode(true)
+    }
 
     useEffect(() => {
         if(!backwardMode){
@@ -233,24 +316,24 @@ const ScoreScreen = props => {
     useEffect(() => {
         if (remaining === 7 && extraBlack) {
             if (p1Points > p2Points) {
-                setEndOfFrame(true)
+                endFrame()
                 setExtraBlack(false)
             } else if (p1Points < p2Points) {
-                setEndOfFrame(true)
+                endFrame()
                 setExtraBlack(false)
             }
         } else if (remaining === 7) {
-            if (p1Points - p2Points > 7 && overlayP1 || p1Points - p2Points > 7 && !overlayP1 && !overlayP2) {
-                setEndOfFrame(true)
-            } else if (p2Points - p1Points > 7 && overlayP2 || p2Points - p1Points > 7 && !overlayP1 && !overlayP2) {
-                setEndOfFrame(true)
+            if (p1Points - p2Points > 7 && overlayP1 || p1Points > p2Points && !overlayP1 && !overlayP2) {
+                endFrame()
+            } else if (p2Points - p1Points > 7 && overlayP2 || p2Points > p1Points && !overlayP1 && !overlayP2) {
+                endFrame()
             }
         } else if (remaining === 0) {
             if (!extraBlack) {
                 if (p1Points > p2Points) {
-                    setEndOfFrame(true)
+                    endFrame()
                 } else if (p1Points < p2Points) {
-                    setEndOfFrame(true)
+                    endFrame()
                 } else if (p1Points === p2Points) {
                     setRemaining(7)
                     setExtraBlack(true)
@@ -259,10 +342,10 @@ const ScoreScreen = props => {
                 }
             } else {
                 if (p1Points > p2Points) {
-                    setEndOfFrame(true)
+                    endFrame()
                     setExtraBlack(false)
                 } else if (p1Points < p2Points) {
-                    setEndOfFrame(true)
+                    endFrame()
                     setExtraBlack(false)
                 }
             } 
@@ -295,8 +378,117 @@ const ScoreScreen = props => {
         }
     }, [endOfFrame])
 
-    const mainScoreScreen = <ImageBackground style={styles.clothImage} source={cloth}>
-        <View style={styles.bar}/>
+    useEffect(() => {
+        const backAction = () => {
+          setSureModal(true)
+          fadeInModal(1)
+          return true;
+        };
+    
+        const backHandler = BackHandler.addEventListener(
+          "hardwareBackPress",
+          backAction
+        );
+    
+        return () => backHandler.remove();
+      }, []);
+
+    const mainScoreScreen = <View>
+        <ImageBackground style={styles.clothImage} source={cloth}>
+        {sureModal && <Animated.View style={[styles.mainOverlay, {opacity: fadeAnimModal}]}>
+                    <Animated.View style={[styles.endOfFrameContainer, {opacity: fadeAnimModal}]}>
+                        <ImageBackground style={styles.backgroundImageModal} source={wood}>
+                            <View style={styles.coverSmall}>
+                            <Text style={styles.endOfFrameMessageTextHeader}>WARNING</Text>
+                                <View style={styles.endOfFrameMessage}>
+                                    <View style={styles.resultContainer}>
+                                        <Text style={styles.endOfFrameMessageTextName}>The progress will be lost. Are you sure?</Text>
+                                    </View>
+                                </View>
+                                <View style={styles.buttonsContainer}>
+                                    <View style={styles.smallButtonContainerNo}>
+                                        <TouchableNativeFeedback
+                                        onPress={() => {
+                                            fadeInModal(0)
+                                            setTimeout(() => {
+                                                setSureModal(false)}, 500)
+                                        }}
+                                        background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
+                                            <View style={styles.smallButton}>
+                                                <Text style={styles.smallButtonText}>NO</Text>
+                                            </View>
+                                        </TouchableNativeFeedback>
+                                    </View>
+                                    <View style={styles.smallButtonContainerOk}>
+                                        <TouchableNativeFeedback
+                                        onPress={() => {
+                                            props.navigation.goBack()
+                                        }}
+                                        background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
+                                            <View style={styles.smallButton}>
+                                                <Text style={styles.smallButtonText}>YES</Text>
+                                            </View>
+                                        </TouchableNativeFeedback>
+                                    </View>
+                                </View>
+                            </View>
+                        </ImageBackground>
+                    </Animated.View>
+                </Animated.View>}
+        {endModal && <Animated.View style={[styles.mainOverlay, {opacity: fadeAnimModal}]}>
+                    <Animated.View style={[styles.endOfFrameContainer, {opacity: fadeAnimModal}]}>
+                        <ImageBackground style={styles.backgroundImageModal} source={wood}>
+                            <View style={styles.coverSmall}>
+                            <Text style={styles.endOfFrameMessageTextHeader}>FRAME HAS ENDED!</Text>
+                                <View style={styles.endOfFrameMessage}>
+                                    <View style={styles.resultContainer}>
+                                        <View style={{width: '35%'}}>
+                                            <Text style={styles.endOfFrameMessageTextName}>{p1Name}</Text>
+                                        </View>
+                                        <View style={{width: '30%'}}>
+                                            <Text style={styles.endOfFrameMessageTextPoints}> {p1Points} : {p2Points} </Text>
+                                        </View>
+                                        <View style={{width: '35%'}}>
+                                            <Text style={styles.endOfFrameMessageTextName}>{p2Name}</Text>
+                                        </View>
+                                    </View>
+                                    
+                                </View>
+                                <Text style={styles.endOfFrameMessageText}>Please confirm the result:</Text>
+                                <View style={styles.buttonsContainer}>
+                                    <View style={styles.smallButtonContainerNo}>
+                                        <TouchableNativeFeedback
+                                        onPress={() => {
+                                            if (remaining <= 7) {
+                                                setShot(previousShots.length-2)
+                                            } 
+                                            fadeInModal(0)
+                                            setTimeout(() => {
+                                                setEndModal(false)}, 500)
+                                        }}
+                                        background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
+                                            <View style={styles.smallButton}>
+                                                <Text style={styles.smallButtonText}>GO BACK</Text>
+                                            </View>
+                                        </TouchableNativeFeedback>
+                                    </View>
+                                    <View style={styles.smallButtonContainerOk}>
+                                        <TouchableNativeFeedback
+                                        onPress={() => {
+                                            finishFrame()
+                                        }}
+                                        background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
+                                            <View style={styles.smallButton}>
+                                                <Text style={styles.smallButtonText}>CONFIRM</Text>
+                                            </View>
+                                        </TouchableNativeFeedback>
+                                    </View>
+                                </View>
+                            </View>
+                        </ImageBackground>
+                    </Animated.View>
+                </Animated.View>}
+        <Animated.View style={[styles.bar, {opacity: fadeBar}]}/>
         {overlayP1 && !proMode ? <View style={styles.overlay}>
                 <SwitchButton 
                     setCurrentBreak={setCurrentBreakP2}
@@ -334,7 +526,7 @@ const ScoreScreen = props => {
                     setCurrentShotIndex={setCurrentShotIndex}
                     modifyArray={modifyArray}/> 
             </View> : overlayP2 && <View style={[styles.overlay, {left: Dimensions.get('window').width/2}]}/>}
-            <View style={{height: 25}}/>
+            <View style={{height: Dimensions.get('window').height <= 680 ? 20 : 25}}/>
             <ScoreContainer 
                 p1Name={p1Name}
                 p2Name={p2Name}
@@ -398,13 +590,16 @@ const ScoreScreen = props => {
                 longPotP1={longPotP1}
                 setLongPotP2={setLongPotP2}
                 longPotP2={longPotP2}
+                currentBreakP1={currentBreakP1}
+                currentBreakP2={currentBreakP2}
                 setCurrentBreakP1={setCurrentBreakP1}
                 setCurrentBreakP2={setCurrentBreakP2}
                 proMode={proMode}
                 backwardMode={backwardMode}
                 setBackwardMode={setBackwardMode}
                 setCurrentShotIndex={setCurrentShotIndex}
-                modifyArray={modifyArray}/>
+                modifyArray={modifyArray}
+                extraBlack={extraBlack}/>
             <MissContainer 
                 activateBallsP1={activateBallsP1}
                 activateBallsP2={activateBallsP2}
@@ -430,8 +625,10 @@ const ScoreScreen = props => {
                 setBackwardMode={setBackwardMode}
                 setCurrentShotIndex={setCurrentShotIndex}
                 modifyArray={modifyArray}
+                disabled={disabled}
+                setDisabled={setDisabled}
                 />
-            <View style={styles.bottomContainer}>
+            <Animated.View style={[styles.bottomContainer, {transform: [{ translateY: start }]}]}>
                 <ImageBackground style={styles.woodImage} source={wood}>
                     <View style={styles.cover}>
                         <SafetyContainer 
@@ -455,6 +652,8 @@ const ScoreScreen = props => {
                             setBackwardMode={setBackwardMode}
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
+                            disabled={disabled}
+                            setDisabled={setDisabled}
                             style={!proMode && {display: 'none'}}
                             />
                         <FoulContainer 
@@ -481,7 +680,9 @@ const ScoreScreen = props => {
                             backwardMode={backwardMode}
                             setBackwardMode={setBackwardMode}
                             setCurrentShotIndex={setCurrentShotIndex}
-                            modifyArray={modifyArray}/>
+                            modifyArray={modifyArray}
+                            disabled={disabled}
+                            setDisabled={setDisabled}/>
                         <AdditionalRedContainer 
                             remaining={remaining}
                             setRemaining={setRemaining}
@@ -501,12 +702,14 @@ const ScoreScreen = props => {
                             setBackwardMode={setBackwardMode}
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
+                            disabled={disabled}
+                            setDisabled={setDisabled}
                             />
                         <ConceideContainer 
                             p1Points={p1Points}
                             p2Points={p2Points}
                             remaining={remaining}
-                            setEndOfFrame={setEndOfFrame}
+                            endFrame={endFrame}
                             setFreeBallP1={setFreeBallP1}
                             setFreeBallP2={setFreeBallP2}
                             setFreeBallButtonP1={setFreeBallButtonP1}
@@ -516,8 +719,8 @@ const ScoreScreen = props => {
                             modifyArray={modifyArray}/> 
                     </View>
                 </ImageBackground>
-            </View>  
-        </ImageBackground>
+            </Animated.View>  
+        </ImageBackground></View>
 
     const frameOverScreen = <FrameOverScreen 
         mode={mode}
@@ -552,6 +755,8 @@ const ScoreScreen = props => {
         setCurrentShotIndex={setCurrentShotIndex}
         setLongPotP1={setLongPotP1}
         setLongPotP2={setLongPotP2}
+        startNewFrame={startNewFrame}
+        finishFrame={finishFrame}
         /> 
 
     const gameOverScreen = <GameOverScreen 
@@ -583,7 +788,7 @@ ScoreScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
    main: {
-       flex: 1,
+       flex: 1
    },
    overlay: {
     height: '100%',
@@ -594,6 +799,115 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
    },
+   mainOverlay: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#000',
+    position: 'absolute',
+    zIndex: 5,
+    justifyContent: 'center',
+    alignItems: 'center'
+   },
+   endOfFrameContainer: {
+    height: Dimensions.get('window').height <= 740 ? '40%' : '30%',
+    width: '80%',
+    borderRadius: 20,
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 3,
+    },
+    backgroundImageModal: {
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    coverSmall: {
+        backgroundColor: 'rgba(60,5,0, 0.6)',
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
+       },
+    endOfFrameMessage: {
+        width: '90%',
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
+        paddingVertical: 10,
+        margin: 5,
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    endOfFrameMessageTextHeader: {
+        color: '#e0de94',
+        fontFamily: 'scoreBold',
+        fontSize: 20, 
+        marginBottom: 10,
+        textAlign: 'center'
+    },
+    endOfFrameMessageTextName: {
+        color: '#fff',
+        fontFamily: 'scoreBold',
+        fontSize: 16, 
+        textAlign: 'center'
+    },
+    endOfFrameMessageTextPoints: {
+        color: '#e0de94',
+        fontFamily: 'scoreBold',
+        fontSize: 20, 
+        textAlign: 'center'
+    },
+    endOfFrameMessageText: {
+        color: '#ddd',
+        fontFamily: 'scoreBold',
+        fontSize: 16,
+        textAlign: 'justify',
+        padding: 10
+    },
+    resultContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: 10
+    },
+    buttonsContainer:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    smallButtonContainerNo: {
+        height: 40,
+        width: 100,
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+        margin: 5
+    },
+    smallButtonContainerOk: {
+        height: 40,
+        width: 100,
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 255, 0, 0.2)',
+        margin: 5
+    },
+    smallButton: {
+        height: 40,
+        width: 100,
+        borderRadius: 15,
+        borderWidth: 3,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    smallButtonText: {
+        color: '#bbb',
+        fontFamily: 'score',
+        fontSize: 14,
+        textAlign: 'center'
+    },
    bar: {
     left:Dimensions.get('window').width/2,
     height: '100%',
@@ -611,16 +925,16 @@ const styles = StyleSheet.create({
        paddingBottom: 200
    },
    bottomContainer: {
+    height: Dimensions.get('window').height <= 580 ? 900 : 1000,
     borderRadius: 20,
     borderWidth: 2,
     marginHorizontal: 5,
-    paddingBottom: 200,
     overflow: 'hidden'
    },
    cover: {
+    height: '100%',
     paddingTop: 3,
-    backgroundColor: 'rgba(60,5,0, 0.6)',
-    paddingBottom: 200
+    backgroundColor: 'rgba(60,5,0, 0.6)'
    }
 })
 

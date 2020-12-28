@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, TouchableNativeFeedback, ImageBackground, View, Text, TextInput, Image } from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { StyleSheet, Dimensions, TouchableNativeFeedback, ImageBackground, View, Text, TextInput, Image, Animated, Easing } from 'react-native';
 
 import cloth from '../assets/png/green-snooker-cloth-background.jpg'
 import wood from '../assets/png/wood.png'
@@ -11,26 +11,86 @@ const StartScreen = props => {
     const [proMode, setProMode] = useState(false)
     const [reds, setReds] = useState(15)
     
+    const [mainOverlay, setMainOverlay] = useState(true)
     const [error, setError] = useState(false)
 
     const [p1Name, setP1Name] = useState('')
     const [p2Name, setP2Name] = useState('')
 
+    const fadeAnim = useRef(new Animated.Value(1)).current
+    const fadeAnimError = useRef(new Animated.Value(0)).current
+    const turnAround15 = useRef(new Animated.Value(0)).current
+    const turnAround10 = useRef(new Animated.Value(0)).current
+    const turnAround6 = useRef(new Animated.Value(0)).current
+
+    const turn15 = turnAround15.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+      })
+    const turn10 = turnAround10.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+      })
+    const turn6 = turnAround6.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+      })
+
+    const fadeOut = () => {
+        Animated.timing(fadeAnim, {
+            toValue: 0,
+            duration: 2000,
+            useNativeDriver: true
+        }).start()
+    }
+    
+    const fadeInError = val => {
+        Animated.timing(fadeAnimError, {
+          toValue: val,
+          duration: 300,
+          useNativeDriver: true
+        }).start();
+      };
+
+    const aroundAnimation = (anim) => {
+        Animated.sequence([
+            Animated.timing(anim, {
+                toValue: 0.5,
+                duration: 500,
+                useNativeDriver: true
+              }),
+              Animated.timing(anim, {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: true
+              })
+        ]).start()
+    }
+
+    useEffect(() => {
+        fadeOut()
+        setTimeout(() => {
+            setMainOverlay(false)
+        }, 2000)
+    }, [])
+
     return (
         <View style={styles.main}>
+            {mainOverlay && <Animated.View style={[styles.mainOverlay, {opacity:fadeAnim }]}/>}
             <ImageBackground style={styles.backgroundImage} source={cloth}>
-                {error && <View style={styles.overlay}>
-                    <View style={styles.errorContainer}>
+                {error && <Animated.View style={[styles.overlay, {opacity: fadeAnimError}]}>
+                    <Animated.View style={[styles.errorContainer, {opacity: fadeAnimError}]}>
                         <ImageBackground style={styles.backgroundImage} source={wood}>
                             <View style={styles.coverSmall}>
                                 <View style={styles.errorMessage}>
                                     <Text style={styles.errorMessageTextHeader}>Invalid name!</Text>
                                     <Text style={styles.errorMessageText}>Please, enter a correct one before starting the game. Player's name must be at least 2 characters long.</Text>
                                 </View>
-                                <View style={styles.smallButtonContainer}>
+                                <View style={[styles.smallButtonContainer, {height: '15%'}]}>
                                     <TouchableNativeFeedback
                                     onPress={() => {
-                                        setError(false)
+                                        fadeInError(0)
+                                        setTimeout(() => {setError(false)}, 300)
                                     }}
                                     background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                         <View style={styles.smallButton}>
@@ -40,8 +100,8 @@ const StartScreen = props => {
                                 </View>
                             </View>
                         </ImageBackground>
-                    </View>
-                </View>}
+                    </Animated.View>
+                </Animated.View>}
                 <View style={styles.mainContainer}>
                     <ImageBackground style={styles.backgroundImage} source={wood}>
                         <View style={styles.cover}>
@@ -49,7 +109,7 @@ const StartScreen = props => {
                                 <Text style={styles.appName}>SNOOKER COUNTER</Text>
                             </View>
                             <View style={styles.playersContainer}>
-                                <View>
+                                <View style={{width: '100%', alignItems: 'center'}}>
                                     <Text style={styles.headerText}>PLAYER 1</Text>
                                     <TextInput 
                                         placeholder="Type player's name"
@@ -60,7 +120,7 @@ const StartScreen = props => {
                                         maxLength={20}
                                         style={styles.textInput}/>
                                 </View>
-                                <View style={{marginTop: 10}}>
+                                <View style={{marginTop: Dimensions.get('window').height <= 680 ? 5 : 10, width: '100%', alignItems: 'center'}}>
                                     <Text style={styles.headerText}>PLAYER 2</Text>
                                     <TextInput 
                                         placeholder="Type player's name"
@@ -72,45 +132,48 @@ const StartScreen = props => {
                                         style={styles.textInput}/>
                                 </View>
                             </View>
-                            <View>
+                            <View style={{height: '25%'}}>
                                 <Text style={styles.headerText}>NUMBER OF REDS</Text>
                                 <View style={styles.redButtonsContainer}>
-                                    <View style={styles.redButtonContainer}>
+                                    <Animated.View style={[styles.redButtonContainer, {transform: [{ rotateY: turn15 }]}]}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
                                             setReds(15)
+                                            aroundAnimation(turnAround15)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={reds === 15 ? styles.redButtonOn : styles.redButtonOff}>
                                                 <Image style={styles.reds15} source={red15}/>
                                             </View>
                                         </TouchableNativeFeedback>
-                                    </View>
-                                    <View style={styles.redButtonContainer}>
+                                    </Animated.View>
+                                    <Animated.View style={[styles.redButtonContainer, {transform: [{ rotateY: turn10 }]}]}>
                                         <TouchableNativeFeedback
                                         onPress={() => {
                                             setReds(10)
+                                            aroundAnimation(turnAround10)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={reds === 10 ? styles.redButtonOn : styles.redButtonOff}>
                                                 <Image style={styles.reds10} source={red10}/>
                                             </View>
                                         </TouchableNativeFeedback>
-                                    </View>
-                                    <View style={styles.redButtonContainer}>
+                                    </Animated.View>
+                                    <Animated.View style={[styles.redButtonContainer, {transform: [{ rotateY: turn6 }]}]}>
                                         <TouchableNativeFeedback 
                                         onPress={() => {
                                             setReds(6)
+                                            aroundAnimation(turnAround6)
                                         }}
                                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                             <View style={reds === 6 ? styles.redButtonOn : styles.redButtonOff}>
                                                 <Image style={styles.reds6} source={red6}/>
                                             </View>
                                         </TouchableNativeFeedback>
-                                    </View>
+                                    </Animated.View>
                                 </View>
                             </View>
-                            <View>
+                            <View style={{height: '25%'}}>
                                 <Text style={styles.headerText}>COUNTER MODE</Text>
                                 <View style={styles.modeContainer}>
                                     <View style={!proMode ? styles.modeButtonOn : styles.modeButtonOff}>
@@ -158,6 +221,7 @@ const StartScreen = props => {
                                         })
                                     } else {
                                         setError(true)
+                                        fadeInError(1)
                                     }
                                 }}
                                 background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
@@ -181,27 +245,29 @@ const StartScreen = props => {
                     </ImageBackground>
                 </View>
             </ImageBackground>
-
         </View>
     )
 }
 
 StartScreen.navigationOptions = {
-    headerTitle: 'Snooker Counter',
-    headerStyle: {
-        backgroundColor: 'rgb(40,5,0)'
-    },
-    headerTintColor: '#e0de94',
-    headerTitleStyle: {
-        fontFamily: "score",
-        fontSize: 20,
-    }
+    headerShown: false
 }
 
 const styles = StyleSheet.create({
     main: {
         flex: 1,
+        minHeight: 550,
+        backgroundColor: '#000'
     },
+    mainOverlay: {
+        height: '100%',
+        width: '100%',
+        backgroundColor: '#000',
+        position: 'absolute',
+        zIndex: 2,
+        justifyContent: 'center',
+        alignItems: 'center'
+       },
     backgroundImage: {
         height: '100%',
         width: '100%',
@@ -218,7 +284,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     mainContainer: {
-        height: '60%',
+        height: Dimensions.get('window').height < 680 ? '65%': '60%',
         width: '80%',
         borderRadius: 20,
         overflow: 'hidden',
@@ -235,7 +301,7 @@ const styles = StyleSheet.create({
         borderWidth: 3
     },
     errorContainer: {
-        height: '30%',
+        height: Dimensions.get('window').height <= 740 ? '40%' : '30%',
         width: '60%',
         borderRadius: 20,
         overflow: 'hidden',
@@ -306,7 +372,7 @@ const styles = StyleSheet.create({
     textInput: {
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
         borderRadius: 5,
-        width: 200,
+        width: '80%',
         color: '#ddd',
         fontFamily: 'score'
     },
@@ -314,7 +380,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingVertical: 10
+        paddingVertical: 10,
+        width: '100%',
+        height: '70%'
     },
     redButtonContainer: {
         height: 60,
@@ -355,8 +423,8 @@ const styles = StyleSheet.create({
         width: 30
     },
     modeButtonOff: {
-        height: 45,
-        width: 75,
+        height: '75%',
+        width: '30%',
         borderRadius: 22.5,
         justifyContent: 'center',
         alignItems: 'center',
@@ -365,8 +433,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 10
     },
     modeButtonOn: {
-        height: 45,
-        width: 75,
+        height: '75%',
+        width: '30%',
         borderRadius: 22.5,
         justifyContent: 'center',
         alignItems: 'center',
@@ -374,8 +442,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 10
     },
     mode: {
-        height: 45,
-        width: 75,
+        height: '100%',
+        width: '100%',
         borderRadius: 22.5,
         borderWidth: 3,
         justifyContent: 'center',
@@ -390,11 +458,13 @@ const styles = StyleSheet.create({
     modeContainer: {
         flexDirection: 'row', 
         justifyContent: 'center',
-        paddingVertical: 10
+        paddingVertical: 10,
+        height: '70%',
+        width: '100%'
     },
     startGame: {
-        height: 60,
-        width: 140,
+        height: '35%',
+        width: '50%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -402,8 +472,8 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     startGameButton: {
-        height: 60,
-        width: 140,
+        height: '100%',
+        width: '100%',
         borderRadius: 15,
         borderWidth: 3,
         justifyContent: 'center',
@@ -415,8 +485,8 @@ const styles = StyleSheet.create({
         fontSize: 22
     },
     smallButtonContainer: {
-        height: 40,
-        width: 100,
+        height: '25%',
+        width: '40%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -424,8 +494,8 @@ const styles = StyleSheet.create({
         marginVertical: 5
     },
     smallButton: {
-        height: 40,
-        width: 100,
+        height: '100%',
+        width: '100%',
         borderRadius: 15,
         borderWidth: 3,
         justifyContent: 'center',

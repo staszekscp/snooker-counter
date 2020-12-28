@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Dimensions, Text, View, TouchableNativeFeedback } from 'react-native';
  
-const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFreeBallP1, setFreeBallP2,
+const ConceideContainer = ({p1Points, p2Points, remaining, endFrame, setFreeBallP1, setFreeBallP2,
     setFreeBallButtonP1, setFreeBallButtonP2, backwardMode, setBackwardMode, modifyArray}) => {
     
     const conceide = () => {
@@ -13,7 +13,7 @@ const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFre
         setFreeBallP2(false)
         setFreeBallButtonP1(false)
         setFreeBallButtonP2(false)
-        setEndOfFrame(true)
+        endFrame()
     }
 
     return (
@@ -27,7 +27,7 @@ const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFre
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
                         <View style={styles.button}>
-                            <Text style={styles.buttonText}>CONCEIDE</Text>
+                            <Text style={styles.buttonText}>CONCEDE</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
@@ -53,7 +53,7 @@ const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFre
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
                         <View style={styles.button}>
-                            <Text style={styles.buttonText}>CONCEIDE</Text>
+                            <Text style={styles.buttonText}>CONCEDE</Text>
                         </View>
                     </TouchableNativeFeedback>
                 </View>
@@ -76,7 +76,8 @@ const ConceideContainer = ({p1Points, p2Points, remaining, setEndOfFrame, setFre
  
 const styles = StyleSheet.create({
     main: {
-        height: 50,
+        height: Dimensions.get('window').height <= 740 ? '6%' : '7%',
+        paddingVertical: 5,
         width: '100%',
         flexDirection: 'row',
     },
@@ -86,8 +87,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     conceideButton: {
-        height: 50,
-        width: 120,
+        height: '100%',
+        width: '60%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -95,8 +96,8 @@ const styles = StyleSheet.create({
         borderWidth: 3,
     },
     endFrameButton: {
-        height: 50,
-        width: 120,
+        height: '100%',
+        width: '60%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
@@ -104,15 +105,15 @@ const styles = StyleSheet.create({
         borderWidth: 3,
     },
     button: {
-        height: 50,
-        width: 120,
+        height: '100%',
+        width: '100%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
     },
     buttonText: {
         fontFamily: 'scoreBold',
-        fontSize: 16,
+        fontSize: 14,
         paddingHorizontal: 5,
         textAlign: 'center'
     }

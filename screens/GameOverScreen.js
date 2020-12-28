@@ -1,16 +1,21 @@
-import React from 'react';
-import { StyleSheet, ScrollView, ImageBackground, View, Text, TouchableNativeFeedback} from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, ScrollView, ImageBackground, View, Text, TouchableNativeFeedback, Animated} from 'react-native';
 
 import cloth from '../assets/png/green-snooker-cloth-background.jpg'
 import wood from '../assets/png/wood.png'
 
-const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, statsP2, successP1, successP2, breakP1, breakP2, frameRecord, navigation }) => {
+const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, statsP2, successP1, successP2,
+    breakP1, breakP2, frameRecord, navigation }) => {
+
+    const endMatch = () => {
+        navigation.navigate('Start')
+    }
 
     return (
         <View style={styles.main}>
             <ImageBackground style={styles.clothImage} source={cloth}>
                 <ScrollView contentContainerStyle={styles.summaryContainer}>
-                <View >
+                <Animated.View style={{borderWidth: 3}}>
                     <ImageBackground style={styles.woodImage} source={wood}>
                         <View style={styles.cover}>
                             <View style={styles.topContainer}>
@@ -58,13 +63,13 @@ const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, s
                             </View>
 
                             <View style={styles.frameResultContainer}>
-                                {frameRecord.map(x => <View style={{flexDirection: 'row'}}>
+                                {frameRecord.map(x => <View key={x.key} style={{flexDirection: 'row'}}>
                                     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
                                         <View style={{width: '40%'}}>
                                             <Text style={x.p2 < x.p1 ? styles.textBetter : styles.text}>{x.p1}</Text>
                                         </View>
                                         <View style={{width: '20%'}}>
-                                            <Text style={styles.text}>{x.id}</Text>
+                                            <Text style={styles.text}>{x.key}</Text>
                                         </View>
                                         <View style={{width: '40%'}}>
                                             <Text style={x.p2 > x.p1 ? styles.textBetter : styles.text}>{x.p2}</Text>
@@ -76,7 +81,7 @@ const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, s
                                 <View style={styles.newMatch}>
                                     <TouchableNativeFeedback
                                     onPress={() => {
-                                        navigation.navigate('Start')
+                                        endMatch()
                                     }}
                                     background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}>
                                         <View style={styles.newMatchButton}>
@@ -87,7 +92,7 @@ const GameOverScreen = ({proMode, p1Frames, p2Frames, p1Name, p2Name, statsP1, s
                             </View>
                         </View>
                     </ImageBackground>
-                    </View>
+                    </Animated.View>
                 </ScrollView>
             </ImageBackground>
         </View>
@@ -114,7 +119,6 @@ const styles = StyleSheet.create({
         width: '80%',
         overflow: 'hidden',
         top: 100,
-        borderWidth: 3,
         borderRadius: 20,
     },
     cover: {

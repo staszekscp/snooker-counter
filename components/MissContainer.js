@@ -1,12 +1,16 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import React, { useRef, useState, useEffect } from 'react';
+import { StyleSheet, Dimensions, Text, View, TouchableNativeFeedback, Animated } from 'react-native';
  
 const MissContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverlayP2, remaining, setRemaining,
     freeBallP1, setFreeBallP1, freeBallP2, setFreeBallP2, setFreeBallButtonP1, setFreeBallButtonP2, setStatsP1, setStatsP2,
     setLongPotP1, longPotP1, setLongPotP2, longPotP2, setCurrentBreakP1, setCurrentBreakP2, backwardMode, setBackwardMode,
-    setCurrentShotIndex, modifyArray}) => {
+    setCurrentShotIndex, modifyArray, disabled, setDisabled}) => {
 
     const miss = p => {
+        setDisabled(true)
+        setTimeout(() => {
+            setDisabled(false)
+        }, 2000)
         if (backwardMode) {
             modifyArray()
             setBackwardMode(false)
@@ -99,15 +103,32 @@ const MissContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverl
         } 
     }
 
+const fadeSectionLeft = useRef(new Animated.Value(0)).current
+const fadeSectionRight = useRef(new Animated.Value(0)).current
+
+const fadeSectionAnim = (anim, del) => {
+    Animated.timing(anim, {
+      toValue: 1,
+      delay: del,
+      duration: 1000,
+      useNativeDriver: true
+    }).start();
+  };
+
+  useEffect(() => {
+    fadeSectionAnim(fadeSectionLeft, 2000)
+    fadeSectionAnim(fadeSectionRight, 2500)
+  }, [])
+
     return (
         <View style={styles.main}>
-            <View style={styles.missButtonContainer}>
+            <Animated.View style={[styles.missButtonContainer, {opacity: fadeSectionLeft}]}>
                 <View style={styles.missButton}>
                     <TouchableNativeFeedback
+                        disabled={disabled}
                         onPress={() => {
                             miss(1)
                         }}
-                            
                         background={TouchableNativeFeedback.Ripple('rgba(255,255,255,0.8)', true)}
                         >
                         <View style={styles.miss}>
@@ -115,10 +136,11 @@ const MissContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverl
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-            </View>
-            <View style={styles.missButtonContainer}>
+            </Animated.View>
+            <Animated.View style={[styles.missButtonContainer, {opacity: fadeSectionRight}]}>
                 <View style={styles.missButton}>
                     <TouchableNativeFeedback
+                        disabled={disabled}
                          onPress={() => {
                             miss(2)
                          }}
@@ -129,13 +151,13 @@ const MissContainer = ({activateBallsP1, activateBallsP2, setOverlayP1, setOverl
                         </View>
                     </TouchableNativeFeedback>
                 </View>
-            </View>
+            </Animated.View>
         </View>
     )}
  
 const styles = StyleSheet.create({
     main: {
-        height: 75,
+        height: Dimensions.get('window').height <= 740 ? 55 : 75,
         width: '100%',
         flexDirection: 'row'
     },
@@ -145,16 +167,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     missButton: {
-        height: 50,
-        width: 120,
+        height: '65%',
+        width: '55%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(255, 17, 0,0.7)'
     },
     miss: {
-        height: 50,
-        width: 120,
+        height: '100%',
+        width: '100%',
         borderRadius: 15,
         borderWidth: 3,
         justifyContent: 'center',
@@ -162,7 +184,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontFamily: 'scoreBold',
-        fontSize: 20
+        fontSize: Dimensions.get('window').height <= 740 ? 18 : 20
     }
 })
  

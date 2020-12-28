@@ -1,20 +1,108 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
+import React, { useRef, useEffect, useState } from 'react';
+import { StyleSheet, Dimensions, Text, View, TouchableNativeFeedback, Animated, Easing } from 'react-native';
 
 import Ball from '../components/Ball'
  
 const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, activateBallsP1, activateBallsP2,
     setOverlayP1, setOverlayP2, remaining, setRemaining, freeBallP1, setFreeBallP1, freeBallP2, setFreeBallP2, freeBallButtonP1,
     setFreeBallButtonP1, freeBallButtonP2, setFreeBallButtonP2, setStatsP1, setStatsP2, setLongPotP1, longPotP1, setLongPotP2, longPotP2,
-    setCurrentBreakP1, setCurrentBreakP2, proMode, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray}) => {
+    currentBreakP1, currentBreakP2, setCurrentBreakP1, setCurrentBreakP2, proMode, backwardMode, setBackwardMode, setCurrentShotIndex, modifyArray, extraBlack}) => {
         
     const playerOne = 'p1'
     const playerTwo = 'p2'
 
+        
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const scaleAnim = useRef(new Animated.Value(1)).current;
+
+    const fadeIn = () => {
+        Animated.parallel([
+            Animated.sequence([
+                Animated.timing(fadeAnim, {
+                    toValue: 0.35,
+                    duration: 500,
+                    useNativeDriver: true
+                }),
+                Animated.timing(fadeAnim, {
+                    toValue: 0,
+                    duration: 500,
+                    useNativeDriver: true
+                })
+            ]),
+            Animated.sequence([
+                Animated.timing(scaleAnim, {
+                    toValue: 3,
+                    duration: 1000,
+                    useNativeDriver: true
+                }),
+                Animated.timing(scaleAnim, {
+                    toValue: 1,
+                    duration: 50,
+                    useNativeDriver: true
+                })
+            ])
+        ]).start()
+    }
+
+const fadeSectionLeft = useRef(new Animated.Value(0)).current
+const fadeSectionRight = useRef(new Animated.Value(0)).current
+
+const fadeSectionAnim = (anim, del) => {
+    Animated.timing(anim, {
+      toValue: 1,
+      delay: del,
+      duration: 1000,
+      useNativeDriver: true
+    }).start();
+  };
+
+  useEffect(() => {
+    fadeSectionAnim(fadeSectionLeft, 2000)
+    fadeSectionAnim(fadeSectionRight, 2500)
+  }, [])
+
+    const [showP1Break, setShowP1Break] = useState(false)
+    const [showP2Break, setShowP2Break] = useState(false)
+    const [respottedBlack, setRespottedBlack] = useState(false)
+
+    useEffect(() => {
+        if (currentBreakP1 !== 0 && showP1Break) {
+            fadeIn()
+            setTimeout(() => {setShowP1Break(false)}, 1050)
+        }
+    }, [currentBreakP1])
+
+    useEffect(() => {
+        if (currentBreakP2 !== 0 && showP2Break) {
+            fadeIn()
+            setTimeout(() => {setShowP2Break(false)}, 1050)
+        }
+    }, [currentBreakP2])
+
+    useEffect(() => {
+        if (extraBlack) {
+            setTimeout(() => {
+                setRespottedBlack(true)
+                fadeIn()
+                setTimeout(() => {
+                    setRespottedBlack(false)
+                }, 1050)
+            }, 1000)
+            
+        }
+    }, [extraBlack])
+
     return (
         <View style={styles.main}>
             <View style={styles.ballSection}>
-                <View style={styles.mainBallContainer}> 
+                    {respottedBlack && <Animated.View style={[styles.animatedRespottedView, {opacity: fadeAnim, transform: [{ scale:scaleAnim }]}]}>
+                        <Text style={styles.respottedText}>RE-SPOTTED</Text>
+                        <Text style={styles.respottedText}>BLACK</Text>
+                    </Animated.View>}
+                <Animated.View style={[styles.mainBallContainer, {opacity: fadeSectionLeft}]}> 
+                    {showP1Break && <Animated.View style={[styles.animatedView, {opacity: fadeAnim, transform: [{ scale:scaleAnim }]}]}>
+                        <Text style={styles.animatedText}>{currentBreakP1}</Text>
+                    </Animated.View>}
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
                             style={!activeBallsP1['2'] ? {...styles.ball, ...styles.yellow, ...styles.invisible} : {...styles.ball, ...styles.yellow}} 
@@ -39,6 +127,7 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP1}
                             activateOpponentsBalls={activateBallsP2}
+                            setShowBreak={setShowP1Break}
                             />
                         <Ball 
                             style={!activeBallsP1['3'] ? {...styles.ball, ...styles.green, ...styles.invisible} : {...styles.ball, ...styles.green}} 
@@ -62,7 +151,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP1}
-                            activateOpponentsBalls={activateBallsP2}/>
+                            activateOpponentsBalls={activateBallsP2}
+                            setShowBreak={setShowP1Break}/>
                         <Ball 
                             style={!activeBallsP1['4'] ? {...styles.ball, ...styles.brown, ...styles.invisible} : {...styles.ball, ...styles.brown}} 
                             activeBalls={activeBallsP1}
@@ -85,7 +175,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP1}
-                            activateOpponentsBalls={activateBallsP2}/>
+                            activateOpponentsBalls={activateBallsP2}
+                            setShowBreak={setShowP1Break}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
                         <View style={!proMode ? {opacity: 0} : longPotP1 ? styles.touchableLongPressed : styles.touchableLong}>
@@ -124,7 +215,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP1}
-                            activateOpponentsBalls={activateBallsP2}/>
+                            activateOpponentsBalls={activateBallsP2}
+                            setShowBreak={setShowP1Break}/>
                         <View style={!freeBallButtonP1 ? {...styles.touchableFB, ...styles.invisible} : !freeBallP1 ? styles.touchableFB : styles.touchableFBPressed}>
                             <TouchableNativeFeedback
                                 disabled={!freeBallButtonP1}
@@ -180,7 +272,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP1}
-                            activateOpponentsBalls={activateBallsP2}/>
+                            activateOpponentsBalls={activateBallsP2}
+                            setShowBreak={setShowP1Break}/>
                         <Ball 
                             style={!activeBallsP1['6'] ? {...styles.ball, ...styles.pink, ...styles.invisible} : {...styles.ball, ...styles.pink}} 
                             activeBalls={activeBallsP1}
@@ -203,7 +296,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP1}
-                            activateOpponentsBalls={activateBallsP2}/>
+                            activateOpponentsBalls={activateBallsP2}
+                            setShowBreak={setShowP1Break}/>
                         <Ball 
                             style={!activeBallsP1['7'] ? {...styles.ball, ...styles.black, ...styles.invisible} : {...styles.ball, ...styles.black}} 
                             activeBalls={activeBallsP1}
@@ -226,10 +320,14 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP1}
-                            activateOpponentsBalls={activateBallsP2}/>
+                            activateOpponentsBalls={activateBallsP2}
+                            setShowBreak={setShowP1Break}/>
                     </View>
-                </View>
-                <View style={styles.mainBallContainer}> 
+                </Animated.View>
+                <Animated.View style={[styles.mainBallContainer, {opacity: fadeSectionRight}]}> 
+                    {showP2Break && <Animated.View style={[styles.animatedView, {opacity: fadeAnim, transform: [{ scale:scaleAnim }]}]}>
+                        <Text style={styles.animatedText}>{currentBreakP2}</Text>
+                    </Animated.View>}
                     <View style={{...styles.ballContainer, ...styles.borderContainer}}>
                         <Ball 
                             style={!activeBallsP2['2'] ? {...styles.ball, ...styles.yellow, ...styles.invisible} : {...styles.ball, ...styles.yellow}} 
@@ -253,7 +351,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP2}
-                            activateOpponentsBalls={activateBallsP1}/>
+                            activateOpponentsBalls={activateBallsP1}
+                            setShowBreak={setShowP2Break}/>
                         <Ball 
                             style={!activeBallsP2['3'] ? {...styles.ball, ...styles.green, ...styles.invisible} : {...styles.ball, ...styles.green}} 
                             activeBalls={activeBallsP2}
@@ -276,7 +375,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP2}
-                            activateOpponentsBalls={activateBallsP1}/>
+                            activateOpponentsBalls={activateBallsP1}
+                            setShowBreak={setShowP2Break}/>
                         <Ball 
                             style={!activeBallsP2['4'] ? {...styles.ball, ...styles.brown, ...styles.invisible} : {...styles.ball, ...styles.brown}} 
                             activeBalls={activeBallsP2}
@@ -299,7 +399,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP2}
-                            activateOpponentsBalls={activateBallsP1}/>
+                            activateOpponentsBalls={activateBallsP1}
+                            setShowBreak={setShowP2Break}/>
                     </View>
                     <View style={{...styles.ballContainer, ...styles.centralContainer}}>
                     <View style={!freeBallButtonP2 ? {...styles.touchableFB, ...styles.invisible} : !freeBallP2 ? styles.touchableFB : styles.touchableFBPressed}>
@@ -356,7 +457,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP2}
-                            activateOpponentsBalls={activateBallsP1}/>
+                            activateOpponentsBalls={activateBallsP1}
+                            setShowBreak={setShowP2Break}/>
                         <View style={!proMode ? {opacity: 0} : longPotP2 ? styles.touchableLongPressed : styles.touchableLong}>
                             <TouchableNativeFeedback
                             onPress={()=>{
@@ -395,7 +497,7 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP2}
                             activateOpponentsBalls={activateBallsP1}
-                            />
+                            setShowBreak={setShowP2Break}/>
                         <Ball 
                             style={!activeBallsP2['6'] ? {...styles.ball, ...styles.pink, ...styles.invisible} : {...styles.ball, ...styles.pink}} 
                             activeBalls={activeBallsP2}
@@ -418,7 +520,8 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP2}
-                            activateOpponentsBalls={activateBallsP1}/>
+                            activateOpponentsBalls={activateBallsP1}
+                            setShowBreak={setShowP2Break}/>
                         <Ball 
                             style={!activeBallsP2['7'] ? {...styles.ball, ...styles.black, ...styles.invisible} : {...styles.ball, ...styles.black}} 
                             activeBalls={activeBallsP2}
@@ -441,9 +544,10 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
                             setCurrentShotIndex={setCurrentShotIndex}
                             modifyArray={modifyArray}
                             activateBalls={activateBallsP2}
-                            activateOpponentsBalls={activateBallsP1}/>
+                            activateOpponentsBalls={activateBallsP1}
+                            setShowBreak={setShowP2Break}/>
                     </View>
-                </View>
+                </Animated.View>
             </View>
         </View>
     )
@@ -451,20 +555,22 @@ const BallContainer = ({setP1Points, setP2Points, activeBallsP1, activeBallsP2, 
  
 const styles = StyleSheet.create({
     ballSection: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     ballContainer: {
         flexDirection: 'row',
     },
     mainBallContainer: {
-        paddingTop: 20,
+        marginTop: 20,
         width: '50%',
         justifyContent: 'center',
         alignItems: 'center',
         borderRightWidth: 0.01
     },
     borderContainer: {
-        height: 90
+        height: Dimensions.get('window').height <= 600 ? 50 : Dimensions.get('window').height <= 740 ? 65: 90
     },
     centralContainer: {
         alignItems: 'center',
@@ -478,7 +584,6 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation:5,
     },
     touchableFBPressed: {
         height: 30,
@@ -488,7 +593,6 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation:5,
     },
     touchableLong: {
         height: 30,
@@ -498,7 +602,6 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 5,
         borderWidth: 2,
     },
     touchableLongPressed: {
@@ -509,7 +612,6 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 5,
         borderWidth: 2,
     },
     buttonFB: {
@@ -545,9 +647,26 @@ const styles = StyleSheet.create({
         fontFamily: 'score',
         color: '#fff'
     },
+    animatedView: {
+        position: 'absolute',
+        zIndex: 4
+    },
+    animatedRespottedView: {
+        position: 'absolute',
+        zIndex: 5
+    },
+    animatedText: {
+        fontSize: 70,
+        fontFamily: 'scoreBold'
+    },
+    respottedText: {
+        fontSize: 25,
+        fontFamily: 'scoreBold',
+        textAlign: 'center'
+    },
     ball: {
-        height: 49,
-        width: 49,
+        height: Dimensions.get('window').height <= 680 ? 40 : 49,
+        width: Dimensions.get('window').height <= 680 ? 40 : 49,
         borderRadius: 24.5,
         margin: 5
     },
@@ -557,21 +676,21 @@ const styles = StyleSheet.create({
     },
     yellow: {
         backgroundColor: '#fbff00',
-        top: 30
+        top: Dimensions.get('window').height <= 600 ? 0 : Dimensions.get('window').height <= 740 ? 20: 30
     },
     green: {
         backgroundColor: '#029e0c',
     },
     brown: {
         backgroundColor: '#99001a',
-        top: 30
+        top: Dimensions.get('window').height <= 600 ? 0 : Dimensions.get('window').height <= 740 ? 20: 30
     },
     blue: {
         backgroundColor: '#0f1bff',
     },
     pink: {
         backgroundColor: '#ff8af7',
-        top: 30
+        top: Dimensions.get('window').height <= 600 ? 0 : Dimensions.get('window').height <= 740 ? 20: 30
     },
     black: {
         backgroundColor: '#333',
