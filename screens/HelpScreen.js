@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, ImageBackground, BackHandler } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import cloth from '../assets/png/green-snooker-cloth-background.jpg'
 import wood from '../assets/png/wood.png'
 import HelpOption from '../components/HelpOption'
  
-const HelpScreen = () => {
+const HelpScreen = props => {
 
     const [helpOptions, setHelpOptions] = useState({
         start: false,
@@ -23,6 +23,20 @@ const HelpScreen = () => {
         endOfFrame: false,
         endOfMatch: false
     })
+
+    useEffect(() => {
+        const backAction = () => {
+          props.navigation.goBack()
+          return true;
+        };
+    
+        const backHandler = BackHandler.addEventListener(
+          "hardwareBackPress",
+          backAction
+        );
+    
+        return () => backHandler.remove();
+    }, []);
 
     return (
     <View style={styles.main}>
