@@ -1,5 +1,9 @@
 node_modules/**/*
 .expo/*
+.expo-shared/*
+.++tunnel/*
+.node_modules/*
+.tunnel/*
 npm-debug.*
 *.jks
 *.p8
