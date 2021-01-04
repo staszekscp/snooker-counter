@@ -2,7 +2,7 @@
   "expo": {
     "name": "Snooker Counter",
     "slug": "snooker-counter",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "platforms": [
       "android"
     ],
@@ -21,10 +21,10 @@
     ],
     "android": {
       "package": "pl.staszekscp.snooker_counter",
-      "versionCode": 2,
+      "versionCode": 5,
       "adaptiveIcon": {
         "foregroundImage": "./assets/Ball/6reds.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#00cc2c"
       },
       "permissions": [],
       "softwareKeyboardLayoutMode": "pan"
